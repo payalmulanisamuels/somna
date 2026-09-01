@@ -1,0 +1,89 @@
+{{ 'somna-hs-styles.css' | asset_url | stylesheet_tag }}
+{%- assign acc = section.settings.accent | default: '#8491c5' -%}
+{%- assign acc_d = acc | color_darken: 14 -%}
+{%- assign acc_l = acc | color_lighten: 12 -%}
+<section class="shs shs-sec shsng" style="background:{{ section.settings.bg | default: '#faf7f2' }}">
+  <div class="shs-wrap">
+    <div class="shsng-grid">
+      <div class="shsng-txt somna-sr">
+        {%- if section.settings.eyebrow != blank -%}<span class="shs-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2 class="shsng-h">{{ section.settings.title | default: 'Next-Gen' }}<em style="background:linear-gradient(180deg,{{ acc_d }} 0%,{{ acc }} 55%,{{ acc_l }} 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:{{ acc }}">{{ section.settings.title2 | default: 'Nasal Tech' }}</em></h2>
+        {%- if section.settings.lead != blank -%}<p class="shsng-lead">{{ section.settings.lead }}</p>{%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+        <div class="shsng-feats somna-sr-stag">
+          {%- for block in section.blocks -%}
+          <div class="shsng-feat" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon != blank -%}<img class="shsng-ic" src="{{ block.settings.icon | image_url: width: 100 }}" loading="lazy" alt="">
+            {%- else -%}
+              {%- assign ic = forloop.index0 | modulo: 3 -%}
+              {%- case ic -%}
+              {%- when 0 -%}<svg class="shsng-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21l8-8 8 8"/><path d="M8 27l8-8 8 8"/><path d="M7 6h18"/></svg>
+              {%- when 1 -%}<svg class="shsng-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4c5 6 8 10 8 14a8 8 0 1 1-16 0c0-4 3-8 8-14z"/><path d="M11.5 19a4.5 4.5 0 0 0 4.5 4.5"/></svg>
+              {%- when 2 -%}<svg class="shsng-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h14a4 4 0 1 0-4-4"/><path d="M4 17h20a4 4 0 1 1-4 4"/><path d="M4 23h9"/></svg>
+              {%- endcase -%}
+            {%- endif -%}
+            <span>{{ block.settings.label }}</span>
+          </div>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+      <div class="shsng-tile somna-sr somna-zoomin">
+        {%- if section.settings.video != blank -%}
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'auto' }}
+        {%- elsif section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 1600 }}" loading="lazy" alt="{{ section.settings.title | escape }}">
+        {%- else -%}
+          <div class="shsng-ph">Insert video (or image) in the theme editor</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.shsng-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,60px);align-items:center}
+.shsng-h{font-size:clamp(2.1rem,4.4vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1.04;margin:0 0 16px;color:var(--ink)}
+.shsng-h em{display:block;font-style:normal;font-weight:800}
+.shsng-lead{color:#494956;font-size:clamp(.95rem,1.35vw,1.04rem);font-weight:450;line-height:1.7;letter-spacing:.002em;margin:0 0 26px;max-width:42ch}
+.shsng-feats{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;max-width:460px}
+.shsng-feat{display:flex;align-items:center;gap:11px;font-weight:700;font-size:.9rem;line-height:1.35;letter-spacing:-.005em;color:var(--ink)}
+.shsng-ic{width:28px;height:28px;object-fit:contain;flex:none;color:#12121a}
+.shsng-tile{aspect-ratio:4/3;border-radius:clamp(24px,3vw,36px);overflow:hidden;background:#ECECEC;display:flex;align-items:center;justify-content:center;box-shadow:0 30px 60px -34px rgba(18,18,26,.25)}
+.shsng-tile video,.shsng-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.shsng-ph{color:#9a98b5;font-size:.85rem;text-align:center;padding:16px}
+@media(max-width:820px){.shsng-grid{grid-template-columns:1fr;gap:24px}.shsng-txt{text-align:center;display:flex;flex-direction:column;align-items:center}.shsng-h{font-size:2.1rem}.shsng-feats{text-align:left}}
+</style>
+<script>
+(function(){
+  var root=document.getElementById('shopify-section-{{ section.id }}');if(!root)return;
+  var v=root.querySelector('.shsng-tile video');if(!v)return;
+  v.loop=true;v.muted=true;v.autoplay=true;v.setAttribute('playsinline','');v.removeAttribute('controls');
+  v.addEventListener('ended',function(){v.currentTime=0;v.play();});
+  var kick=function(){var p=v.play();if(p&&p.catch)p.catch(function(){});};
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)kick();});},{threshold:.1});io.observe(v);}
+  kick();document.addEventListener('visibilitychange',function(){if(!document.hidden)kick();});
+  setInterval(function(){if(v.paused&&!document.hidden)kick();},3000);
+})();
+</script>
+{% schema %}
+{
+  "name": "HS — Next-gen tech",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow (optional)" },
+    { "type": "text", "id": "title", "label": "Title line 1", "default": "Next-Gen" },
+    { "type": "text", "id": "title2", "label": "Title line 2 (gradient accent)", "default": "Nasal Tech" },
+    { "type": "color", "id": "accent", "label": "Accent color (gradient auto-generated)", "default": "#8491c5" },
+    { "type": "textarea", "id": "lead", "label": "Paragraph", "default": "Somna uses multi-layer tension-release technology to gently lift and open your nasal passages, giving you up to 40% more airflow with every breath.*" },
+    { "type": "video", "id": "video", "label": "Video (right tile — loops forever)" },
+    { "type": "image_picker", "id": "image", "label": "Image fallback" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#faf7f2" }
+  ],
+  "blocks": [ { "type": "usp", "name": "Feature", "settings": [
+    { "type": "image_picker", "id": "icon", "label": "Icon image (overrides built-in icon)" },
+    { "type": "text", "id": "emoji", "label": "(unused)" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Dynamic Lift Design" }
+  ] } ],
+  "max_blocks": 6,
+  "presets": [{ "name": "HS — Next-gen tech", "blocks": [ {"type":"usp"},{"type":"usp"},{"type":"usp"} ] }]
+}
+{% endschema %}

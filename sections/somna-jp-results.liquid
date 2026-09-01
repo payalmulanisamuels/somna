@@ -1,0 +1,45 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr">
+      <h2 class="sjp-h2">{{ section.settings.title_a | default: 'Real nights. Real sleepers.' }} <em>{{ section.settings.title_em | default: 'Real difference.' }}</em></h2>
+      {%- if section.settings.sub != blank -%}<p class="sjp-sub">{{ section.settings.sub }}</p>{%- endif -%}
+    </div>
+    <div class="sjp-res-grid somna-sr-stag">
+      {%- for block in section.blocks -%}
+      <div class="sjp-res-card" {{ block.shopify_attributes }}>
+        <div class="sjp-res-img">{%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 800 }}" loading="lazy" alt="{{ block.settings.name | escape }}">{%- else -%}<div class="sjp-ph">Insert customer photo</div>{%- endif -%}</div>
+        <div class="sjp-res-b">
+          <div class="st">★★★★★</div>
+          <p>{{ block.settings.quote }}</p>
+          <div class="nm">{{ block.settings.name }}{%- if block.settings.verified -%}<span class="sjp-vf">✓ Verified</span>{%- endif -%}</div>
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+    <div class="sjp-ctawrap somna-sr"><a class="sjp-cta" href="{{ section.settings.cta_url | default: '#somna-jp-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a></div>
+    <p class="sjp-note">{{ section.settings.note | default: 'Individual results may vary.' }}</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — Results cards",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "Real nights. Real sleepers." },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "Real difference." },
+    { "type": "text", "id": "sub", "label": "Subtitle" },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: jump to buy box)" },
+    { "type": "text", "id": "note", "label": "Footnote", "default": "Individual results may vary." },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "card", "name": "Result card", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo (4:3)" },
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "Placeholder review — replace with a real customer quote." },
+    { "type": "text", "id": "name", "label": "Name", "default": "Customer name" },
+    { "type": "checkbox", "id": "verified", "label": "Verified badge", "default": true }
+  ] } ],
+  "max_blocks": 6,
+  "presets": [{ "name": "JP — Results cards", "blocks": [ {"type":"card"},{"type":"card"},{"type":"card"} ] }]
+}
+{% endschema %}

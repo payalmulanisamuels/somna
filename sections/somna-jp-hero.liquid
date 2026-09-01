@@ -1,0 +1,174 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+{%- assign sjp_variant = product.selected_or_first_available_variant -%}
+<section class="sjp" id="somna-jp-buy" style="background:{{ section.settings.bg | default: '#FBFAF7' }};padding:clamp(24px,4vw,52px) 0">
+  <div class="sjp-wrap sjp-hero">
+    <div class="sjp-gal">
+      <div class="sjp-gal-main" data-jp-main>
+        {%- if section.settings.main_image != blank -%}
+          <img src="{{ section.settings.main_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}" loading="eager" fetchpriority="high">
+        {%- elsif product.featured_media != blank -%}
+          <img src="{{ product.featured_media | image_url: width: 1200 }}" alt="{{ product.title | escape }}" loading="eager" fetchpriority="high">
+        {%- else -%}
+          <div class="sjp-ph">Add main image</div>
+        {%- endif -%}
+        {%- if section.settings.ov_head != blank -%}
+        <div class="sjp-mainov">
+          {%- if section.settings.ov_kicker != blank -%}<div class="sjp-mainov-k">{{ section.settings.ov_kicker }}</div>{%- endif -%}
+          <div class="sjp-mainov-h">{{ section.settings.ov_head }}</div>
+          {%- if section.settings.ov_rows != blank -%}
+          <div class="sjp-mainov-rows">
+            {%- assign ovr = section.settings.ov_rows | newline_to_br | split: '<br />' -%}
+            {%- for r in ovr -%}{%- assign rt = r | strip -%}{%- if rt != '' -%}<div class="sjp-mainov-row">{{ rt }}</div>{%- endif -%}{%- endfor -%}
+          </div>
+          {%- endif -%}
+          {%- if section.settings.ov_more != blank -%}<div class="sjp-mainov-more">{{ section.settings.ov_more }}</div>{%- endif -%}
+        </div>
+        {%- endif -%}
+      </div>
+      <div class="sjp-gal-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tile' -%}
+          <button class="sjp-tile" type="button" data-jp-tile {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 600 }}" data-big="{{ block.settings.image | image_url: width: 1200 }}" loading="lazy" alt="Product detail">{%- else -%}<div class="sjp-ph">Insert image</div>{%- endif -%}
+          </button>
+          {%- elsif block.type == 'itile' -%}
+          <div class="sjp-tile sjp-it" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}<span class="sjp-it-bg"><img src="{{ block.settings.image | image_url: width: 600 }}" loading="lazy" alt=""></span><span class="sjp-it-tint"></span>{%- endif -%}
+            {%- if block.settings.badge != blank -%}<span class="sjp-it-badge">{{ block.settings.badge }}</span>{%- endif -%}
+            {%- if block.settings.kicker != blank -%}<span class="sjp-it-k">{{ block.settings.kicker }}</span>{%- endif -%}
+            {%- if block.settings.big != blank -%}<span class="sjp-it-big">{{ block.settings.big }}</span>{%- endif -%}
+            {%- if block.settings.head != blank -%}<span class="sjp-it-h">{{ block.settings.head }}</span>{%- endif -%}
+            {%- if block.settings.rows != blank -%}
+            <span class="sjp-it-rows">
+              {%- assign itr = block.settings.rows | newline_to_br | split: '<br />' -%}
+              {%- for r in itr -%}{%- assign rt = r | strip -%}{%- if rt != '' -%}<span class="sjp-it-row">{{ rt }}</span>{%- endif -%}{%- endfor -%}
+            </span>
+            {%- endif -%}
+            {%- if block.settings.note != blank -%}<span class="sjp-it-note">{{ block.settings.note }}</span>{%- endif -%}
+          </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="sjp-buy">
+      <h1 class="sjp-hero-title">{{ section.settings.title | default: product.title }}{% if section.settings.title_em != blank %} <em>{{ section.settings.title_em }}</em>{% endif %}</h1>
+      <div class="sjp-stars"><b>★★★★★</b> {{ section.settings.rating | default: '4.7' }} · {{ section.settings.reviews | default: '3,910' }} reviews</div>
+      {%- if section.settings.subhead != blank -%}<div class="sjp-heroSub">{{ section.settings.subhead }}</div>{%- endif -%}
+      <div class="sjp-price-row">
+        <span class="sjp-price" data-jp-price>{{ sjp_variant.price | money }}</span>
+        {%- if sjp_variant.compare_at_price > sjp_variant.price -%}<span class="sjp-was" data-jp-was>{{ sjp_variant.compare_at_price | money }}</span>{%- endif -%}
+        {%- if section.settings.ship_note != blank -%}<span class="sjp-ship">{{ section.settings.ship_note }}</span>{%- endif -%}
+      </div>
+      <div class="sjp-plans" data-jp-plans>
+        {%- assign first_plan = true -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'plan' -%}
+          {%- assign q = block.settings.qty | default: '1' | plus: 0 -%}
+          {%- assign line_total = sjp_variant.price | times: q -%}
+          <button class="sjp-plan{% if first_plan %} is-on{% endif %}" type="button" data-jp-plan data-qty="{{ q }}" data-total="{{ line_total | money }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.badge != blank -%}<span class="sjp-badge">{{ block.settings.badge }}</span>{%- endif -%}
+            <span class="sjp-plan-l"><span class="sjp-radio"></span><span><span class="sjp-plan-t">{{ block.settings.label }}</span>{%- if block.settings.sub != blank -%}<span class="sjp-plan-s">{{ block.settings.sub }}</span>{%- endif -%}</span></span>
+            <span><span class="sjp-plan-p">{{ line_total | money }}</span>{%- if sjp_variant.compare_at_price > sjp_variant.price -%}{%- assign was_total = sjp_variant.compare_at_price | times: q -%}<span class="sjp-plan-w">{{ was_total | money }}</span>{%- endif -%}</span>
+          </button>
+          {%- assign first_plan = false -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="sjp-accs">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'acc' -%}
+          <details class="sjp-acc" {{ block.shopify_attributes }}><summary>{{ block.settings.q }}</summary><div class="sjp-acc-b">{{ block.settings.a }}</div></details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <button class="sjp-cta sjp-cta--band sjp-buy-cta" type="button" data-jp-atc data-variant="{{ sjp_variant.id }}">{{ section.settings.cta_label | default: 'Try Somna Tonight' }} — <span data-jp-cta-price>{{ sjp_variant.price | money }}</span></button>
+      <div class="sjp-guar">✓ {{ section.settings.guarantee | default: '30 Days Risk-Free Money Back Guarantee' }}</div>
+      <div class="sjp-pays"><span class="sjp-pay">VISA</span><span class="sjp-pay">MASTERCARD</span><span class="sjp-pay">AMEX</span><span class="sjp-pay">PAYPAL</span><span class="sjp-pay">APPLE PAY</span><span class="sjp-pay">G PAY</span></div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  if(window.__sjpHero)return;window.__sjpHero=1;
+  function ready(fn){if(document.readyState!='loading')fn();else document.addEventListener('DOMContentLoaded',fn);}
+  ready(function(){
+    var main=document.querySelector('[data-jp-main] img');
+    document.querySelectorAll('[data-jp-tile]').forEach(function(t){
+      t.addEventListener('click',function(){
+        var img=t.querySelector('img');if(!img||!main)return;
+        document.querySelectorAll('[data-jp-tile]').forEach(function(x){x.classList.remove('is-on');});
+        t.classList.add('is-on');
+        main.src=img.getAttribute('data-big')||img.src;
+      });
+    });
+    var qty=1;
+    var ctaPrice=document.querySelector('[data-jp-cta-price]');
+    document.querySelectorAll('[data-jp-plan]').forEach(function(p){
+      p.addEventListener('click',function(){
+        document.querySelectorAll('[data-jp-plan]').forEach(function(x){x.classList.remove('is-on');});
+        p.classList.add('is-on');
+        qty=parseInt(p.getAttribute('data-qty')||'1',10);
+        if(ctaPrice)ctaPrice.textContent=p.getAttribute('data-total')||ctaPrice.textContent;
+      });
+    });
+    var atc=document.querySelector('[data-jp-atc]');
+    if(atc)atc.addEventListener('click',function(){
+      var id=atc.getAttribute('data-variant');
+      atc.style.opacity='.6';
+      fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{id:parseInt(id,10),quantity:qty}]})})
+      .then(function(r){if(!r.ok)throw 0;window.location.href='/cart';})
+      .catch(function(){window.location.href='/cart';});
+    });
+    document.querySelectorAll('a[href="#somna-jp-buy"]').forEach(function(a){
+      a.addEventListener('click',function(e){e.preventDefault();var el=document.getElementById('somna-jp-buy');if(el)el.scrollIntoView({behavior:'smooth'});});
+    });
+  });
+})();
+</script>
+{% schema %}
+{
+  "name": "JP — Hero & buy box",
+  "settings": [
+    { "type": "image_picker", "id": "main_image", "label": "Main image (overrides product media)" },
+    { "type": "header", "content": "Main image overlay panel" },
+    { "type": "text", "id": "ov_kicker", "label": "Overlay kicker", "default": "DRUG-FREE ANTI-SNORE" },
+    { "type": "text", "id": "ov_head", "label": "Overlay headline (blank = hide panel)", "default": "Designed to help with:" },
+    { "type": "textarea", "id": "ov_rows", "label": "Overlay rows (one per line)", "default": "Snoring\nBlocked-nose nights\nDry mouth\nRestless sleep" },
+    { "type": "text", "id": "ov_more", "label": "Overlay footer line", "default": "…and so much more" },
+    { "type": "header", "content": "Buy box" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Somna Nasal Strips" },
+    { "type": "text", "id": "title_em", "label": "Italic accent word (optional)", "default": "& Deep Sleep" },
+    { "type": "text", "id": "rating", "label": "Rating", "default": "4.7" },
+    { "type": "text", "id": "reviews", "label": "Review count", "default": "3,910" },
+    { "type": "richtext", "id": "subhead", "label": "Subhead", "default": "<p>Drug-free strips that gently open your nasal passages — breathe easier, snore less, wake up recovered.</p>" },
+    { "type": "text", "id": "ship_note", "label": "Shipping note", "default": "+ $9 shipping" },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "text", "id": "guarantee", "label": "Guarantee line", "default": "30 Days Risk-Free Money Back Guarantee" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [
+    { "type": "tile", "name": "Photo tile", "settings": [ { "type": "image_picker", "id": "image", "label": "Tile image (square)" } ] },
+    { "type": "itile", "name": "Infographic tile", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Background photo (blank = purple gradient)" },
+      { "type": "text", "id": "badge", "label": "Corner badge" },
+      { "type": "text", "id": "kicker", "label": "Kicker (small caps)" },
+      { "type": "text", "id": "big", "label": "Big number/word" },
+      { "type": "text", "id": "head", "label": "Headline", "default": "What you'll feel" },
+      { "type": "textarea", "id": "rows", "label": "Check rows (one per line)" },
+      { "type": "text", "id": "note", "label": "Tiny footnote" }
+    ] },
+    { "type": "plan", "name": "Quantity plan", "settings": [
+      { "type": "text", "id": "qty", "label": "Quantity", "default": "1" },
+      { "type": "text", "id": "label", "label": "Label", "default": "Buy 1 Pack" },
+      { "type": "text", "id": "sub", "label": "Sub line", "default": "30 strips · 1 month supply" },
+      { "type": "text", "id": "badge", "label": "Badge (optional)" }
+    ] },
+    { "type": "acc", "name": "Accordion row", "settings": [
+      { "type": "text", "id": "q", "label": "Question", "default": "What's included" },
+      { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>30 performance nasal strips per pack.</p>" }
+    ] }
+  ],
+  "max_blocks": 20,
+  "presets": [{ "name": "JP — Hero & buy box", "blocks": [ {"type":"tile"},{"type":"tile"},{"type":"itile"},{"type":"itile"},{"type":"itile"},{"type":"plan"},{"type":"plan"},{"type":"plan"},{"type":"acc"},{"type":"acc"},{"type":"acc"} ] }]
+}
+{% endschema %}

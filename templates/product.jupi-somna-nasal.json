@@ -1,0 +1,163 @@
+{
+  "sections": {
+    "jphero": {
+      "type": "somna-jp-hero",
+      "blocks": {
+        "t1": { "type": "tile", "settings": { "image": "shopify://shop_images/hf_20260617_174606_524c91dc-a589-41cb-992f-868ae6718cd1.png" } },
+        "t2": { "type": "tile", "settings": { "image": "shopify://shop_images/somna-hs-nextgen-macro.png" } },
+        "it1": { "type": "itile", "settings": { "kicker": "TONIGHT", "big": "40%*", "head": "more airflow per breath", "note": "*Up to — based on external dilator studies" } },
+        "it2": { "type": "itile", "settings": { "image": "shopify://shop_images/somna-hs-creator-sleep.png", "head": "What you'll feel — night one", "rows": "Quieter breathing\nFewer wake-ups\nNo dry mouth" } },
+        "it3": { "type": "itile", "settings": { "image": "shopify://shop_images/somna-hs-creator-gym.png", "badge": "Train", "head": "Built for training", "rows": "Sweat-proof grip\n8h+ secure hold\nZero slip" } },
+        "t3": { "type": "tile", "settings": { "image": "shopify://shop_images/somna-hs-creator-run.png" } },
+        "p1": { "type": "plan", "settings": { "qty": "1", "label": "Buy 1 Pack", "sub": "30 strips · 1 month supply" } },
+        "p2": { "type": "plan", "settings": { "qty": "2", "label": "Buy 2 Packs", "sub": "60 strips · 2 month supply", "badge": "Most popular" } },
+        "p3": { "type": "plan", "settings": { "qty": "3", "label": "Buy 3 Packs", "sub": "90 strips · 3 month supply", "badge": "Best value" } },
+        "ac1": { "type": "acc", "settings": { "q": "What's included", "a": "<p>30 matte-black performance nasal strips per pack, in a resealable pouch.</p>" } },
+        "ac2": { "type": "acc", "settings": { "q": "How it works", "a": "<p>A dual-tension band gently lifts the sides of your nose to widen the airway — drug-free, no sprays, no pills.</p>" } },
+        "ac3": { "type": "acc", "settings": { "q": "Shipping & returns", "a": "<p>Ships in 1–2 business days. 30-day money-back guarantee — if it's not for you, we refund it.</p>" } }
+      },
+      "block_order": [ "t1", "it1", "it2", "t2", "it3", "t3", "p1", "p2", "p3", "ac1", "ac2", "ac3" ],
+      "settings": {
+        "ov_kicker": "DRUG-FREE ANTI-SNORE",
+        "ov_head": "Designed to help with:",
+        "ov_rows": "Snoring\nBlocked-nose nights\nDry mouth\nRestless sleep",
+        "ov_more": "…and so much more",
+        "title": "Somna Nasal Strips",
+        "title_em": "& Deep Sleep",
+        "rating": "4.7",
+        "reviews": "3,910",
+        "subhead": "<p>Drug-free strips that gently open your nasal passages — breathe easier, snore less, wake up recovered.</p>",
+        "ship_note": "+ $9 shipping",
+        "cta_label": "Try Somna Tonight",
+        "guarantee": "30 Days Risk-Free Money Back Guarantee",
+        "bg": "#FBFAF7"
+      }
+    },
+    "jpresults": {
+      "type": "somna-jp-results",
+      "blocks": {
+        "r1": { "type": "card", "settings": { "image": "shopify://shop_images/0b1d4a5302d62528bc9fd4801dc101a7.jpg", "quote": "My partner finally stopped elbowing me at 3am. These actually work.", "name": "Brad K.", "verified": true } },
+        "r2": { "type": "card", "settings": { "image": "shopify://shop_images/4ceb85b3066d28a976fc51dc75cfc763.jpg", "quote": "I use them before every long run. Nose breathing feels effortless now.", "name": "Amanda C.", "verified": true } },
+        "r3": { "type": "card", "settings": { "image": "shopify://shop_images/f67b8f53364b4a0bf60d64155b186048.jpg", "quote": "Drug-free and dead simple. Stick it on, breathe, sleep.", "name": "Tom B.", "verified": true } }
+      },
+      "block_order": [ "r1", "r2", "r3" ],
+      "settings": { "title_a": "Real nights. Real sleepers.", "title_em": "Real difference.", "cta": "Try Somna Tonight", "note": "Individual results may vary.", "bg": "#FBFAF7" }
+    },
+    "jpmech": {
+      "type": "somna-jp-mechanism",
+      "blocks": {
+        "m1": { "type": "img", "settings": { "diagram": "blocked", "caption": "Narrow airway → noisy, restless nights" } },
+        "m2": { "type": "img", "settings": { "diagram": "open", "caption": "Lifted airway → quiet, easy breathing" } }
+      },
+      "block_order": [ "m1", "m2" ],
+      "settings": { "title_a": "The missing piece:", "title_em": "open airways", "cta": "Try Somna Tonight", "bg": "#F3F1FB" }
+    },
+    "jpstats": {
+      "type": "somna-jp-stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "value": "93%", "label": "report waking up more rested*" } },
+        "s2": { "type": "stat", "settings": { "value": "97%", "label": "feel airflow open up right away*" } },
+        "s3": { "type": "stat", "settings": { "value": "8h+", "label": "secure hold through the night" } },
+        "s4": { "type": "stat", "settings": { "value": "10s", "label": "to apply before bed" } }
+      },
+      "block_order": [ "s1", "s2", "s3", "s4" ],
+      "settings": { "image": "shopify://shop_images/somna-hs-creator-gym.png", "title_a": "One strip.", "title_em": "Zero effort.", "sub": "Stick it on before bed or training — the tension band does the rest.", "note": "*Self-reported by customers. Illustrative example — replace with your data.", "cta": "Try Somna Tonight", "bg": "#FBFAF7" }
+    },
+    "jpbenefits": {
+      "type": "somna-jp-benefits",
+      "blocks": {
+        "b1": { "type": "check", "settings": { "title": "Quieter nights", "sub": "less snoring from night one" } },
+        "b2": { "type": "check", "settings": { "title": "Deeper sleep", "sub": "stay in restorative stages longer" } },
+        "b3": { "type": "check", "settings": { "title": "Easier workouts", "sub": "more airflow when it counts" } },
+        "b4": { "type": "check", "settings": { "title": "No dry mouth", "sub": "breathe through your nose, not your mouth" } },
+        "b5": { "type": "check", "settings": { "title": "Drug-free", "sub": "no sprays, no pills, no habit" } },
+        "b6": { "type": "check", "settings": { "title": "Skin-safe", "sub": "hypoallergenic, latex-free adhesive" } }
+      },
+      "block_order": [ "b1", "b2", "b3", "b4", "b5", "b6" ],
+      "settings": { "image": "shopify://shop_images/hf_20260617_174606_524c91dc-a589-41cb-992f-868ae6718cd1.png", "cta": "Try Somna Tonight", "bg": "#FBFAF7" }
+    },
+    "jpingredients": {
+      "type": "somna-jp-ingredients",
+      "blocks": {
+        "i1": { "type": "tile", "settings": { "image": "shopify://shop_images/somna-hs-nextgen-macro.png", "title": "Tension band", "sub": "gentle constant lift" } },
+        "i2": { "type": "tile", "settings": { "title": "Sweat-proof adhesive", "sub": "holds 8+ hours" } },
+        "i3": { "type": "tile", "settings": { "title": "Flexible shell", "sub": "moves with your face" } },
+        "i4": { "type": "tile", "settings": { "title": "Breathable weave", "sub": "no clammy feel" } },
+        "i5": { "type": "tile", "settings": { "title": "Hypoallergenic", "sub": "kind to sensitive skin" } },
+        "i6": { "type": "tile", "settings": { "title": "Latex-free", "sub": "zero rubber irritants" } },
+        "i7": { "type": "tile", "settings": { "title": "Matte finish", "sub": "looks good on camera" } },
+        "i8": { "type": "tile", "settings": { "title": "Clean peel", "sub": "no marks in the morning" } }
+      },
+      "block_order": [ "i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8" ],
+      "settings": { "title_a": "8 engineering details,", "title_em": "one perfect strip", "cta": "Try Somna Tonight", "bg": "#FBFAF7" }
+    },
+    "jpfeel": {
+      "type": "somna-jp-feelbetter",
+      "blocks": {
+        "f1": { "type": "item", "settings": { "title": "Fall asleep faster", "sub": "easy nasal breathing calms the nervous system before bed." } },
+        "f2": { "type": "item", "settings": { "title": "Sleep through the night", "sub": "open airways mean fewer micro-wakeups." } },
+        "f3": { "type": "item", "settings": { "title": "Wake up clear-headed", "sub": "better oxygen all night shows up in the morning." } },
+        "f4": { "type": "item", "settings": { "title": "Protect your partner's sleep", "sub": "the quietest gift you can give them." } }
+      },
+      "block_order": [ "f1", "f2", "f3", "f4" ],
+      "settings": { "image": "shopify://shop_images/somna-hs-creator-sleep.png", "title_a": "It's time to wake up", "title_em": "actually rested", "cta": "Try Somna Tonight", "bg": "#F3F1FB" }
+    },
+    "jpritual": {
+      "type": "somna-jp-ritual",
+      "blocks": {
+        "st1": { "type": "step", "settings": { "title": "Peel", "sub": "Remove the backing from a fresh strip." } },
+        "st2": { "type": "step", "settings": { "title": "Place", "sub": "Press it across the bridge of your nose for 10 seconds." } },
+        "st3": { "type": "step", "settings": { "title": "Breathe", "sub": "Feel the airway open — sleep or train, it holds all the way." } }
+      },
+      "block_order": [ "st1", "st2", "st3" ],
+      "settings": { "title_a": "Your new nightly ritual —", "title_em": "done in 10 seconds", "cta": "Try Somna Tonight", "bg": "#FBFAF7" }
+    },
+    "ugc": {
+      "type": "somna-ugc-wall",
+      "blocks": {
+        "u1": { "type": "rev", "settings": { "img": "shopify://shop_images/0b1d4a5302d62528bc9fd4801dc101a7.jpg", "quote": "My partner finally stopped elbowing me at 3am. These actually work.", "name": "Brad K.", "stars": "5", "verified": true } },
+        "u2": { "type": "rev", "settings": { "img": "shopify://shop_images/4ceb85b3066d28a976fc51dc75cfc763.jpg", "quote": "I use them before every long run. Breathing through my nose feels effortless now.", "name": "Amanda C.", "stars": "5", "verified": true } },
+        "u3": { "type": "rev", "settings": { "img": "shopify://shop_images/f67b8f53364b4a0bf60d64155b186048.jpg", "quote": "Drug-free and dead simple. Stick it on, breathe, sleep.", "name": "Tom B.", "stars": "5", "verified": true } },
+        "u4": { "type": "rev", "settings": { "quote": "First night I actually slept through without waking up stuffy.", "name": "Priya S.", "stars": "5", "verified": true } },
+        "u5": { "type": "rev", "settings": { "quote": "Was skeptical about strips, but these stay on all night even when I toss and turn.", "name": "Marcus D.", "stars": "5", "verified": true } },
+        "u6": { "type": "rev", "settings": { "quote": "My wife noticed the snoring dropped almost right away. Worth every penny.", "name": "Kevin R.", "stars": "4", "verified": true } }
+      },
+      "block_order": [ "u1", "u2", "u3", "u4", "u5", "u6" ],
+      "settings": { "title": "Join thousands of quieter bedrooms", "rating": "4.7", "count": "3,910", "b5": 86, "b4": 10, "b3": 2, "b2": 1, "b1": 1 }
+    },
+    "hscompare": {
+      "type": "somna-hs-compare",
+      "blocks": {
+        "cr1": { "type": "row", "settings": { "label": "Works up to 24h", "c1": "yes", "c2": "no", "c3": "yes", "c4": "yes", "is_price": false } },
+        "cr2": { "type": "row", "settings": { "label": "Gentle, drug-free", "c1": "yes", "c2": "no", "c3": "no", "c4": "yes", "is_price": false } },
+        "cr3": { "type": "row", "settings": { "label": "Anti-sweat grip", "c1": "yes", "c2": "no", "c3": "no", "c4": "no", "is_price": false } },
+        "cr4": { "type": "row", "settings": { "label": "Comfortable overnight wear", "c1": "yes", "c2": "no", "c3": "no", "c4": "no", "is_price": false } },
+        "cr5": { "type": "row", "settings": { "label": "Pricing*", "c1": "$44", "c2": "$129+", "c3": "$35/mo", "c4": "$32+", "is_price": true } }
+      },
+      "block_order": [ "cr1", "cr2", "cr3", "cr4", "cr5" ],
+      "settings": { "title": "Somna vs. the rest", "col1": "Somna", "col2": "Other devices", "col3": "Nasal spray", "col4": "Pharmacy strips", "foot": "*Cost calculated over 3 months of consistent use.", "bg": "#161422" }
+    },
+    "jpguarantee": {
+      "type": "somna-jp-guarantee",
+      "settings": { "image": "shopify://shop_images/somna-hs-creator-night.png", "seal_big": "30", "seal_small": "day risk-free trial", "title_a": "Try it for 30 nights,", "title_em": "risk-free", "cta": "Start My Risk-Free Trial", "bg": "#F3F1FB" }
+    },
+    "jpfaq": {
+      "type": "somna-jp-faq",
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "q": "Will it stay on all night?", "a": "<p>Yes — the adhesive is built to hold through 8+ hours of sleep or sweat-heavy training, then peel off gently in the morning.</p>" } },
+        "q2": { "type": "faq", "settings": { "q": "Is it safe for sensitive skin?", "a": "<p>The adhesive is hypoallergenic and latex-free. Don't apply to broken or irritated skin; if you have specific concerns, check with your doctor.</p>" } },
+        "q3": { "type": "faq", "settings": { "q": "Will this stop my snoring?", "a": "<p>If your snoring starts in the nose — congestion, narrow passages — opening the airway usually quiets it down noticeably. Everyone's different, which is why you get 30 nights to find out risk-free.</p>" } },
+        "q4": { "type": "faq", "settings": { "q": "How is this different from pharmacy strips?", "a": "<p>Stronger hold, sweat-resistant adhesive, a matte design you won't hide from cameras, and a resealable 30-pack pouch.</p>" } },
+        "q5": { "type": "faq", "settings": { "q": "When will my order arrive?", "a": "<p>Orders ship in 1–2 business days with tracking, delivery typically 3–7 business days.</p>" } }
+      },
+      "block_order": [ "q1", "q2", "q3", "q4", "q5" ],
+      "settings": { "title_em": "Frequently", "title_a": "asked questions", "f_title": "Still on the fence?", "f_cta": "Talk to us", "bg": "#FBFAF7" }
+    },
+    "sticky": {
+      "type": "clone-dreamx-alarm-sticky",
+      "settings": { "short_title": "Nasal Strips", "cta_label": "Add to cart" }
+    },
+    "anim": { "type": "somna-anim", "settings": {} }
+  },
+  "order": [ "jphero", "jpresults", "jpmech", "jpstats", "jpbenefits", "jpingredients", "jpfeel", "jpritual", "ugc", "hscompare", "jpguarantee", "jpfaq", "sticky", "anim" ]
+}

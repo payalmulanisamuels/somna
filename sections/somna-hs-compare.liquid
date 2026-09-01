@@ -1,0 +1,67 @@
+<section class="shsc">
+  <div class="shsc-wrap">
+    <h2 class="somna-sr">{{ section.settings.title | default: 'Somna vs. the rest' }}</h2>
+    <div class="shsc-table somna-sr-stag">
+      <div class="shsc-row shsc-hrow">
+        <div class="shsc-feat"></div>
+        <div class="shsc-c shsc-c1">{{ section.settings.col1 | default: 'Somna' }}</div>
+        <div class="shsc-c">{{ section.settings.col2 | default: 'Other devices' }}</div>
+        <div class="shsc-c">{{ section.settings.col3 | default: 'Nasal spray' }}</div>
+        <div class="shsc-c">{{ section.settings.col4 | default: 'Pharmacy strips' }}</div>
+      </div>
+      {%- for block in section.blocks -%}
+        <div class="shsc-row{% if block.settings.is_price %} shsc-price{% endif %}" {{ block.shopify_attributes }}>
+          <div class="shsc-feat">{{ block.settings.label }}</div>
+          {%- assign cells = block.settings.c1 | append: '|' | append: block.settings.c2 | append: '|' | append: block.settings.c3 | append: '|' | append: block.settings.c4 | split: '|' -%}
+          {%- for c in cells -%}
+            <div class="shsc-c{% if forloop.first %} shsc-c1{% endif %}">{%- assign v = c | strip -%}{%- if v == 'yes' -%}<span class="shsc-yes">✓</span>{%- elsif v == 'no' -%}<span class="shsc-no">✕</span>{%- else -%}{{ v }}{%- endif -%}</div>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.foot != blank -%}<p class="shsc-foot somna-sr">{{ section.settings.foot }}</p>{%- endif -%}
+  </div>
+</section>
+<style>
+.shsc{background:{{ section.settings.bg | default: '#0f0f1c' }};color:#fff;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:clamp(48px,8vw,90px) 16px}
+.shsc-wrap{max-width:840px;margin:0 auto}
+.shsc h2{text-align:center;font-size:clamp(1.6rem,4.2vw,2.3rem);font-weight:800;letter-spacing:-.02em;margin:0 0 24px}
+.shsc-table{border:1px solid #26263f;border-radius:16px;overflow:hidden}
+.shsc-row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;align-items:center}
+.shsc-row+.shsc-row{border-top:1px solid #20203a}
+.shsc-hrow{background:#17172c}
+.shsc-feat{padding:14px 12px;color:#d7d7e6;font-weight:600;font-size:.9rem}
+.shsc-c{padding:14px 6px;text-align:center;font-weight:800;font-size:.92rem}
+.shsc-hrow .shsc-feat{color:#8a8aa5;font-size:.76rem}
+.shsc-hrow .shsc-c{font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;color:#c3c3d6}
+.shsc-c1{background:rgba(109,73,224,.16);color:#fff}
+.shsc-hrow .shsc-c1{background:#6D49E0;color:#fff}
+.shsc-yes{color:#57e08c;font-size:1.15rem}
+.shsc-no{color:#e06b6b;font-size:1.15rem}
+.shsc-foot{text-align:center;color:#8a8aa5;font-size:.74rem;margin-top:14px}
+@media(max-width:600px){.shsc-feat{font-size:.72rem;padding:11px 7px}.shsc-c{padding:11px 3px;font-size:.8rem}}
+</style>
+{% schema %}
+{
+  "name": "HS — Compare",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Somna vs. the rest" },
+    { "type": "text", "id": "col1", "label": "Column 1 (yours)", "default": "Somna" },
+    { "type": "text", "id": "col2", "label": "Column 2", "default": "Other devices" },
+    { "type": "text", "id": "col3", "label": "Column 3", "default": "Nasal spray" },
+    { "type": "text", "id": "col4", "label": "Column 4", "default": "Pharmacy strips" },
+    { "type": "text", "id": "foot", "label": "Footnote", "default": "*Cost calculated over 3 months of consistent use." },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#0f0f1c" }
+  ],
+  "blocks": [ { "type": "row", "name": "Row", "settings": [
+    { "type": "text", "id": "label", "label": "Feature", "default": "Feature" },
+    { "type": "text", "id": "c1", "label": "Somna (yes/no/text)", "default": "yes" },
+    { "type": "text", "id": "c2", "label": "Col 2", "default": "no" },
+    { "type": "text", "id": "c3", "label": "Col 3", "default": "no" },
+    { "type": "text", "id": "c4", "label": "Col 4", "default": "no" },
+    { "type": "checkbox", "id": "is_price", "label": "Price row", "default": false }
+  ] } ],
+  "max_blocks": 12,
+  "presets": [{ "name": "HS — Compare", "blocks": [ {"type":"row"},{"type":"row"},{"type":"row"},{"type":"row"},{"type":"row"} ] }]
+}
+{% endschema %}

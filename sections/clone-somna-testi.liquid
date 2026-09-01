@@ -1,0 +1,37 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="cda-section sct"><div class="cda-wrap">
+  <div class="sct-head"><h2 class="cda-h2">{{ section.settings.title }}</h2><span class="cda-muted">· tap to play</span></div>
+  <div class="sct-row">
+    {%- for block in section.blocks -%}
+      <a class="sct-card" {% if block.settings.url != blank %}href="{{ block.settings.url }}"{% else %}href="#"{% endif %} {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}<div class="cda-ph"><img src="{{ block.settings.image | image_url: width: 500 }}" alt="" width="500" height="640" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Video (1:1)"></div>{% endif %}
+        <span class="sct-play">▶</span>
+        <span class="sct-cap">{{ block.settings.caption }}</span>
+      </a>
+    {%- endfor -%}
+  </div>
+</div></section>
+<style>
+.sct-head{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}
+.sct-head h2{color:var(--cda-ink)}
+.sct-row{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.sct-card{position:relative;flex:0 0 200px;scroll-snap-align:start;text-decoration:none;color:#fff;border-radius:16px;overflow:hidden;display:block}
+.sct-card .cda-ph{aspect-ratio:5/6;border-radius:16px;background:var(--cda-ink)}
+.sct-card .cda-ph img{width:100%;height:100%;object-fit:cover}
+.sct-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.9);color:var(--cda-accent);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.sct-cap{position:absolute;left:12px;right:12px;bottom:12px;font-weight:700;font-size:.85rem;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+@media(max-width:560px){.sct-card{flex-basis:150px}}
+</style>
+{% schema %}
+{
+  "name": "Somna Testimonials",
+  "settings": [ { "type": "text", "id": "title", "label": "Title", "default": "What our customers are saying" } ],
+  "blocks": [ { "type": "vid", "name": "Video card", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Thumbnail / video poster" },
+    { "type": "text", "id": "caption", "label": "Caption", "default": "the 3pm spiral is gone" },
+    { "type": "url", "id": "url", "label": "Video link" }
+  ] } ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Somna Testimonials" }]
+}
+{% endschema %}

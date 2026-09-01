@@ -1,0 +1,116 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign product = section.settings.product -%}
+{%- assign cur = product.selected_or_first_available_variant -%}
+<section class="cda-section cda-hero" id="cda-buy">
+  <div class="cda-wrap">
+    <div class="cda-hero-grid">
+      <div class="cda-media">
+        {%- if product.media.size > 0 -%}
+          <div class="cda-ph" id="cda-main-img"><img src="{{ product.featured_media | image_url: width: 1100 }}" alt="{{ product.title | escape }}" width="1100" height="1100" loading="eager" fetchpriority="high"></div>
+          {%- if product.media.size > 1 -%}
+          <div class="cda-thumbs">
+            {%- for m in product.media limit: 4 -%}
+              <div class="cda-ph" data-cda-thumb="{{ m | image_url: width: 1100 }}"><img src="{{ m | image_url: width: 320 }}" alt="" width="320" height="320" loading="lazy"></div>
+            {%- endfor -%}
+          </div>
+          {%- endif -%}
+        {%- else -%}
+          <div class="cda-ph" data-label="Hero product image (1:1) — upload in Products › Media"></div>
+          <div class="cda-thumbs">
+            <div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="cda-buybox">
+        <div class="cda-rating"><span class="cda-stars">★★★★★</span> <span>{{ section.settings.rating_label }}</span></div>
+        <h1>{{ section.settings.heading }}</h1>
+        <div class="cda-tagline">{{ section.settings.tagline }}</div>
+        <div class="cda-price">
+          <span class="cda-price-now" id="cda-price-now">{{ cur.price | money }}</span>
+          {%- if cur.compare_at_price > cur.price -%}<span class="cda-price-was" id="cda-price-was">{{ cur.compare_at_price | money }}</span>{%- endif -%}
+          <span class="cda-save" id="cda-save"></span>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;margin:18px 0 0">{{ section.settings.pack_heading }}</h3>
+        <div class="cda-packs" id="cda-packs">
+          {%- for v in product.variants -%}
+            {%- assign parts = v.title | split: '—' -%}
+            {%- assign pkname = parts[0] | strip -%}
+            {%- assign pksub = parts[1] | strip -%}
+            {%- if forloop.index == 2 -%}{%- assign bdg = 'Most popular' -%}{%- elsif forloop.index == 3 -%}{%- assign bdg = 'Best value' -%}{%- else -%}{%- assign bdg = '' -%}{%- endif -%}
+            <div class="cda-pack" data-cda-pack data-vid="{{ v.id }}" data-now="{{ v.price | money }}" data-was="{{ v.compare_at_price | money }}" data-haswas="{% if v.compare_at_price > v.price %}1{% else %}0{% endif %}" data-name="{{ pkname | escape }}" data-sub="{{ pksub | escape }}">
+              {%- if bdg != '' -%}<span class="cda-badge">{{ bdg }}</span>{%- endif -%}
+              <span class="cda-dot"></span>
+              <div><div class="cda-pk-name">{{ pkname }}</div><div class="cda-pk-sub">{{ pksub }}</div></div>
+              <div class="cda-pk-right"><div class="cda-pk-price">{{ v.price | money }}</div>{% if v.compare_at_price > v.price %}<div class="cda-pk-was">{{ v.compare_at_price | money }}</div>{% endif %}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+        <button class="cda-btn" id="cda-atc" data-vid="{{ cur.id }}">{{ section.settings.cta_label }} — <span id="cda-atc-price">{{ cur.price | money }}</span></button>
+        <div class="cda-trust">🔒 Secure checkout · Ships in 24h · Free returns</div>
+        <ul class="cda-bullets">
+          <li><span class="cda-ck">✓</span> {{ section.settings.bullet_1 }}</li>
+          <li><span class="cda-ck">✓</span> {{ section.settings.bullet_2 }}</li>
+          <li><span class="cda-ck">✓</span> {{ section.settings.bullet_3 }}</li>
+          <li><span class="cda-ck">✓</span> {{ section.settings.bullet_4 }}</li>
+        </ul>
+        {%- if section.blocks.size > 0 -%}
+        <div class="cda-acc" style="margin-top:26px">
+          {%- for block in section.blocks -%}
+            <details {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}><summary>{{ block.settings.q }}<span class="cda-ic">+</span></summary><div class="cda-ans">{{ block.settings.a }}</div></details>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  #shopify-section-{{ section.id }}{background:{{ section.settings.bg_color | default: '#ffffff' }};}
+  #shopify-section-{{ section.id }} h1,#shopify-section-{{ section.id }} h3{color:var(--cda-ink);}
+</style>
+<script>
+(function(){
+  var root=document.getElementById('shopify-section-{{ section.id }}');if(!root)return;
+  var packs=root.querySelectorAll('[data-cda-pack]');
+  var nowEl=root.querySelector('#cda-price-now'),wasEl=root.querySelector('#cda-price-was'),saveEl=root.querySelector('#cda-save'),atc=root.querySelector('#cda-atc'),atcP=root.querySelector('#cda-atc-price');
+  function pctSave(now,was){now=parseFloat(now.replace(/[^0-9.]/g,''));was=parseFloat(was.replace(/[^0-9.]/g,''));if(!was||was<=now)return'';return'Save '+Math.round((1-now/was)*100)+'%';}
+  function select(p){
+    packs.forEach(function(x){x.classList.remove('sel');});p.classList.add('sel');
+    var vid=p.getAttribute('data-vid'),now=p.getAttribute('data-now'),was=p.getAttribute('data-was'),hw=p.getAttribute('data-haswas')==='1';
+    if(nowEl)nowEl.textContent=now;
+    if(wasEl){wasEl.style.display=hw?'':'none';wasEl.textContent=was;}
+    if(saveEl)saveEl.textContent=hw?pctSave(now,was):'';
+    if(atcP)atcP.textContent=now;
+    atc.setAttribute('data-vid',vid);
+  }
+  packs.forEach(function(p){p.addEventListener('click',function(){select(p);});});
+  if(packs.length){select(packs[Math.min(1,packs.length-1)]);}
+  root.querySelectorAll('[data-cda-thumb]').forEach(function(t){t.addEventListener('click',function(){var big=root.querySelector('#cda-main-img img');if(big)big.src=t.getAttribute('data-cda-thumb');});});
+})();
+</script>
+{% schema %}
+{
+  "name": "DreamX Home Hero",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Hero product" },
+    { "type": "text", "id": "heading", "label": "Headline", "default": "DreamX — The Silent Vibration Alarm" },
+    { "type": "richtext", "id": "tagline", "label": "Tagline", "default": "<p>A strong, escalating vibration wakes you on the wrist — silently. Built for heavy sleepers and couples who don’t want to wake each other.</p>" },
+    { "type": "text", "id": "rating_label", "label": "Rating label", "default": "4.8 · 1,240 reviews" },
+    { "type": "text", "id": "pack_heading", "label": "Pack heading", "default": "Choose your pack" },
+    { "type": "text", "id": "cta_label", "label": "Button text", "default": "Add to cart" },
+    { "type": "text", "id": "bullet_1", "label": "Bullet 1", "default": "Built by heavy sleepers, for heavy sleepers" },
+    { "type": "text", "id": "bullet_2", "label": "Bullet 2", "default": "Escalating vibration guaranteed to wake you" },
+    { "type": "text", "id": "bullet_3", "label": "Bullet 3", "default": "Silent — never disturbs the person beside you" },
+    { "type": "text", "id": "bullet_4", "label": "Bullet 4", "default": "100-night risk-free money-back guarantee" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#ffffff" }
+  ],
+  "blocks": [
+    { "type": "info", "name": "Info row", "settings": [
+      { "type": "text", "id": "q", "label": "Question", "default": "What is this?" },
+      { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>A silent vibrating wrist alarm that wakes you with a firm vibration instead of sound.</p>" }
+    ] }
+  ],
+  "max_blocks": 8,
+  "presets": [{ "name": "DreamX Home Hero" }]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="cda-section cda-features-sec" id="cda-story">
+  <div class="cda-wrap">
+    <div class="cda-sec-head"><span class="cda-kicker">{{ section.settings.kicker }}</span><h2 class="cda-h2">{{ section.settings.title }}</h2></div>
+    {%- for block in section.blocks -%}
+      {%- assign even = forloop.index | modulo: 2 -%}
+      <div class="cda-feat{% if even == 0 %} rev{% endif %}" {{ block.shopify_attributes }}>
+        <div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.body }}</p>
+          <div class="cda-fstats">
+            <div><div class="cda-fn">{{ block.settings.stat1 }}</div><div class="cda-fl">{{ block.settings.stat1label }}</div></div>
+            <div><div class="cda-fn">{{ block.settings.stat2 }}</div><div class="cda-fl">{{ block.settings.stat2label }}</div></div>
+          </div>
+        </div>
+        {%- if block.settings.image != blank -%}
+          <div class="cda-ph"><img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.title | escape }}" width="900" height="900" loading="lazy"></div>
+        {%- else -%}
+          <div class="cda-ph" data-label="Feature image (1:1)"></div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+<style>#shopify-section-{{ section.id }} h2,#shopify-section-{{ section.id }} h3{color:var(--cda-ink);}</style>
+{% schema %}
+{
+  "name": "Clone — Features",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Reclaim your morning" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Set your time. Reset your mornings." }
+  ],
+  "blocks": [ { "type": "feat", "name": "Feature", "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Strong, escalating vibration" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Starts gentle and builds through three intensity levels.</p>" },
+    { "type": "image_picker", "id": "image", "label": "Image (1:1)" },
+    { "type": "text", "id": "stat1", "label": "Stat 1", "default": "3" },
+    { "type": "text", "id": "stat1label", "label": "Stat 1 label", "default": "Intensity levels" },
+    { "type": "text", "id": "stat2", "label": "Stat 2", "default": "99%" },
+    { "type": "text", "id": "stat2label", "label": "Stat 2 label", "default": "Wake rate" }
+  ] } ],
+  "max_blocks": 8,
+  "presets": [{ "name": "Clone — Features" }]
+}
+{% endschema %}

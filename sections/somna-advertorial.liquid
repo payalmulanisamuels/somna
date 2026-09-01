@@ -1,0 +1,368 @@
+{%- assign cta = section.settings.cta_url | default: '/pages/quiz' -%}
+{%- assign band = all_products['dreamx-silent-alarm-band'] -%}
+{%- assign nasal = all_products['dreamx-anti-snore-nasal-strips'] -%}
+{%- assign tape = all_products['dreamx-sleep-mouth-tape'] -%}
+{%- assign allimgs = band.images | concat: nasal.images | concat: tape.images -%}
+{%- assign img_hero = section.settings.hero_img | default: band.featured_image -%}
+{%- assign img_problem = section.settings.problem_img | default: tape.images[1] -%}
+{%- assign img_tried = section.settings.tried_img | default: nasal.images[1] -%}
+{%- assign img_mech = section.settings.mech_img | default: band.images[7] -%}
+{%- assign img_founder = section.settings.founder_img | default: band.images[10] -%}
+{%- assign img_kit = section.settings.kit_img | default: band.images[12] -%}
+<section class="adx" id="somna-adx">
+
+  <div class="adx-bar">★ LIMITED LAUNCH — new-customer offer on your first order · <a href="{{ cta }}">Take the quiz →</a></div>
+
+  <div class="adx-wrap">
+
+    <p class="adx-kick">A SOMNA SLEEP REPORT</p>
+    <h1 class="adx-h1">Still exhausted after 8 hours? It's not you — it's your <span>sleep mechanics</span>.</h1>
+    <p class="adx-dek">Why waking up groggy, snoring, and sleeping through alarms has almost nothing to do with willpower — and the 3-part fix thousands are switching to.</p>
+
+    <div class="adx-hero2">
+      <div class="adx-hero2-badges"><span>{{ section.settings.proof_count | default: '12,000+' }} sleepers</span><span>Money-back guarantee</span></div>
+      <div class="adx-hero2-row">
+        <div class="adx-hcol"><div class="adx-hcall"><span class="adx-hcall-i">☾</span>Wake refreshed</div><div class="adx-hcall"><span class="adx-hcall-i">✦</span>Deeper sleep</div></div>
+        <div class="adx-hero2-imgwrap">{% if img_hero %}<img src="{{ img_hero | image_url: width: 800 }}" alt="">{% else %}<div class="adx-ph adx-hero2-ph">Upload hero / product image</div>{% endif %}</div>
+        <div class="adx-hcol"><div class="adx-hcall"><span class="adx-hcall-i">♪</span>Quieter nights</div><div class="adx-hcall"><span class="adx-hcall-i">⚡</span>More energy</div></div>
+      </div>
+    </div>
+
+    <a href="{{ cta }}" class="adx-cta">Take the 30-second sleep quiz →</a>
+    <div class="adx-herotesti">{% if section.settings.hero_testi_img %}<img src="{{ section.settings.hero_testi_img | image_url: width: 100 }}" alt="">{% else %}<div class="adx-av">S</div>{% endif %}<div><p>“{{ section.settings.hero_testi_q | default: 'First thing in years that actually gets me up — and my wife sleeps right through it.' }}”</p><span>{{ section.settings.hero_testi_n | default: 'Marcus D.' }} · ✓ Verified buyer</span></div></div>
+
+    <div class="adx-rule"></div>
+
+    <p class="adx-warn">⚠️ THE TRUTH ABOUT BAD SLEEP AFTER 30</p>
+    <h2 class="adx-h2">It's not “just getting older.”</h2>
+    <div class="adx-split">
+      <div class="adx-splitcol"><ul class="adx-xlist">
+        <li>Waking up <strong>groggy and foggy</strong> after a full night</li>
+        <li><strong>Sleeping through alarms</strong> — or needing three</li>
+        <li>Waking with a <strong>dry mouth or sore throat</strong></li>
+        <li><strong>Snoring</strong> (or being sent to the other room)</li>
+        <li>Running on <strong>caffeine by 10am</strong>, crashing by 3pm</li>
+      </ul></div>
+      {% if img_problem %}<img class="adx-splitimg" src="{{ img_problem | image_url: width: 700 }}" alt="">{% else %}<div class="adx-ph adx-splitimg">image</div>{% endif %}
+    </div>
+    <p class="adx-p">It isn't laziness and it isn't age. It's what happens when the <strong>mechanics of how you breathe and wake at night</strong> quietly change — and nobody tells you.</p>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2">Why everything you've tried made sense — and still didn't work</h2>
+    <p class="adx-p">Every fix you've reached for attacks the <em>symptom</em>, not the cause:</p>
+    <ul class="adx-xlist adx-xlist--bad">
+      <li><strong>Louder alarms</strong> jolt you with cortisol — and still get snoozed.</li>
+      <li><strong>More caffeine</strong> masks the tiredness and wrecks the next night.</li>
+      <li><strong>Sleeping pills</strong> knock you out but leave you groggier, not rested.</li>
+    </ul>
+    {% if img_tried %}<img class="adx-img" src="{{ img_tried | image_url: width: 1000 }}" alt="">{% endif %}
+    <div class="adx-quote">“Fix the mechanics first. The energy, the mornings, the quiet nights — they follow.”</div>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2">Your body was built for a world that no longer exists</h2>
+    <p class="adx-p">We were built to sleep in cool, quiet dark and wake with the sun. Now it's late screens, blocked noses, mouth-breathing, and a phone alarm screaming by your head. Your sleep didn't fail — the environment changed faster than your biology.</p>
+    {% if img_mech %}<img class="adx-img" src="{{ img_mech | image_url: width: 1000 }}" alt="">{% endif %}
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2">Say no to louder alarms &amp; sleeping-pill hangovers</h2>
+    <div class="adx-vs">
+      <div class="adx-vscol"><div class="adx-vsh">Louder / multiple alarms</div><ul class="adx-xlist adx-xlist--bad"><li>Cortisol jolt — stressful wake-ups</li><li>Wakes your partner too</li><li>Still gets snoozed</li></ul></div>
+      <div class="adx-vscol"><div class="adx-vsh">Sleeping pills</div><ul class="adx-xlist adx-xlist--bad"><li>Groggy “hangover” the next day</li><li>Doesn't fix breathing or snoring</li><li>Not for nightly use</li></ul></div>
+    </div>
+    <p class="adx-p">None of them touch the three things actually breaking your sleep: <strong>how you wake, how you breathe, and whether your airway stays open.</strong></p>
+
+    <div class="adx-rule"></div>
+
+    <div class="adx-feat">
+      <p class="adx-feat-kick">MAKE THE SMART CHOICE</p>
+      <h2 class="adx-h2 adx-center">A drug-free system that fixes the mechanics</h2>
+      <div class="adx-feat-img">{% if img_hero %}<img src="{{ img_hero | image_url: width: 800 }}" alt="">{% endif %}</div>
+      <ul class="adx-featlist">
+        <li>Wakes you <strong>silently</strong> — no blaring alarm, no cortisol jolt</li>
+        <li>Keeps you <strong>nose-breathing</strong> all night for deeper sleep</li>
+        <li>Opens the airway so you <strong>snore less</strong></li>
+        <li>No pills, no dependency, <strong>cancel anytime</strong></li>
+      </ul>
+    </div>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2 adx-center">What you'll feel</h2>
+    <div class="adx-bens">
+      <div class="adx-ben"><span class="adx-ben-i">☾</span><b>Wake refreshed</b><p>A silent wake-up that actually gets you up.</p></div>
+      <div class="adx-ben"><span class="adx-ben-i">✦</span><b>Deeper sleep</b><p>Nose-breathing all night for restorative rest.</p></div>
+      <div class="adx-ben"><span class="adx-ben-i">♪</span><b>Quieter nights</b><p>An open airway means less snoring.</p></div>
+      <div class="adx-ben"><span class="adx-ben-i">⚡</span><b>More energy</b><p>Better nights, fewer 3pm crashes.</p></div>
+      <div class="adx-ben"><span class="adx-ben-i">♥</span><b>Partner-friendly</b><p>They stay asleep while you wake.</p></div>
+      <div class="adx-ben"><span class="adx-ben-i">↻</span><b>Cancel anytime</b><p>No lock-in. Money-back guarantee.</p></div>
+    </div>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2 adx-center">The SOMNA Sleep System</h2>
+    <div class="adx-sys">
+      <div class="adx-syscard">{% if band.featured_image %}<img src="{{ band.featured_image | image_url: width: 400 }}" alt="">{% endif %}<b>DreamX — the wake-up</b><p>A silent, escalating wrist vibration designed to wake deep sleepers without noise.</p></div>
+      <div class="adx-syscard">{% if tape.featured_image %}<img src="{{ tape.featured_image | image_url: width: 400 }}" alt="">{% endif %}<b>Tape. — the breath</b><p>Gently seals your lips so you nose-breathe all night.</p></div>
+      <div class="adx-syscard">{% if nasal.featured_image %}<img src="{{ nasal.featured_image | image_url: width: 400 }}" alt="">{% endif %}<b>Strips. — the airway</b><p>Matte-black nasal strips designed to open the airway.</p></div>
+    </div>
+    <a href="{{ cta }}" class="adx-cta">Which do you need? Take the quiz →</a>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2 adx-center">What sleepers are saying</h2>
+    <div class="adx-vids">
+      {%- assign uc = 0 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'ugc' -%}
+        {%- assign uimg = block.settings.img | default: allimgs[uc] -%}{%- assign uc = uc | plus: 1 -%}
+        <div class="adx-vid" {{ block.shopify_attributes }}>{% if uimg %}<img src="{{ uimg | image_url: width: 400 }}" alt="">{% endif %}<span class="adx-vid-play">▶</span><span class="adx-vid-cap">{{ block.settings.caption }}</span></div>
+      {%- endif -%}{%- endfor -%}
+    </div>
+
+    <div class="adx-rule"></div>
+
+    <div class="adx-cardbox">
+      <h2 class="adx-h2 adx-center">Start sleeping deep — claim your launch offer</h2>
+      <div class="adx-bens adx-bens--4"><div class="adx-ben"><span class="adx-ben-i">☾</span><b>Wake refreshed</b></div><div class="adx-ben"><span class="adx-ben-i">✦</span><b>Deeper sleep</b></div><div class="adx-ben"><span class="adx-ben-i">♪</span><b>Quieter nights</b></div><div class="adx-ben"><span class="adx-ben-i">⚡</span><b>More energy</b></div></div>
+      <a href="{{ cta }}" class="adx-cta">Find your Sleep Type →</a>
+    </div>
+
+    <div class="adx-rule"></div>
+
+    <div class="adx-founder">
+      {% if img_founder %}<img src="{{ img_founder | image_url: width: 800 }}" alt="">{% endif %}
+      <div class="adx-quote">“{{ section.settings.founder_quote | default: 'I built SOMNA because nothing fixed my own mornings — the alarm, the snoring, the dead-tired days. Fixing the mechanics changed everything.' }}”</div>
+      <p class="adx-foundern">{{ section.settings.founder_name | default: 'The SOMNA team' }}</p>
+    </div>
+
+    {% if section.settings.logos_img %}<p class="adx-seen">As featured in</p><div class="adx-logos"><img src="{{ section.settings.logos_img | image_url: width: 1000 }}" alt=""></div><div class="adx-rule"></div>{% endif %}
+
+    <h2 class="adx-h2 adx-center">{{ section.settings.reviews_count | default: '4,300+' }} reviews</h2>
+    <div class="adx-reviews">
+      {%- for block in section.blocks -%}{%- if block.type == 'review' -%}
+        <div class="adx-rev" {{ block.shopify_attributes }}><div class="adx-rev-stars">★★★★★</div><p>“{{ block.settings.quote }}”</p><span>{{ block.settings.name }} · ✓ Verified buyer</span></div>
+      {%- endif -%}{%- endfor -%}
+    </div>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2 adx-center">How SOMNA compares</h2>
+    <table class="adx-table">
+      <tr><th></th><th>SOMNA</th><th>Phone alarm</th><th>Pills</th></tr>
+      <tr><td>Wakes you without noise</td><td>✓</td><td>✕</td><td>✕</td></tr>
+      <tr><td>Won't wake your partner</td><td>✓</td><td>✕</td><td>✓</td></tr>
+      <tr><td>Fixes breathing &amp; snoring</td><td>✓</td><td>✕</td><td>✕</td></tr>
+      <tr><td>No grogginess hangover</td><td>✓</td><td>~</td><td>✕</td></tr>
+      <tr><td>Drug-free</td><td>✓</td><td>✓</td><td>✕</td></tr>
+    </table>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2 adx-center">What happens after you start SOMNA</h2>
+    <div class="adx-timeline">
+      <div class="adx-tl"><div class="adx-tl-d">Night 1</div><b>First quiet night</b><p>Nose-breathing and an open airway from the very first night.</p></div>
+      <div class="adx-tl"><div class="adx-tl-d">Week 1</div><b>Easier mornings</b><p>The silent wake-up starts to click — less snooze, less jolt.</p></div>
+      <div class="adx-tl"><div class="adx-tl-d">Week 2–4</div><b>Rested &amp; steady</b><p>Most people notice calmer nights and steadier energy.*</p></div>
+    </div>
+
+    <div class="adx-rule"></div>
+
+    <div class="adx-pdp">
+      <div class="adx-pdp-media">
+        <div class="adx-pdp-main">{% if band.featured_image %}<img src="{{ band.featured_image | image_url: width: 700 }}" alt="">{% endif %}</div>
+        <div class="adx-pdp-thumbs">{%- for m in band.media limit: 5 -%}<div class="adx-pdp-th"><img src="{{ m | image_url: width: 120 }}" alt=""></div>{%- endfor -%}</div>
+      </div>
+      <div class="adx-pdp-info">
+        <div class="adx-pdp-stars">★★★★★ <span>{{ section.settings.reviews_count | default: '4,300+' }} reviews</span></div>
+        <h3 class="adx-pdp-title">Built for the way you actually sleep</h3>
+        <ul class="adx-pdp-bul"><li>Silent vibration wake-up — 0 dB</li><li>Drug-free, nightly-safe</li><li>90-night money-back guarantee</li><li>Free shipping on orders over $50</li></ul>
+        <div class="adx-pdp-proof">Loved by {{ section.settings.proof_count | default: '12,000+' }} sleepers</div>
+        <a href="{{ cta }}" class="adx-cta">Find your fix →</a>
+      </div>
+    </div>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2 adx-center">Real people, better mornings</h2>
+    <div class="adx-vids">
+      {%- assign rc = 18 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'result' -%}
+        {%- assign rimg = block.settings.img | default: allimgs[rc] -%}{%- assign rc = rc | plus: 1 -%}
+        <div class="adx-vid" {{ block.shopify_attributes }}>{% if rimg %}<img src="{{ rimg | image_url: width: 400 }}" alt="">{% endif %}<span class="adx-vid-cap">{{ block.settings.caption }}</span></div>
+      {%- endif -%}{%- endfor -%}
+    </div>
+
+    <div class="adx-guarantee"><div class="adx-guar-h">🛡️ Try it risk-free</div><p>DreamX is backed by a <strong>90-night money-back guarantee</strong>; Strips &amp; Tape by a 30-day guarantee. If your mornings don't change, you don't pay.</p></div>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2 adx-center">Frequently asked questions</h2>
+    <div class="adx-faq">
+      {%- for block in section.blocks -%}{%- if block.type == 'faq' -%}
+        <details class="adx-faq-i" {{ block.shopify_attributes }}><summary>{{ block.settings.q }}<span>+</span></summary><div class="adx-faq-a">{{ block.settings.a }}</div></details>
+      {%- endif -%}{%- endfor -%}
+    </div>
+
+    <div class="adx-rule"></div>
+
+    <h2 class="adx-h2 adx-center">Your sleep kit includes</h2>
+    {% if img_kit %}<img class="adx-img" src="{{ img_kit | image_url: width: 1000 }}" alt="">{% endif %}
+    <a href="{{ cta }}" class="adx-cta">Find your Sleep Type →</a>
+    <p class="adx-cta-sub">Free 30-second quiz · personalized to your sleep</p>
+
+    <p class="adx-disc">*Individual results vary. Customer statements are illustrative and not a guarantee of specific outcomes. SOMNA products are designed to support better sleep and are not medical devices.</p>
+  </div>
+</section>
+
+<style>
+.shopify-section-group-header-group,.shopify-section-group-footer-group{display:none !important}
+#somna-adx{--bg:#0d0d1c;--card:#16162b;--card2:#1d1d36;--ink:#fff;--mut:#9a98b5;--accent:#6D49E0;--lav:#98A3DE;--line:#2a2a45;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink)}
+.adx-bar{background:var(--accent);color:#fff;text-align:center;font-size:.76rem;font-weight:800;padding:9px 14px}
+.adx-bar a{color:#fff;text-decoration:underline}
+.adx-wrap{max-width:640px;margin:0 auto;padding:24px 18px 70px}
+.adx-kick{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--lav);margin:0 0 12px}
+.adx-h1{font-size:2.1rem;line-height:1.12;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;margin:0 0 14px}
+.adx-h1 span{color:var(--lav)}
+.adx-dek{font-size:1.06rem;line-height:1.5;color:var(--mut);margin:0 0 20px}
+.adx-hero2{position:relative;background:radial-gradient(circle at 50% 35%,rgba(109,73,224,.45),rgba(13,13,28,0) 62%);border:1px solid var(--line);border-radius:20px;padding:30px 14px 18px;margin-bottom:16px;overflow:hidden}
+.adx-hero2-badges{display:flex;justify-content:space-between;margin-bottom:6px}
+.adx-hero2-badges span{background:rgba(255,255,255,.08);border:1px solid var(--line);color:#fff;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:4px 9px;border-radius:999px}
+.adx-hero2-row{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:6px;align-items:center}
+.adx-hcol{display:flex;flex-direction:column;gap:18px}
+.adx-hcall{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;font-size:.72rem;font-weight:700;line-height:1.2}
+.adx-hcall-i{width:36px;height:36px;border-radius:50%;background:rgba(13,13,28,.6);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--lav);font-size:1.05rem}
+.adx-hero2-imgwrap img,.adx-hero2-ph{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:14px}
+.adx-hero2-ph{min-height:0}
+.adx-ph{background:var(--card2);border:1px dashed #3a3a5c;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--mut);font-size:.82rem;padding:16px;min-height:110px}
+.adx-cta{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;border-radius:999px;padding:18px 20px;font-size:1.05rem;font-weight:800;box-shadow:0 8px 24px rgba(109,73,224,.4);transition:background .15s,transform .06s}
+.adx-cta:hover{background:#7d5ce8}.adx-cta:active{transform:scale(.99)}
+.adx-cta-sub{text-align:center;font-size:.82rem;color:var(--mut);margin:9px 0 0;font-weight:600}
+.adx-herotesti{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px;margin-top:16px}
+.adx-herotesti img,.adx-av{width:44px;height:44px;border-radius:50%;object-fit:cover;flex:0 0 auto}
+.adx-av{background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+.adx-herotesti p{margin:0 0 3px;font-size:.88rem;font-style:italic;line-height:1.35}
+.adx-herotesti span{font-size:.76rem;color:var(--lav);font-weight:600}
+.adx-rule{height:1px;background:var(--line);margin:34px 0}
+.adx-warn{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--lav);margin:0 0 10px}
+.adx-h2{font-size:1.55rem;line-height:1.18;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 16px}
+.adx-center{text-align:center}
+.adx-p{font-size:1.04rem;line-height:1.6;color:#cfcde0;margin:0 0 16px}
+.adx-p em{font-style:italic}
+.adx-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;margin-bottom:16px}
+.adx-splitimg{width:100%;border-radius:14px;border:1px solid var(--line)}
+.adx-splitimg.adx-ph{aspect-ratio:3/4}
+.adx-xlist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.adx-xlist li{position:relative;padding-left:28px;font-size:1rem;line-height:1.4;color:#cfcde0}
+.adx-xlist li:before{content:'✓';position:absolute;left:0;top:1px;width:19px;height:19px;border-radius:50%;background:var(--accent);color:#fff;font-size:.66rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.adx-xlist--bad li:before{content:'✕';background:#e0533a}
+.adx-img{width:100%;border-radius:16px;display:block;margin:6px 0 16px;border:1px solid var(--line)}
+.adx-img.adx-ph{aspect-ratio:16/10}
+.adx-quote{border-left:3px solid var(--accent);background:var(--card);padding:16px 18px;border-radius:0 12px 12px 0;font-size:1.08rem;font-weight:700;font-style:italic;line-height:1.4;margin:6px 0 0}
+.adx-vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.adx-vscol{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.adx-vsh{font-weight:800;font-size:.95rem;margin-bottom:10px}
+.adx-feat{position:relative;background:radial-gradient(circle at 50% 40%,rgba(109,73,224,.4),rgba(13,13,28,0) 60%);border:1px solid var(--line);border-radius:20px;padding:24px 18px}
+.adx-feat-kick{text-align:center;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--lav);margin:0 0 6px}
+.adx-feat-img img,.adx-feat-img .adx-ph{width:62%;margin:6px auto 16px;display:block;aspect-ratio:1/1;object-fit:contain}
+.adx-featlist{list-style:none;padding:0;margin:0 auto;display:flex;flex-direction:column;gap:10px;max-width:420px}
+.adx-featlist li{position:relative;padding-left:28px;font-size:1rem;color:#e7e6f2}
+.adx-featlist li:before{content:'✓';position:absolute;left:0;top:1px;width:19px;height:19px;border-radius:50%;background:var(--accent);color:#fff;font-size:.66rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.adx-bens{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.adx-bens--4{margin:8px 0 18px}
+.adx-ben{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.adx-ben-i{display:inline-flex;width:40px;height:40px;border-radius:50%;background:rgba(109,73,224,.18);color:var(--lav);align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:8px}
+.adx-ben b{display:block;font-size:.96rem;margin-bottom:4px}
+.adx-ben p{margin:0;font-size:.8rem;color:var(--mut);line-height:1.4}
+.adx-sys{display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+.adx-syscard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.adx-syscard img,.adx-sysimg{width:84px;height:84px;border-radius:12px;object-fit:cover;background:var(--card2)}
+.adx-sysimg{min-height:0;padding:0;font-size:.8rem}
+.adx-syscard b{font-size:1.05rem}
+.adx-syscard p{margin:0;font-size:.92rem;color:var(--mut);line-height:1.45}
+.adx-vids{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.adx-vid{position:relative;border-radius:16px;overflow:hidden;border:2px solid var(--line);background:var(--card2)}
+.adx-vid img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+.adx-vid-ph{aspect-ratio:9/16}
+.adx-vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.92);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.adx-vid-cap{position:absolute;left:8px;right:8px;bottom:8px;font-size:.74rem;font-weight:700;text-shadow:0 1px 6px rgba(0,0,0,.85)}
+.adx-cardbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 18px}
+.adx-founder{text-align:center;margin-bottom:20px}
+.adx-founder img,.adx-founderimg{width:100%;border-radius:16px;margin-bottom:14px;border:1px solid var(--line)}
+.adx-founderimg{aspect-ratio:4/3}
+.adx-foundern{font-size:.85rem;color:var(--lav);font-weight:700;margin:10px 0 0}
+.adx-seen{text-align:center;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:4px 0 12px}
+.adx-logos img{width:100%;border-radius:12px}
+.adx-reviews{display:flex;flex-direction:column;gap:12px}
+.adx-rev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+.adx-rev-stars{color:#f5a623;font-size:.9rem;margin-bottom:6px}
+.adx-rev p{margin:0 0 8px;font-size:1rem;line-height:1.45;font-weight:600}
+.adx-rev span{font-size:.8rem;color:var(--mut)}
+.adx-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.adx-table th,.adx-table td{border:1px solid var(--line);padding:11px 8px;text-align:center}
+.adx-table th:first-child,.adx-table td:first-child{text-align:left;color:#cfcde0}
+.adx-table th{background:var(--card);font-weight:800;font-size:.82rem}
+.adx-table td:nth-child(2){color:var(--lav);font-weight:800}
+.adx-timeline{display:flex;flex-direction:column;gap:12px}
+.adx-tl{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+.adx-tl-d{display:inline-block;background:rgba(109,73,224,.18);color:var(--lav);font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-bottom:8px}
+.adx-tl b{font-size:1.02rem;display:block;margin-bottom:3px}
+.adx-tl p{margin:0;font-size:.92rem;color:var(--mut);line-height:1.45}
+.adx-pdp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.adx-pdp-main img,.adx-pdp-main .adx-ph{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;background:var(--card2)}
+.adx-pdp-thumbs{display:flex;gap:6px;margin-top:8px}
+.adx-pdp-th{flex:1;border:1px solid var(--line);border-radius:8px;overflow:hidden;aspect-ratio:1/1}
+.adx-pdp-th img{width:100%;height:100%;object-fit:cover}
+.adx-pdp-stars{color:#f5a623;font-size:.85rem;margin-bottom:8px}
+.adx-pdp-stars span{color:var(--mut);font-size:.78rem;margin-left:4px}
+.adx-pdp-title{font-size:1.15rem;font-weight:800;margin:0 0 10px;line-height:1.2}
+.adx-pdp-bul{list-style:none;padding:0;margin:0 0 12px;display:flex;flex-direction:column;gap:7px}
+.adx-pdp-bul li{position:relative;padding-left:22px;font-size:.9rem;color:#cfcde0}
+.adx-pdp-bul li:before{content:'✓';position:absolute;left:0;color:var(--lav);font-weight:800}
+.adx-pdp-proof{font-size:.8rem;font-weight:700;color:var(--lav);margin-bottom:12px}
+.adx-guarantee{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:24px 0}
+.adx-guar-h{font-weight:800;font-size:1.05rem;margin-bottom:8px}
+.adx-guarantee p{margin:0;font-size:.96rem;line-height:1.5;color:#cfcde0}
+.adx-faq{display:flex;flex-direction:column;gap:10px}
+.adx-faq-i{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 16px}
+.adx-faq-i summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0;font-weight:700;font-size:.98rem;cursor:pointer}
+.adx-faq-i summary::-webkit-details-marker{display:none}
+.adx-faq-i summary span{color:var(--lav);font-size:1.3rem;font-weight:400}
+.adx-faq-i[open] summary span{transform:rotate(45deg)}
+.adx-faq-a{padding:0 0 16px;font-size:.95rem;color:var(--mut);line-height:1.5}
+.adx-disc{font-size:.74rem;color:#76748f;line-height:1.45;margin-top:26px;text-align:center}
+@media(max-width:520px){.adx-h1{font-size:1.7rem}.adx-h2{font-size:1.32rem}.adx-split{grid-template-columns:1fr}.adx-vs{grid-template-columns:1fr}.adx-pdp{grid-template-columns:1fr}.adx-hcall{font-size:.66rem}.adx-hcall-i{width:32px;height:32px}}
+</style>
+
+{% schema %}
+{
+  "name": "Somna Advertorial",
+  "settings": [
+    { "type": "url", "id": "cta_url", "label": "CTA destination (default: quiz page)" },
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_img", "label": "Hero / product image (defaults to product image)" },
+    { "type": "image_picker", "id": "hero_testi_img", "label": "Hero testimonial avatar" },
+    { "type": "text", "id": "hero_testi_q", "label": "Hero testimonial quote" },
+    { "type": "text", "id": "hero_testi_n", "label": "Hero testimonial name" },
+    { "type": "header", "content": "Section images (default to product images)" },
+    { "type": "image_picker", "id": "problem_img", "label": "Problem image" },
+    { "type": "image_picker", "id": "tried_img", "label": "Tried-everything image" },
+    { "type": "image_picker", "id": "mech_img", "label": "Mechanism image" },
+    { "type": "image_picker", "id": "founder_img", "label": "Founder / transformation image" },
+    { "type": "text", "id": "founder_quote", "label": "Founder quote" },
+    { "type": "text", "id": "founder_name", "label": "Founder name" },
+    { "type": "image_picker", "id": "logos_img", "label": "As-seen-in logo strip (optional)" },
+    { "type": "image_picker", "id": "kit_img", "label": "Kit / what's included image" },
+    { "type": "text", "id": "proof_count", "label": "Social proof count", "default": "12,000+" },
+    { "type": "text", "id": "reviews_count", "label": "Reviews count label", "default": "4,300+" }
+  ],
+  "blocks": [
+    { "type": "ugc", "name": "UGC / video card", "settings": [ { "type": "image_picker", "id": "img", "label": "Image / thumbnail" }, { "type": "text", "id": "caption", "label": "Caption", "default": "best sleep in years" } ] },
+    { "type": "result", "name": "Result card", "settings": [ { "type": "image_picker", "id": "img", "label": "Image" }, { "type": "text", "id": "caption", "label": "Caption", "default": "Down to one alarm" } ] },
+    { "type": "review", "name": "Review", "settings": [ { "type": "text", "id": "quote", "label": "Quote", "default": "Genuinely the best sleep purchase I've made." }, { "type": "text", "id": "name", "label": "Name", "default": "James T." } ] },
+    { "type": "faq", "name": "FAQ", "settings": [ { "type": "text", "id": "q", "label": "Question", "default": "How fast will I notice a difference?" }, { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>Most people feel calmer, quieter nights within the first couple of weeks.</p>" } ] }
+  ],
+  "presets": [{ "name": "Somna Advertorial", "blocks": [ { "type": "ugc" }, { "type": "ugc" }, { "type": "ugc" }, { "type": "ugc" }, { "type": "review" }, { "type": "review" }, { "type": "review" }, { "type": "result" }, { "type": "result" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" } ] }]
+}
+{% endschema %}

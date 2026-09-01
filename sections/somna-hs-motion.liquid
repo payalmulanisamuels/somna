@@ -1,0 +1,38 @@
+{{ 'somna-hs-styles.css' | asset_url | stylesheet_tag }}
+<section class="shs shs-sec" style="background:{{ section.settings.bg | default: '#ffffff' }}">
+  <div class="shs-wrap">
+    {%- if section.settings.title != blank or section.settings.eyebrow != blank or section.settings.lead != blank -%}
+    <div class="shs-head somna-sr" style="text-align:center;max-width:760px;margin:0 auto">
+      {%- if section.settings.eyebrow != blank -%}<span class="shs-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      {%- if section.settings.title != blank -%}<h2 class="shs-h2">{{ section.settings.title }}</h2>{%- endif -%}
+      {%- if section.settings.lead != blank -%}<p class="shs-lead" style="margin-left:auto;margin-right:auto">{{ section.settings.lead }}</p>{%- endif -%}
+    </div>
+    {%- endif -%}
+    <div class="shs-motion-grid somna-sr-stag">
+      {%- for block in section.blocks -%}
+        <div class="shs-mcard" {{ block.shopify_attributes }}>
+          <div class="shs-mcard-img">{%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 900 }}" loading="lazy" alt="{{ block.settings.title | escape }}">{%- else -%}<div class="shs-mcard-ph">Add image (square)</div>{%- endif -%}</div>
+          <div class="shs-mcard-body"><h3>{{ block.settings.title }}</h3><p>{{ block.settings.body }}</p></div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "HS — Motion cards",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow (blank = hidden)" },
+    { "type": "text", "id": "title", "label": "Title (blank = hidden)" },
+    { "type": "text", "id": "lead", "label": "Lead (blank = hidden)" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#ffffff" }
+  ],
+  "blocks": [ { "type": "card", "name": "Card", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image (square)" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Engineered for Motion" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "The grip stays put, even during sweat-heavy workouts or deep sleep." }
+  ] } ],
+  "max_blocks": 8,
+  "presets": [{ "name": "HS — Motion cards", "blocks": [ {"type":"card"},{"type":"card"},{"type":"card"},{"type":"card"} ] }]
+}
+{% endschema %}

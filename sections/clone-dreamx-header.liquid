@@ -1,0 +1,140 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign pA = all_products['dreamx-silent-alarm-band'] -%}{%- assign pN = all_products['dreamx-anti-snore-nasal-strips'] -%}{%- assign pT = all_products['dreamx-sleep-mouth-tape'] -%}
+<div class="cdx-topbar"><div class="cdx-marqi">{% for i in (1..2) %}<span>{{ section.settings.b1 }}</span><span>{{ section.settings.b2 }}</span><span>{{ section.settings.b3 }}</span>{% endfor %}</div></div>
+<header class="cdx-header">
+  <div class="cdx-wrap cdx-headin">
+    <div class="cdx-left">
+      <button class="cdx-burger" id="cdxBurger" aria-label="Open menu" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      <nav class="cdx-nav">
+        <a href="/collections/all">Shop all</a>
+        <a href="/pages/our-story">Our Story</a>
+        <a href="/pages/the-science">The Science</a>
+        <a href="/pages/support">Support</a>
+      </nav>
+    </div>
+    <a href="/" class="cdx-logo"><span class="cdx-lg1">{{ section.settings.logo_a }}</span><span class="cdx-lg2">{{ section.settings.logo_b }}.</span></a>
+    <div class="cdx-right">
+      <span class="cdx-usd">USD $ ▾</span>
+      <a href="/search" class="cdx-ico" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+      {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
+        <button type="button" class="cdx-cart" data-somna-cart-toggle aria-label="Cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cdx-count">{{ cart.item_count }}</span></button>
+      {%- else -%}
+        <a href="/cart" class="cdx-cart" aria-label="Cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cdx-count">{{ cart.item_count }}</span></a>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+<div class="cdx-drawer" id="cdxDrawer" aria-hidden="true">
+  <div class="cdx-drawer-top">
+    <a href="/" class="cdx-logo cdx-logo-sm"><span class="cdx-lg1">{{ section.settings.logo_a }}</span><span class="cdx-lg2">{{ section.settings.logo_b }}.</span></a>
+    <button class="cdx-close" id="cdxClose" aria-label="Close menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <div class="cdx-cats">
+    <div class="cdx-cats-h">Bestsellers</div>
+    <div class="cdx-cats-grid">
+      <a class="cdx-cat" href="/products/dreamx-silent-alarm-band"><div class="cdx-cat-t">Silent Alarm Band</div><span class="cdx-cat-btn">Shop Now</span>{% if section.settings.cat1_img != blank %}<img class="cdx-cat-img" src="{{ section.settings.cat1_img | image_url: width: 400 }}" alt="" loading="lazy">{% elsif pA.featured_image %}<img class="cdx-cat-img" src="{{ pA.featured_image | image_url: width: 400 }}" alt="" loading="lazy">{% endif %}</a>
+      <a class="cdx-cat" href="/products/dreamx-anti-snore-nasal-strips"><div class="cdx-cat-t">Nasal Strips</div><span class="cdx-cat-btn">Shop Now</span>{% if section.settings.cat2_img != blank %}<img class="cdx-cat-img" src="{{ section.settings.cat2_img | image_url: width: 400 }}" alt="" loading="lazy">{% elsif pN.featured_image %}<img class="cdx-cat-img" src="{{ pN.featured_image | image_url: width: 400 }}" alt="" loading="lazy">{% endif %}</a>
+      <a class="cdx-cat" href="/products/dreamx-sleep-mouth-tape"><div class="cdx-cat-t">Mouth Tape</div><span class="cdx-cat-btn">Shop Now</span>{% if section.settings.cat3_img != blank %}<img class="cdx-cat-img" src="{{ section.settings.cat3_img | image_url: width: 400 }}" alt="" loading="lazy">{% elsif pT.featured_image %}<img class="cdx-cat-img" src="{{ pT.featured_image | image_url: width: 400 }}" alt="" loading="lazy">{% endif %}</a>
+      <a class="cdx-cat" href="/collections/all"><div class="cdx-cat-t">Bundles</div><span class="cdx-cat-btn">Shop Now</span>{% if section.settings.cat4_img != blank %}<img class="cdx-cat-img" src="{{ section.settings.cat4_img | image_url: width: 400 }}" alt="" loading="lazy">{% elsif pA.featured_image %}<img class="cdx-cat-img" src="{{ pA.featured_image | image_url: width: 400 }}" alt="" loading="lazy">{% endif %}</a>
+    </div>
+  </div>
+  <nav class="cdx-drawer-nav">
+    <div class="cdx-acc">
+      <button class="cdx-acc-h" id="cdxAcc" aria-expanded="false"><span>Shop All</span><span class="cdx-chev">+</span></button>
+      <div class="cdx-acc-p">
+        <a href="/collections/all">Best Sellers</a>
+        <a href="/products/dreamx-silent-alarm-band">Silent Alarm Band</a>
+        <a href="/products/dreamx-anti-snore-nasal-strips">Nasal Strips</a>
+        <a href="/products/dreamx-sleep-mouth-tape">Mouth Tape</a>
+        <a href="/collections/all">Bundles</a>
+        <a href="/collections/all">Accessories</a>
+      </div>
+    </div>
+    <a class="cdx-drawer-link" href="/pages/the-science"><span>Science</span><span class="cdx-rt">›</span></a>
+    <a class="cdx-drawer-link" href="/"><span>Reviews</span><span class="cdx-rt">›</span></a>
+    <a class="cdx-drawer-link" href="/pages/our-story"><span>Our Story</span><span class="cdx-rt">›</span></a>
+    <a class="cdx-drawer-link" href="/pages/support"><span>Support</span><span class="cdx-rt">›</span></a>
+    <a class="cdx-drawer-link" href="/pages/support"><span>FAQ</span><span class="cdx-rt">›</span></a>
+    <a class="cdx-drawer-link" href="/pages/support"><span>Contact</span><span class="cdx-rt">›</span></a>
+  </nav>
+</div>
+
+<style>
+.cdx-topbar{background:#98A3DE;overflow:hidden;white-space:nowrap}
+.cdx-marqi{display:inline-block;padding:9px 0;animation:cdxMq 24s linear infinite;font-size:.74rem;font-weight:700;color:#111129;font-family:var(--cda-font)}
+.cdx-marqi span{margin:0 16px}
+@keyframes cdxMq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.cdx-wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
+.cdx-header{position:sticky;top:0;z-index:50;background:#111129;border-bottom:1px solid rgba(255,255,255,.1);font-family:var(--cda-font)}
+.cdx-headin{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px}
+.cdx-left{justify-self:start;display:flex;align-items:center;gap:12px}
+.cdx-logo{justify-self:center;font-weight:800;font-size:1.4rem;letter-spacing:-.02em;color:var(--cda-ink);text-decoration:none;white-space:nowrap}
+.cdx-logo .cdx-lg1{color:var(--cda-ink)}
+.cdx-header .cdx-logo .cdx-lg1{color:#fff}
+.cdx-logo .cdx-lg2{color:#98A3DE}
+.cdx-nav{display:flex;gap:22px;font-weight:600;font-size:.92rem}
+.cdx-nav a{color:#fff;text-decoration:none}
+.cdx-nav a:hover{color:#98A3DE}
+.cdx-right{justify-self:end;display:flex;align-items:center;gap:16px;font-weight:600;font-size:.9rem;color:#fff}
+.cdx-ico,.cdx-cart{color:#fff;display:flex;align-items:center;text-decoration:none}
+button.cdx-cart{background:none;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:.9rem;padding:0}
+.cdx-cart{position:relative}
+.cdx-count{position:absolute;top:-7px;right:-9px;background:#98A3DE;color:#fff;font-size:.66rem;font-weight:700;min-width:17px;height:17px;border-radius:999px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.cdx-burger{display:none;background:none;border:none;cursor:pointer;color:#fff;padding:8px;margin-left:-8px;align-items:center;justify-content:center}
+.cdx-drawer{position:fixed;inset:0;z-index:100;background:#fff;display:flex;flex-direction:column;transform:translateX(-100%);opacity:0;visibility:hidden;transition:transform .34s cubic-bezier(.4,0,.2,1),opacity .26s ease,visibility .34s;font-family:var(--cda-font);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.cdx-drawer.open{transform:translateX(0);opacity:1;visibility:visible}
+.cdx-drawer-top{display:flex;align-items:center;justify-content:space-between;padding:16px clamp(18px,5vw,22px);border-bottom:1px solid var(--cda-line);position:sticky;top:0;background:#fff;z-index:2}
+.cdx-logo-sm{font-size:1.5rem}
+.cdx-close{background:none;border:none;color:var(--cda-ink);cursor:pointer;padding:8px;margin:-8px;display:flex}
+.cdx-cats{padding:18px clamp(12px,4vw,18px) 10px}
+.cdx-cats-h{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;margin:2px 2px 16px}
+.cdx-cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cdx-cat{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;background:#f1f2f7;border-radius:20px;padding:20px 18px;min-height:178px;text-decoration:none;overflow:hidden}
+.cdx-cat-t{font-weight:800;font-size:1rem;color:var(--cda-ink);max-width:54%;line-height:1.16;letter-spacing:-.01em;position:relative;z-index:1}
+.cdx-cat-btn{display:inline-block;margin-top:11px;background:#98A3DE;color:#fff;font-weight:700;font-size:.64rem;letter-spacing:.02em;padding:5px 12px;border-radius:999px;position:relative;z-index:1}
+.cdx-cat-img{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:47%;height:auto;max-height:66%;object-fit:contain;object-position:center right;z-index:0;mix-blend-mode:multiply}
+.cdx-drawer-nav{padding:8px clamp(12px,4vw,18px) 18px;flex:1}
+.cdx-drawer-link,.cdx-acc-h{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:60px;text-align:left;background:none;border:none;border-bottom:1px solid var(--cda-line);cursor:pointer;font-family:inherit;color:var(--cda-ink);font-weight:700;font-size:1.14rem;letter-spacing:-.01em;padding:18px 6px;text-decoration:none}
+.cdx-rt{color:#c2c4d6;font-size:1.5rem;line-height:1;font-weight:400}
+.cdx-drawer-link:active,.cdx-acc-h:active{background:var(--cda-soft)}
+.cdx-chev{color:#98A3DE;font-size:1.55rem;line-height:1;transition:transform .26s ease;font-weight:400}
+.cdx-acc.open .cdx-chev{transform:rotate(45deg)}
+.cdx-acc-p{max-height:0;overflow:hidden;transition:max-height .32s ease}
+.cdx-acc.open .cdx-acc-p{max-height:460px}
+.cdx-acc-p a{display:block;min-height:50px;padding:14px 10px 14px 26px;color:var(--cda-muted);text-decoration:none;font-weight:600;font-size:1.02rem;border-bottom:1px solid var(--cda-soft)}
+.cdx-acc-p a:active{color:#98A3DE}
+html.cdx-lock,body.cdx-lock{overflow:hidden;height:100%}
+@media(max-width:860px){.cdx-nav{display:none}.cdx-usd{display:none}.cdx-burger{display:flex}}
+@media(min-width:861px){.cdx-drawer{display:none}}
+@media(max-width:560px){.cdx-logo{font-size:1.25rem}}
+</style>
+<script>
+(function(){
+  var b=document.getElementById('cdxBurger'),d=document.getElementById('cdxDrawer'),c=document.getElementById('cdxClose'),acc=document.getElementById('cdxAcc');
+  function open(){d.classList.add('open');d.setAttribute('aria-hidden','false');b.setAttribute('aria-expanded','true');document.documentElement.classList.add('cdx-lock');document.body.classList.add('cdx-lock');}
+  function close(){d.classList.remove('open');d.setAttribute('aria-hidden','true');b.setAttribute('aria-expanded','false');document.documentElement.classList.remove('cdx-lock');document.body.classList.remove('cdx-lock');}
+  if(b)b.addEventListener('click',open);
+  if(c)c.addEventListener('click',close);
+  if(acc)acc.addEventListener('click',function(){var p=acc.parentNode,o=p.classList.toggle('open');acc.setAttribute('aria-expanded',o?'true':'false');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('open'))close();});
+})();
+</script>
+{% schema %}
+{
+  "name": "Somna Header",
+  "settings": [
+    { "type": "text", "id": "logo_a", "label": "Logo (dark part)", "default": "som" },
+    { "type": "text", "id": "logo_b", "label": "Logo (accent part)", "default": "na" },
+    { "type": "text", "id": "b1", "label": "Bar 1", "default": "✓ Free shipping over $50" },
+    { "type": "text", "id": "b2", "label": "Bar 2", "default": "✓ 100-night money-back guarantee" },
+    { "type": "text", "id": "b3", "label": "Bar 3", "default": "✓ Doctor recommended & athlete approved" },
+    { "type": "header", "content": "Mobile menu category cards" },
+    { "type": "paragraph", "content": "Upload clean product images (white/transparent background works best)." },
+    { "type": "image_picker", "id": "cat1_img", "label": "Card 1 — Silent Alarm Band" },
+    { "type": "image_picker", "id": "cat2_img", "label": "Card 2 — Nasal Strips" },
+    { "type": "image_picker", "id": "cat3_img", "label": "Card 3 — Mouth Tape" },
+    { "type": "image_picker", "id": "cat4_img", "label": "Card 4 — Bundles" }
+  ]
+}
+{% endschema %}

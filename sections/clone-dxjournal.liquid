@@ -1,0 +1,329 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<div class="dxj">
+  {%- comment -%} ===== HERO (light) ===== {%- endcomment -%}
+  <section class="dxj-wrap dxj-sec">
+    <div class="dxj-hero">
+      <div class="dxj-hero-copy">
+        {% if section.settings.hero_kick != blank %}<span class="dxj-kick">{{ section.settings.hero_kick }}</span>{% endif %}
+        <h1 class="dxj-h1">{{ section.settings.hero_h }}</h1>
+        {% if section.settings.hero_sub != blank %}<p class="dxj-hsub">{{ section.settings.hero_sub }}</p>{% endif %}
+        {% if section.settings.hero_body != blank %}<p class="dxj-muted">{{ section.settings.hero_body }}</p>{% endif %}
+        {% if section.settings.hero_stat != blank %}<div class="dxj-stat">{{ section.settings.hero_stat }}</div>{% endif %}
+        <div class="dxj-ctas">
+          <a class="dxj-pbtn" href="{{ section.settings.hero_cta_link | default: '/pages/the-science' }}">{{ section.settings.hero_cta }}</a>
+          {% if section.settings.hero_cta2 != blank %}<a class="dxj-sbtn" href="{{ section.settings.hero_cta2_link | default: '/collections/all' }}">{{ section.settings.hero_cta2 }}</a>{% endif %}
+        </div>
+      </div>
+      {% if section.settings.img_feat != blank %}<div class="cda-ph dxj-hero-img"><img src="{{ section.settings.img_feat | image_url: width: 1200 }}" alt="" loading="lazy"></div>{% else %}<div class="cda-ph dxj-hero-img" data-label="Featured image"></div>{% endif %}
+    </div>
+  </section>
+
+  {%- comment -%} ===== ARTICLE GRID ===== {%- endcomment -%}
+  <section class="dxj-band">
+    <div class="dxj-wrap dxj-sec">
+      <div class="dxj-gridhead">
+        <h2 class="dxj-h2">{{ section.settings.grid_h }}</h2>
+        {% if section.settings.grid_sub != blank %}<p class="dxj-muted">{{ section.settings.grid_sub }}</p>{% endif %}
+      </div>
+      <div class="dxj-grid">
+        {% for i in (1..6) %}
+          {%- assign t = 'a' | append: i | append: '_title' -%}
+          {%- assign d = 'a' | append: i | append: '_desc' -%}
+          {%- assign bd = 'a' | append: i | append: '_badge' -%}
+          {%- assign cl = 'a' | append: i | append: '_color' -%}
+          {%- assign st = 'a' | append: i | append: '_stat' -%}
+          {%- assign sh = 'a' | append: i | append: '_shop' -%}
+          {%- assign shl = 'a' | append: i | append: '_shop_link' -%}
+          {%- assign rd = 'a' | append: i | append: '_read' -%}
+          {%- assign im = 'img' | append: i -%}
+          <article class="dxj-card">
+            <a class="dxj-card-link" href="{{ section.settings[rd] | default: '/pages/the-science' }}">
+              {% if section.settings[im] != blank %}<div class="cda-ph"><img src="{{ section.settings[im] | image_url: width: 800 }}" alt="" width="800" height="800" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Article {{ i }}"></div>{% endif %}
+            </a>
+            <div class="dxj-card-body">
+              {% if section.settings[bd] != blank %}<span class="dxj-badge dxj-b-{{ section.settings[cl] }}">{{ section.settings[bd] }}</span>{% endif %}
+              <a class="dxj-card-link" href="{{ section.settings[rd] | default: '/pages/the-science' }}"><h3 class="dxj-t">{{ section.settings[t] }}</h3></a>
+              <p class="dxj-muted">{{ section.settings[d] }}</p>
+              {% if section.settings[st] != blank %}<div class="dxj-astat">{{ section.settings[st] }}</div>{% endif %}
+              <div class="dxj-acta">
+                <a class="dxj-sbtn dxj-btn-sm" href="{{ section.settings[rd] | default: '/pages/the-science' }}">{{ section.settings.read_label }}</a>
+                {% if section.settings[sh] != blank %}<a class="dxj-pbtn dxj-btn-sm" href="{{ section.settings[shl] | default: '/collections/all' }}">{{ section.settings[sh] }}</a>{% endif %}
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ===== MID CTA (dark) ===== {%- endcomment -%}
+  <section class="dxj-wrap dxj-sec">
+    <div class="dxj-cta">
+      <h2 class="dxj-h2" style="color:#fff">{{ section.settings.cta_h }}</h2>
+      {% if section.settings.cta_sub != blank %}<p class="dxj-cta-sub">{{ section.settings.cta_sub }}</p>{% endif %}
+      <div class="dxj-cta-stats">
+        {% if section.settings.cta_s1 != blank %}<div class="dxj-cta-stat">{{ section.settings.cta_s1 }}</div>{% endif %}
+        {% if section.settings.cta_s2 != blank %}<div class="dxj-cta-stat">{{ section.settings.cta_s2 }}</div>{% endif %}
+        {% if section.settings.cta_s3 != blank %}<div class="dxj-cta-stat">{{ section.settings.cta_s3 }}</div>{% endif %}
+      </div>
+      <div class="dxj-ctas dxj-ctas-c">
+        <a class="dxj-pbtn" href="{{ section.settings.cta_link | default: '/collections/all' }}">{{ section.settings.cta_btn }}</a>
+        {% if section.settings.cta_btn2 != blank %}<a class="dxj-sbtn dxj-sbtn-light" href="{{ section.settings.cta_link2 | default: '/pages/the-science' }}">{{ section.settings.cta_btn2 }}</a>{% endif %}
+      </div>
+      {% if section.settings.cta_guarantee != blank %}<div class="dxj-guarantee">{{ section.settings.cta_guarantee }}</div>{% endif %}
+    </div>
+  </section>
+
+  {%- comment -%} ===== CREDIBILITY (3-col) ===== {%- endcomment -%}
+  {% if section.settings.c1_h != blank or section.settings.c2_h != blank or section.settings.c3_h != blank %}
+  <section class="dxj-wrap dxj-sec">
+    <div class="dxj-credhead">
+      {% if section.settings.cred_kick != blank %}<span class="dxj-kick">{{ section.settings.cred_kick }}</span>{% endif %}
+      <h2 class="dxj-h2">{{ section.settings.cred_h }}</h2>
+      {% if section.settings.cred_sub != blank %}<p class="dxj-muted">{{ section.settings.cred_sub }}</p>{% endif %}
+    </div>
+    <div class="dxj-cred3">
+      {% if section.settings.c1_h != blank %}<div class="dxj-cred-card">
+        <div class="dxj-cred-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3 class="dxj-cred-t">{{ section.settings.c1_h }}</h3>
+        {% if section.settings.c1_b != blank %}<p class="dxj-muted">{{ section.settings.c1_b }}</p>{% endif %}
+        {% if section.settings.c1_label != blank %}<a class="dxj-link" href="{{ section.settings.c1_link | default: '/pages/the-science' }}">{{ section.settings.c1_label }}</a>{% endif %}
+      </div>{% endif %}
+      {% if section.settings.c2_h != blank %}<div class="dxj-cred-card">
+        <div class="dxj-cred-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v5a6 6 0 0 0 12 0V3"/><path d="M6 3H4M18 3h2"/><path d="M12 14v3a4 4 0 0 0 8 0v-1"/><circle cx="20" cy="14" r="2"/></svg></div>
+        <h3 class="dxj-cred-t">{{ section.settings.c2_h }}</h3>
+        {% if section.settings.c2_b != blank %}<p class="dxj-muted">{{ section.settings.c2_b }}</p>{% endif %}
+        {% if section.settings.c2_label != blank %}<a class="dxj-link" href="{{ section.settings.c2_link | default: '/pages/the-science' }}">{{ section.settings.c2_label }}</a>{% endif %}
+      </div>{% endif %}
+      {% if section.settings.c3_h != blank %}<div class="dxj-cred-card">
+        <div class="dxj-cred-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg></div>
+        <h3 class="dxj-cred-t">{{ section.settings.c3_h }}</h3>
+        {% if section.settings.c3_b != blank %}<p class="dxj-muted">{{ section.settings.c3_b }}</p>{% endif %}
+        {% if section.settings.c3_label != blank %}<a class="dxj-link" href="{{ section.settings.c3_link | default: '/pages/the-science' }}">{{ section.settings.c3_label }}</a>{% endif %}
+      </div>{% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  {%- comment -%} ===== EMAIL (centered) ===== {%- endcomment -%}
+  <section class="dxj-news"><div class="dxj-wrap dxj-news-in">
+    <h2 class="dxj-h2" style="color:#fff">{{ section.settings.news_head }}</h2>
+    {% if section.settings.news_sub != blank %}<p class="dxj-news-sub">{{ section.settings.news_sub }}</p>{% endif %}
+    <form class="dxj-nform" onsubmit="return false">
+      <div class="dxj-form"><input type="email" placeholder="you@email.com"><button class="dxj-sub">{{ section.settings.news_btn }}</button></div>
+      <label class="dxj-consent"><input type="checkbox"> <span>I agree to receive emails about sleep tips &amp; exclusive offers</span></label>
+      {% if section.settings.news_proof != blank %}<div class="dxj-nproof">{{ section.settings.news_proof }}</div>{% endif %}
+    </form>
+  </div></section>
+
+  {% if section.settings.disclaimer != blank %}<section class="dxj-wrap dxj-disc-sec"><p class="dxj-disc">{{ section.settings.disclaimer }}</p></section>{% endif %}
+</div>
+<style>
+.dxj{font-family:var(--cda-font);color:#1a1a1a}
+.dxj-wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.dxj-sec{padding:clamp(40px,6vw,72px) 0}
+.dxj-kick{display:inline-block;text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;font-weight:800;color:var(--cda-accent-d);margin-bottom:10px}
+.dxj-pbtn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:var(--cda-accent);color:#fff;font-weight:700;font-size:1rem;text-decoration:none;border:1.5px solid var(--cda-accent);transition:filter .15s}
+.dxj-pbtn:hover{filter:brightness(.93)}
+.dxj-sbtn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;background:transparent;color:var(--cda-accent-d);font-weight:700;font-size:1rem;text-decoration:none;border:1.5px solid var(--cda-accent);transition:background .15s}
+.dxj-sbtn:hover{background:var(--cda-soft)}
+.dxj-sbtn-light{color:#fff;border-color:rgba(255,255,255,.7)}
+.dxj-sbtn-light:hover{background:rgba(255,255,255,.12)}
+.dxj-btn-sm{min-height:44px;padding:0 16px;font-size:.9rem;flex:1}
+.dxj-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:6px}
+.dxj-ctas-c{justify-content:center}
+.dxj-hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.dxj-h1{font-size:clamp(2rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.025em;margin:0 0 12px;line-height:1.08}
+.dxj-hsub{color:#444;font-size:clamp(1.02rem,1.6vw,1.18rem);margin:0 0 16px;line-height:1.5;font-weight:500}
+.dxj-stat{display:inline-block;color:var(--cda-accent-d);font-weight:800;font-size:clamp(.96rem,1.4vw,1.08rem);background:var(--cda-soft);border:1px solid var(--cda-line);padding:11px 18px;border-radius:14px;margin-bottom:22px;line-height:1.35}
+.dxj-hero-img{margin:0;background:var(--cda-soft);aspect-ratio:4/5;border-radius:18px;overflow:hidden}
+.dxj-hero-img img{width:100%;height:100%;object-fit:cover}
+.dxj-muted{color:#666;line-height:1.6;margin:0 0 16px;font-size:1rem}
+.dxj-h2{font-size:clamp(1.6rem,3vw,2rem);font-weight:800;letter-spacing:-.02em;margin:0 0 8px}
+.dxj-band{background:#f7f7fb}
+.dxj-gridhead{text-align:center;max-width:60ch;margin:0 auto 40px}
+.dxj-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.dxj-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--cda-line);border-radius:16px;overflow:hidden}
+.dxj-card-link{display:block;text-decoration:none;color:inherit}
+.dxj-card>.dxj-card-link .cda-ph{aspect-ratio:16/10;border-radius:0}
+.dxj-card .cda-ph img{width:100%;height:100%;object-fit:cover}
+.dxj-card-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.dxj-badge{display:inline-block;align-self:flex-start;font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:5px 11px;border-radius:999px;margin-bottom:12px}
+.dxj-b-purple{background:#ece9fb;color:#5a4fd6}
+.dxj-b-blue{background:#e3effc;color:#2f6fd0}
+.dxj-b-green{background:#e2f5ea;color:#2f9e5e}
+.dxj-b-orange{background:#fdeede;color:#cc7a1f}
+.dxj-b-red{background:#fde6e6;color:#cc3b3b}
+.dxj-t{font-size:1.2rem;font-weight:800;letter-spacing:-.01em;margin:0 0 8px;line-height:1.2}
+.dxj-astat{display:inline-block;align-self:flex-start;color:var(--cda-accent-d);font-weight:800;font-size:.82rem;background:var(--cda-soft);padding:6px 12px;border-radius:10px;margin:0 0 16px}
+.dxj-acta{display:flex;align-items:stretch;gap:10px;margin-top:auto}
+.dxj-cta{background:#1a1a2e;border-radius:24px;padding:clamp(36px,5vw,64px) clamp(24px,4vw,48px);text-align:center}
+.dxj-cta-sub{color:#c7c9e0;font-size:clamp(1rem,1.6vw,1.15rem);margin:0 auto 24px;max-width:52ch}
+.dxj-cta-stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.dxj-cta-stat{background:rgba(152,163,222,.16);border:1px solid rgba(152,163,222,.4);color:#fff;font-weight:800;font-size:.92rem;padding:13px 18px;border-radius:14px;min-width:150px;line-height:1.3}
+.dxj-guarantee{margin-top:18px;color:#c7c9e0;font-weight:700;font-size:.85rem}
+.dxj-credhead{text-align:center;max-width:60ch;margin:0 auto 36px}
+.dxj-cred3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.dxj-cred-card{background:#fff;border:1px solid var(--cda-line);border-radius:16px;padding:28px 24px;text-align:center}
+.dxj-cred-ic{width:52px;height:52px;border-radius:50%;background:var(--cda-soft);color:var(--cda-accent-d);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.dxj-cred-t{font-size:1.15rem;font-weight:800;margin:0 0 8px}
+.dxj-link{display:inline-block;margin-top:6px;color:var(--cda-accent-d);font-weight:800;font-size:.9rem;text-decoration:none;border-bottom:2px solid var(--cda-accent);padding-bottom:1px}
+.dxj-news{background:var(--cda-accent);margin-top:0}
+.dxj-news-in{text-align:center;padding:clamp(40px,5vw,64px) clamp(20px,4vw,40px)}
+.dxj-news-sub{color:#eef0fb;font-size:1rem;margin:0 auto 22px;max-width:48ch}
+.dxj-nform{max-width:460px;margin:0 auto}
+.dxj-form{display:flex;gap:10px}
+.dxj-form input{flex:1;border:none;border-radius:999px;padding:15px 18px;font:inherit;min-height:48px}
+.dxj-sub{background:#fff;color:var(--cda-accent-d);border:none;border-radius:999px;padding:15px 24px;font-weight:700;cursor:pointer;min-height:48px;white-space:nowrap}
+.dxj-consent{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;color:#fff;font-size:.82rem;font-weight:500}
+.dxj-consent input{width:16px;height:16px;flex:0 0 auto;accent-color:#fff}
+.dxj-nproof{color:#eef0fb;font-size:.82rem;font-weight:700;margin-top:12px}
+.dxj-disc-sec{padding:28px 0 44px}
+.dxj-disc{color:#888;font-size:.72rem;line-height:1.5;max-width:80ch;margin:0 auto;text-align:center}
+@media(max-width:900px){
+  .dxj-hero{grid-template-columns:1fr;gap:24px}
+  .dxj-hero-img{order:-1;aspect-ratio:16/10}
+  .dxj-cred3{grid-template-columns:1fr;gap:18px}
+}
+@media(max-width:560px){
+  .dxj-sec{padding:36px 0}
+  .dxj-h1{font-size:clamp(1.7rem,8vw,2.1rem)}
+  .dxj-hsub{font-size:1rem}
+  .dxj-muted{font-size:1rem}
+  .dxj-stat{font-size:.9rem;padding:9px 14px}
+  .dxj-h2{font-size:1.45rem}
+  .dxj-gridhead{margin-bottom:26px}
+  .dxj-grid{grid-template-columns:1fr;gap:18px}
+  .dxj-card-body{padding:18px}
+  .dxj-t{font-size:1.12rem}
+  .dxj-acta{flex-direction:column}
+  .dxj-btn-sm{width:100%}
+  .dxj-ctas{flex-direction:column;align-items:stretch}
+  .dxj-pbtn,.dxj-sbtn{width:100%}
+  .dxj-cta{padding:32px 20px}
+  .dxj-cta-stat{flex:1;min-width:0;font-size:.84rem;padding:12px}
+  .dxj-cred-card{padding:24px 18px}
+  .dxj-news-in{padding:36px 20px}
+  .dxj-nform{width:100%}
+  .dxj-form{flex-direction:column}
+  .dxj-sub{width:100%}
+  .dxj-disc-sec{padding:22px 0 32px}
+}
+</style>
+{% schema %}
+{
+  "name": "Somna Journal",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "hero_kick", "label": "Kicker", "default": "Sleep Science" },
+    { "type": "text", "id": "hero_h", "label": "Headline", "default": "The sleep problems heavy sleepers never talk about" },
+    { "type": "textarea", "id": "hero_sub", "label": "Subheadline", "default": "And how Somna helps you wake up easier — without waking your partner." },
+    { "type": "textarea", "id": "hero_body", "label": "Body", "default": "Heavy sleepers face unique challenges: oversleeping, missing alarms, waking up exhausted. This isn't laziness — it's biology. Somna's Silent Alarm Band was engineered for heavy sleepers: it wakes only you, without waking your partner." },
+    { "type": "text", "id": "hero_stat", "label": "Stat callout (use a real, verifiable claim)", "default": "Engineered for the deepest sleepers" },
+    { "type": "text", "id": "hero_cta", "label": "Primary button", "default": "See how it works" },
+    { "type": "url", "id": "hero_cta_link", "label": "Primary button link" },
+    { "type": "text", "id": "hero_cta2", "label": "Secondary button", "default": "Shop the Alarm Band" },
+    { "type": "url", "id": "hero_cta2_link", "label": "Secondary button link" },
+    { "type": "image_picker", "id": "img_feat", "label": "Hero image" },
+    { "type": "header", "content": "Grid heading" },
+    { "type": "text", "id": "grid_h", "label": "Heading", "default": "Sleep science explained" },
+    { "type": "text", "id": "grid_sub", "label": "Subheading", "default": "Learn the science. Then fix your sleep with Somna." },
+    { "type": "text", "id": "read_label", "label": "Read-link label (all cards)", "default": "Read article" },
+    { "type": "header", "content": "Article 1" },
+    { "type": "text", "id": "a1_title", "label": "Title", "default": "Why vibration wakes you when sound can't" },
+    { "type": "text", "id": "a1_badge", "label": "Badge", "default": "Sleep Science" },
+    { "type": "select", "id": "a1_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "purple" },
+    { "type": "textarea", "id": "a1_desc", "label": "Description", "default": "Your brain habituates to repeated sounds, so loud alarms stop working. Discover why a tactile cue on the wrist cuts through deep sleep — and how Somna's Alarm Band uses it to wake heavy sleepers gently." },
+    { "type": "text", "id": "a1_stat", "label": "Stat (use real data)", "default": "Wakes only you — not your partner" },
+    { "type": "text", "id": "a1_shop", "label": "Product button", "default": "Shop Alarm Band" },
+    { "type": "url", "id": "a1_shop_link", "label": "Product button link" },
+    { "type": "url", "id": "a1_read", "label": "Read-article link" },
+    { "type": "image_picker", "id": "img1", "label": "Image" },
+    { "type": "header", "content": "Article 2" },
+    { "type": "text", "id": "a2_title", "label": "Title", "default": "The frequent traveler's guide to better sleep" },
+    { "type": "text", "id": "a2_badge", "label": "Badge", "default": "Travel Tips" },
+    { "type": "select", "id": "a2_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "blue" },
+    { "type": "textarea", "id": "a2_desc", "label": "Description", "default": "Sleep disruption while traveling is common. Learn the science of jet lag and how to reset your sleep cycle faster with Somna's Strips + Tape." },
+    { "type": "text", "id": "a2_stat", "label": "Stat (use real data)", "default": "Built for sleep on the road" },
+    { "type": "text", "id": "a2_shop", "label": "Product button", "default": "Shop Strips + Tape" },
+    { "type": "url", "id": "a2_shop_link", "label": "Product button link" },
+    { "type": "url", "id": "a2_read", "label": "Read-article link" },
+    { "type": "image_picker", "id": "img2", "label": "Image" },
+    { "type": "header", "content": "Article 3" },
+    { "type": "text", "id": "a3_title", "label": "Title", "default": "From all-nighters to early mornings" },
+    { "type": "text", "id": "a3_badge", "label": "Badge", "default": "Sleep Cycles" },
+    { "type": "select", "id": "a3_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "green" },
+    { "type": "textarea", "id": "a3_desc", "label": "Description", "default": "Your circadian rhythm controls when you sleep. Learn how to shift it and why Somna's Nasal Strips help you breathe easier so you fall asleep faster." },
+    { "type": "text", "id": "a3_stat", "label": "Stat (use real data)", "default": "Breathe easier, drift off sooner" },
+    { "type": "text", "id": "a3_shop", "label": "Product button", "default": "Shop Nasal Strips" },
+    { "type": "url", "id": "a3_shop_link", "label": "Product button link" },
+    { "type": "url", "id": "a3_read", "label": "Read-article link" },
+    { "type": "image_picker", "id": "img3", "label": "Image" },
+    { "type": "header", "content": "Article 4" },
+    { "type": "text", "id": "a4_title", "label": "Title", "default": "Nasal breathing and the architecture of deep sleep" },
+    { "type": "text", "id": "a4_badge", "label": "Badge", "default": "Sleep Science" },
+    { "type": "select", "id": "a4_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "purple" },
+    { "type": "textarea", "id": "a4_desc", "label": "Description", "default": "Mouth breathing can fragment sleep. Learn why nasal breathing supports more restorative rest and how Somna's Mouth Tape helps you keep it up all night." },
+    { "type": "text", "id": "a4_stat", "label": "Stat (use real data)", "default": "Supports deeper, calmer sleep" },
+    { "type": "text", "id": "a4_shop", "label": "Product button", "default": "Shop Mouth Tape" },
+    { "type": "url", "id": "a4_shop_link", "label": "Product button link" },
+    { "type": "url", "id": "a4_read", "label": "Read-article link" },
+    { "type": "image_picker", "id": "img4", "label": "Image" },
+    { "type": "header", "content": "Article 5" },
+    { "type": "text", "id": "a5_title", "label": "Title", "default": "The cortisol cost of a jarring alarm" },
+    { "type": "text", "id": "a5_badge", "label": "Badge", "default": "Sleep Health" },
+    { "type": "select", "id": "a5_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "orange" },
+    { "type": "textarea", "id": "a5_desc", "label": "Description", "default": "Loud alarms spike stress hormones before your day begins. Learn why a gentle wake-up matters and how Somna's vibration alarm helps you start calmer." },
+    { "type": "text", "id": "a5_stat", "label": "Stat (use real data)", "default": "A calmer way to wake up" },
+    { "type": "text", "id": "a5_shop", "label": "Product button", "default": "Shop Alarm Band" },
+    { "type": "url", "id": "a5_shop_link", "label": "Product button link" },
+    { "type": "url", "id": "a5_read", "label": "Read-article link" },
+    { "type": "image_picker", "id": "img5", "label": "Image" },
+    { "type": "header", "content": "Article 6" },
+    { "type": "text", "id": "a6_title", "label": "Title", "default": "Red light, recovery, and winding down" },
+    { "type": "text", "id": "a6_badge", "label": "Badge", "default": "Sleep Environment" },
+    { "type": "select", "id": "a6_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "red" },
+    { "type": "textarea", "id": "a6_desc", "label": "Description", "default": "What the research says about light, recovery, and building a pre-sleep ritual — and how the full Somna system fits into a better wind-down routine." },
+    { "type": "text", "id": "a6_stat", "label": "Stat (use real data)", "default": "Build a better wind-down routine" },
+    { "type": "text", "id": "a6_shop", "label": "Product button", "default": "Shop the Bundle" },
+    { "type": "url", "id": "a6_shop_link", "label": "Product button link" },
+    { "type": "url", "id": "a6_read", "label": "Read-article link" },
+    { "type": "image_picker", "id": "img6", "label": "Image" },
+    { "type": "header", "content": "Mid call-to-action" },
+    { "type": "text", "id": "cta_h", "label": "Headline", "default": "Ready to sleep better?" },
+    { "type": "textarea", "id": "cta_sub", "label": "Subheadline", "default": "Designed around the science of how you actually sleep and wake — backed by a 30-day money-back guarantee." },
+    { "type": "text", "id": "cta_s1", "label": "Stat 1 (use real data)", "default": "Drug-free, every night" },
+    { "type": "text", "id": "cta_s2", "label": "Stat 2 (use real data)", "default": "Wakes only you" },
+    { "type": "text", "id": "cta_s3", "label": "Stat 3 (use real data)", "default": "30-day money-back guarantee" },
+    { "type": "text", "id": "cta_btn", "label": "Primary button", "default": "Start your sleep journey" },
+    { "type": "url", "id": "cta_link", "label": "Primary button link" },
+    { "type": "text", "id": "cta_btn2", "label": "Secondary button (optional)", "default": "Explore the science" },
+    { "type": "url", "id": "cta_link2", "label": "Secondary button link" },
+    { "type": "text", "id": "cta_guarantee", "label": "Guarantee line", "default": "30-Day Money-Back Guarantee · Free shipping over $50" },
+    { "type": "header", "content": "Trust columns (verify claims first)" },
+    { "type": "text", "id": "cred_kick", "label": "Kicker", "default": "Backed by science" },
+    { "type": "text", "id": "cred_h", "label": "Heading", "default": "Why you can trust Somna" },
+    { "type": "textarea", "id": "cred_sub", "label": "Subheading", "default": "We design every product around established sleep science and real customer feedback." },
+    { "type": "text", "id": "c1_h", "label": "Column 1 title", "default": "Thoughtfully designed" },
+    { "type": "textarea", "id": "c1_b", "label": "Column 1 text", "default": "Built on established sleep-science principles and refined with real customer feedback." },
+    { "type": "text", "id": "c1_label", "label": "Column 1 link label (optional)" },
+    { "type": "url", "id": "c1_link", "label": "Column 1 link" },
+    { "type": "text", "id": "c2_h", "label": "Column 2 title", "default": "Drug-free & gentle" },
+    { "type": "textarea", "id": "c2_b", "label": "Column 2 text", "default": "Non-habit-forming, wearable all night, and designed to work with your body — not against it." },
+    { "type": "text", "id": "c2_label", "label": "Column 2 link label (optional)" },
+    { "type": "url", "id": "c2_link", "label": "Column 2 link" },
+    { "type": "text", "id": "c3_h", "label": "Column 3 title", "default": "Risk-free to try" },
+    { "type": "textarea", "id": "c3_b", "label": "Column 3 text", "default": "Backed by a 30-day money-back guarantee, so you can test it in your own bed with nothing to lose." },
+    { "type": "text", "id": "c3_label", "label": "Column 3 link label (optional)" },
+    { "type": "url", "id": "c3_link", "label": "Column 3 link" },
+    { "type": "header", "content": "Email capture" },
+    { "type": "text", "id": "news_head", "label": "Headline", "default": "Get 15% off your first order" },
+    { "type": "textarea", "id": "news_sub", "label": "Subline", "default": "Plus exclusive sleep science tips and early access to new products." },
+    { "type": "text", "id": "news_btn", "label": "Button", "default": "Unlock my discount" },
+    { "type": "text", "id": "news_proof", "label": "Social proof line", "default": "Join our growing community of better sleepers." },
+    { "type": "header", "content": "Compliance" },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer", "default": "These statements have not been evaluated by the Food and Drug Administration. Somna products are not intended to diagnose, treat, cure, or prevent any disease or condition, including sleep apnea. They are designed to support healthy sleep habits. Individual results may vary. Always consult a healthcare professional about persistent sleep problems." }
+  ],
+  "presets": [{ "name": "Somna Journal" }]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "clone-dxshop",
+      "settings": {
+        "kicker": "BESTSELLERS",
+        "heading": "Our Bestsellers",
+        "subtitle": "Trusted by 50,000+ sleepers. Clinically proven.",
+        "cmp_head": "Which product is right for you?",
+        "bundle_head": "Get the complete sleep system",
+        "bundle_sub": "All three products work together for better, quieter sleep.",
+        "bundle_img": "shopify://shop_images/hf_20260620_230714_6af66a8a-2269-4f4e-8b5b-6b11681141fd.png",
+        "bundle_name": "Complete Sleep System",
+        "bundle_rating": "4.9",
+        "bundle_count": "1,156",
+        "bundle_was": "$99",
+        "bundle_now": "$69",
+        "bundle_save": "$30",
+        "bundle_badge": "Most Popular",
+        "bundle_proof": "Loved by customers who upgraded their whole night.",
+        "bundle_link": "shopify://products/dreamx-silent-alarm-band",
+        "img_save1": "shopify://shop_images/hf_20260618_133111_2127581c-20ae-421b-9da8-8193d9bc455f.png",
+        "news_head": "Get 15% off your first order",
+        "news_sub": "Join 50,000+ sleepers + exclusive sleep science tips.",
+        "news_btn": "Unlock my discount",
+        "news_proof": "Join 50,000+ subscribers"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,309 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "support": {
+      "type": "clone-dxsupport",
+      "blocks": {
+        "cat1": {
+          "type": "cat",
+          "settings": {
+            "kicker": "PRODUCT",
+            "title": "Product questions"
+          }
+        },
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "What are Somna Nasal Strips?",
+            "a": "<p>Nasal strips are adhesive bands that gently lift the sides of your nose to open up your nasal passages, making it easier to breathe in more oxygen with every breath.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "How do they work?",
+            "a": "<p>Somna use a flexible spring-like material that gently pulls open your nasal passages, improving airflow up to 40%.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Are Somna safe to use?",
+            "a": "<p>Yes — Somna are non-medicated, hypoallergenic, and gentle on the skin. Don't apply to broken or irritated skin. If you have any specific concerns, consult with a doctor.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "How long does each strip last?",
+            "a": "<p>Each strip is designed for single use and lasts up to 12 hours of continuous wear.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I reuse a strip?",
+            "a": "<p>Each strip is single-use. Reusing reduces stickiness and may not deliver the same lift.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "Will it leave marks on my skin?",
+            "a": "<p>No — Somna remove cleanly. To reduce any pulling, peel slowly from one side and remove after a warm shower.</p>"
+          }
+        },
+        "q8": {
+          "type": "faq",
+          "settings": {
+            "q": "Are Somna hypoallergenic?",
+            "a": "<p>Yes — Somna use medical-grade hypoallergenic adhesive suitable for most skin types.</p>"
+          }
+        },
+        "cat2": {
+          "type": "cat",
+          "settings": {
+            "kicker": "GENERAL",
+            "title": "General questions"
+          }
+        },
+        "q9": {
+          "type": "faq",
+          "settings": {
+            "q": "Who is Somna for?",
+            "a": "<p>Somna is designed for athletes, deep sleepers, snorers, mouth-breathers, and anyone who wants to breathe better — at the gym, at work, or at night.</p>"
+          }
+        },
+        "q10": {
+          "type": "faq",
+          "settings": {
+            "q": "Where are Somna made?",
+            "a": "<p>Somna are designed in the EU and manufactured to ISO-certified quality standards.</p>"
+          }
+        },
+        "q11": {
+          "type": "faq",
+          "settings": {
+            "q": "Are Somna a medical device?",
+            "a": "<p>No — Somna are a wellness product, not a medical device. They're not intended to diagnose, treat, cure, or prevent any condition.</p>"
+          }
+        },
+        "q12": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I use Somna while sleeping?",
+            "a": "<p>Absolutely. Many customers wear them overnight to reduce snoring and improve sleep quality. They stay put for 8+ hours.</p>"
+          }
+        },
+        "cat3": {
+          "type": "cat",
+          "settings": {
+            "kicker": "SHIPPING",
+            "title": "Shipping & delivery"
+          }
+        },
+        "q13": {
+          "type": "faq",
+          "settings": {
+            "q": "Do you ship overseas?",
+            "a": "<p>Yes — we ship to 75+ countries worldwide. Shipping costs are calculated at checkout. Free shipping is available on orders above €45 / $50.</p>"
+          }
+        },
+        "q14": {
+          "type": "faq",
+          "settings": {
+            "q": "Do you ship to my country?",
+            "a": "<p>We've removed countries we can't ship to from checkout. If you can complete checkout, we can ship to you.</p>"
+          }
+        },
+        "q15": {
+          "type": "faq",
+          "settings": {
+            "q": "How long will it take to get my order?",
+            "a": "<p>Orders are dispatched within 24-48 hours. Delivery typically takes 5-7 business days depending on your location.</p>"
+          }
+        },
+        "q16": {
+          "type": "faq",
+          "settings": {
+            "q": "How can I track my order?",
+            "a": "<p>After dispatch you'll get a tracking link by email. You can also visit our tracking page anytime to check on a recent order.</p>"
+          }
+        },
+        "q17": {
+          "type": "faq",
+          "settings": {
+            "q": "What if my package is lost or damaged?",
+            "a": "<p>Email support@somna.com with your order number. Our team will get you a replacement or refund — no questions asked.</p>"
+          }
+        },
+        "cat4": {
+          "type": "cat",
+          "settings": {
+            "kicker": "SUBSCRIPTIONS",
+            "title": "Subscriptions"
+          }
+        },
+        "q18": {
+          "type": "faq",
+          "settings": {
+            "q": "How does the subscription work?",
+            "a": "<p>Pick a product, choose Subscribe & Save at checkout, and your refills arrive automatically every month. You save 20% on every reorder and receive 3 free gifts (Face Wipes, Mouth Tape, Water Bottle) over the first 3 months.</p>"
+          }
+        },
+        "q19": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I cancel anytime?",
+            "a": "<p>Yes — there are no contracts. Cancel, pause, or skip any time from your account in one click.</p>"
+          }
+        },
+        "q20": {
+          "type": "faq",
+          "settings": {
+            "q": "When am I charged?",
+            "a": "<p>Your first order is charged at checkout. Refills are then charged on the same date each month, with an email reminder 3 days before.</p>"
+          }
+        },
+        "q21": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I skip a delivery?",
+            "a": "<p>Log into your account, find your active subscription, and click Skip next to the upcoming order. You can skip as many cycles as you want.</p>"
+          }
+        },
+        "cat5": {
+          "type": "cat",
+          "settings": {
+            "kicker": "COLLABS",
+            "title": "Collabs & partnerships"
+          }
+        },
+        "q23": {
+          "type": "faq",
+          "settings": {
+            "q": "I'm an athlete or content creator — how can I collaborate?",
+            "a": "<p>We work with athletes, creators, and ambassadors across sports and wellness. Email collabs@somna.com with your platform handles, audience size, and a short pitch.</p>"
+          }
+        },
+        "q24": {
+          "type": "faq",
+          "settings": {
+            "q": "What does a partnership look like?",
+            "a": "<p>Free product, custom discount codes for your audience, performance-based commissions, and feature opportunities on our channels.</p>"
+          }
+        },
+        "q25": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I apply?",
+            "a": "<p>Send your details to collabs@somna.com — we usually reply within 5 business days.</p>"
+          }
+        },
+        "q26": {
+          "type": "faq",
+          "settings": {
+            "q": "Do you offer an affiliate program?",
+            "a": "<p>Yes — our affiliate program pays out a commission on every sale through your unique code. Apply by emailing collabs@somna.com.</p>"
+          }
+        },
+        "cat6": {
+          "type": "cat",
+          "settings": {
+            "kicker": "STOCKIST",
+            "title": "Stockists & wholesale"
+          }
+        },
+        "q27": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I become a Somna stockist?",
+            "a": "<p>Apply via our stockist page. Approved retailers get wholesale pricing, marketing kit, and dedicated wholesale support.</p>"
+          }
+        },
+        "q28": {
+          "type": "faq",
+          "settings": {
+            "q": "Where do I apply?",
+            "a": "<p>Visit /pages/stockist and submit the wholesale form. Our team reviews each application within 5 business days.</p>"
+          }
+        },
+        "q29": {
+          "type": "faq",
+          "settings": {
+            "q": "What are the wholesale terms?",
+            "a": "<p>Standard terms include 50%+ wholesale margin, MSRP guidance, and Net-30 payment for established accounts. Full terms are shared after a discovery call.</p>"
+          }
+        },
+        "q30": {
+          "type": "faq",
+          "settings": {
+            "q": "What's the minimum order quantity?",
+            "a": "<p>Minimum first order is 50 units across our range. Reorders have a lower minimum once you're an approved partner.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "cat1",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q8",
+        "cat2",
+        "q9",
+        "q10",
+        "q11",
+        "q12",
+        "cat3",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "q17",
+        "cat4",
+        "q18",
+        "q19",
+        "q20",
+        "q21",
+        "cat5",
+        "q23",
+        "q24",
+        "q25",
+        "q26",
+        "cat6",
+        "q27",
+        "q28",
+        "q29",
+        "q30"
+      ],
+      "settings": {
+        "kicker": "SUPPORT HUB",
+        "heading": "How can we help?",
+        "subtitle": "Find answers in seconds. Browse by category below — or contact us directly if you'd rather talk to a person.",
+        "track_kicker": "TRACK YOUR ORDER",
+        "track_text": "Got an order on the way? Check its status here.",
+        "track_btn": "Track order →",
+        "track_link": "shopify://pages/track-order",
+        "c_kicker": "STILL NOT CLEAR?",
+        "c_title": "Contact us.",
+        "c_sub": "Our team usually replies within a few hours during business days.",
+        "c_btn": "Contact us",
+        "c_link": "shopify://pages/contact"
+      }
+    }
+  },
+  "order": [
+    "support"
+  ]
+}

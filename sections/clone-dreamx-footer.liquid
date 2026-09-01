@@ -1,0 +1,118 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign s = section.settings -%}
+<footer class="cdx-footer"><div class="cdx-wrap">
+  <div class="cdx-fcols">
+    <div class="cdx-fbrand">
+      <div class="cdx-flogo"><span class="cdx-lg1">{{ s.logo_a }}</span><span class="cdx-lg2">{{ s.logo_b }}.</span></div>
+      <div class="cdx-soc">{% if s.soc1_label != blank %}<a href="{{ s.soc1_url | default: '/' }}">{{ s.soc1_label }}</a>{% endif %}{% if s.soc2_label != blank %}<a href="{{ s.soc2_url | default: '/' }}">{{ s.soc2_label }}</a>{% endif %}{% if s.soc3_label != blank %}<a href="{{ s.soc3_url | default: '/' }}">{{ s.soc3_label }}</a>{% endif %}</div>
+      <p class="cdx-fsmall">Our only support e-mail is:<br><a href="mailto:{{ s.email }}">{{ s.email }}</a></p>
+      <p class="cdx-fsmall">{{ s.address }}</p>
+    </div>
+    <div><h4>{{ s.col1_title }}</h4><ul>
+      {% if s.l1_label != blank %}<li><a href="{{ s.l1_url | default: '/collections/all' }}">{{ s.l1_label }}</a></li>{% endif %}
+      {% if s.l2_label != blank %}<li><a href="{{ s.l2_url | default: '/products/dreamx-silent-alarm-band' }}">{{ s.l2_label }}</a></li>{% endif %}
+      {% if s.l3_label != blank %}<li><a href="{{ s.l3_url | default: '/products/dreamx-anti-snore-nasal-strips' }}">{{ s.l3_label }}</a></li>{% endif %}
+      {% if s.l4_label != blank %}<li><a href="{{ s.l4_url | default: '/products/dreamx-sleep-mouth-tape' }}">{{ s.l4_label }}</a></li>{% endif %}
+      {% if s.l5_label != blank %}<li><a href="{{ s.l5_url | default: '/collections/all' }}">{{ s.l5_label }}</a></li>{% endif %}
+    </ul></div>
+    <div><h4>{{ s.col2_title }}</h4><ul>
+      {% if s.l6_label != blank %}<li><a href="{{ s.l6_url | default: '/pages/our-story' }}">{{ s.l6_label }}</a></li>{% endif %}
+      {% if s.l7_label != blank %}<li><a href="{{ s.l7_url | default: '/' }}">{{ s.l7_label }}</a></li>{% endif %}
+      {% if s.l8_label != blank %}<li><a href="{{ s.l8_url | default: '/pages/manage-subscriptions' }}">{{ s.l8_label }}</a></li>{% endif %}
+      {% if s.l9_label != blank %}<li><a href="{{ s.l9_url | default: '/pages/track-order' }}">{{ s.l9_label }}</a></li>{% endif %}
+      {% if s.l10_label != blank %}<li><a href="{{ s.l10_url | default: '/' }}">{{ s.l10_label }}</a></li>{% endif %}
+      {% if s.l11_label != blank %}<li><a href="{{ s.l11_url | default: '/pages/support' }}">{{ s.l11_label }}</a></li>{% endif %}
+    </ul></div>
+    <div><h4>{{ s.col3_title }}</h4><ul>
+      {% if s.l12_label != blank %}<li><a href="{{ s.l12_url | default: '/pages/terms-of-service' }}">{{ s.l12_label }}</a></li>{% endif %}
+      {% if s.l13_label != blank %}<li><a href="{{ s.l13_url | default: '/pages/shipping-policy' }}">{{ s.l13_label }}</a></li>{% endif %}
+      {% if s.l14_label != blank %}<li><a href="{{ s.l14_url | default: '/pages/privacy-policy' }}">{{ s.l14_label }}</a></li>{% endif %}
+      {% if s.l15_label != blank %}<li><a href="{{ s.l15_url | default: '/pages/order-cancellation-policy' }}">{{ s.l15_label }}</a></li>{% endif %}
+      {% if s.l16_label != blank %}<li><a href="{{ s.l16_url | default: '/pages/return-refund-policy' }}">{{ s.l16_label }}</a></li>{% endif %}
+      {% if s.l17_label != blank %}<li><a href="{{ s.l17_url | default: '/pages/subscription-policy' }}">{{ s.l17_label }}</a></li>{% endif %}
+    </ul></div>
+  </div>
+  <div class="cdx-pays"><span>VISA</span><span>MC</span><span>AMEX</span><span>Discover</span><span>Apple Pay</span><span>Google Pay</span><span>PayPal</span><span>Shop Pay</span></div>
+  <div class="cdx-fbottom"><span>&copy; {{ 'now' | date: '%Y' }}, {{ s.logo_a }}{{ s.logo_b }} Sleep Co.</span><span>USD $</span></div>
+</div></footer>
+<style>
+.cdx-footer{background:var(--cda-ink);color:#c9c4dc;padding:56px 0 30px;font-family:var(--cda-font)}
+.cdx-wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
+.cdx-fcols{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:34px}
+.cdx-footer h4{color:#fff;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;margin:0 0 16px}
+.cdx-footer ul{list-style:none;display:grid;gap:11px;font-size:.92rem;margin:0;padding:0}
+.cdx-footer a{color:#c9c4dc;text-decoration:none}
+.cdx-footer a:hover{color:#fff}
+.cdx-flogo{font-weight:900;font-size:clamp(2.6rem,7vw,4.4rem);line-height:.85;letter-spacing:-.045em;margin-bottom:20px}
+.cdx-flogo .cdx-lg1{color:#fff}
+.cdx-flogo .cdx-lg2{color:#98A3DE}
+.cdx-soc{display:flex;gap:10px;margin-bottom:6px}
+.cdx-soc a{width:36px;height:36px;border-radius:50%;background:#2a2640;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;text-decoration:none;transition:.15s}
+.cdx-soc a:hover{background:#98A3DE}
+.cdx-fsmall{font-size:.85rem;margin:14px 0 0;line-height:1.55;max-width:34ch}
+.cdx-fsmall a{text-decoration:underline}
+.cdx-pays{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px;justify-content:flex-end}
+.cdx-pays span{background:#fff;color:#1a1726;border-radius:6px;padding:5px 9px;font-size:.68rem;font-weight:700}
+.cdx-fbottom{border-top:1px solid #2a2640;margin-top:22px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.82rem;color:#8a85a3}
+@media(max-width:860px){.cdx-fcols{grid-template-columns:1fr 1fr}.cdx-fbrand{grid-column:1 / -1}.cdx-pays{justify-content:flex-start}}
+@media(max-width:480px){.cdx-flogo{font-size:clamp(2.6rem,15vw,3.6rem)}}
+</style>
+{% schema %}
+{
+  "name": "Somna Footer",
+  "settings": [
+    { "type": "header", "content": "Brand" },
+    { "type": "text", "id": "logo_a", "label": "Logo (light part)", "default": "som" },
+    { "type": "text", "id": "logo_b", "label": "Logo (accent part)", "default": "na" },
+    { "type": "text", "id": "email", "label": "Support email", "default": "hello@somnasleep.com" },
+    { "type": "textarea", "id": "address", "label": "Address", "default": "Somna Sleep Co. · 1100 Mission Street, Suite 200, San Francisco, CA 94103, US. Open Monday to Friday, 9:00 a.m. to 6:00 p.m." },
+    { "type": "header", "content": "Social icons (leave label blank to hide)" },
+    { "type": "text", "id": "soc1_label", "label": "Social 1 label", "default": "X" },
+    { "type": "url", "id": "soc1_url", "label": "Social 1 link" },
+    { "type": "text", "id": "soc2_label", "label": "Social 2 label", "default": "IG" },
+    { "type": "url", "id": "soc2_url", "label": "Social 2 link" },
+    { "type": "text", "id": "soc3_label", "label": "Social 3 label", "default": "TT" },
+    { "type": "url", "id": "soc3_url", "label": "Social 3 link" },
+    { "type": "header", "content": "Column 1 (leave a label blank to hide that link)" },
+    { "type": "text", "id": "col1_title", "label": "Column 1 title", "default": "Shop" },
+    { "type": "text", "id": "l1_label", "label": "Link 1 label", "default": "Bestsellers" },
+    { "type": "url", "id": "l1_url", "label": "Link 1 URL" },
+    { "type": "text", "id": "l2_label", "label": "Link 2 label", "default": "Silent Alarm Band" },
+    { "type": "url", "id": "l2_url", "label": "Link 2 URL" },
+    { "type": "text", "id": "l3_label", "label": "Link 3 label", "default": "Anti-Snore Nasal Strips" },
+    { "type": "url", "id": "l3_url", "label": "Link 3 URL" },
+    { "type": "text", "id": "l4_label", "label": "Link 4 label", "default": "Sleep Mouth Tape" },
+    { "type": "url", "id": "l4_url", "label": "Link 4 URL" },
+    { "type": "text", "id": "l5_label", "label": "Link 5 label", "default": "Bundles" },
+    { "type": "url", "id": "l5_url", "label": "Link 5 URL" },
+    { "type": "header", "content": "Column 2" },
+    { "type": "text", "id": "col2_title", "label": "Column 2 title", "default": "Important Links" },
+    { "type": "text", "id": "l6_label", "label": "Link 1 label", "default": "Our Story" },
+    { "type": "url", "id": "l6_url", "label": "Link 1 URL" },
+    { "type": "text", "id": "l7_label", "label": "Link 2 label", "default": "Athlete Program" },
+    { "type": "url", "id": "l7_url", "label": "Link 2 URL" },
+    { "type": "text", "id": "l8_label", "label": "Link 3 label", "default": "Manage Subscriptions" },
+    { "type": "url", "id": "l8_url", "label": "Link 3 URL" },
+    { "type": "text", "id": "l9_label", "label": "Link 4 label", "default": "Track Your Order" },
+    { "type": "url", "id": "l9_url", "label": "Link 4 URL" },
+    { "type": "text", "id": "l10_label", "label": "Link 5 label", "default": "Reviews" },
+    { "type": "url", "id": "l10_url", "label": "Link 5 URL" },
+    { "type": "text", "id": "l11_label", "label": "Link 6 label", "default": "Support" },
+    { "type": "url", "id": "l11_url", "label": "Link 6 URL" },
+    { "type": "header", "content": "Column 3" },
+    { "type": "text", "id": "col3_title", "label": "Column 3 title", "default": "Legal Pages" },
+    { "type": "text", "id": "l12_label", "label": "Link 1 label", "default": "Terms of Service" },
+    { "type": "url", "id": "l12_url", "label": "Link 1 URL" },
+    { "type": "text", "id": "l13_label", "label": "Link 2 label", "default": "Shipping Policy" },
+    { "type": "url", "id": "l13_url", "label": "Link 2 URL" },
+    { "type": "text", "id": "l14_label", "label": "Link 3 label", "default": "Privacy Policy" },
+    { "type": "url", "id": "l14_url", "label": "Link 3 URL" },
+    { "type": "text", "id": "l15_label", "label": "Link 4 label", "default": "Order Cancellation Policy" },
+    { "type": "url", "id": "l15_url", "label": "Link 4 URL" },
+    { "type": "text", "id": "l16_label", "label": "Link 5 label", "default": "Return & Refund Policy" },
+    { "type": "url", "id": "l16_url", "label": "Link 5 URL" },
+    { "type": "text", "id": "l17_label", "label": "Link 6 label", "default": "Subscription Policy" },
+    { "type": "url", "id": "l17_url", "label": "Link 6 URL" }
+  ]
+}
+{% endschema %}

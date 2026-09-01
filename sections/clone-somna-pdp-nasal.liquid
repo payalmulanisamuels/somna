@@ -1,0 +1,525 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap">
+{%- assign cur = product.selected_or_first_available_variant -%}
+{%- assign fid = 'spsb-' | append: section.id -%}
+{%- assign vm = product.variants[0] -%}
+{%- assign bdg = section.settings.badge_color | default: '#5B79F3' -%}
+<section class="cda-section spdp" id="cda-buy"><div class="cda-wrap"><div class="spdp-grid">
+  <div class="spdp-media">
+    {%- if product.media.size > 0 -%}
+      <div class="spdp-main cda-ph" id="{{ fid }}-main"><img src="{{ product.featured_media | image_url: width: 1100 }}" alt="{{ product.title | escape }}" width="1100" height="1100" loading="eager"><button type="button" class="spdp-gnav spdp-gnav-l" data-gprev aria-label="Previous image">‹</button><button type="button" class="spdp-gnav spdp-gnav-r" data-gnext aria-label="Next image">›</button>{% if section.settings.hero_badge != blank %}<span class="spdp-hbadge">{{ section.settings.hero_badge }}</span>{% endif %}</div>
+      <div class="spdp-thumbs">{%- for m in product.media limit: 9 -%}{%- unless forloop.first -%}<button class="cda-ph" data-spsb-thumb="{{ m | image_url: width: 1100 }}"><img src="{{ m | image_url: width: 400 }}" alt="" width="400" height="400" loading="lazy"></button>{%- endunless -%}{%- endfor -%}</div>
+    {%- else -%}
+      <div class="spdp-main cda-ph" id="{{ fid }}-main" data-label="Main image"></div>
+      <div class="spdp-thumbs"><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div></div>
+    {%- endif -%}
+    {%- if section.settings.rev_title != blank or section.settings.rev_quote != blank -%}
+    <div class="spdp-revcard">
+      <div class="spdp-rev-l">
+        {%- if section.settings.rev_img != blank -%}<img src="{{ section.settings.rev_img | image_url: width: 160 }}" loading="lazy" alt="{{ section.settings.rev_name | escape }}">{%- else -%}<span class="spdp-rev-avph">😊</span>{%- endif -%}
+        <b>{{ section.settings.rev_name | default: 'Customer name' }}</b>
+        <span>{{ section.settings.rev_sub | default: 'VERIFIED CUSTOMER' }}</span>
+      </div>
+      <div class="spdp-rev-r">
+        <div class="spdp-rev-top"><span class="cda-stars">★★★★★</span><b>{{ section.settings.rev_title }}</b></div>
+        {%- if section.settings.rev_quote != blank -%}<p>{{ section.settings.rev_quote }}</p>{%- endif -%}
+      </div>
+    </div>
+    {%- endif -%}
+  </div>
+  <div class="spdp-buy">
+    <div class="spdp-herocard" data-jstate="sub" id="{{ fid }}-box">
+    <h1 class="spdp-h1jp">{{ section.settings.head_a }} {{ section.settings.head_b }}</h1>
+    <div class="spdp-rate"><span class="cda-stars">★★★★★</span> <strong>{{ section.settings.rating }}</strong> <span class="cda-muted spdp-ratemeta">({{ section.settings.reviews }}+ reviews){% if section.settings.meta != blank %} · {{ section.settings.meta }}{% endif %}</span></div>
+    <div class="spdp-sub">{{ section.settings.subhead }}</div>
+    {%- assign checks = section.settings.checks | newline_to_br | split: '<br />' -%}
+    <div class="spdp-jbl">{%- for c in checks -%}{%- assign ct = c | strip -%}{% if ct != '' %}<div class="spdp-jb">{{ ct }}</div>{% endif %}{%- endfor -%}</div>
+    <div class="spdp-label">{{ section.settings.plan_label | default: 'Choose your bundle:' }}</div>
+    <div class="spdp-bwrap" id="{{ fid }}-opts">
+      {%- assign first_b = true -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'bundle' -%}
+        {%- assign btitle = block.settings.title | remove: '⭐' | strip -%}
+        {%- assign vp = block.settings.vpos | default: '1' | plus: 0 -%}
+        {%- assign vidx = vp | minus: 1 -%}
+        {%- assign v = product.variants[vidx] | default: product.variants.first -%}
+        {%- assign want_plan = block.settings.plan_id | plus: 0 -%}
+        {%- assign sfirst = v.price -%}
+        {%- assign planid = '' -%}
+        {%- for al in v.selling_plan_allocations -%}
+          {%- if want_plan > 0 -%}
+            {%- if al.selling_plan.id == want_plan -%}{%- assign sfirst = al.price -%}{%- assign planid = al.selling_plan.id -%}{%- endif -%}
+          {%- elsif forloop.first -%}
+            {%- assign sfirst = al.price -%}{%- assign planid = al.selling_plan.id -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- comment -%} One-time price shown = 60% of variant price: matched by the automatic "One-time purchase — 40% off Nasal Strips" discount, so displayed = charged. {%- endcomment -%}
+        <label class="spdp-bcard{% if first_b %} sel{% endif %}" data-bundle data-vid="{{ v.id }}" data-items="{{ v.id }}{% if planid != blank %}|{{ planid }}{% endif %}" data-units="{{ block.settings.units | default: '1' }}" data-sreg="{{ v.price | divided_by: 100.0 }}" data-sfirst="{{ sfirst | divided_by: 100.0 }}" data-onceprice="{{ v.price | times: 0.6 | divided_by: 100.0 }}" data-compare="{{ v.compare_at_price | default: 0 | divided_by: 100.0 }}" data-plan="{{ planid }}" data-name="{{ btitle | escape }}" data-supply="{{ block.settings.supply | escape }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.popular -%}<span class="spdp-pop">{{ block.settings.popular_label | default: 'MOST POPULAR' }}</span>{%- endif -%}
+          {%- if block.settings.image != blank -%}
+          <span class="spdp-bimg"><img src="{{ block.settings.image | image_url: width: 240 }}" alt=""></span>
+          {%- else -%}
+          <span class="spdp-bth">{%- if v.featured_image -%}<img src="{{ v.featured_image | image_url: width: 120 }}" alt="">{%- elsif product.featured_media -%}<img src="{{ product.featured_media | image_url: width: 120 }}" alt="">{%- endif -%}</span>
+          {%- endif -%}
+          <span class="spdp-bcopy"><span class="spdp-bt">{{ btitle }}<i class="spdp-bsave" data-jb-badge></i></span><span class="spdp-bs">{{ block.settings.supply }}</span></span>
+          <span class="spdp-bp"><b data-jb-cp></b><s data-jb-cw></s></span>
+        </label>
+        {%- assign first_b = false -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="spdp-sum" id="{{ fid }}-sum">
+      <div class="spdp-sum-top"><span class="spdp-sum-radio"></span><span class="spdp-sum-supply" data-js-supply></span><span class="spdp-bsave spdp-sum-badge" data-js-badge></span></div>
+      <div class="spdp-sum-price"><b data-js-price></b><s data-js-was></s></div>
+      <div class="spdp-sum-then" data-js-then></div>
+      <ul class="spdp-sum-perks" data-js-perks>
+        {%- assign perks = section.settings.perks | newline_to_br | split: '<br />' -%}
+        {%- for p in perks -%}{%- assign pt = p | strip -%}{% if pt != '' %}<li>{{ pt }}</li>{% endif %}{%- endfor -%}
+      </ul>
+      <div class="spdp-gifts" data-js-gifts>
+        <div class="spdp-gifts-h">{{ section.settings.gifts_title | default: 'Included with Your First Subscription' }}</div>
+        <div class="spdp-gifts-row">
+          {% if section.settings.gift1 != blank %}<div class="spdp-gift">{% if section.settings.gift1_img != blank %}<span class="spdp-gift-im">{% if section.settings.gift1_tag != blank %}<i>{{ section.settings.gift1_tag }}</i>{% endif %}<img src="{{ section.settings.gift1_img | image_url: width: 220 }}" loading="lazy" alt="{{ section.settings.gift1 | escape }}"></span>{% endif %}<b>{{ section.settings.gift1 }}</b></div>{% endif %}
+          {% if section.settings.gift2 != blank %}<div class="spdp-gift">{% if section.settings.gift2_img != blank %}<span class="spdp-gift-im">{% if section.settings.gift2_tag != blank %}<i>{{ section.settings.gift2_tag }}</i>{% endif %}<img src="{{ section.settings.gift2_img | image_url: width: 220 }}" loading="lazy" alt="{{ section.settings.gift2 | escape }}"></span>{% endif %}<b>{{ section.settings.gift2 }}</b></div>{% endif %}
+          {% if section.settings.gift3 != blank %}<div class="spdp-gift">{% if section.settings.gift3_img != blank %}<span class="spdp-gift-im">{% if section.settings.gift3_tag != blank %}<i>{{ section.settings.gift3_tag }}</i>{% endif %}<img src="{{ section.settings.gift3_img | image_url: width: 220 }}" loading="lazy" alt="{{ section.settings.gift3 | escape }}"></span>{% endif %}<b>{{ section.settings.gift3 }}</b></div>{% endif %}
+        </div>
+        {%- assign fgifts = section.blocks | where: 'type', 'gift' -%}
+        {%- if fgifts.size > 0 -%}
+        <div class="spdp-fg-h">{{ section.settings.gift_title2 | default: 'Future Subscriber Gifts' }}</div>
+        <div class="spdp-fg-row">
+          {%- for gb in fgifts limit: 4 -%}
+          <div class="spdp-fg" {{ gb.shopify_attributes }}>
+            <i data-fg-month>{{ gb.settings.month }}</i>
+            {%- if gb.settings.img != blank -%}<span class="spdp-fg-im"><img src="{{ gb.settings.img | image_url: width: 160 }}" loading="lazy" alt="{{ gb.settings.name | escape }}"></span>{%- else -%}<span class="spdp-fg-im spdp-fg-ph">🎁</span>{%- endif -%}
+            <b>{{ gb.settings.name }}</b>
+            {%- if gb.settings.value != blank -%}<em>{{ gb.settings.value }}</em>{%- endif -%}
+          </div>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+    <button class="spdp-bigcta spdp-cta" id="{{ fid }}-cta" data-jb-atc><span>{{ section.settings.cta_main | default: 'Try Somna Today' }} →</span><span class="spdp-ctapr"><s data-jb-ctawas></s><b data-jb-ctanow></b></span></button>
+    <a href="#" class="spdp-once" data-jb-toggle data-once-label="{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' | escape }}" data-sub-label="{{ section.settings.toggle_sub | default: 'Switch to Subscription — 50% OFF first order' | escape }}">{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' }}</a>
+    <div class="spdp-oncemeta">{{ section.settings.once_meta | default: 'Shipping: $6.99 | No Free Gift' }}</div>
+    <div class="spdp-subvalue">{{ section.settings.sub_value | default: 'Subscribers save more, receive exclusive first-order benefits, and can cancel anytime.' }}</div>
+    <div class="spdp-shipsby"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>{{ section.settings.ships_label | default: 'Ships by:' }} <b data-jb-shipsby></b></span></div>
+    </div>
+
+    {%- assign hasfaq = false -%}{%- for b in section.blocks -%}{%- if b.type == 'faq' -%}{%- assign hasfaq = true -%}{%- endif -%}{%- endfor -%}
+    {%- if hasfaq -%}<div class="spdp-faq"><div class="cda-acc">{%- for block in section.blocks -%}{%- if block.type == 'faq' -%}<details {{ block.shopify_attributes }}><summary>{{ block.settings.q }}<span class="cda-ic">+</span></summary><div class="cda-ans">{{ block.settings.a }}</div></details>{%- endif -%}{%- endfor -%}</div></div>{%- endif -%}
+
+    {%- if section.settings.g_title != blank or section.settings.g_tile != blank -%}
+    <div class="spdp-gcard{% if section.settings.g_tile != blank %} spdp-gcard-tilemode{% endif %}">
+      {%- if section.settings.g_tile != blank -%}
+      <img class="spdp-gcard-full" src="{{ section.settings.g_tile | image_url: width: 1000 }}" loading="lazy" alt="{{ section.settings.g_title | escape }}">
+      {%- unless section.settings.g_hide_overlay -%}
+      <div class="spdp-gcard-over">
+        <div class="spdp-gcard-t">{{ section.settings.g_title }}</div>
+        {%- if section.settings.g_body != blank -%}<div class="spdp-gcard-p">{{ section.settings.g_body }}</div>{%- endif -%}
+        <a class="spdp-gcard-cta" href="{{ section.settings.g_link | default: '#cda-buy' }}">{{ section.settings.g_cta | default: 'Try Somna Risk-Free' }}</a>
+      </div>
+      {%- endunless -%}
+      {%- else -%}
+      <div class="spdp-gcard-b">
+        <div class="spdp-gcard-t">{{ section.settings.g_title }}</div>
+        {%- if section.settings.g_body != blank -%}<div class="spdp-gcard-p">{{ section.settings.g_body }}</div>{%- endif -%}
+        <a class="spdp-gcard-cta" href="{{ section.settings.g_link | default: '#cda-buy' }}">{{ section.settings.g_cta | default: 'Try Somna Risk-Free' }}</a>
+      </div>
+      <div class="spdp-gcard-img">{%- if section.settings.g_image != blank -%}<img src="{{ section.settings.g_image | image_url: width: 700 }}" loading="lazy" alt="">{%- else -%}<div class="spdp-gcard-ph">Insert image</div>{%- endif -%}</div>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- assign hasvid = false -%}{%- for b in section.blocks -%}{%- if b.type == 'vid' -%}{%- assign hasvid = true -%}{%- endif -%}{%- endfor -%}
+    {%- if hasvid -%}<div class="spdp-testi"><div class="spdp-testi-h">{{ section.settings.testi_title }}</div><div class="spdp-testi-row">{%- for block in section.blocks -%}{%- if block.type == 'vid' -%}{%- if block.settings.vid != blank -%}<div class="spdp-tcard" {{ block.shopify_attributes }}><video class="spdp-tv" playsinline preload="metadata"{% if block.settings.image != blank %} poster="{{ block.settings.image | image_url: width: 600 }}"{% endif %}>{%- for source in block.settings.vid.sources -%}<source src="{{ source.url }}" type="{{ source.mime_type }}">{%- endfor -%}</video><button type="button" class="spdp-tgo" aria-label="Play video"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>{%- assign vcap = block.settings.caption | strip -%}{% if vcap != blank and vcap != 'Insert UGC video' %}<span class="spdp-tcap">{{ vcap }}</span>{% endif %}</div>{%- elsif block.settings.url != blank -%}<a class="spdp-tcard" href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{% if block.settings.image != blank %}<div class="cda-ph"><img src="{{ block.settings.image | image_url: width: 400 }}" alt=""></div>{% else %}<div class="cda-ph" data-label="Video"></div>{% endif %}<span class="spdp-tplay">▶</span></a>{%- else -%}<div class="spdp-tcard" {{ block.shopify_attributes }}>{% if block.settings.image != blank %}<div class="cda-ph"><img src="{{ block.settings.image | image_url: width: 400 }}" alt=""></div>{% else %}<div class="cda-ph" data-label="Insert video"></div>{% endif %}</div>{%- endif -%}{%- endif -%}{%- endfor -%}</div></div>{%- endif -%}
+  </div>
+</div></div>
+  <div class="spdp-sticky" data-spsb-sticky>
+    <button type="button" class="spdp-sticky-sel" data-spsb-stickysel aria-haspopup="true"><span class="spdp-sticky-txt"><span class="spdp-sticky-name" data-spsb-stickyname></span><span class="spdp-sticky-price" data-spsb-stickyprice></span></span><i class="spdp-sticky-car">▾</i></button>
+    <button type="button" class="spdp-sticky-cta" id="{{ fid }}-stickycta">ADD TO CART</button>
+    <div class="spdp-sticky-menu" data-spsb-stickymenu></div>
+  </div>
+</section>
+<style>
+html{scroll-behavior:smooth}
+#cda-buy{scroll-margin-top:14px}
+.spdp .cda-wrap{max-width:1150px}
+.spdp-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:clamp(28px,4vw,52px);align-items:start;font-family:var(--cda-font)}
+.spdp-media{position:sticky;top:80px;min-width:0}
+.spdp-buy{min-width:0}
+.spdp-main{margin-bottom:10px}
+.spdp-thumbs{display:flex;gap:8px}
+.spdp-thumbs button{flex:1 1 0;min-width:0;max-width:68px;border:1.5px solid #E5E7EB;border-radius:11px;padding:0;cursor:pointer;background:#fff;overflow:hidden;transition:transform .25s,border-color .2s}
+.spdp-thumbs button img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1/1}
+.spdp-thumbs button.sel{border:2px solid #111129}
+.spdp-thumbs button:hover{transform:translateY(-2px)}
+.spdp-thumbs .cda-ph{flex:1 1 0;min-width:0;max-width:68px;aspect-ratio:1/1;border-radius:11px}
+.spdp-revcard{display:flex;gap:12px;margin-top:12px;background:#F6F7FB;border:1.5px solid #111129;border-radius:14px;padding:12px;align-items:center}
+.spdp-rev-l{flex:0 0 80px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.spdp-rev-l img{width:42px;height:42px;border-radius:50%;object-fit:cover;margin-bottom:2px}
+.spdp-rev-avph{width:42px;height:42px;border-radius:50%;background:#E7EAF4;display:flex;align-items:center;justify-content:center;font-size:1.05rem;margin-bottom:2px}
+.spdp-rev-l b{font-size:.7rem;font-weight:700;color:var(--cda-ink);line-height:1.2}
+.spdp-rev-l span{font-size:.5rem;font-weight:700;letter-spacing:.07em;color:var(--cda-muted);text-transform:uppercase}
+.spdp-rev-r{flex:1;min-width:0}
+.spdp-rev-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.spdp-rev-top .cda-stars{font-size:.72rem;letter-spacing:1px}
+.spdp-rev-top b{font-size:.82rem;font-weight:700;color:var(--cda-ink);line-height:1.3}
+.spdp-rev-r p{margin:5px 0 0;font-size:.79rem;line-height:1.5;color:#3c3a4a;font-weight:400}
+.spdp-h1jp{font-family:'Lora',Georgia,serif;font-size:clamp(1.5rem,2.7vw,2rem);font-weight:600;line-height:1.14;letter-spacing:-.015em;margin:0 0 8px;color:var(--cda-ink);text-transform:none}
+.spdp-rate{display:flex;align-items:center;gap:5px;font-size:clamp(.66rem,1.25vw,.78rem);flex-wrap:nowrap;white-space:nowrap;overflow:hidden;margin-bottom:10px}
+.spdp-rate .cda-stars{font-size:clamp(.68rem,1.25vw,.8rem);letter-spacing:.5px;flex:none}
+.spdp-rate strong{flex:none;font-weight:700}
+.spdp-ratemeta{overflow:hidden;text-overflow:ellipsis}
+.spdp-sub{color:var(--cda-muted);font-size:.9rem;line-height:1.6;margin-bottom:12px;font-weight:400}
+.spdp-jbl{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.spdp-jb{position:relative;padding:1px 0 1px 12px;font-size:.83rem;font-weight:500;color:var(--cda-ink);line-height:1.5}
+.spdp-jb:before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:2px;border-radius:2px;background:var(--cda-accent)}
+.spdp-label{font-size:.77rem;font-weight:700;color:var(--cda-ink);margin:0 0 9px}
+.spdp-bwrap{display:grid;gap:9px;margin-bottom:16px}
+.spdp-bcard{position:relative;display:flex;align-items:center;gap:12px;border:1.5px solid #E7E9EF;border-radius:14px;padding:11px 14px;cursor:pointer;background:#fff;transition:border-color .18s,box-shadow .18s}
+.spdp-bcard.sel{border:1.5px solid var(--cda-accent);box-shadow:0 4px 14px rgba(132,145,197,.18);background:#FBFCFE}
+.spdp-pop{position:absolute;top:-8px;right:14px;background:{{ bdg }};color:#fff;font-size:.53rem;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:999px;z-index:2}
+.spdp-bimg{flex:0 0 auto;width:66px;height:50px;display:flex;align-items:center;justify-content:center}
+.spdp-bimg img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.spdp-bth{display:flex;flex:0 0 auto}
+.spdp-bth img{width:44px;height:44px;border-radius:8px;object-fit:cover;border:2px solid #fff;box-shadow:0 2px 6px rgba(17,17,41,.12)}
+.spdp-bcopy{flex:1;min-width:0}
+.spdp-bt{display:flex;align-items:center;gap:7px;font-weight:700;font-size:.9rem;color:var(--cda-ink);flex-wrap:wrap;letter-spacing:-.005em}
+.spdp-bsave{font-style:normal;background:{{ bdg }};color:#fff;font-size:.56rem;font-weight:700;letter-spacing:.05em;padding:3px 8px;border-radius:999px}
+.spdp-bsave:empty{display:none}
+.spdp-bs{display:block;font-size:.73rem;color:var(--cda-muted);margin-top:1px;font-weight:400}
+.spdp-bp{text-align:right;flex:0 0 auto}
+.spdp-bp b{display:block;font-size:.92rem;font-weight:700;color:var(--cda-ink)}
+.spdp-bp s{display:block;font-size:.7rem;color:var(--cda-muted);font-weight:400}
+.spdp-bp s:empty{display:none}
+.spdp-sum{border:1.5px solid var(--cda-accent);border-radius:16px;padding:15px;background:#FBFCFE;margin:0 0 14px;box-shadow:0 5px 18px -12px rgba(132,145,197,.35)}
+.spdp-sum-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.spdp-sum-radio{width:14px;height:14px;border-radius:50%;border:4.5px solid var(--cda-accent);background:#fff;flex:none}
+.spdp-sum-supply{font-weight:700;font-size:.88rem;color:var(--cda-ink)}
+.spdp-sum-badge{margin-left:auto}
+.spdp-sum-price{display:flex;align-items:baseline;gap:9px}
+.spdp-sum-price b{font-size:1.5rem;font-weight:700;color:var(--cda-ink);letter-spacing:-.02em}
+.spdp-sum-price s{color:var(--cda-muted);font-weight:400;font-size:.85rem}
+.spdp-sum-price s:empty{display:none}
+.spdp-sum-then{font-size:.76rem;color:var(--cda-muted);margin:1px 0 10px;font-weight:400}
+.spdp-sum-perks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.spdp-sum-perks li{position:relative;padding-left:19px;font-size:.8rem;font-weight:500;color:var(--cda-ink);line-height:1.4}
+.spdp-sum-perks li:before{content:'✓';position:absolute;left:0;top:0;color:var(--cda-accent);font-weight:700;font-size:.78rem}
+.spdp-gifts{margin-top:12px;border:1px dashed #92A8D8;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#EDF4FD 0%,#DDE9F8 100%)}
+.spdp-gifts-h{background:var(--cda-accent);color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;text-align:center;padding:8px 10px}
+.spdp-gifts-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px}
+.spdp-gift{background:linear-gradient(170deg,#FBFDFF 0%,#EAF2FC 50%,#DCE9F8 100%);border:1px dashed #8FA9DB;border-radius:11px;padding:8px 6px;font-size:.66rem;font-weight:600;text-align:center;color:var(--cda-ink);line-height:1.35;display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:flex-end;box-shadow:0 5px 12px -7px rgba(116,146,205,.5),inset 0 1px 0 rgba(255,255,255,.9)}
+.spdp-gift b{font-weight:600}
+.spdp-gift-im{position:relative;width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:8px;background:rgba(255,255,255,.5)}
+.spdp-gift-im img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.spdp-gift-im i{position:absolute;top:4px;left:4px;background:{{ bdg }};color:#fff;font-style:normal;font-size:.5rem;font-weight:700;padding:2px 7px;border-radius:999px;z-index:2}
+.spdp-fg-h{font-size:.58rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#5F6B94;text-align:center;padding:11px 12px 8px;border-top:1px dashed #8FA9DB;margin:0 12px}
+.spdp-fg-row{display:flex;gap:8px;overflow-x:auto;padding:0 12px 12px;justify-content:space-between;scrollbar-width:none}
+.spdp-fg-row::-webkit-scrollbar{display:none}
+.spdp-fg{flex:1 1 0;min-width:76px;text-align:center;background:linear-gradient(170deg,#FBFDFF 0%,#EAF2FC 50%,#DCE9F8 100%);border:1px dashed #8FA9DB;border-radius:11px;padding:8px 5px;box-shadow:0 5px 12px -7px rgba(116,146,205,.5),inset 0 1px 0 rgba(255,255,255,.9)}
+.spdp-fg i{display:block;font-style:normal;font-size:.53rem;font-weight:700;letter-spacing:.06em;color:{{ bdg }};text-transform:uppercase;margin-bottom:5px}
+.spdp-fg-im{display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.5);margin-bottom:5px}
+.spdp-fg-im img{width:100%;height:100%;object-fit:cover;display:block}
+.spdp-fg-ph{font-size:1rem}
+.spdp-fg b{display:block;font-size:.6rem;font-weight:600;line-height:1.3;color:var(--cda-ink)}
+.spdp-fg em{display:block;font-style:normal;font-size:.56rem;color:var(--cda-muted);margin-top:2px}
+.spdp-bigcta{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#111129;color:#fff;border:none;border-radius:14px;padding:16px 22px;font-size:.98rem;font-weight:700;letter-spacing:.005em;cursor:pointer;font-family:var(--cda-font);transition:transform .18s,box-shadow .18s;box-shadow:0 8px 20px -10px rgba(17,17,41,.35)}
+.spdp-bigcta:hover{transform:translateY(-1px)}
+.spdp-bigcta.somna-atc-loading{position:relative;pointer-events:none}
+.spdp-bigcta.somna-atc-loading *{visibility:hidden}
+.spdp-bigcta.somna-atc-loading::after{content:'';position:absolute;inset:0;margin:auto;width:22px;height:22px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:somna-spin .65s linear infinite}
+@keyframes somna-spin{to{transform:rotate(360deg)}}
+.spdp-ctapr{display:inline-flex;align-items:baseline;gap:7px}
+.spdp-ctapr s{color:rgba(255,255,255,.45);font-weight:400;font-size:.84rem}
+.spdp-ctapr s:empty,.spdp-ctapr b:empty{display:none}
+.spdp-ctapr b{font-weight:700;font-size:.95rem}
+.spdp-once{display:block;text-align:center;margin:13px auto 5px;color:var(--cda-ink);font-weight:600;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.spdp-once.somna-atc-loading{opacity:.5;pointer-events:none;cursor:wait}
+.spdp-oncemeta{text-align:center;font-size:.64rem;font-weight:600;color:var(--cda-muted);letter-spacing:.06em;text-transform:uppercase}
+.spdp-subvalue{text-align:center;font-size:.74rem;color:var(--cda-muted);line-height:1.55;max-width:360px;margin:6px auto 0;font-weight:400}
+.spdp-shipsby{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:13px;background:#DFF2E5;color:#22352B;font-size:.82rem;font-weight:500;padding:13px 16px;border-radius:12px}
+.spdp-shipsby svg{flex:none;opacity:.75}
+.spdp-shipsby b{color:{{ bdg }};font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.spdp-faq{margin-top:24px}
+.spdp-faq .cda-acc{border:1px solid #E7E9EF;border-radius:14px;background:#fff;overflow:hidden;border-top:1px solid #E7E9EF}
+.spdp-faq .cda-acc details{border-bottom:1px solid #EEF0F4}
+.spdp-faq .cda-acc details:last-child{border-bottom:none}
+.spdp-faq .cda-acc summary{padding:16px 18px;font-size:.92rem;font-weight:600;letter-spacing:-.005em}
+.spdp-faq .cda-acc summary::first-letter{text-transform:uppercase}
+.spdp-faq .cda-acc .cda-ic{color:var(--cda-ink);font-weight:300;font-size:1.15rem}
+.spdp-faq .cda-acc .cda-ans{padding:0 18px 16px;font-size:.86rem;line-height:1.6}
+.spdp-gcard{display:grid;grid-template-columns:1.05fr .95fr;gap:0;background:linear-gradient(135deg,#9BA6D6,#8491C5);border-radius:16px;overflow:hidden;color:#fff;margin-top:22px;align-items:stretch;box-shadow:0 12px 28px -16px rgba(132,145,197,.5);position:relative}
+.spdp-gcard-tilemode{display:block;position:relative;height:clamp(150px,18vw,190px);overflow:hidden;background:linear-gradient(120deg,#B7CDEF 0%,#93B3E6 100%)}
+.spdp-gcard-full{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:auto;height:auto;max-height:88%;max-width:58%;object-fit:contain;display:block}
+.spdp-gcard-over{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:5px;padding:16px 18px;background:linear-gradient(90deg,rgba(17,17,41,.5),rgba(17,17,41,0) 60%)}
+.spdp-gcard-b{padding:16px 18px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px}
+.spdp-gcard-t{font-weight:700;font-size:.92rem;line-height:1.25;letter-spacing:-.01em}
+.spdp-gcard-p{font-size:.75rem;line-height:1.45;color:#EDF0FA;font-weight:400;max-width:32ch}
+.spdp-gcard-cta{display:inline-flex;align-items:center;background:#111129;color:#fff;font-weight:600;font-size:.74rem;padding:8px 15px;border-radius:9px;text-decoration:none;margin-top:5px;transition:transform .2s}
+.spdp-gcard-cta:hover{transform:translateY(-1px)}
+.spdp-gcard-cta.somna-atc-loading{opacity:.55;pointer-events:none}
+.spdp-gcard-img{position:relative;min-height:120px}
+.spdp-gcard-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.spdp-gcard-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#E9EDF8;font-size:.76rem;background:rgba(255,255,255,.12)}
+.spdp-testi{margin-top:24px}.spdp-testi-h{font-weight:700;margin-bottom:12px;font-size:.95rem}
+.spdp-testi-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none}
+.spdp-testi-row::-webkit-scrollbar{display:none}
+.spdp-tcard{position:relative;flex:0 0 130px;border-radius:14px;overflow:hidden;text-decoration:none;color:#fff;cursor:pointer}
+.spdp-tcard .cda-ph{aspect-ratio:9/16;border-radius:14px;background:var(--cda-ink)}
+.spdp-tcard .cda-ph img{width:100%;height:100%;object-fit:cover}
+.spdp-tv{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#101019;display:block}
+.spdp-tgo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(10,10,18,.62);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;transition:transform .18s,background .18s;padding:0 0 0 3px}
+.spdp-tgo:hover{transform:translate(-50%,-50%) scale(1.07);background:rgba(10,10,18,.78)}
+.spdp-tplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(10,10,18,.62);color:#fff;display:flex;align-items:center;justify-content:center}
+.spdp-tcap{position:absolute;left:8px;right:8px;bottom:8px;font-size:.72rem;font-weight:700;text-shadow:0 1px 5px rgba(0,0,0,.6);pointer-events:none}
+#shopify-section-{{ section.id }} h1{color:var(--cda-ink)}
+@media(max-width:860px){.spdp-grid{grid-template-columns:1fr;gap:26px}.spdp-media{position:static}}
+@media(max-width:560px){.spdp-gcard{grid-template-columns:1fr}.spdp-gcard-img{min-height:120px}.spdp-gcard-tilemode{grid-template-columns:none;height:150px}.spdp-gcard-full{max-width:52%}.spdp-gifts-row{grid-template-columns:1fr 1fr 1fr;gap:6px}.spdp-gift{font-size:.6rem;padding:6px 4px}}
+.spdp-main{position:relative;border:1.5px solid #111129;border-radius:16px;overflow:hidden;background:#fff}
+.spdp-gnav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:1.5px solid #111129;background:rgba(255,255,255,.96);color:var(--cda-ink);font-size:1.35rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:4;box-shadow:0 2px 8px rgba(20,18,40,.12)}
+.spdp-gnav:hover{background:#fff;border-color:var(--cda-accent);color:var(--cda-accent-d)}
+.spdp-gnav-l{left:10px}.spdp-gnav-r{right:10px}
+.spdp-herocard{border:1.5px solid #111129;border-radius:18px;padding:20px 18px;background:#fff}
+@media(max-width:768px){
+.spdp-herocard{padding:15px 13px;border-radius:16px}
+.spdp-grid{gap:16px}
+.spdp-h1jp{font-size:1.4rem}
+.spdp-sub{font-size:.88rem;margin-bottom:11px}
+.spdp-thumbs{gap:6px}
+.spdp-rate{font-size:.64rem}
+.spdp-rate .cda-stars{font-size:.66rem}
+.spdp-sum-price b{font-size:1.35rem}
+.spdp-bigcta{font-size:.9rem;padding:14px 18px}
+.spdp-main img{max-height:58vh;object-fit:contain}
+}
+.spdp-sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:999;background:#111129;align-items:center;gap:11px;padding:9px 13px;box-shadow:0 -4px 18px rgba(0,0,0,.22);transform:translateY(115%);visibility:hidden;transition:transform .32s cubic-bezier(.16,.84,.44,1),visibility 0s linear .32s}
+.spdp-sticky.on{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.16,.84,.44,1),visibility 0s}
+@media(max-width:768px){
+body{padding-bottom:76px}
+}
+.spdp-sticky-sel{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:7px 12px;cursor:pointer;text-align:left}
+.spdp-sticky-txt{display:flex;flex-direction:column;min-width:0;line-height:1.15}
+.spdp-sticky-name{font-size:.8rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spdp-sticky-price{font-size:.72rem;font-weight:500;color:rgba(255,255,255,.75)}
+.spdp-sticky-car{margin-left:auto;color:rgba(255,255,255,.8);font-size:.85rem;flex:0 0 auto}
+.spdp-sticky-cta{flex:0 0 auto;min-height:50px;background:#8491C5;color:#fff;border:none;border-radius:14px;padding:0 22px;font-size:.92rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.spdp-sticky-cta.somna-atc-loading{color:transparent;position:relative;pointer-events:none}
+.spdp-sticky-cta.somna-atc-loading::after{content:'';position:absolute;inset:0;margin:auto;width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:somna-spin .65s linear infinite}
+.spdp-sticky-menu{display:none;position:absolute;left:13px;right:13px;bottom:calc(100% + 8px);background:#fff;border-radius:14px;box-shadow:0 -8px 30px rgba(0,0,0,.28);overflow:hidden;border:1px solid rgba(17,17,41,.1)}
+.spdp-sticky-menu.open{display:block}
+.spdp-smenu-i{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(17,17,41,.08);padding:15px 16px;font-size:.92rem;font-weight:600;color:#111129;cursor:pointer;font-family:inherit}
+.spdp-smenu-i:last-child{border-bottom:none}
+.spdp-smenu-i:active{background:var(--cda-soft)}
+@media(min-width:769px){
+.spdp-sticky{justify-content:center;gap:12px;padding:10px 22px}
+.spdp-sticky-sel{flex:0 1 400px}
+.spdp-sticky-cta{padding:0 38px}
+.spdp-sticky-menu{left:50%;right:auto;transform:translateX(-50%);width:min(430px,92vw)}
+}
+.spdp-hbadge{position:absolute;top:10px;right:10px;z-index:5;background:#8491C5;color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(20,18,40,.16)}
+</style>
+<script>
+(function(){
+  var root=document.getElementById('shopify-section-{{ section.id }}');if(!root)return;
+  var opts=[].slice.call(root.querySelectorAll('[data-bundle]'));if(!opts.length)return;
+  var state='sub';
+  var els={supply:root.querySelector('[data-js-supply]'),badge:root.querySelector('[data-js-badge]'),price:root.querySelector('[data-js-price]'),was:root.querySelector('[data-js-was]'),then:root.querySelector('[data-js-then]'),perks:root.querySelector('[data-js-perks]'),gifts:root.querySelector('[data-js-gifts]'),ctawas:root.querySelector('[data-jb-ctawas]'),ctanow:root.querySelector('[data-jb-ctanow]')};
+  var fgm=[].slice.call(root.querySelectorAll('[data-fg-month]'));
+  function money(n){return '$'+(Math.round(n*100)/100).toFixed(2).replace(/\.00$/,'');}
+  function num(el,attr){return parseFloat(el.getAttribute(attr))||0;}
+  function curOpt(){return root.querySelector('[data-bundle].sel')||opts[0];}
+  function badgePct(o){if(state==='sub'){var r=num(o,'data-sreg'),f=num(o,'data-sfirst');if(r>0&&f<r)return Math.round((1-f/r)*100);}else{var c=num(o,'data-compare'),p=num(o,'data-onceprice');if(c>0&&p<c)return Math.round((1-p/c)*100);}return 0;}
+  function render(){
+    opts.forEach(function(o){
+      var cp=o.querySelector('[data-jb-cp]'),cw=o.querySelector('[data-jb-cw]'),bd=o.querySelector('[data-jb-badge]');
+      var pct=badgePct(o);
+      if(bd)bd.textContent=pct>0?('SAVE '+pct+'%'):'';
+      if(state==='sub'){var r=num(o,'data-sreg'),f=num(o,'data-sfirst');if(cp)cp.textContent=money(f);if(cw)cw.textContent=(r>f)?money(r):'';}
+      else{var c=num(o,'data-compare'),p=num(o,'data-onceprice');if(cp)cp.textContent=money(p);if(cw)cw.textContent=(c>p)?money(c):'';}
+      var pl=o.getAttribute('data-plan');
+      o.setAttribute('data-items',(state==='sub'&&pl)?(o.getAttribute('data-vid')+'|'+pl):o.getAttribute('data-vid'));
+    });
+    var o=curOpt();var pct=badgePct(o);
+    var mu=Math.max(1,Math.round(num(o,'data-units')));
+    fgm.forEach(function(el,i){el.textContent='Month '+(mu+1+i);});
+    if(els.supply)els.supply.textContent=o.getAttribute('data-supply')||'';
+    if(els.badge)els.badge.textContent=pct>0?('SAVE '+pct+'%'):'';
+    var sreg=num(o,'data-sreg'),sfirst=num(o,'data-sfirst'),oncep=num(o,'data-onceprice'),comp=num(o,'data-compare');
+    if(state==='sub'){
+      if(els.price)els.price.textContent=money(sfirst);
+      if(els.was)els.was.textContent=(sreg>sfirst)?money(sreg):'';
+      if(els.then)els.then.textContent=money(sfirst)+' today. Then '+money(sreg)+' every '+(mu*30)+' days.';
+      if(els.perks)els.perks.style.display='';
+      if(els.gifts)els.gifts.style.display='';
+      if(els.ctawas)els.ctawas.textContent=(sreg>sfirst)?money(sreg):'';
+      if(els.ctanow)els.ctanow.textContent=money(sfirst);
+    }else{
+      if(els.price)els.price.textContent=money(oncep);
+      if(els.was)els.was.textContent=(comp>oncep)?money(comp):'';
+      if(els.then)els.then.textContent='One-time purchase · No recurring deliveries';
+      if(els.perks)els.perks.style.display='none';
+      if(els.gifts)els.gifts.style.display='none';
+      if(els.ctawas)els.ctawas.textContent=(comp>oncep)?money(comp):'';
+      if(els.ctanow)els.ctanow.textContent=money(oncep);
+    }
+    var sp=root.querySelector('[data-spsb-stickyprice]');if(sp)sp.textContent=(state==='sub'?money(sfirst):money(oncep));
+    var sn=root.querySelector('[data-spsb-stickyname]');if(sn)sn.textContent=(o.getAttribute('data-name')||'')+' · '+(state==='sub'?'Subscription':'One-time');
+    var tg=root.querySelector('[data-jb-toggle]');if(tg){tg.textContent=tg.getAttribute('data-once-label')+' ('+money(oncep)+')';}
+  }
+  opts.forEach(function(o){o.addEventListener('click',function(e){e.preventDefault();opts.forEach(function(x){x.classList.remove('sel');});o.classList.add('sel');render();});});
+  function addOnce(trigger){
+    var o=curOpt();var id=parseInt(o.getAttribute('data-vid'),10);if(!id)return;
+    if(window.SomnaCart&&window.SomnaCart.add){window.SomnaCart.add([{id:id,quantity:1}],{openDrawer:true,trigger:trigger||null});return;}
+    fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[{id:id,quantity:1}]})}).then(function(r){if(!r.ok)throw 0;window.location.href='/cart';}).catch(function(){window.location.href='/cart';});
+  }
+  var tg=root.querySelector('[data-jb-toggle]');
+  if(tg)tg.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();addOnce(tg);});
+  var sb=root.querySelector('[data-jb-shipsby]');
+  if(sb){var d=new Date(Date.now()+86400000);var mo=d.toLocaleString('en-US',{month:'long'});var day=d.getDate();var v=day%100;var suf=(v>=11&&v<=13)?'th':({1:'st',2:'nd',3:'rd'}[day%10]||'th');sb.textContent=mo+' '+day+suf;}
+  function addToCart(){
+    var o=curOpt();var id=parseInt(o.getAttribute('data-vid'),10);if(!id)return;
+    var item={id:id,quantity:1};
+    var plan=o.getAttribute('data-plan');
+    if(state==='sub'&&plan)item.selling_plan=parseInt(plan,10);
+    fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:[item]})}).then(function(r){if(!r.ok)throw 0;window.location.href='/cart';}).catch(function(){window.location.href='/cart';});
+  }
+  var cta=root.querySelector('[data-jb-atc]');
+  if(cta)cta.addEventListener('click',function(){if(window.SomnaCart)return;addToCart();});
+  var scta=document.getElementById('{{ fid }}-stickycta');
+  if(scta)scta.addEventListener('click',function(){if(window.SomnaCart)return;addToCart();});
+  var ssel=root.querySelector('[data-spsb-stickysel]'),smenu=root.querySelector('[data-spsb-stickymenu]');
+  if(ssel&&smenu){opts.forEach(function(o,i){var mi=document.createElement('button');mi.type='button';mi.className='spdp-smenu-i';mi.textContent=(o.getAttribute('data-name')||('Option '+(i+1)));mi.addEventListener('click',function(e){e.preventDefault();opts.forEach(function(x){x.classList.remove('sel');});o.classList.add('sel');render();smenu.classList.remove('open');});smenu.appendChild(mi);});ssel.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();smenu.classList.toggle('open');});document.addEventListener('click',function(e){if(ssel.contains(e.target)||smenu.contains(e.target))return;smenu.classList.remove('open');});}
+  var stick=root.querySelector('[data-spsb-sticky]');
+  var bx=document.getElementById('{{ fid }}-box');
+  if(stick&&bx){
+    var sticking=null;
+    var stickCheck=function(){var r=bx.getBoundingClientRect();var show=r.bottom<0;if(show!==sticking){sticking=show;stick.classList.toggle('on',show);}};
+    window.addEventListener('scroll',stickCheck,{passive:true});
+    window.addEventListener('resize',stickCheck,{passive:true});
+    setInterval(stickCheck,600);
+    stickCheck();
+  }else if(stick){stick.classList.add('on');}
+  render();
+})();
+</script>
+<script>
+(function(){
+  var root=document.getElementById('shopify-section-{{ section.id }}');if(!root)return;
+  var box=document.getElementById('{{ fid }}-main');var main=box?box.querySelector('img'):null;
+  var th=[].slice.call(root.querySelectorAll('[data-spsb-thumb],[data-spdp-thumb]'));
+  var navs=root.querySelectorAll('.spdp-gnav');
+  if(!main||th.length<2){for(var k=0;k<navs.length;k++)navs[k].style.display='none';return;}
+  var urls=th.map(function(t){return t.getAttribute('data-spsb-thumb')||t.getAttribute('data-spdp-thumb');});
+  var idx=0;
+  function setA(){th.forEach(function(t,j){t.classList.toggle('sel',j===idx);});}
+  function show(i){idx=(i+urls.length)%urls.length;main.src=urls[idx];setA();}
+  th.forEach(function(t,i){t.addEventListener('click',function(){main.src=urls[i];idx=i;setA();});});
+  var pa=root.querySelector('[data-gprev]'),na=root.querySelector('[data-gnext]');
+  if(pa)pa.addEventListener('click',function(e){e.preventDefault();show(idx-1);});
+  if(na)na.addEventListener('click',function(e){e.preventDefault();show(idx+1);});
+  var sx=null;
+  box.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  box.addEventListener('touchend',function(e){if(sx==null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)show(dx<0?idx+1:idx-1);sx=null;},{passive:true});
+  setA();
+})();
+</script>
+<script>
+(function(){
+  var root=document.getElementById('shopify-section-{{ section.id }}');if(!root)return;
+  var vids=[].slice.call(root.querySelectorAll('.spdp-tv'));if(!vids.length)return;
+  vids.forEach(function(v){
+    var card=v.parentNode;var btn=card.querySelector('.spdp-tgo');
+    var prime=function(){if(v.hasAttribute('poster'))return;try{if(v.currentTime===0)v.currentTime=0.05;}catch(e){}};
+    if(v.readyState>=1)prime();else v.addEventListener('loadedmetadata',prime);
+    function start(){
+      vids.forEach(function(o){if(o!==v&&!o.paused){o.pause();var ob=o.parentNode.querySelector('.spdp-tgo');if(ob)ob.style.display='';}});
+      v.setAttribute('controls','');
+      if(btn)btn.style.display='none';
+      var p=v.play();if(p&&p.catch)p.catch(function(){});
+    }
+    if(btn)btn.addEventListener('click',function(e){e.stopPropagation();start();});
+    v.addEventListener('click',function(){if(!v.hasAttribute('controls'))start();});
+    v.addEventListener('ended',function(){v.removeAttribute('controls');v.currentTime=0.05;if(btn)btn.style.display='';});
+  });
+})();
+</script>
+{% schema %}
+{
+  "name": "Somna PDP Nasal",
+  "settings": [
+    { "type": "text", "id": "rating", "label": "Rating", "default": "4.7" },
+    { "type": "text", "id": "reviews", "label": "Reviews", "default": "3,910" },
+    { "type": "text", "id": "meta", "label": "Meta line after reviews", "default": "Drug-free · Latex-free" },
+    { "type": "text", "id": "hero_badge", "label": "Hero badge (top-right)" },
+    { "type": "text", "id": "head_a", "label": "Title part 1", "default": "Somna Nasal Strips" },
+    { "type": "text", "id": "head_b", "label": "Title part 2" },
+    { "type": "richtext", "id": "subhead", "label": "Description paragraph", "default": "<p>For snoring, blocked-nose nights, and groggy mornings. One drug-free strip a night to support easy nasal breathing, quieter sleep, and waking up actually rested.</p>" },
+    { "type": "textarea", "id": "checks", "label": "Benefit lines (one per line, emoji ok)", "default": "💨 Opens nasal airflow instantly\n✅ Holds securely through 8+ hours\n🌙 Quieter nights, less snoring\n☀️ Wake up clearer, without dry mouth" },
+    { "type": "text", "id": "plan_label", "label": "Bundle label", "default": "Choose your bundle:" },
+    { "type": "color", "id": "badge_color", "label": "Accent badge color", "default": "#5B79F3" },
+    { "type": "header", "content": "Review card (under gallery)" },
+    { "type": "image_picker", "id": "rev_img", "label": "Reviewer photo (circle)" },
+    { "type": "text", "id": "rev_name", "label": "Reviewer name", "default": "Annette A." },
+    { "type": "text", "id": "rev_sub", "label": "Reviewer tag", "default": "VERIFIED CUSTOMER" },
+    { "type": "text", "id": "rev_title", "label": "Review headline (blank = hide card)", "default": "I'm amazed and will be a lifelong customer!" },
+    { "type": "textarea", "id": "rev_quote", "label": "Review quote", "default": "Placeholder review — replace with a real customer quote before publishing." },
+    { "type": "header", "content": "Pricing card" },
+    { "type": "textarea", "id": "perks", "label": "Subscription perks (one per line)", "default": "50% OFF your first order\nSkip, pause or cancel anytime\n30 Night Sleep Guarantee\nFree Shipping" },
+    { "type": "text", "id": "gifts_title", "label": "Gifts strip title", "default": "Included with Your First Subscription" },
+    { "type": "text", "id": "gift1", "label": "Gift 1 name", "default": "📘 Sleep Optimization PDF Guide" },
+    { "type": "image_picker", "id": "gift1_img", "label": "Gift 1 image" },
+    { "type": "text", "id": "gift1_tag", "label": "Gift 1 mini badge (e.g. FREE $7)" },
+    { "type": "text", "id": "gift2", "label": "Gift 2 name", "default": "🚚 Free Shipping" },
+    { "type": "image_picker", "id": "gift2_img", "label": "Gift 2 image" },
+    { "type": "text", "id": "gift2_tag", "label": "Gift 2 mini badge" },
+    { "type": "text", "id": "gift3", "label": "Gift 3 name", "default": "🎁 Mystery Somna Gift" },
+    { "type": "image_picker", "id": "gift3_img", "label": "Gift 3 image" },
+    { "type": "text", "id": "gift3_tag", "label": "Gift 3 mini badge" },
+    { "type": "text", "id": "gift_title2", "label": "Future gifts title", "default": "Future Subscriber Gifts" },
+    { "type": "header", "content": "CTA + one-time option" },
+    { "type": "text", "id": "cta_main", "label": "Main CTA label (prices auto-appended)", "default": "Try Somna Today" },
+    { "type": "text", "id": "toggle_once", "label": "One-time BUY link text (adds to cart — price auto-appended)", "default": "Try it Once. No Subscription" },
+    { "type": "text", "id": "toggle_sub", "label": "(unused — one-time link now adds straight to cart)" },
+    { "type": "text", "id": "once_meta", "label": "Line under one-time link", "default": "Shipping: $6.99 | No Free Gift" },
+    { "type": "textarea", "id": "sub_value", "label": "Subscribe-value line", "default": "Subscribers save more, receive exclusive first-order benefits, and can cancel anytime." },
+    { "type": "text", "id": "ships_label", "label": "Ships-by label (date auto = tomorrow)", "default": "Ships by:" },
+    { "type": "header", "content": "Guarantee card (below FAQ)" },
+    { "type": "image_picker", "id": "g_tile", "label": "FULL TILE image (transparent/wide works best)" },
+    { "type": "checkbox", "id": "g_hide_overlay", "label": "Hide text overlay on full tile", "default": false },
+    { "type": "text", "id": "g_title", "label": "Card title (blank = hide card)", "default": "30-Day \"Feel It or It's Free\" Guarantee" },
+    { "type": "textarea", "id": "g_body", "label": "Card body", "default": "That's how confident we are in your nights. If you're not sleeping better, send it back and we'll refund your purchase." },
+    { "type": "text", "id": "g_cta", "label": "Card CTA label", "default": "Try Somna Risk-Free" },
+    { "type": "url", "id": "g_link", "label": "Card CTA link" },
+    { "type": "image_picker", "id": "g_image", "label": "Card image (right side, split mode)" },
+    { "type": "text", "id": "faq_title", "label": "FAQ title (not rendered — Jupi style)" },
+    { "type": "text", "id": "testi_title", "label": "Videos title", "default": "See it in action" }
+  ],
+  "blocks": [
+    { "type": "bundle", "name": "Bundle option", "settings": [
+      { "type": "text", "id": "vpos", "label": "Variant position (1, 2 or 3)", "default": "1", "info": "Prices come LIVE from this variant — what's shown is what's charged." },
+      { "type": "text", "id": "plan_id", "label": "Selling plan ID (subscription)", "info": "Numeric ID. First-order price reads live from this plan's allocation." },
+      { "type": "image_picker", "id": "image", "label": "Bundle image" },
+      { "type": "checkbox", "id": "popular", "label": "Show MOST POPULAR badge", "default": false },
+      { "type": "text", "id": "popular_label", "label": "Badge text", "default": "MOST POPULAR" },
+      { "type": "text", "id": "title", "label": "Title", "default": "1 Bag" },
+      { "type": "text", "id": "supply", "label": "Supply line", "default": "1 Month Supply" },
+      { "type": "text", "id": "units", "label": "Months per delivery (renewal cadence + gift months)", "default": "1" },
+      { "type": "text", "id": "sub_reg", "label": "(unused — live from Shopify)" },
+      { "type": "text", "id": "sub_first", "label": "(unused — live from Shopify)" },
+      { "type": "text", "id": "sub_renew", "label": "(unused — auto-generated)" },
+      { "type": "text", "id": "once_price", "label": "(unused — live from Shopify)" }
+    ] },
+    { "type": "gift", "name": "Future gift (monthly)", "settings": [
+      { "type": "text", "id": "month", "label": "Month label (auto-updates with selected bundle)", "default": "Month 3" },
+      { "type": "image_picker", "id": "img", "label": "Gift image" },
+      { "type": "text", "id": "name", "label": "Gift name", "default": "Mystery Gift" },
+      { "type": "text", "id": "value", "label": "Value (e.g. $25)" }
+    ] },
+    { "type": "faq", "name": "FAQ", "settings": [ { "type": "text", "id": "q", "label": "Q", "default": "How do I use it?" }, { "type": "richtext", "id": "a", "label": "A", "default": "<p>Answer.</p>" } ] },
+    { "type": "vid", "name": "Customer video", "settings": [ { "type": "video", "id": "vid", "label": "Upload video (UGC)" }, { "type": "image_picker", "id": "image", "label": "Poster image (optional — first frame auto-shows)" }, { "type": "text", "id": "caption", "label": "Caption (optional)" }, { "type": "url", "id": "url", "label": "Video link (only if not uploading)" } ] }
+  ],
+  "max_blocks": 40,
+  "presets": [{ "name": "Somna PDP Nasal" }]
+}
+{% endschema %}

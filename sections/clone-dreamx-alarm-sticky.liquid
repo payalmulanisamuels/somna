@@ -1,0 +1,30 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign cur = product.selected_or_first_available_variant -%}
+<div class="cda-sticky" id="cda-sticky-{{ section.id }}">
+  <div class="in">
+    <div style="min-width:0">
+      <div class="cda-st-title">{{ section.settings.short_title }} · <span data-cda-st-name>{{ cur.title | split: '—' | last | strip }}</span></div>
+      <div class="cda-st-sub"><span data-cda-st-price>{{ cur.price | money }}</span></div>
+    </div>
+    <button class="cda-btn" data-cda-st-btn data-vid="{{ cur.id }}">{{ section.settings.cta_label }}</button>
+  </div>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('cda-sticky-{{ section.id }}');if(!bar)return;
+  var nameEl=bar.querySelector('[data-cda-st-name]'),priceEl=bar.querySelector('[data-cda-st-price]'),btn=bar.querySelector('[data-cda-st-btn]');
+  document.addEventListener('cda:variant',function(e){var d=e.detail||{};if(d.name)nameEl.textContent=d.name;if(d.now)priceEl.textContent=d.now;if(d.vid)btn.setAttribute('data-vid',d.vid);});
+  function show(){var y=window.scrollY||document.documentElement.scrollTop||0;bar.classList.toggle('show',y>760);}
+  window.addEventListener('scroll',show,{passive:true});show();
+})();
+</script>
+{% schema %}
+{
+  "name": "Clone — Sticky ATC",
+  "settings": [
+    { "type": "text", "id": "short_title", "label": "Short title", "default": "Silent Alarm" },
+    { "type": "text", "id": "cta_label", "label": "Button text", "default": "Add to cart" }
+  ],
+  "presets": [{ "name": "Clone — Sticky ATC" }]
+}
+{% endschema %}

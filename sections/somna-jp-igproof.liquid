@@ -1,0 +1,79 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr" style="text-align:center">
+      <h2 class="sjp-igt">{{ section.settings.title_a | default: 'Real results. Real sleepers. Real' }} <em>{{ section.settings.title_em | default: 'difference.' }}</em></h2>
+      {%- if section.settings.sub != blank -%}<p class="sjp-sub" style="margin-top:8px">{{ section.settings.sub }}</p>{%- endif -%}
+    </div>
+    <div class="sjp-ig-grid somna-sr-stag">
+      {%- for block in section.blocks -%}
+      <div class="sjp-ig-card{% if block.settings.full != blank %} sjp-ig-cardfull{% endif %}" {{ block.shopify_attributes }}>
+        <span class="sjp-ig-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" stroke-width="2"/><circle cx="12" cy="12" r="4.2" stroke="#fff" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.3" fill="#fff"/></svg></span>
+        {%- if block.settings.full != blank -%}
+        <img class="sjp-ig-full" src="{{ block.settings.full | image_url: width: 900 }}" loading="lazy" alt="Customer story">
+        {%- else -%}
+        {%- if block.settings.img1 != blank -%}<div class="sjp-ig-img"><img src="{{ block.settings.img1 | image_url: width: 700 }}" loading="lazy" alt="Customer photo"></div>{%- else -%}<div class="sjp-ig-img"><div class="sjp-ph" style="aspect-ratio:4/3">Insert screenshot / photo — or use FULL TILE image</div></div>{%- endif -%}
+        {%- if block.settings.quote1 != blank -%}
+        <div class="sjp-ig-bub">{{ block.settings.quote1 }}<span class="sjp-ig-ava">{%- if block.settings.avatar != blank -%}<img src="{{ block.settings.avatar | image_url: width: 80 }}" loading="lazy" alt="">{%- endif -%}</span></div>
+        {%- endif -%}
+        {%- if block.settings.img2 != blank -%}<div class="sjp-ig-img"><img src="{{ block.settings.img2 | image_url: width: 700 }}" loading="lazy" alt="Customer photo"></div>{%- endif -%}
+        {%- if block.settings.quote2 != blank -%}
+        <div class="sjp-ig-bub">{{ block.settings.quote2 }}<span class="sjp-ig-ava">{%- if block.settings.avatar2 != blank -%}<img src="{{ block.settings.avatar2 | image_url: width: 80 }}" loading="lazy" alt="">{%- endif -%}</span></div>
+        {%- endif -%}
+        {%- endif -%}
+      </div>
+      {%- endfor -%}
+    </div>
+    <div class="sjp-ctawrap somna-sr">
+      <a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }}</a>
+      {%- if section.settings.gline != blank -%}<div class="sjp-gline"><span class="sjp-gdot">✓</span>{{ section.settings.gline }}</div>{%- endif -%}
+    </div>
+    {%- if section.settings.note != blank -%}<p class="sjp-note">{{ section.settings.note }}</p>{%- endif -%}
+  </div>
+</section>
+<style>
+.sjp-igt{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4.4vw,2.5rem);letter-spacing:-.01em;line-height:1.1;margin:0;text-align:center}
+.sjp-igt em{font-style:italic;color:var(--band)}
+.sjp-ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.sjp-ig-card{position:relative;background:#fff;border-radius:20px;padding:16px 14px 18px;box-shadow:0 18px 40px -24px rgba(22,20,34,.22);border:1px solid var(--line)}
+.sjp-ig-cardfull{padding:0;overflow:hidden}
+.sjp-ig-full{width:100%;display:block;height:100%;object-fit:cover}
+.sjp-ig-badge{position:absolute;top:-19px;left:50%;transform:translateX(-50%);width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--band),var(--band2));display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 8px 18px -8px rgba(109,73,224,.6)}
+.sjp-ig-cardfull .sjp-ig-badge{top:10px}
+.sjp-ig-img{border-radius:14px;overflow:hidden;margin-bottom:12px}
+.sjp-ig-img img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+.sjp-ig-img .sjp-ph{border-radius:14px}
+.sjp-ig-bub{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px 15px 15px;font-size:.86rem;line-height:1.5;color:#2b2838;margin:4px 4px 20px;box-shadow:0 8px 18px -14px rgba(22,20,34,.2)}
+.sjp-ig-bub:last-child{margin-bottom:6px}
+.sjp-ig-ava{position:absolute;left:-8px;bottom:-13px;width:28px;height:28px;border-radius:50%;overflow:hidden;background:#d8d5e6;border:2px solid #fff;display:block}
+.sjp-ig-ava img{width:100%;height:100%;object-fit:cover;display:block}
+.sjp-gline{display:flex;align-items:center;justify-content:center;gap:7px;font-size:.85rem;font-weight:700;margin-top:13px;color:var(--ink)}
+.sjp-gdot{width:17px;height:17px;border-radius:50%;background:var(--band);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;flex:none}
+@media(max-width:860px){.sjp-ig-grid{grid-template-columns:1fr;gap:30px}}
+</style>
+{% schema %}
+{
+  "name": "JP — IG proof wall",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "Real results. Real sleepers. Real" },
+    { "type": "text", "id": "title_em", "label": "Italic accent word", "default": "difference." },
+    { "type": "text", "id": "sub", "label": "Subtitle", "default": "Real customer stories, sent in by you." },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: buy box)" },
+    { "type": "text", "id": "gline", "label": "Guarantee line under CTA", "default": "30-Day Feel-It Guarantee" },
+    { "type": "text", "id": "note", "label": "Footnote", "default": "Individual results may vary." },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "card", "name": "IG card", "settings": [
+    { "type": "image_picker", "id": "full", "label": "FULL TILE image (replaces all card content below)" },
+    { "type": "image_picker", "id": "img1", "label": "Photo 1" },
+    { "type": "textarea", "id": "quote1", "label": "Chat bubble 1" },
+    { "type": "image_picker", "id": "avatar", "label": "Bubble 1 avatar" },
+    { "type": "image_picker", "id": "img2", "label": "Photo 2 (optional)" },
+    { "type": "textarea", "id": "quote2", "label": "Chat bubble 2 (optional)" },
+    { "type": "image_picker", "id": "avatar2", "label": "Bubble 2 avatar" }
+  ] } ],
+  "max_blocks": 6,
+  "presets": [{ "name": "JP — IG proof wall", "blocks": [ {"type":"card"},{"type":"card"},{"type":"card"} ] }]
+}
+{% endschema %}

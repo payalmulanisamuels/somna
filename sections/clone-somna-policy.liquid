@@ -1,0 +1,76 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="lgl">
+  <div class="lgl-hero">
+    <div class="lgl-wrap">
+      <span class="lgl-kick">{{ section.settings.kicker | default: 'Legal' }}</span>
+      <h1 class="lgl-h1">{{ page.title }}</h1>
+      {% if section.settings.updated != blank %}<div class="lgl-upd">Last updated: {{ section.settings.updated }}</div>{% endif %}
+    </div>
+  </div>
+  <div class="lgl-wrap lgl-main">
+    <article class="lgl-body">{{ page.content }}</article>
+    <aside class="lgl-aside">
+      <div class="lgl-card">
+        <div class="lgl-card-h">All policies</div>
+        <ul class="lgl-nav">
+          <li><a href="/pages/terms-of-service">Terms of Service</a></li>
+          <li><a href="/pages/shipping-policy">Shipping Policy</a></li>
+          <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/pages/order-cancellation-policy">Order Cancellation Policy</a></li>
+          <li><a href="/pages/return-refund-policy">Return &amp; Refund Policy</a></li>
+          <li><a href="/pages/subscription-policy">Subscription Policy</a></li>
+        </ul>
+        {% if section.settings.help_email != blank %}<div class="lgl-help">Questions? <a href="mailto:{{ section.settings.help_email }}">{{ section.settings.help_email }}</a></div>{% endif %}
+      </div>
+    </aside>
+  </div>
+  {% if section.settings.disclaimer != blank %}<div class="lgl-wrap"><p class="lgl-disc">{{ section.settings.disclaimer }}</p></div>{% endif %}
+</section>
+<style>
+.lgl{font-family:var(--cda-font);color:var(--cda-ink)}
+.lgl-wrap{max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,28px)}
+.lgl-hero{background:#1a1a2e;color:#fff;padding:clamp(40px,7vw,72px) 0}
+.lgl-kick{display:inline-block;text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:#aeb6e6;margin-bottom:10px}
+.lgl-h1{font-size:clamp(2rem,4.6vw,3rem);font-weight:800;letter-spacing:-.025em;margin:0;line-height:1.05}
+.lgl-upd{margin-top:14px;color:#c7c9e0;font-size:.92rem;font-weight:600}
+.lgl-main{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;padding-top:clamp(34px,5vw,56px);padding-bottom:clamp(34px,5vw,56px)}
+.lgl-body{font-size:1rem;line-height:1.72;color:#333}
+.lgl-body h1{font-size:1.7rem;font-weight:800;letter-spacing:-.02em;margin:0 0 14px}
+.lgl-body h2{font-size:1.18rem;font-weight:800;letter-spacing:-.01em;margin:30px 0 10px;color:var(--cda-ink)}
+.lgl-body h3{font-size:1.02rem;font-weight:800;margin:22px 0 8px}
+.lgl-body p{margin:0 0 14px}
+.lgl-body strong{color:var(--cda-ink);font-weight:800}
+.lgl-body a{color:var(--cda-accent-d);font-weight:700;text-decoration:underline}
+.lgl-body ul,.lgl-body ol{margin:0 0 16px;padding-left:22px;display:grid;gap:8px}
+.lgl-body li{line-height:1.6}
+.lgl-body hr{border:none;border-top:1px solid var(--cda-line);margin:26px 0}
+.lgl-aside{position:sticky;top:90px}
+.lgl-card{border:1px solid var(--cda-line);border-radius:16px;padding:22px;background:#faf9ff}
+.lgl-card-h{font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.74rem;color:var(--cda-muted);margin-bottom:14px}
+.lgl-nav{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.lgl-nav a{color:var(--cda-ink);text-decoration:none;font-weight:600;font-size:.94rem}
+.lgl-nav a:hover{color:var(--cda-accent-d)}
+.lgl-help{margin-top:18px;padding-top:16px;border-top:1px solid var(--cda-line);font-size:.86rem;color:var(--cda-muted);font-weight:600}
+.lgl-help a{color:var(--cda-accent-d)}
+.lgl-disc{color:var(--cda-muted);font-size:.74rem;line-height:1.55;max-width:80ch;margin:0 auto clamp(30px,5vw,48px);text-align:center}
+@media(max-width:860px){
+  .lgl-main{grid-template-columns:1fr;gap:30px}
+  .lgl-aside{position:static;order:-1}
+}
+@media(max-width:560px){
+  .lgl-body{font-size:1rem}
+  .lgl-body h2{font-size:1.1rem}
+}
+</style>
+{% schema %}
+{
+  "name": "Somna Policy",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Legal" },
+    { "type": "text", "id": "updated", "label": "Last updated", "default": "June 19, 2026" },
+    { "type": "text", "id": "help_email", "label": "Help email", "default": "hello@somnasleep.com" },
+    { "type": "textarea", "id": "disclaimer", "label": "Footer disclaimer", "default": "These statements have not been evaluated by the Food and Drug Administration. Somna products are not intended to diagnose, treat, cure, or prevent any disease or condition. Individual results may vary." }
+  ],
+  "presets": [{ "name": "Somna Policy" }]
+}
+{% endschema %}

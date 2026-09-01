@@ -1,0 +1,47 @@
+{%- doc -%}
+  Somna-styled cart drawer footer — subtotal and checkout CTA.
+{%- enddoc -%}
+
+{%- liquid
+  if settings.currency_code_enabled_cart_total
+    assign subtotal_display = cart.total_price | money_with_currency
+  else
+    assign subtotal_display = cart.total_price | money
+  endif
+
+  if cart.item_count == 1
+    assign item_label = 'item'
+  else
+    assign item_label = 'items'
+  endif
+-%}
+
+<div class="cart-drawer__totals">
+  <div class="cart-drawer__subtotal">
+    <span class="cart-drawer__subtotal-label">
+      Subtotal ({{ cart.item_count }} {{ item_label }})
+    </span>
+    <text-component
+      ref="cartTotal"
+      value="{{ subtotal_display | strip_html }}"
+      class="cart-drawer__subtotal-value"
+      data-cart-subtotal
+    >
+      {{ subtotal_display }}
+    </text-component>
+  </div>
+</div>
+
+<div class="cart-drawer__ctas">
+  <button
+    type="submit"
+    class="cart-drawer__checkout button"
+    name="checkout"
+    {% if cart == empty %}
+      disabled
+    {% endif %}
+    form="cart-form"
+  >
+    <span class="button-text">Checkout →</span>
+  </button>
+</div>

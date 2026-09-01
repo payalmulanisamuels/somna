@@ -1,0 +1,28 @@
+{% doc %}
+  Somna-styled cart drawer header.
+
+  @param {string} drawer_id - Parent theme-drawer element ID
+  @param {string} [heading_id] - Heading element ID for aria-labelledby
+{% enddoc %}
+
+<div class="cart-drawer__header theme-drawer__header">
+  <h2
+    class="cart-drawer__title"
+    {% if heading_id %}
+      id="{{ heading_id }}"
+    {% endif %}
+  >
+    Your cart
+  </h2>
+
+  <button
+    class="cart-drawer__close theme-drawer__close-button"
+    on:click="#{{ drawer_id }}/close"
+    type="button"
+    aria-label="{{ 'actions.close' | t }}"
+  >
+    <span class="svg-wrapper">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </span>
+  </button>
+</div>

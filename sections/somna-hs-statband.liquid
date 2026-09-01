@@ -1,0 +1,93 @@
+<section class="shss" style="background:{{ section.settings.bg | default: '#0b0b10' }}">
+  <div class="shss-wrap">
+    <h2 class="shss-t somna-sr">{{ section.settings.title | default: 'Clinically Designed. Backed by Experts in Sleep & Respiratory Health.' }}</h2>
+    <div class="shss-card somna-sr">
+      <div class="shss-mid">
+        <div class="shss-col shss-col-l">
+          <div class="shss-lab"><span>{{ section.settings.l1 | default: 'Better Sleep Quality' }}</span><i></i></div>
+          <div class="shss-lab"><span>{{ section.settings.l2 | default: 'Wake-up Energized' }}</span><i></i></div>
+          <div class="shss-lab"><span>{{ section.settings.l3 | default: "Don't Disturb Partner" }}</span><i></i></div>
+        </div>
+        <div class="shss-img">{%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1000 }}" loading="lazy" alt="">{%- else -%}<div class="shss-ph">Insert image</div>{%- endif -%}</div>
+        <div class="shss-col shss-col-r">
+          <div class="shss-lab"><i></i><span>{{ section.settings.l4 | default: 'Waking Up Naturally' }}</span></div>
+          <div class="shss-lab"><i></i><span>{{ section.settings.l5 | default: 'Stop Snoring' }}</span></div>
+          <div class="shss-lab"><i></i><span>{{ section.settings.l6 | default: 'No Dry Mouth' }}</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="shss-stats somna-sr-stag">
+      <div class="shss-stat"><b>{{ section.settings.stat1 | default: '93%' }}</b><span>{{ section.settings.stat1sub | default: 'Of users report waking up less groggy and feeling more rested.*' }}</span></div>
+      <div class="shss-stat"><b>{{ section.settings.stat2 | default: '97%' }}</b><span>{{ section.settings.stat2sub | default: 'Of athletes feel immediate improvement in nasal airflow, with more energy and focus during training.*' }}</span></div>
+    </div>
+    {%- if section.settings.foot != blank -%}<p class="shss-foot">{{ section.settings.foot }}</p>{%- endif -%}
+  </div>
+</section>
+<style>
+.shss{font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:clamp(52px,8vw,96px) 20px;color:#fff}
+.shss-wrap{max-width:1060px;margin:0 auto;text-align:center}
+.shss-t{font-size:clamp(1.5rem,4vw,2.3rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0 auto;max-width:720px;color:#fff}
+.shss-card{background:#fff;border-radius:32px;padding:clamp(36px,6vw,64px) clamp(18px,4vw,48px);margin-top:34px;color:#12121a}
+.shss-mid{display:grid;grid-template-columns:1fr minmax(0,1.02fr) 1fr;gap:0;align-items:center;max-width:960px;margin:0 auto}
+.shss-col{display:flex;flex-direction:column;gap:clamp(30px,5vw,52px)}
+.shss-lab{display:flex;align-items:center;gap:12px;font-size:clamp(.82rem,1.4vw,.98rem);font-weight:700;line-height:1.25;color:#12121a;text-align:left;white-space:nowrap}
+.shss-lab span{flex:none}
+.shss-lab i{flex:1 1 auto;height:1.5px;background:#C7C7D2;display:block;min-width:22px}
+.shss-col-l .shss-lab{padding-left:2px}
+.shss-col-r .shss-lab{justify-content:flex-end;padding-right:2px}
+.shss-img{display:flex;align-items:center;justify-content:center;animation:shssFloat 4.5s ease-in-out infinite}
+@keyframes shssFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.shss-img img{max-width:100%;max-height:440px;object-fit:contain;display:block;border-radius:18px}
+.shss-ph{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:#9a98b5;font-size:.82rem;background:#F4F4F7;border-radius:20px}
+.shss-stats{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,56px);max-width:780px;margin:38px auto 0;text-align:left}
+.shss-stat{display:flex;align-items:center;gap:16px}
+.shss-stat b{font-size:clamp(2.4rem,5.4vw,3.4rem);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1;flex:none}
+.shss-stat span{color:#B9B9C4;font-size:.84rem;line-height:1.5;font-weight:500}
+.shss-foot{font-size:.7rem;color:#8a8a96;margin:22px 0 0}
+@media(prefers-reduced-motion:reduce){.shss-img{animation:none}}
+@media(max-width:700px){
+.shss-mid{grid-template-columns:1fr}
+.shss-img{order:-1;margin-bottom:14px}
+.shss-col{gap:12px}
+.shss-lab{white-space:normal}
+.shss-col-l .shss-lab i,.shss-col-r .shss-lab i{min-width:16px}
+.shss-stats{grid-template-columns:1fr;gap:20px}
+.shss-card{padding:26px 18px}
+}
+</style>
+{% schema %}
+{
+  "name": "HS — Stat band",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "(unused)" },
+    { "type": "text", "id": "title", "label": "Title (on dark)", "default": "Clinically Designed. Backed by Experts in Sleep & Respiratory Health." },
+    { "type": "text", "id": "sub", "label": "(unused)" },
+    { "type": "header", "content": "White card" },
+    { "type": "image_picker", "id": "image", "label": "CENTER IMAGE (you insert — the whole infographic)" },
+    { "type": "text", "id": "l1", "label": "Left label 1", "default": "Better Sleep Quality" },
+    { "type": "text", "id": "l2", "label": "Left label 2", "default": "Wake-up Energized" },
+    { "type": "text", "id": "l3", "label": "Left label 3", "default": "Don't Disturb Partner" },
+    { "type": "text", "id": "l4", "label": "Right label 1", "default": "Waking Up Naturally" },
+    { "type": "text", "id": "l5", "label": "Right label 2", "default": "Stop Snoring" },
+    { "type": "text", "id": "l6", "label": "Right label 3", "default": "No Dry Mouth" },
+    { "type": "text", "id": "inner_t", "label": "(unused)" },
+    { "type": "text", "id": "inner_s", "label": "(unused)" },
+    { "type": "text", "id": "hours", "label": "(unused)" },
+    { "type": "text", "id": "s1", "label": "(unused)" },
+    { "type": "text", "id": "s1l", "label": "(unused)" },
+    { "type": "text", "id": "s2", "label": "(unused)" },
+    { "type": "text", "id": "s2l", "label": "(unused)" },
+    { "type": "text", "id": "s3", "label": "(unused)" },
+    { "type": "text", "id": "s3l", "label": "(unused)" },
+    { "type": "text", "id": "brand", "label": "(unused)" },
+    { "type": "header", "content": "Big stats (below card)" },
+    { "type": "text", "id": "stat1", "label": "Stat 1", "default": "93%" },
+    { "type": "text", "id": "stat1sub", "label": "Stat 1 sub", "default": "Of users report waking up less groggy and feeling more rested.*" },
+    { "type": "text", "id": "stat2", "label": "Stat 2", "default": "97%" },
+    { "type": "text", "id": "stat2sub", "label": "Stat 2 sub", "default": "Of athletes feel immediate improvement in nasal airflow, with more energy and focus during training.*" },
+    { "type": "text", "id": "foot", "label": "Footnote (optional)" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#0b0b10" }
+  ],
+  "presets": [{ "name": "HS — Stat band" }]
+}
+{% endschema %}

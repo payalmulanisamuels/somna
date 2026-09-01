@@ -1,0 +1,57 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp" style="background:{{ section.settings.bg | default: '#ffffff' }};padding:clamp(30px,5vw,64px) 20px">
+  <div class="sjp-bg-card" style="background:linear-gradient(170deg,{{ section.settings.card | default: '#8B6FF0' }},{{ section.settings.card2 | default: '#6D49E0' }})">
+    {%- if section.settings.image != blank -%}<img class="sjp-bg-img" src="{{ section.settings.image | image_url: width: 1600 }}" loading="lazy" alt="">{%- endif -%}
+    <div class="sjp-bg-c somna-sr">
+      {%- unless section.settings.hide_overlay -%}
+      <svg class="sjp-burst" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0l6.7 12.9L68 5.4l1.6 14.4L84 16.6l-3.9 14 14.5 1.8-9 11.4 12.9 6.9-12.9 6.9 9 11.4-14.5 1.8 3.9 14-14.4-3.2L69.6 96l-11.4-9L50 100l-8.2-13-11.4 9-1.6-14.4-14.4 3.2 3.9-14-14.5-1.8 9-11.4L0 50.7l12.9-6.9-9-11.4 14.5-1.8-3.9-14 14.4 3.2L30.5 5.4l11.3 7.5z" fill="rgba(255,255,255,.95)"/><text x="50" y="46" text-anchor="middle" font-size="17" font-weight="800" fill="#6D49E0" font-family="Hanken Grotesk,sans-serif">{{ section.settings.seal_big | default: '30' }}</text><text x="50" y="62" text-anchor="middle" font-size="11" font-weight="800" fill="#6D49E0" font-family="Hanken Grotesk,sans-serif">{{ section.settings.seal_small | default: 'DAY' }}</text></svg>
+      {%- if section.settings.kicker != blank -%}<div class="sjp-bg-k">{{ section.settings.kicker }}</div>{%- endif -%}
+      <h2 class="sjp-bg-t">{{ section.settings.title_a | default: '30-Day' }}<br><em>{{ section.settings.title_em | default: 'Risk-Free Trial' }}</em></h2>
+      <p class="sjp-bg-p">{{ section.settings.body | default: "That's how confident we are in your nights. If you're not thrilled, send it back and we'll refund your purchase." }}</p>
+      {%- endunless -%}
+      <a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a>
+      {%- unless section.settings.hide_overlay -%}
+      {%- if section.settings.checks != blank -%}
+      <div class="sjp-bg-checks">
+        {%- assign chl = section.settings.checks | newline_to_br | split: '<br />' -%}
+        {%- for c in chl -%}{%- assign ct = c | strip -%}{%- if ct != '' -%}<span>✓ {{ ct }}</span>{%- endif -%}{%- endfor -%}
+      </div>
+      {%- endif -%}
+      {%- endunless -%}
+    </div>
+  </div>
+</section>
+<style>
+.sjp-bg-card{position:relative;max-width:1180px;margin:0 auto;border-radius:28px;overflow:hidden;min-height:560px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff}
+.sjp-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.9}
+.sjp-bg-c{position:relative;z-index:2;max-width:420px;padding:clamp(36px,6vw,64px) 24px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.sjp-burst{width:86px;height:86px;margin-bottom:16px;filter:drop-shadow(0 8px 18px rgba(20,16,40,.3))}
+.sjp-bg-k{font-size:.68rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;color:#F0EDFA}
+.sjp-bg-t{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.06;letter-spacing:-.01em;margin:0 0 14px;text-shadow:0 2px 18px rgba(20,16,40,.25)}
+.sjp-bg-t em{font-style:italic}
+.sjp-bg-p{font-size:.92rem;line-height:1.6;color:#F0EDFA;margin:0 0 22px;text-shadow:0 1px 10px rgba(20,16,40,.3)}
+.sjp-bg-checks{display:flex;flex-direction:column;gap:6px;margin-top:16px;font-size:.78rem;font-weight:700;text-shadow:0 1px 8px rgba(20,16,40,.35)}
+@media(max-width:640px){.sjp-bg-card{min-height:520px}}
+</style>
+{% schema %}
+{
+  "name": "JP — Guarantee poster",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "FULL TILE background image" },
+    { "type": "checkbox", "id": "hide_overlay", "label": "Hide text overlay (full-image mode — CTA button stays)", "default": false },
+    { "type": "text", "id": "seal_big", "label": "Seal top text", "default": "30" },
+    { "type": "text", "id": "seal_small", "label": "Seal bottom text", "default": "DAY" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "30 DAYS · FEEL THE DIFFERENCE" },
+    { "type": "text", "id": "title_a", "label": "Title line 1", "default": "30-Day" },
+    { "type": "text", "id": "title_em", "label": "Title line 2 (italic)", "default": "Risk-Free Trial" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "That's how confident we are in your nights. If you're not thrilled, send it back and we'll refund your purchase." },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: buy box)" },
+    { "type": "textarea", "id": "checks", "label": "Check lines (one per line)", "default": "100% Satisfaction\nFast Shipping\nEasy Returns" },
+    { "type": "color", "id": "card", "label": "Card color 1", "default": "#8B6FF0" },
+    { "type": "color", "id": "card2", "label": "Card color 2", "default": "#6D49E0" },
+    { "type": "color", "id": "bg", "label": "Outer background", "default": "#ffffff" }
+  ],
+  "presets": [{ "name": "JP — Guarantee poster" }]
+}
+{% endschema %}

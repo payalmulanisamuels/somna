@@ -1,0 +1,33 @@
+{{ 'somna-hs-styles.css' | asset_url | stylesheet_tag }}
+<section class="shs" style="background:{{ section.settings.bg | default: '#ffffff' }};padding:clamp(26px,4vw,46px) 0;color:var(--ink)">
+  {%- if section.settings.label != blank -%}
+  <div style="text-align:center;margin-bottom:18px"><span class="shs-eyebrow" style="color:var(--mut);margin-bottom:0">{{ section.settings.label }}</span></div>
+  {%- endif -%}
+  <div class="shs-marq" style="--marq-dur:{{ section.settings.speed | default: 28 }}s">
+    <div class="shs-marq-in">
+      {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+      <div class="shs-lg-item"{% if i == 1 %} {{ block.shopify_attributes }}{% endif %}>
+        {%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 400 }}" loading="lazy" alt="{{ block.settings.name | escape }}">{%- else -%}<span class="shs-lg-ph">{{ block.settings.name }}</span>{%- endif -%}
+      </div>
+      {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "HS — Logo marquee",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "AS SEEN IN" },
+    { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 2, "unit": "s", "label": "Loop duration", "default": 28 },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#ffffff" }
+  ],
+  "blocks": [ { "type": "logo", "name": "Logo", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Logo image (transparent PNG/SVG)" },
+    { "type": "text", "id": "name", "label": "Fallback text (shows until image set)", "default": "YOUR PRESS LOGO" }
+  ] } ],
+  "max_blocks": 16,
+  "presets": [{ "name": "HS — Logo marquee", "blocks": [ {"type":"logo"},{"type":"logo"},{"type":"logo"},{"type":"logo"},{"type":"logo"},{"type":"logo"} ] }]
+}
+{% endschema %}

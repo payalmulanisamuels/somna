@@ -1,0 +1,309 @@
+{% doc %}
+  Somna cart drawer — custom 1:1 layout (header count, free-shipping bar + truck,
+  line items with savings / steppers / delivery dropdown / trash, Customers Also Bought,
+  Discounts + Total summary, payment icons, trust pills).
+
+  @param {boolean} [render_wrapper] - When true, wraps the drawer in the section wrapper that the Section Rendering API adds automatically.
+{% enddoc %}
+
+{%- liquid
+  assign render_wrapper = render_wrapper | default: true, allow_false: true
+
+  assign fs_dollars = free_shipping_threshold
+  if fs_dollars == blank
+    assign fs_dollars = settings.cart_drawer_free_shipping_threshold
+  endif
+  if fs_dollars == blank
+    assign fs_dollars = 50
+  endif
+  assign free_shipping_threshold_cents = fs_dollars | times: 100
+
+  assign upsell_product_1 = upsell_product_1 | default: settings.cart_drawer_upsell_product_1
+  assign upsell_product_2 = upsell_product_2 | default: settings.cart_drawer_upsell_product_2
+  assign upsell_product_3 = upsell_product_3 | default: settings.cart_drawer_upsell_product_3
+  assign upsell_product = upsell_product | default: settings.cart_drawer_upsell_product
+-%}
+
+{%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
+  {% if render_wrapper %}
+    <div
+      id="shopify-section-cart-drawer-section"
+      class="shopify-section"
+    >
+  {% endif %}
+
+  <script
+    type="module"
+    src="{{ 'cart-drawer.js' | asset_url }}"
+    fetchpriority="low"
+  ></script>
+
+  <script
+    src="{{ 'cart-drawer-somna.js' | asset_url }}"
+    defer
+  ></script>
+
+  {% render 'cart-drawer-styles' %}
+
+  <theme-drawer
+    id="cart-drawer"
+    class="cart-drawer--somna"
+    overlay
+    no-persist
+    data-skip-node-update
+  >
+    <dialog
+      ref="panel"
+      class="theme-drawer__dialog color-custom-drawer"
+      aria-labelledby="cart-drawer-heading"
+      cart-summary-sticky="true"
+    >
+      <cart-drawer-component{% if settings.auto_open_cart_drawer %} auto-open{% endif %}>
+        <div
+          class="cart-drawer__inner sdw{% if cart.empty? %} cart-drawer--empty{% endif %}"
+          data-hydration-key="cart-drawer-inner"
+        >
+          <div class="sdw-head">
+            <h2 class="sdw-title" id="cart-drawer-heading">Cart <sup>({{ cart.item_count }})</sup></h2>
+            <button type="button" class="sdw-x" data-somna-close aria-label="Close cart"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+          </div>
+
+          {%- if cart.empty? -%}
+            <div class="sdw-empty">
+              <p>{{ 'content.your_cart_is_empty' | t | default: 'Your cart is empty' }}</p>
+              <button type="button" class="sdw-continue" data-somna-close>Continue shopping</button>
+            </div>
+          {%- else -%}
+          <div class="sdw-scroll">
+
+            <div class="sdw-ship" data-cart-drawer-shipping data-threshold="{{ free_shipping_threshold_cents }}">
+              <div class="sdw-ship-pill"><span data-cart-drawer-shipping-text>You unlocked free shipping!</span></div>
+              <div class="sdw-ship-track">
+                <i class="sdw-ship-fill" data-cart-drawer-shipping-fill style="width:100%"></i>
+                <span class="sdw-ship-truck"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M3 5h11v11H3zM14 8h4l3 3v5h-7zM7 19a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"/></svg></span>
+              </div>
+            </div>
+
+            <div class="sdw-items">
+              {%- for item in cart.items -%}
+                {%- liquid
+                  assign is_gift = false
+                  if item.variant_id == 52294644826343
+                    assign is_gift = true
+                  endif
+                  assign unit_basis = item.variant.price
+                  if is_gift
+                    assign unit_basis = item.variant.compare_at_price | default: 2695
+                  endif
+                  assign basis = unit_basis | times: item.quantity
+                  assign savings = basis | minus: item.final_line_price
+                  if savings < 0
+                    assign savings = 0
+                  endif
+                -%}
+                <div class="sdw-item" data-line-key="{{ item.key }}">
+                  <div class="sdw-im">{% if item.image %}<img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.product.title | escape }}" loading="lazy">{% endif %}</div>
+                  <div class="sdw-body">
+                    <div class="sdw-row1">
+                      <h3 class="sdw-name">{{ item.product.title }}</h3>
+                      {%- unless is_gift -%}<button type="button" class="sdw-trash" data-sq-remove data-key="{{ item.key }}" aria-label="Remove {{ item.product.title | escape }}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2m3 0l-.8 12.2A2 2 0 0115.2 21H8.8a2 2 0 01-2-1.8L6 7m4 4v6m4-6v6"/></svg></button>{%- endunless -%}
+                    </div>
+                    {%- if item.selling_plan_allocation -%}
+                      {%- assign plan_short = item.selling_plan_allocation.selling_plan.name | split: ' — ' | first | downcase -%}
+                      <div class="sdw-planline">Delivered {{ plan_short }}</div>
+                    {%- endif -%}
+                    <div class="sdw-price"><b>{{ item.final_line_price | money }}</b>{% if basis > item.final_line_price %}<s>{{ basis | money }}</s>{% endif %}</div>
+                    <div class="sdw-save">{{ savings | money }} savings</div>
+                    {%- unless is_gift -%}
+                    <div class="sdw-qty">
+                      <button type="button" class="sdw-qbtn" data-sq-dec data-key="{{ item.key }}" data-qty="{{ item.quantity }}" aria-label="Decrease quantity">−</button>
+                      <span class="sdw-qnum">{{ item.quantity }}</span>
+                      <button type="button" class="sdw-qbtn" data-sq-inc data-key="{{ item.key }}" data-qty="{{ item.quantity }}" aria-label="Increase quantity">+</button>
+                    </div>
+                    {%- endunless -%}
+                    {%- if item.selling_plan_allocation and item.variant.selling_plan_allocations.size > 0 -%}
+                    <div class="sdw-freq">
+                      <select data-cart-line-plan="{{ forloop.index }}" data-line-qty="{{ item.quantity }}" aria-label="Delivery frequency">
+                        {%- for alloc in item.variant.selling_plan_allocations -%}
+                          {%- assign is_current = false -%}
+                          {%- if alloc.selling_plan.id == item.selling_plan_allocation.selling_plan.id -%}{%- assign is_current = true -%}{%- endif -%}
+                          {%- if alloc.price < item.variant.price or is_current -%}
+                            {%- assign an = alloc.selling_plan.name | split: ' — ' | first | downcase -%}
+                            <option value="{{ alloc.selling_plan.id }}"{% if is_current %} selected{% endif %}>Delivered {{ an }}</option>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </select>
+                      <span class="sdw-freq-car"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                    </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+
+            {%- liquid
+              assign cart_pids = ''
+              for item in cart.items
+                assign cart_pids = cart_pids | append: item.product_id | append: ','
+              endfor
+              assign fallback_1 = all_products['dreamx-silent-alarm-band']
+              assign fallback_2 = all_products['dreamx-sleep-mouth-tape']
+              assign ups = ''
+            -%}
+            {%- capture upsell_cards -%}
+              {%- for i in (1..4) -%}
+                {%- liquid
+                  case i
+                    when 1
+                      assign up = upsell_product_1
+                    when 2
+                      assign up = upsell_product_2
+                    when 3
+                      assign up = upsell_product_3
+                    when 4
+                      assign up = upsell_product
+                  endcase
+                  unless up
+                    continue
+                  endunless
+                -%}
+                {%- assign pid_s = up.id | append: ',' -%}
+                {%- if cart_pids contains pid_s or ups contains pid_s -%}{%- continue -%}{%- endif -%}
+                {%- assign ups = ups | append: pid_s -%}
+                <div class="sdw-upcard">
+                  <div class="sdw-upim">{% if up.featured_image %}<img src="{{ up.featured_image | image_url: width: 200 }}" alt="{{ up.title | escape }}" loading="lazy">{% endif %}</div>
+                  <div class="sdw-upbody">
+                    <div class="sdw-upname">{{ up.title | remove: 'Somna ' }}</div>
+                    <div class="sdw-upprice">{{ up.price | money }}</div>
+                    <button type="button" class="sdw-upadd" data-somna-upsell-add="{{ up.first_available_variant.id | default: up.variants.first.id }}">Add +</button>
+                  </div>
+                </div>
+              {%- endfor -%}
+              {%- for fb in (1..2) -%}
+                {%- liquid
+                  if fb == 1
+                    assign up = fallback_1
+                  else
+                    assign up = fallback_2
+                  endif
+                  unless up
+                    continue
+                  endunless
+                -%}
+                {%- assign pid_s = up.id | append: ',' -%}
+                {%- if cart_pids contains pid_s or ups contains pid_s -%}{%- continue -%}{%- endif -%}
+                {%- assign ups = ups | append: pid_s -%}
+                <div class="sdw-upcard">
+                  <div class="sdw-upim">{% if up.featured_image %}<img src="{{ up.featured_image | image_url: width: 200 }}" alt="{{ up.title | escape }}" loading="lazy">{% endif %}</div>
+                  <div class="sdw-upbody">
+                    <div class="sdw-upname">{{ up.title | remove: 'Somna ' }}</div>
+                    <div class="sdw-upprice">{{ up.price | money }}</div>
+                    <button type="button" class="sdw-upadd" data-somna-upsell-add="{{ up.first_available_variant.id | default: up.variants.first.id }}">Add +</button>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- assign upsell_stripped = upsell_cards | strip -%}
+            {%- if upsell_stripped != blank -%}
+            <div class="sdw-upsell">
+              <div class="sdw-up-t">Customers Also Bought:</div>
+              <div class="sdw-up-row">{{ upsell_cards }}</div>
+            </div>
+            {%- endif -%}
+
+            <div class="sdw-sum">
+              {%- liquid
+                assign tot_basis = 0
+                for item in cart.items
+                  assign ub2 = item.variant.price
+                  if item.variant_id == 52294644826343
+                    assign ub2 = item.variant.compare_at_price | default: 2695
+                  endif
+                  assign b2 = ub2 | times: item.quantity
+                  assign tot_basis = tot_basis | plus: b2
+                endfor
+                assign tot_disc = tot_basis | minus: cart.total_price
+                if tot_disc < 0
+                  assign tot_disc = 0
+                endif
+              -%}
+              {%- if tot_disc > 0 -%}
+              <div class="sdw-sumrow"><span>Discounts</span><b class="sdw-disc">- {{ tot_disc | money }} {{ cart.currency.iso_code }}</b></div>
+              {%- endif -%}
+              <div class="sdw-sumrow sdw-total"><span>Total</span><b>{{ cart.total_price | money }} {{ cart.currency.iso_code }}</b></div>
+              <form action="{{ routes.cart_url }}" method="post">
+                <button type="submit" name="checkout" class="sdw-checkout">Checkout</button>
+              </form>
+              <div class="sdw-pay">{% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag }}{% endfor %}</div>
+              <div class="sdw-pills">
+                <span><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 5h11v11H3zM14 8h4l3 3v5h-7zM7 19a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"/></svg> Hassle-Free Returns</span>
+                <span><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M6 10V8a6 6 0 1112 0v2h1a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9a1 1 0 011-1h1zm2 0h8V8a4 4 0 10-8 0v2z"/></svg> Secure Checkout</span>
+              </div>
+            </div>
+
+          </div>
+          {%- endif -%}
+        </div>
+      </cart-drawer-component>
+    </dialog>
+  </theme-drawer>
+
+  {% if render_wrapper %}
+    </div>
+  {% endif %}
+{%- endif -%}
+
+{% stylesheet %}
+  cart-drawer-component { display: contents; }
+  .sdw { --sdw-acc: #5b79f3; --sdw-ink: #111129; --sdw-grey: #f2f2f5; display: flex; flex-direction: column; height: 100%; overflow: hidden; background: #fff; font-family: var(--font-body--family, inherit); }
+  .sdw-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 10px; }
+  .sdw-title { font-size: 26px; font-weight: 800; margin: 0; color: var(--sdw-ink); letter-spacing: -0.01em; }
+  .sdw-title sup { font-size: 13px; font-weight: 700; top: -0.7em; position: relative; margin-left: 2px; }
+  .sdw-x { background: none; border: none; cursor: pointer; color: var(--sdw-ink); padding: 6px; line-height: 0; }
+  .sdw-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; flex: 1; padding: 30px; text-align: center; font-size: 16px; }
+  .sdw-continue { background: var(--sdw-ink); color: #fff; border: none; border-radius: 12px; padding: 14px 26px; font-weight: 700; font-size: 15px; cursor: pointer; }
+  .sdw-scroll { flex: 1; overflow-y: auto; padding: 0 20px 20px; display: flex; flex-direction: column; }
+  .sdw-ship-pill { background: var(--sdw-grey); border-radius: 12px; padding: 14px 16px; font-size: 15px; font-weight: 500; color: var(--sdw-ink); }
+  .sdw-ship-track { position: relative; height: 4px; border-radius: 4px; background: #ececf1; margin: 20px 0 26px; }
+  .sdw-ship-fill { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--sdw-acc); display: block; }
+  .sdw-ship-truck { position: absolute; right: -2px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 1.5px solid var(--sdw-ink); color: var(--sdw-ink); display: flex; align-items: center; justify-content: center; }
+  .sdw-item { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid #ededf1; }
+  .sdw-im { width: 96px; height: 96px; border-radius: 14px; background: var(--sdw-grey); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .sdw-im img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+  .sdw-body { min-width: 0; }
+  .sdw-row1 { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .sdw-name { font-size: 18px; font-weight: 800; margin: 0 0 3px; color: var(--sdw-ink); letter-spacing: -0.01em; }
+  .sdw-trash { background: none; border: none; color: #555; cursor: pointer; padding: 2px; line-height: 0; flex: none; }
+  .sdw-planline { font-size: 14.5px; color: #333; margin-bottom: 5px; }
+  .sdw-price b { font-size: 17px; font-weight: 800; color: var(--sdw-ink); }
+  .sdw-price s { color: #9a9aa5; font-size: 14px; margin-left: 7px; font-weight: 500; }
+  .sdw-save { color: var(--sdw-acc); font-weight: 700; font-size: 14.5px; margin: 3px 0 10px; }
+  .sdw-qty { display: inline-flex; align-items: center; gap: 12px; border: 1px solid #e5e5ea; border-radius: 999px; padding: 4px 6px; margin-bottom: 10px; }
+  .sdw-qbtn { width: 26px; height: 26px; border-radius: 50%; background: var(--sdw-ink); color: #fff; border: none; font-size: 15px; font-weight: 700; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .sdw-qnum { min-width: 14px; text-align: center; font-weight: 700; font-size: 15px; }
+  .sdw-freq { position: relative; margin-top: 2px; }
+  .sdw-freq select { width: 100%; appearance: none; -webkit-appearance: none; border: 1px solid #e0e0e6; border-radius: 999px; padding: 12px 40px 12px 16px; font-size: 15px; font-weight: 500; color: var(--sdw-ink); background: #fff; cursor: pointer; }
+  .sdw-freq-car { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--sdw-ink); line-height: 0; }
+  .sdw-upsell { margin-top: 26px; }
+  .sdw-up-t { font-size: 19px; font-weight: 800; color: var(--sdw-ink); margin-bottom: 12px; letter-spacing: -0.01em; }
+  .sdw-up-row { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .sdw-up-row::-webkit-scrollbar { display: none; }
+  .sdw-upcard { flex: 0 0 82%; max-width: 320px; display: grid; grid-template-columns: 96px 1fr; gap: 10px; align-items: center; background: var(--sdw-grey); border-radius: 16px; padding: 12px; }
+  .sdw-upim { width: 96px; height: 86px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .sdw-upim img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+  .sdw-upname { font-weight: 700; font-size: 15.5px; color: var(--sdw-ink); margin-bottom: 2px; }
+  .sdw-upprice { font-weight: 700; font-size: 15px; color: var(--sdw-ink); margin-bottom: 8px; }
+  .sdw-upadd { background: var(--sdw-acc); color: #fff; border: none; border-radius: 999px; padding: 8px 20px; font-weight: 700; font-size: 14px; cursor: pointer; }
+  .sdw-upadd.somna-atc-loading { opacity: 0.55; pointer-events: none; }
+  .sdw-sum { margin-top: 28px; }
+  .sdw-sumrow { display: flex; align-items: center; justify-content: space-between; font-size: 17px; font-weight: 600; color: var(--sdw-ink); margin-bottom: 8px; }
+  .sdw-disc { color: var(--sdw-acc); font-weight: 800; }
+  .sdw-total { font-size: 18px; }
+  .sdw-total b { font-weight: 800; }
+  .sdw-checkout { width: 100%; background: var(--sdw-ink); color: #fff; border: none; border-radius: 14px; padding: 18px; font-size: 17px; font-weight: 700; cursor: pointer; margin: 14px 0 16px; }
+  .sdw-checkout.somna-atc-loading { opacity: 0.7; pointer-events: none; }
+  .sdw-pay { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .sdw-pay svg { height: 26px; width: auto; border-radius: 4px; }
+  .sdw-pills { display: flex; align-items: center; justify-content: center; gap: 10px; padding-bottom: 8px; }
+  .sdw-pills span { display: inline-flex; align-items: center; gap: 7px; background: var(--sdw-grey); border-radius: 999px; padding: 9px 15px; font-size: 13px; font-weight: 600; color: var(--sdw-ink); }
+{% endstylesheet %}

@@ -1,0 +1,43 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="cda-section cda-kit-sec">
+  <div class="cda-wrap">
+    <div class="cda-sec-head"><h2 class="cda-h2">{{ section.settings.title }}</h2></div>
+    <div class="cda-kit">
+      {%- for block in section.blocks -%}
+        {%- assign p = all_products[block.settings.linked_product] -%}
+        {%- if p != blank -%}
+          <a class="cda-kit-card" href="{{ p.url }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}<div class="cda-ph"><img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ p.title | escape }}" width="600" height="600" loading="lazy"></div>
+            {%- elsif p.featured_image -%}<div class="cda-ph"><img src="{{ p.featured_image | image_url: width: 600 }}" alt="{{ p.title | escape }}" width="600" height="600" loading="lazy"></div>
+            {%- else -%}<div class="cda-ph" data-label="1:1"></div>{%- endif -%}
+            <div class="cda-kn">{{ p.title }}</div>
+            <div><span class="cda-kp">{{ p.price | money }}</span>{% if p.compare_at_price > p.price %}<span class="cda-kw">{{ p.compare_at_price | money }}</span>{% endif %}</div>
+          </a>
+        {%- else -%}
+          <a class="cda-kit-card" href="{{ block.settings.link | default: '/' }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}<div class="cda-ph"><img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.name | escape }}" width="600" height="600" loading="lazy"></div>{%- else -%}<div class="cda-ph" data-label="1:1"></div>{%- endif -%}
+            <div class="cda-kn">{{ block.settings.name }}</div>
+            <div><span class="cda-kp">{{ block.settings.price }}</span><span class="cda-kw">{{ block.settings.was }}</span></div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<style>#shopify-section-{{ section.id }} h2{color:var(--cda-ink);}</style>
+{% schema %}
+{
+  "name": "Clone — Sleep kit",
+  "settings": [ { "type": "text", "id": "title", "label": "Title", "default": "Complete your sleep kit" } ],
+  "blocks": [ { "type": "item", "name": "Kit item", "settings": [
+    { "type": "product", "id": "linked_product", "label": "Linked product (recommended)" },
+    { "type": "image_picker", "id": "image", "label": "Image override (1:1)" },
+    { "type": "text", "id": "name", "label": "Fallback name", "default": "Anti-Snore Nasal Strips" },
+    { "type": "text", "id": "price", "label": "Fallback price", "default": "$24" },
+    { "type": "text", "id": "was", "label": "Fallback compare price", "default": "$40" },
+    { "type": "url", "id": "link", "label": "Fallback link", "default": "/" }
+  ] } ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Clone — Sleep kit" }]
+}
+{% endschema %}

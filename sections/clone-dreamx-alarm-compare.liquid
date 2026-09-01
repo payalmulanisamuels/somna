@@ -1,0 +1,30 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="cda-section cda-compare-sec">
+  <div class="cda-wrap">
+    <div class="cda-sec-head"><span class="cda-kicker">{{ section.settings.kicker }}</span><h2 class="cda-h2">{{ section.settings.title }}</h2></div>
+    <table class="cda-cmp">
+      <thead><tr><th></th><th class="us">{{ section.settings.col_us }}</th><th>{{ section.settings.col_a }}</th><th>{{ section.settings.col_b }}</th></tr></thead>
+      <tbody>
+        {%- for block in section.blocks -%}
+          <tr {{ block.shopify_attributes }}><td>{{ block.settings.label }}</td><td class="us cda-yes">{{ block.settings.us }}</td><td class="cda-no">{{ block.settings.a }}</td><td class="cda-no">{{ block.settings.b }}</td></tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  </div>
+</section>
+<style>#shopify-section-{{ section.id }} h2{color:var(--cda-ink);}</style>
+{% schema %}
+{
+  "name": "Clone — Compare",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Why not just a phone?" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Physical vibration beats sound. Every time." },
+    { "type": "text", "id": "col_us", "label": "Column us", "default": "Somna" },
+    { "type": "text", "id": "col_a", "label": "Column A", "default": "Phone alarm" },
+    { "type": "text", "id": "col_b", "label": "Column B", "default": "Smartwatch" }
+  ],
+  "blocks": [ { "type": "row", "name": "Row", "settings": [ { "type": "text", "id": "label", "label": "Label", "default": "Wakes you silently" }, { "type": "text", "id": "us", "label": "Somna", "default": "✓" }, { "type": "text", "id": "a", "label": "Alt A", "default": "✕" }, { "type": "text", "id": "b", "label": "Alt B", "default": "✕" } ] } ],
+  "max_blocks": 10,
+  "presets": [{ "name": "Clone — Compare" }]
+}
+{% endschema %}

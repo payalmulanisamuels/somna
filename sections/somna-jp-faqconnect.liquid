@@ -1,0 +1,61 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="sjp-fc">
+      <div class="somna-sr">
+        <h2 class="sjp-fc-t">{{ section.settings.title_a | default: 'Frequently Asked' }} <em>{{ section.settings.title_em | default: 'Questions' }}</em></h2>
+        {%- if section.settings.sub != blank -%}<p class="sjp-fc-s">{{ section.settings.sub }}</p>{%- endif -%}
+        <div class="sjp-accs" style="border-top:1px solid var(--line)">
+          {%- for block in section.blocks -%}
+          <details class="sjp-acc" {{ block.shopify_attributes }}><summary>{{ block.settings.q }}</summary><div class="sjp-acc-b">{{ block.settings.a }}</div></details>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="sjp-fc-card somna-sr somna-zoomin">
+        {%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 900 }}" loading="lazy" alt="{{ section.settings.c_title | escape }}">{%- else -%}<div class="sjp-ph" style="position:absolute;inset:0">Insert support / founder photo</div>{%- endif -%}
+        <span class="sjp-fc-scrim"></span>
+        <div class="sjp-fc-cc">
+          <b>{{ section.settings.c_title | default: 'Stay Connected' }}</b>
+          <p>{{ section.settings.c_body | default: "Questions? We've got answers. Whether you need help with your order or just want to talk sleep, our team is here for you." }}</p>
+          <a class="sjp-cta" style="padding:12px 24px;font-size:.85rem" href="{{ section.settings.c_url | default: '#cda-buy' }}">{{ section.settings.c_cta | default: 'Try Somna Risk-Free' }} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.sjp-fc{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,52px);align-items:start}
+.sjp-fc-t{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.6rem,3.2vw,2.2rem);letter-spacing:-.01em;margin:0 0 8px;color:var(--ink)}
+.sjp-fc-t em{font-style:italic;color:var(--band)}
+.sjp-fc-s{font-size:.88rem;color:var(--mut);margin:0 0 20px}
+.sjp-fc-card{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(160deg,#EFECF8,#DCD5F2)}
+.sjp-fc-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sjp-fc-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(16,14,26,.82) 0%,rgba(16,14,26,.25) 45%,rgba(16,14,26,0) 70%)}
+.sjp-fc-cc{position:absolute;left:0;right:0;bottom:0;padding:22px;color:#fff;z-index:2}
+.sjp-fc-cc b{display:block;font-family:'Fraunces',serif;font-weight:600;font-size:1.35rem;margin-bottom:8px}
+.sjp-fc-cc p{margin:0 0 14px;font-size:.82rem;line-height:1.55;color:#EDEAF8}
+@media(max-width:860px){.sjp-fc{grid-template-columns:1fr}.sjp-fc-card{aspect-ratio:4/3}}
+</style>
+{% schema %}
+{
+  "name": "JP — FAQ + connect",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "Frequently Asked" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "Questions" },
+    { "type": "text", "id": "sub", "label": "Subtitle", "default": "Find answers to common questions about the product, shipping, returns, and more." },
+    { "type": "header", "content": "Right card" },
+    { "type": "image_picker", "id": "image", "label": "Card photo (4:5)" },
+    { "type": "text", "id": "c_title", "label": "Card title", "default": "Stay Connected" },
+    { "type": "textarea", "id": "c_body", "label": "Card body", "default": "Questions? We've got answers. Whether you need help with your order or just want to talk sleep, our team is here for you." },
+    { "type": "text", "id": "c_cta", "label": "Card CTA label", "default": "Try Somna Risk-Free" },
+    { "type": "url", "id": "c_url", "label": "Card CTA link" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "faq", "name": "FAQ row", "settings": [
+    { "type": "text", "id": "q", "label": "Question", "default": "Can I wear it every night?" },
+    { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>Yes — the adhesive is hypoallergenic and designed for nightly use. Give skin a break if it ever feels irritated.</p>" }
+  ] } ],
+  "max_blocks": 10,
+  "presets": [{ "name": "JP — FAQ + connect", "blocks": [ {"type":"faq"},{"type":"faq"},{"type":"faq"},{"type":"faq"},{"type":"faq"},{"type":"faq"} ] }]
+}
+{% endschema %}

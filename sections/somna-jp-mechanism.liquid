@@ -1,0 +1,65 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#F3F1FB' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr">
+      <h2 class="sjp-h2">{{ section.settings.title_a | default: 'The missing piece:' }} <em>{{ section.settings.title_em | default: 'open airways' }}</em></h2>
+      {%- if section.settings.body != blank -%}<p class="sjp-sub">{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+    <div class="sjp-mech-grid somna-sr-stag">
+      {%- for block in section.blocks -%}
+      <div class="sjp-mech-card" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+        <div class="sjp-mech-img somna-zoomin"><img src="{{ block.settings.image | image_url: width: 900 }}" loading="lazy" alt="{{ block.settings.caption | escape }}"></div>
+        {%- elsif block.settings.diagram == 'blocked' -%}
+        <div class="sjp-diag">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="sjp-tube" d="M20 90 C110 90 140 128 200 132 C260 136 300 92 380 92 L380 208 C300 208 260 168 200 166 C140 164 110 210 20 210 Z"/>
+            <path class="sjp-flow-bad" d="M40 150 C100 148 140 150 182 150"/>
+            <path class="sjp-flow-bad" d="M196 150 C210 144 216 156 228 150"/>
+            <path class="sjp-flow-bad" d="M240 148 C252 158 258 142 268 152"/>
+            <text class="sjp-diag-lab" x="200" y="48" text-anchor="middle">Narrow passage</text>
+            <text class="sjp-diag-lab2" x="200" y="270" text-anchor="middle">Airflow squeezes → tissue vibrates → snoring</text>
+          </svg>
+        </div>
+        {%- elsif block.settings.diagram == 'open' -%}
+        <div class="sjp-diag">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="sjp-tube" d="M20 92 C120 90 280 90 380 92 L380 208 C280 210 120 210 20 208 Z"/>
+            <rect class="sjp-strip-band" x="150" y="64" width="100" height="18" rx="9"/>
+            <path class="sjp-lift" d="M140 100 L140 78 M133 85 L140 78 L147 85"/>
+            <path class="sjp-lift" d="M260 100 L260 78 M253 85 L260 78 L267 85"/>
+            <path class="sjp-flow-good" d="M40 150 C150 146 250 154 348 150"/>
+            <path class="sjp-flow-good" d="M334 142 L350 150 L334 158"/>
+            <text class="sjp-diag-lab" x="200" y="48" text-anchor="middle">Lifted by the strip</text>
+            <text class="sjp-diag-lab2" x="200" y="270" text-anchor="middle">Passage widens → air moves quietly</text>
+          </svg>
+        </div>
+        {%- else -%}
+        <div class="sjp-mech-img"><div class="sjp-ph">Insert illustration or pick a diagram</div></div>
+        {%- endif -%}
+        <div class="sjp-mech-cap">{{ block.settings.caption }}</div>
+      </div>
+      {%- endfor -%}
+    </div>
+    <div class="sjp-ctawrap somna-sr"><a class="sjp-cta" href="#somna-jp-buy">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a></div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — Mechanism",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "The missing piece:" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "open airways" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Most snoring starts with narrowed nasal passages. When airflow squeezes through a tight airway, tissue vibrates — that's the noise. A gentle external lift widens the passage so air moves quietly again." },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#F3F1FB" }
+  ],
+  "blocks": [ { "type": "img", "name": "Illustration", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image (4:3) — overrides diagram" },
+    { "type": "select", "id": "diagram", "label": "Built-in diagram", "options": [ { "value": "none", "label": "None" }, { "value": "blocked", "label": "Blocked airway" }, { "value": "open", "label": "Open airway + strip" } ], "default": "none" },
+    { "type": "text", "id": "caption", "label": "Caption", "default": "Blocked airway → noisy nights" }
+  ] } ],
+  "max_blocks": 4,
+  "presets": [{ "name": "JP — Mechanism", "blocks": [ {"type":"img"},{"type":"img"} ] }]
+}
+{% endschema %}

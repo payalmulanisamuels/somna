@@ -1,0 +1,44 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr">
+      <h2 class="sjp-h2"><em>{{ section.settings.title_em | default: 'Frequently' }}</em> {{ section.settings.title_a | default: 'asked questions' }}</h2>
+    </div>
+    <div class="sjp-faq-grid">
+      <div class="sjp-accs somna-sr" style="border-top:1px solid var(--line)">
+        {%- for block in section.blocks -%}
+        <details class="sjp-acc" {{ block.shopify_attributes }}><summary>{{ block.settings.q }}</summary><div class="sjp-acc-b">{{ block.settings.a }}</div></details>
+        {%- endfor -%}
+      </div>
+      <div class="sjp-founder somna-sr">
+        <div class="sjp-founder-img">{%- if section.settings.f_image != blank -%}<img src="{{ section.settings.f_image | image_url: width: 800 }}" loading="lazy" alt="{{ section.settings.f_title | escape }}">{%- else -%}<div class="sjp-ph" style="background:transparent;color:#EFE9FF">Insert founder / support photo</div>{%- endif -%}</div>
+        <div class="sjp-founder-b">
+          <h3>{{ section.settings.f_title | default: 'Still on the fence?' }}</h3>
+          <p>{{ section.settings.f_body | default: "We're real people who obsess over sleep. Message us anything — sizing, skin sensitivity, snoring wars — and we'll answer within a day." }}</p>
+          <a class="sjp-cta sjp-cta--white" href="{{ section.settings.f_link | default: '/pages/contact' }}">{{ section.settings.f_cta | default: 'Talk to us' }} →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — FAQ + founder",
+  "settings": [
+    { "type": "text", "id": "title_em", "label": "Italic word", "default": "Frequently" },
+    { "type": "text", "id": "title_a", "label": "Rest of title", "default": "asked questions" },
+    { "type": "image_picker", "id": "f_image", "label": "Founder / support photo (4:3)" },
+    { "type": "text", "id": "f_title", "label": "Card title", "default": "Still on the fence?" },
+    { "type": "textarea", "id": "f_body", "label": "Card body", "default": "We're real people who obsess over sleep. Message us anything — sizing, skin sensitivity, snoring wars — and we'll answer within a day." },
+    { "type": "text", "id": "f_cta", "label": "Card CTA", "default": "Talk to us" },
+    { "type": "url", "id": "f_link", "label": "Card link" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "faq", "name": "FAQ row", "settings": [
+    { "type": "text", "id": "q", "label": "Question", "default": "Will it stay on all night?" },
+    { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>Yes — the adhesive is built to hold through 8+ hours of sleep or sweat-heavy training, then peel off gently in the morning.</p>" }
+  ] } ],
+  "max_blocks": 12,
+  "presets": [{ "name": "JP — FAQ + founder", "blocks": [ {"type":"faq"},{"type":"faq"},{"type":"faq"},{"type":"faq"},{"type":"faq"} ] }]
+}
+{% endschema %}

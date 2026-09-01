@@ -1,0 +1,19 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="cda-section cda-vprops-sec" style="padding-top:0">
+  <div class="cda-wrap">
+    <div class="cda-vprops">
+      {%- for block in section.blocks -%}
+        <div class="cda-vprop" {{ block.shopify_attributes }}><div class="cda-vt">{{ block.settings.title }}</div><div class="cda-vs">{{ block.settings.sub }}</div></div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Clone — Value props",
+  "settings": [],
+  "blocks": [ { "type": "vp", "name": "Value prop", "settings": [ { "type": "text", "id": "title", "label": "Title", "default": "Better sleep quality" }, { "type": "text", "id": "sub", "label": "Subtitle", "default": "Wake calm, not startled" } ] } ],
+  "max_blocks": 8,
+  "presets": [{ "name": "Clone — Value props" }]
+}
+{% endschema %}

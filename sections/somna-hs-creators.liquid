@@ -1,0 +1,66 @@
+{{ 'somna-hs-styles.css' | asset_url | stylesheet_tag }}
+<section class="shs" style="background:{{ section.settings.bg | default: '#ffffff' }};padding:clamp(22px,4vw,42px) 0;color:var(--ink)">
+  <div class="shs-wrap">
+    {%- if section.settings.title != blank -%}
+    <div class="somna-sr" style="text-align:center;margin-bottom:18px">
+      <h2 class="shs-h2" style="font-size:clamp(1.15rem,2.6vw,1.5rem)">{{ section.settings.title }}</h2>
+    </div>
+    {%- endif -%}
+    <div class="shs-crs" data-shs-crs data-autoplay="{{ section.settings.autoplay | default: 3800 }}">
+      <button class="shs-crs-btn shs-crs-prev" type="button" aria-label="Previous" data-crs-prev><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#12121a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="shs-crs-track somna-sr-stag" data-crs-track>
+        {%- for block in section.blocks -%}
+        <div class="shs-crs-card" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 900 }}" loading="lazy" alt="{{ block.settings.handle | escape }}">{%- else -%}<div class="shs-crs-ph">Add creator photo (4:5)<br>Theme editor → this block</div>{%- endif -%}
+          {%- if block.settings.handle != blank -%}
+          <span class="shs-crs-handle"><svg class="shs-vf" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#4da6ff"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>{{ block.settings.handle }}</span>
+          {%- endif -%}
+        </div>
+        {%- endfor -%}
+      </div>
+      <button class="shs-crs-btn shs-crs-next" type="button" aria-label="Next" data-crs-next><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="#12121a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-shs-crs]').forEach(function(c){
+    if(c.__init)return;c.__init=1;
+    var t=c.querySelector('[data-crs-track]');if(!t)return;
+    function step(){var card=t.querySelector('.shs-crs-card');return card?card.getBoundingClientRect().width+16:300;}
+    function next(){if(t.scrollLeft+t.clientWidth>=t.scrollWidth-12){t.scrollTo({left:0,behavior:'smooth'});}else{t.scrollBy({left:step(),behavior:'smooth'});}}
+    function prev(){t.scrollBy({left:-step(),behavior:'smooth'});}
+    var p=c.querySelector('[data-crs-prev]'),n=c.querySelector('[data-crs-next]');
+    if(p)p.addEventListener('click',prev);
+    if(n)n.addEventListener('click',next);
+    /* histrips-style autoplay: advances while visible, pauses on touch/hover */
+    var delay=parseInt(c.getAttribute('data-autoplay')||'3800',10);
+    if(reduced||!delay||!window.IntersectionObserver)return;
+    var iv=null,vis=false;
+    function start(){if(!iv)iv=setInterval(next,delay);}
+    function stop(){if(iv){clearInterval(iv);iv=null;}}
+    new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis){start();}else{stop();}},{threshold:.35}).observe(c);
+    c.addEventListener('pointerenter',stop);
+    c.addEventListener('pointerleave',function(){if(vis)start();});
+    t.addEventListener('touchstart',stop,{passive:true});
+    t.addEventListener('touchend',function(){if(vis)start();},{passive:true});
+  });
+})();
+</script>
+{% schema %}
+{
+  "name": "HS — Creator strip",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title (optional)", "default": "Trusted by athletes & creators" },
+    { "type": "range", "id": "autoplay", "min": 0, "max": 8000, "step": 200, "unit": "ms", "label": "Autoplay interval (0 = off)", "default": 3800 },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#ffffff" }
+  ],
+  "blocks": [ { "type": "slide", "name": "Creator card", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo (4:5)" },
+    { "type": "text", "id": "handle", "label": "Handle (@...)", "default": "@yourcreator" }
+  ] } ],
+  "max_blocks": 12,
+  "presets": [{ "name": "HS — Creator strip", "blocks": [ {"type":"slide"},{"type":"slide"},{"type":"slide"} ] }]
+}
+{% endschema %}

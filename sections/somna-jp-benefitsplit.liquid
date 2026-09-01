@@ -1,0 +1,69 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp">
+  {%- if section.settings.tile != blank -%}
+  <div class="sjp-wrap" style="padding-top:clamp(30px,5vw,60px);padding-bottom:clamp(30px,5vw,60px)">
+    <div class="sjp-tilefull2 somna-sr"><img src="{{ section.settings.tile | image_url: width: 2000 }}" loading="lazy" alt="{{ section.settings.title_em | escape }}"></div>
+  </div>
+  {%- else -%}
+  <div class="sjp-bs">
+    <div class="sjp-bs-band" style="background:linear-gradient(150deg,{{ section.settings.band | default: '#6D49E0' }},{{ section.settings.band2 | default: '#8B6FF0' }})">
+      <div class="somna-sr">
+        <h2 class="sjp-bs-t">{{ section.settings.title_a | default: 'Feel like your' }} <em>{{ section.settings.title_em | default: 'best-rested self' }}</em><br>{{ section.settings.title_b | default: 'every single night!' }}</h2>
+        {%- if section.settings.body != blank -%}<p class="sjp-bs-p">{{ section.settings.body }}</p>{%- endif -%}
+      </div>
+      <div class="sjp-bs-grid somna-sr-stag">
+        {%- for block in section.blocks -%}
+        <div class="sjp-bs-item" {{ block.shopify_attributes }}>
+          <span class="sjp-bs-ic">{%- if block.settings.icon != blank -%}<img src="{{ block.settings.icon | image_url: width: 90 }}" loading="lazy" alt="">{%- else -%}✓{%- endif -%}</span>
+          <b>{{ block.settings.title }}</b>
+          <p>{{ block.settings.body }}</p>
+        </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="sjp-bs-img somna-zoomin">
+      {%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1400 }}" loading="lazy" alt="{{ section.settings.title_b | escape }}">{%- else -%}<div class="sjp-ph" style="background:#EFECF8">Insert image (product scene)</div>{%- endif -%}
+    </div>
+  </div>
+  {%- endif -%}
+</section>
+<style>
+.sjp-tilefull2{border-radius:22px;overflow:hidden;box-shadow:0 24px 50px -28px rgba(22,20,34,.3)}
+.sjp-tilefull2 img{width:100%;height:auto;display:block}
+.sjp-bs{display:grid;grid-template-columns:1fr 1.05fr;align-items:stretch}
+.sjp-bs-band{color:#fff;padding:clamp(36px,5.5vw,80px) clamp(24px,5vw,80px)}
+.sjp-bs-t{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.6rem,3.4vw,2.3rem);letter-spacing:-.01em;line-height:1.16;margin:0 0 14px}
+.sjp-bs-t em{font-style:italic;color:#EFE9FF}
+.sjp-bs-p{font-size:.94rem;line-height:1.6;color:#EFE9FF;max-width:560px;margin:0 0 30px}
+.sjp-bs-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 26px}
+.sjp-bs-ic{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.16);margin-bottom:12px;font-weight:800}
+.sjp-bs-ic img{width:26px;height:26px;object-fit:contain;display:block;filter:brightness(0) invert(1)}
+.sjp-bs-item b{display:block;font-size:1rem;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+.sjp-bs-item p{margin:0;font-size:.84rem;line-height:1.55;color:#EFE9FF}
+.sjp-bs-img{position:relative;min-height:420px}
+.sjp-bs-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sjp-bs-img .sjp-ph{position:absolute;inset:0}
+@media(max-width:860px){.sjp-bs{grid-template-columns:1fr}.sjp-bs-img{min-height:280px;aspect-ratio:4/3}.sjp-bs-band{padding:32px 20px 40px}.sjp-bs-grid{grid-template-columns:1fr;gap:22px}}
+</style>
+{% schema %}
+{
+  "name": "JP — Benefit fullsplit",
+  "settings": [
+    { "type": "image_picker", "id": "tile", "label": "FULL TILE image (replaces whole section)" },
+    { "type": "text", "id": "title_a", "label": "Title part 1", "default": "Feel like your" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "best-rested self" },
+    { "type": "text", "id": "title_b", "label": "Title line 2", "default": "every single night!" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Snoring, dry mouth, and groggy mornings all start with how you breathe at night. Somna supports easy nasal breathing so you sleep deeper and wake up feeling more like yourself." },
+    { "type": "image_picker", "id": "image", "label": "Right image (full-bleed)" },
+    { "type": "color", "id": "band", "label": "Band color 1", "default": "#6D49E0" },
+    { "type": "color", "id": "band2", "label": "Band color 2", "default": "#8B6FF0" }
+  ],
+  "blocks": [ { "type": "item", "name": "Benefit item", "settings": [
+    { "type": "image_picker", "id": "icon", "label": "Icon (turns white automatically)" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Built for real sleep" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Opens the nasal passage so you breathe quietly all night." }
+  ] } ],
+  "max_blocks": 6,
+  "presets": [{ "name": "JP — Benefit fullsplit", "blocks": [ {"type":"item"},{"type":"item"},{"type":"item"},{"type":"item"} ] }]
+}
+{% endschema %}

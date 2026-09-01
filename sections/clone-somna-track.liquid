@@ -1,0 +1,125 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign acct = section.settings.account_url | default: '/account' -%}
+<section class="trk">
+  <div class="trk-hero">
+    <div class="trk-wrap">
+      <h1 class="trk-h1">{{ section.settings.head | default: 'Track Your Sleep Journey' }}</h1>
+      <p class="trk-sub">{{ section.settings.sub | default: 'Enter your details below to see exactly when better sleep will arrive at your door.' }}</p>
+    </div>
+  </div>
+  <div class="trk-wrap trk-formwrap">
+    <div class="trk-card">
+      <div class="trk-tabs" role="tablist">
+        <button class="trk-tab sel" data-trk-tab="o" role="tab">Order number + email</button>
+        <button class="trk-tab" data-trk-tab="t" role="tab">Tracking number</button>
+      </div>
+      <form class="trk-pane sel" data-trk-pane="o" onsubmit="return false">
+        <label class="trk-lab">Order number</label>
+        <input type="text" class="trk-in" placeholder="#SOM-12345">
+        <label class="trk-lab">Email address used for purchase</label>
+        <input type="email" class="trk-in" placeholder="you@email.com">
+        <a class="trk-btn" href="{{ acct }}">Track my order</a>
+      </form>
+      <form class="trk-pane" data-trk-pane="t" onsubmit="return false">
+        <label class="trk-lab">Carrier tracking number</label>
+        <input type="text" class="trk-in" placeholder="e.g. 1Z999AA10123456784">
+        <a class="trk-btn" href="{{ acct }}">Track my order</a>
+      </form>
+      <p class="trk-note">{{ section.settings.form_note | default: 'Your live tracking link is in your account and your shipping confirmation email. Log in to view real-time status for every order.' }}</p>
+    </div>
+  </div>
+
+  <div class="trk-wrap trk-states">
+    <h2 class="trk-h2">{{ section.settings.states_title | default: 'What each status means' }}</h2>
+    <div class="trk-state-grid">
+      <div class="trk-state">
+        <div class="trk-bar"><span style="width:25%"></span></div>
+        <div class="trk-st-name">Order confirmed &amp; processing</div>
+        <p class="trk-st-copy">Your order is being packed at our fulfillment center. You'll receive a shipping confirmation email with tracking details once it ships (typically 1-2 business days).</p>
+      </div>
+      <div class="trk-state">
+        <div class="trk-bar"><span style="width:65%"></span></div>
+        <div class="trk-st-name">In transit</div>
+        <p class="trk-st-copy">Your order is on the way. Your account and shipping email show the carrier, latest location updates, and the expected delivery date.</p>
+      </div>
+      <div class="trk-state">
+        <div class="trk-bar trk-bar-done"><span style="width:100%"></span></div>
+        <div class="trk-st-name">Delivered ✓</div>
+        <p class="trk-st-copy">Your order has arrived. Time for better sleep.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="trk-wrap trk-faq-wrap">
+    <h2 class="trk-h2">{{ section.settings.faq_title | default: 'Shipping FAQ' }}</h2>
+    <div class="cda-acc trk-acc">
+      <details><summary>When will my order ship?<span class="cda-ic">+</span></summary><div class="cda-ans">Orders are processed within 1-2 business days. You'll receive an email the moment it leaves our warehouse.</div></details>
+      <details><summary>My tracking hasn't updated.<span class="cda-ic">+</span></summary><div class="cda-ans">It can take 24-48 hours for carriers to update tracking links after scanning. If it's been more than 3 business days without an update, contact us.</div></details>
+      <details><summary>What if my package is missing?<span class="cda-ic">+</span></summary><div class="cda-ans">Sometimes carriers mark packages as "Delivered" up to 24 hours before actual delivery. If you still can't find it after 24 hours, email hello@somnasleep.com.</div></details>
+    </div>
+  </div>
+
+  <div class="trk-wrap"><p class="trk-legal">Shipping times are estimates and not guaranteed. Somna is not liable for carrier delays or packages stolen after delivery confirmation. See our full <a href="/pages/shipping-policy">Shipping Policy</a> for details.</p></div>
+</section>
+<style>
+.trk{font-family:var(--cda-font);color:var(--cda-ink)}
+.trk-wrap{max-width:760px;margin:0 auto;padding:0 clamp(18px,4vw,24px)}
+.trk-hero{background:#1a1a2e;color:#fff;padding:clamp(40px,7vw,72px) 0;text-align:center}
+.trk-h1{font-size:clamp(2rem,5vw,2.6rem);font-weight:800;letter-spacing:-.025em;margin:0 0 12px;line-height:1.06}
+.trk-sub{color:#c7c9e0;font-size:clamp(1rem,1.6vw,1.12rem);margin:0 auto;max-width:48ch;line-height:1.5}
+.trk-formwrap{margin-top:-40px;position:relative;z-index:2}
+.trk-card{background:#fff;border:1px solid var(--cda-line);border-radius:16px;box-shadow:0 10px 40px rgba(26,26,46,.12);padding:clamp(20px,4vw,30px)}
+.trk-tabs{display:flex;gap:6px;background:var(--cda-soft);border-radius:999px;padding:5px;margin-bottom:22px}
+.trk-tab{flex:1;border:none;background:none;border-radius:999px;padding:11px 10px;font:inherit;font-weight:700;font-size:.9rem;color:var(--cda-muted);cursor:pointer;min-height:44px}
+.trk-tab.sel{background:#fff;color:var(--cda-accent-d);box-shadow:0 2px 8px rgba(26,26,46,.1)}
+.trk-pane{display:none}
+.trk-pane.sel{display:block}
+.trk-lab{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--cda-muted);margin:0 0 7px}
+.trk-in{width:100%;border:1.5px solid var(--cda-line);border-radius:12px;padding:14px 16px;font:inherit;font-size:1rem;margin-bottom:16px;min-height:48px}
+.trk-in:focus{outline:none;border-color:var(--cda-accent)}
+.trk-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;background:var(--cda-accent);color:#fff;border:none;border-radius:999px;font-weight:700;font-size:1rem;text-decoration:none;transition:filter .15s}
+.trk-btn:hover{filter:brightness(.93)}
+.trk-note{font-size:.82rem;color:var(--cda-muted);margin:14px 0 0;text-align:center;line-height:1.5}
+.trk-states{padding-top:clamp(40px,6vw,64px)}
+.trk-h2{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:800;letter-spacing:-.02em;margin:0 0 22px;text-align:center}
+.trk-state-grid{display:grid;gap:16px}
+.trk-state{border:1px solid var(--cda-line);border-radius:14px;padding:20px}
+.trk-bar{height:8px;border-radius:999px;background:var(--cda-line);overflow:hidden;margin-bottom:14px}
+.trk-bar span{display:block;height:100%;background:var(--cda-accent);border-radius:999px}
+.trk-bar-done span{background:#1b8a5a}
+.trk-st-name{font-weight:800;font-size:1.02rem;margin-bottom:6px}
+.trk-st-copy{color:var(--cda-muted);font-size:.94rem;line-height:1.55;margin:0}
+.trk-faq-wrap{padding-top:clamp(36px,5vw,56px)}
+.trk-acc{border-top:1px solid var(--cda-line)}
+.trk-legal{color:var(--cda-muted);font-size:.76rem;line-height:1.55;text-align:center;margin:clamp(30px,5vw,48px) auto;max-width:70ch}
+.trk-legal a{color:var(--cda-accent-d);font-weight:700}
+@media(max-width:560px){
+  .trk-formwrap{margin-top:-28px}
+  .trk-tab{font-size:.82rem;padding:11px 6px}
+}
+</style>
+<script>
+(function(){
+  var root=document.currentScript.closest('section')||document;
+  var tabs=root.querySelectorAll('[data-trk-tab]'),panes=root.querySelectorAll('[data-trk-pane]');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    var k=t.getAttribute('data-trk-tab');
+    tabs.forEach(function(x){x.classList.remove('sel');});t.classList.add('sel');
+    panes.forEach(function(p){p.classList.toggle('sel',p.getAttribute('data-trk-pane')===k);});
+  });});
+})();
+</script>
+{% schema %}
+{
+  "name": "Somna Track Order",
+  "settings": [
+    { "type": "text", "id": "head", "label": "Headline", "default": "Track Your Sleep Journey" },
+    { "type": "textarea", "id": "sub", "label": "Subheadline", "default": "Enter your details below to see exactly when better sleep will arrive at your door." },
+    { "type": "url", "id": "account_url", "label": "Account / order lookup link", "info": "Defaults to your Shopify customer account login (/account)." },
+    { "type": "textarea", "id": "form_note", "label": "Form helper note", "default": "Your live tracking link is in your account and your shipping confirmation email. Log in to view real-time status for every order." },
+    { "type": "text", "id": "states_title", "label": "Status section title", "default": "What each status means" },
+    { "type": "text", "id": "faq_title", "label": "FAQ title", "default": "Shipping FAQ" }
+  ],
+  "presets": [{ "name": "Somna Track Order" }]
+}
+{% endschema %}

@@ -1,0 +1,104 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjvs" style="background:{{ section.settings.bg | default: '#faf7f2' }}">
+  <div class="sjp-wrap sjp-sec">
+    <h2 class="sjvs-t somna-sr">{{ section.settings.title_em | default: 'Somna' }} {{ section.settings.title_a | default: 'vs Others' }}</h2>
+    {%- if section.settings.sub != blank -%}<p class="sjp-sub">{{ section.settings.sub }}</p>{%- endif -%}
+    <div class="sjvs-scroll somna-sr">
+      <div class="sjvs-table">
+        <div class="sjvs-hrow">
+          <div class="sjvs-hcell"></div>
+          <div class="sjvs-hcell on">{%- if section.settings.col1_img != blank -%}<img src="{{ section.settings.col1_img | image_url: width: 240 }}" loading="lazy" alt="{{ section.settings.col1 | escape }}">{%- else -%}<span class="sjvs-iph">Somna img</span>{%- endif -%}<b>{{ section.settings.col1 | default: 'Somna' }}</b></div>
+          <div class="sjvs-hcell">{%- if section.settings.col2_img != blank -%}<img src="{{ section.settings.col2_img | image_url: width: 240 }}" loading="lazy" alt="{{ section.settings.col2 | escape }}">{%- else -%}<span class="sjvs-iph">Img</span>{%- endif -%}<b>{{ section.settings.col2 | default: 'Other Devices' }}</b></div>
+          <div class="sjvs-hcell">{%- if section.settings.col3_img != blank -%}<img src="{{ section.settings.col3_img | image_url: width: 240 }}" loading="lazy" alt="{{ section.settings.col3 | escape }}">{%- else -%}<span class="sjvs-iph">Img</span>{%- endif -%}<b>{{ section.settings.col3 | default: 'Nasal Spray' }}</b></div>
+          <div class="sjvs-hcell">{%- if section.settings.col4_img != blank -%}<img src="{{ section.settings.col4_img | image_url: width: 240 }}" loading="lazy" alt="{{ section.settings.col4 | escape }}">{%- else -%}<span class="sjvs-iph">Img</span>{%- endif -%}<b>{{ section.settings.col4 | default: 'Pharmacy Strips' }}</b></div>
+        </div>
+        {%- for block in section.blocks -%}
+        <div class="sjvs-row" {{ block.shopify_attributes }}>
+          <div class="sjvs-lab">{{ block.settings.label }}</div>
+          {%- assign vals = '' | split: ',' -%}
+          {%- assign v1 = block.settings.c1 | default: 'yes' -%}{%- assign v2 = block.settings.c2 | default: 'no' -%}{%- assign v3 = block.settings.c3 | default: 'no' -%}{%- assign v4 = block.settings.c4 | default: 'no' -%}
+          <div class="sjvs-cell on">{% if v1 == 'yes' %}<span class="sjvs-y">✓</span>{% else %}<span class="sjvs-n">✕</span>{% endif %}</div>
+          <div class="sjvs-cell">{% if v2 == 'yes' %}<span class="sjvs-y">✓</span>{% else %}<span class="sjvs-n">✕</span>{% endif %}</div>
+          <div class="sjvs-cell">{% if v3 == 'yes' %}<span class="sjvs-y">✓</span>{% else %}<span class="sjvs-n">✕</span>{% endif %}</div>
+          <div class="sjvs-cell">{% if v4 == 'yes' %}<span class="sjvs-y">✓</span>{% else %}<span class="sjvs-n">✕</span>{% endif %}</div>
+        </div>
+        {%- endfor -%}
+        <div class="sjvs-row sjvs-price">
+          <div class="sjvs-lab">{{ section.settings.price_label | default: 'Pricing*' }}</div>
+          <div class="sjvs-cell on"><b>{{ section.settings.p1 | default: '$35' }}</b></div>
+          <div class="sjvs-cell"><b>{{ section.settings.p2 | default: '$129+' }}</b></div>
+          <div class="sjvs-cell"><b>{{ section.settings.p3 | default: '$35 (P/M)' }}</b></div>
+          <div class="sjvs-cell"><b>{{ section.settings.p4 | default: '$32+' }}</b></div>
+        </div>
+      </div>
+    </div>
+    {%- if section.settings.foot != blank -%}<p class="sjvs-foot">{{ section.settings.foot }}</p>{%- endif -%}
+    {%- if section.settings.cta != blank -%}
+    <div class="sjp-ctawrap"><a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta }}</a></div>
+    {%- if section.settings.gline != blank -%}<div class="sjp-guar">✅ {{ section.settings.gline }}</div>{%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+<style>
+.sjvs-t{font-size:clamp(1.5rem,3.8vw,2.1rem);font-weight:700;letter-spacing:-.02em;text-align:center;margin:0 0 8px;color:var(--ink);font-family:'Inter',sans-serif}
+.sjvs-scroll{overflow-x:auto;margin-top:26px;-webkit-overflow-scrolling:touch}
+.sjvs-table{min-width:620px;max-width:820px;margin:0 auto}
+.sjvs-hrow,.sjvs-row{display:grid;grid-template-columns:minmax(130px,1.25fr) repeat(4,minmax(90px,1fr));align-items:center}
+.sjvs-hcell{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px 12px;text-align:center}
+.sjvs-hcell img{width:56px;height:56px;object-fit:contain;display:block}
+.sjvs-iph{width:56px;height:56px;border-radius:12px;background:#ECECF3;display:flex;align-items:center;justify-content:center;font-size:.55rem;color:#9a98b5}
+.sjvs-hcell b{font-size:.7rem;font-weight:700;line-height:1.25;color:var(--ink)}
+.sjvs-hcell.on b{font-weight:800}
+.sjvs-row{border-top:2px solid #16141f}
+.sjvs-row:last-child{border-bottom:2px solid #16141f}
+.sjvs-lab{font-size:.78rem;font-weight:600;color:var(--ink);text-align:left;padding:13px 10px 13px 2px;line-height:1.3}
+.sjvs-cell{display:flex;align-items:center;justify-content:center;padding:11px 6px}
+.sjvs-cell.on,.sjvs-hcell.on{background:#F2F5FC}
+.sjvs-hcell.on{border-radius:14px 14px 0 0;box-shadow:0 -6px 18px -10px rgba(132,145,197,.4)}
+.sjvs-row:last-child .sjvs-cell.on{border-radius:0 0 14px 14px}
+.sjvs-y{width:22px;height:22px;border-radius:50%;background:var(--band);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800}
+.sjvs-n{width:22px;height:22px;border-radius:50%;background:#26242f;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;opacity:.85}
+.sjvs-price .sjvs-cell b{font-size:.85rem;font-weight:800;color:var(--ink)}
+.sjvs-price .sjvs-cell.on b{color:var(--band)}
+.sjvs-foot{font-size:.68rem;color:#9a97ad;margin:14px auto 0;max-width:820px;text-align:left}
+</style>
+{% schema %}
+{
+  "name": "JP — VS table",
+  "settings": [
+    { "type": "text", "id": "title_em", "label": "Title brand word", "default": "Somna" },
+    { "type": "text", "id": "title_a", "label": "Title rest", "default": "vs Others" },
+    { "type": "text", "id": "sub", "label": "Subtitle (optional)" },
+    { "type": "header", "content": "Columns (you upload 4 images)" },
+    { "type": "image_picker", "id": "col1_img", "label": "Column 1 image (Somna)" },
+    { "type": "text", "id": "col1", "label": "Column 1 name", "default": "Somna" },
+    { "type": "image_picker", "id": "col2_img", "label": "Column 2 image" },
+    { "type": "text", "id": "col2", "label": "Column 2 name", "default": "Other Devices" },
+    { "type": "image_picker", "id": "col3_img", "label": "Column 3 image" },
+    { "type": "text", "id": "col3", "label": "Column 3 name", "default": "Nasal Spray" },
+    { "type": "image_picker", "id": "col4_img", "label": "Column 4 image" },
+    { "type": "text", "id": "col4", "label": "Column 4 name", "default": "Pharmacy Strips" },
+    { "type": "header", "content": "Pricing row" },
+    { "type": "text", "id": "price_label", "label": "Pricing row label", "default": "Pricing*" },
+    { "type": "text", "id": "p1", "label": "Price col 1", "default": "$35" },
+    { "type": "text", "id": "p2", "label": "Price col 2", "default": "$129+" },
+    { "type": "text", "id": "p3", "label": "Price col 3", "default": "$35 (P/M)" },
+    { "type": "text", "id": "p4", "label": "Price col 4", "default": "$32+" },
+    { "type": "text", "id": "foot", "label": "Footnote", "default": "*Illustrative market pricing — verify before publishing. Cost calculated over 3 months of consistent use." },
+    { "type": "header", "content": "CTA (optional)" },
+    { "type": "text", "id": "cta", "label": "CTA label (blank = hide)" },
+    { "type": "url", "id": "cta_url", "label": "CTA link" },
+    { "type": "text", "id": "gline", "label": "Guarantee line" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#faf7f2" }
+  ],
+  "blocks": [ { "type": "row", "name": "Feature row", "settings": [
+    { "type": "text", "id": "label", "label": "Feature", "default": "Works up to 24H" },
+    { "type": "select", "id": "c1", "label": "Somna", "options": [ {"value":"yes","label":"✓"}, {"value":"no","label":"✕"} ], "default": "yes" },
+    { "type": "select", "id": "c2", "label": "Column 2", "options": [ {"value":"yes","label":"✓"}, {"value":"no","label":"✕"} ], "default": "no" },
+    { "type": "select", "id": "c3", "label": "Column 3", "options": [ {"value":"yes","label":"✓"}, {"value":"no","label":"✕"} ], "default": "no" },
+    { "type": "select", "id": "c4", "label": "Column 4", "options": [ {"value":"yes","label":"✓"}, {"value":"no","label":"✕"} ], "default": "no" }
+  ] } ],
+  "max_blocks": 10,
+  "presets": [{ "name": "JP — VS table", "blocks": [ {"type":"row"},{"type":"row"},{"type":"row"},{"type":"row"},{"type":"row"} ] }]
+}
+{% endschema %}

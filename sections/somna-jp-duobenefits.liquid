@@ -1,0 +1,76 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp" style="background:{{ section.settings.bg | default: '#FAF7F2' }};padding:clamp(36px,5.5vw,76px) 0">
+  <div class="sjp-duo">
+    <div class="sjp-duo-l somna-sr">
+      {%- if section.settings.image_l != blank -%}<img class="sjp-duo-bg" src="{{ section.settings.image_l | image_url: width: 1000 }}" loading="lazy" alt="">{%- else -%}<div class="sjp-ph" style="position:absolute;inset:0">Insert product scene photo</div>{%- endif -%}
+      {%- unless section.settings.hide_l_overlay -%}
+      <div class="sjp-duo-lb">
+        <a class="sjp-cta" style="width:100%;justify-content:center" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a>
+        {%- if section.settings.gline != blank -%}<div class="sjp-gline sjp-duo-gline"><span class="sjp-gdot">✓</span>{{ section.settings.gline }}</div>{%- endif -%}
+      </div>
+      {%- endunless -%}
+    </div>
+    <div class="sjp-duo-r somna-sr">
+      {%- if section.settings.image_r != blank -%}<img class="sjp-duo-bg" src="{{ section.settings.image_r | image_url: width: 1400 }}" loading="lazy" alt="">{%- endif -%}
+      {%- unless section.settings.hide_r_overlay -%}
+      <span class="sjp-duo-scrim"></span>
+      <div class="sjp-duo-c">
+        <h2 class="sjp-duo-t"><em>{{ section.settings.title_em | default: 'Somna' }}</em> {{ section.settings.title_a | default: 'sleep benefits' }}</h2>
+        {%- if section.settings.sub != blank -%}<p class="sjp-duo-s">{{ section.settings.sub }}</p>{%- endif -%}
+        {%- for block in section.blocks -%}
+        <div class="sjp-duo-item" {{ block.shopify_attributes }}>
+          <span class="sjp-duo-badge">{{ block.settings.badge }}</span>
+          <p>{{ block.settings.body }}</p>
+        </div>
+        {%- endfor -%}
+        {%- if section.settings.fine != blank -%}<p class="sjp-duo-fine">{{ section.settings.fine }}</p>{%- endif -%}
+      </div>
+      {%- endunless -%}
+    </div>
+  </div>
+</section>
+<style>
+.sjp-duo{display:grid;grid-template-columns:.82fr 1.18fr;gap:20px;max-width:1180px;margin:0 auto;padding:0 20px;align-items:stretch}
+.sjp-duo-l{position:relative;border-radius:26px;overflow:hidden;min-height:520px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(160deg,#F1EDE6,#E5DFD3)}
+.sjp-duo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sjp-duo-lb{position:relative;padding:22px;z-index:2}
+.sjp-duo-gline{color:#fff;text-shadow:0 1px 8px rgba(18,16,28,.5)}
+.sjp-duo-r{position:relative;border-radius:26px;overflow:hidden;min-height:520px;color:#fff;background:#161422;display:flex;align-items:center}
+.sjp-duo-scrim{position:absolute;inset:0;background:linear-gradient(100deg,rgba(16,14,26,.88) 0%,rgba(16,14,26,.55) 45%,rgba(16,14,26,.08) 100%);z-index:1}
+.sjp-duo-c{position:relative;z-index:2;padding:clamp(26px,4vw,48px);max-width:62%;display:flex;flex-direction:column;justify-content:center}
+.sjp-duo-t{font-family:'Lora',Georgia,serif;font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.01em;line-height:1.15;margin:0 0 10px}
+.sjp-duo-t em{font-style:italic}
+.sjp-duo-s{font-size:.94rem;line-height:1.55;color:#E8E4F5;margin:0 0 22px}
+.sjp-duo-item{margin-bottom:20px}
+.sjp-duo-badge{display:inline-block;background:var(--band);color:#fff;font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:8px 20px;border-radius:10px;margin-bottom:10px}
+.sjp-duo-item p{margin:0;font-size:.92rem;line-height:1.6;color:#F0EDFA}
+.sjp-duo-fine{font-size:.7rem;line-height:1.55;color:#B9B2D4;margin:18px 0 0}
+@media(max-width:860px){.sjp-duo{grid-template-columns:1fr}.sjp-duo-l{min-height:380px}.sjp-duo-r{min-height:320px}.sjp-duo-c{max-width:100%}}
+</style>
+{% schema %}
+{
+  "name": "JP — Benefit duo cards",
+  "settings": [
+    { "type": "header", "content": "Left card" },
+    { "type": "image_picker", "id": "image_l", "label": "Left card photo" },
+    { "type": "checkbox", "id": "hide_l_overlay", "label": "Hide left CTA overlay (full-image mode)", "default": false },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: buy box)" },
+    { "type": "text", "id": "gline", "label": "Guarantee line", "default": "30-Day Feel-It Guarantee" },
+    { "type": "header", "content": "Right card" },
+    { "type": "image_picker", "id": "image_r", "label": "Right card photo" },
+    { "type": "checkbox", "id": "hide_r_overlay", "label": "Hide right text overlay (full-image mode)", "default": false },
+    { "type": "text", "id": "title_em", "label": "Title italic word", "default": "Somna" },
+    { "type": "text", "id": "title_a", "label": "Title rest", "default": "sleep benefits" },
+    { "type": "text", "id": "sub", "label": "Sub-line", "default": "The one-second bedtime habit that feels as good as it works." },
+    { "type": "textarea", "id": "fine", "label": "Fine print", "default": "Materials: flexible dual-tension band with breathable, hypoallergenic weave and a latex-free, skin-safe adhesive — designed for nightly wear and easy morning peel." },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FAF7F2" }
+  ],
+  "blocks": [ { "type": "tag", "name": "Badge + paragraph", "settings": [
+    { "type": "text", "id": "badge", "label": "Badge label", "default": "COMFORT" },
+    { "type": "textarea", "id": "body", "label": "Paragraph", "default": "So light you forget it's on. A soft-touch shell that moves with your face all night." }
+  ] } ],
+  "max_blocks": 4,
+  "presets": [{ "name": "JP — Benefit duo cards", "blocks": [ {"type":"tag"},{"type":"tag"} ] }]
+}
+{% endschema %}

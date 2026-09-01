@@ -1,0 +1,91 @@
+<style id='somna-rr-fix'>
+@media(max-width:768px){
+/* ===== KILL THE 4-5s LOAD GLITCH ===== */
+.sr-prep,.sr-stagp>*,.somna-sr,.somna-sr-stag>*{opacity:1 !important;transform:none !important;filter:none !important}
+.somna-zoomin img{transform:none !important}
+
+/* ===== Real Results ===== */
+.sjp-ig-cardfull .sjp-ig-full{aspect-ratio:auto !important;height:auto !important;width:100% !important;object-fit:contain !important;max-height:none !important}
+.sjp:has(.sjp-ig-grid) .somna-sr:not(.sjp-ctawrap){text-align:left !important;max-width:100% !important;margin-left:0 !important}
+.sjp:has(.sjp-ig-grid) .sjp-igt,.sjp:has(.sjp-ig-grid) .sjp-sub{text-align:left !important;margin-left:0 !important;margin-right:0 !important}
+.sjp:has(.sjp-ig-grid) .sjp-ctawrap{text-align:center !important;margin-left:auto !important;margin-right:auto !important}
+.sjp:has(.sjp-ig-grid) .sjp-gline{justify-content:center !important;text-align:center !important}
+
+/* ===== Kill the mobile buy-box load flash ===== */
+.spdp-herocard{display:none !important}
+
+/* ===== Better Nasal Flow ===== */
+.shuc{padding-top:72px !important}
+.shuc-t{margin:0 0 34px !important}
+.shuc-row{gap:14px !important;scroll-snap-type:x mandatory !important;scroll-padding-left:20px !important;scrollbar-width:none !important;-ms-overflow-style:none !important;margin:0 -20px !important;padding:0 20px 8px !important}
+.shuc-row::-webkit-scrollbar{display:none !important;height:0 !important;width:0 !important}
+.shuc-card{flex:0 0 84% !important;scroll-snap-align:start !important}
+
+/* ===== Clinically Designed ===== */
+.shss-mid{display:grid !important;grid-template-columns:1fr 1fr !important;grid-template-areas:'img img' 'l r' !important;column-gap:16px !important;row-gap:0 !important;align-items:start !important}
+.shss-img{grid-area:img !important;order:0 !important;margin-bottom:22px !important}
+.shss-col-l{grid-area:l !important}
+.shss-col-r{grid-area:r !important}
+.shss-col{gap:20px !important}
+.shss-lab{gap:11px !important;align-items:center !important;justify-content:flex-start !important;white-space:normal !important;font-weight:700 !important;text-align:left !important}
+.shss-lab::before{content:'✓' !important;order:-1 !important;flex:none !important;width:22px !important;height:22px !important;min-width:22px !important;border-radius:50% !important;background:#5B79F3 !important;color:#fff !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;font-size:.72rem !important;font-weight:800 !important;line-height:1 !important}
+.shss-lab i{display:none !important}
+
+/* ===== Remove 'The missing piece' on mobile ===== */
+.shopify-section:has(.sjp-mp-one){display:none !important}
+
+/* ===== SOMNA vs OTHERS: scaled-down, inset table (Jupi proportions) ===== */
+.sjvs-scroll{overflow-x:visible !important;margin-top:14px !important}
+.sjvs-table{min-width:0 !important;width:calc(100% - 24px) !important;max-width:342px !important;margin:0 auto !important}
+.sjvs-hrow,.sjvs-row{grid-template-columns:minmax(0,64px) repeat(4,minmax(0,1fr)) !important}
+.sjvs-hcell{padding:8px 2px 6px !important;gap:5px !important}
+/* drop the white boxes baked into the product photos so they blend into the page */
+.sjvs-hcell img,.sjvs-iph{width:30px !important;height:30px !important;mix-blend-mode:multiply !important}
+.sjvs-hcell b{font-size:.47rem !important;line-height:1.15 !important}
+.sjvs-hcell.on{border-radius:12px 12px 0 0 !important}
+.sjvs-row{border-top:1px solid #E4DED3 !important}
+.sjvs-row:last-child{border-bottom:1px solid #E4DED3 !important}
+.sjvs-lab{font-size:.55rem !important;padding:8px 4px 8px 0 !important;line-height:1.2 !important}
+.sjvs-cell{padding:7px 1px !important}
+.sjvs-y,.sjvs-n{width:16px !important;height:16px !important;font-size:.46rem !important}
+.sjvs-price .sjvs-cell b{font-size:.57rem !important}
+.sjvs-foot{font-size:.52rem !important;margin-top:9px !important;text-align:center !important}
+/* injected table CTA — aligned to the chart width */
+.somna-vs-cta{width:calc(100% - 24px) !important;max-width:342px !important;margin:22px auto 0 !important;text-align:center !important}
+.somna-vs-cta .sjp-cta{width:100% !important;justify-content:center !important;padding:16px 20px !important;font-size:1rem !important}
+.somna-vs-guar{display:flex !important;align-items:center !important;justify-content:center !important;gap:8px !important;font-size:.82rem !important;font-weight:600 !important;color:var(--ink) !important;margin-top:13px !important}
+.somna-vs-ck{width:19px;height:19px;border-radius:50%;background:#5B79F3;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;flex:none}
+
+/* ===== TIMELINE: Jupi hero image on top, fading into the page, timeline flowing out below ===== */
+.sjp-tl-img{display:block !important;aspect-ratio:4/5 !important;min-height:0 !important;height:auto !important}
+.sjp-tl-fade{display:block !important;inset:0 !important;background:linear-gradient(180deg,rgba(250,247,242,0) 46%,#FAF7F2 96%) !important}
+.sjp-tl-body{padding:18px 22px 56px !important}
+.sjp-tl-t{text-align:center !important;font-size:1.55rem !important;margin:0 0 30px !important;line-height:1.2 !important}
+.sjp-tl-list{max-width:none !important}
+.sjp-tl-item{padding:0 0 40px 24px !important;border-left:2px solid var(--band) !important}
+.sjp-tl-item.is-last{border-left-color:transparent !important;padding-bottom:6px !important}
+.sjp-tl-item:before{width:11px !important;height:11px !important;left:-6.5px !important;top:3px !important}
+.sjp-tl-pill{font-size:.62rem !important;padding:4px 12px !important;margin-bottom:11px !important}
+.sjp-tl-item b{font-style:normal !important;font-size:1.16rem !important;font-weight:600 !important;margin-bottom:8px !important;line-height:1.25 !important}
+.sjp-tl-item p{font-size:.86rem !important;line-height:1.6 !important;max-width:none !important;color:var(--mut) !important}
+.sjp-tl-cta{margin-top:38px !important;text-align:center !important}
+.sjp-tl-cta .sjp-cta{width:100% !important;justify-content:center !important;padding:17px 20px !important}
+.sjp-tl-cta .sjp-gline{justify-content:center !important;margin-top:14px !important}
+}
+</style>
+<script>
+(function(){
+  function mob(){return window.matchMedia&&window.matchMedia('(max-width:768px)').matches;}
+  function vsCTA(){
+    if(!mob())return;
+    var sec=document.querySelector('.sjvs');if(!sec)return;
+    if(sec.querySelector('.somna-vs-cta'))return;
+    var wrap=sec.querySelector('.sjp-wrap')||sec;
+    var d=document.createElement('div');d.className='somna-vs-cta';
+    d.innerHTML=`<a class='sjp-cta' href='#cda-buy'>Try Somna Today →</a><div class='somna-vs-guar'><span class='somna-vs-ck'>✓</span>30-Day Feel-It Guarantee</div>`;
+    wrap.appendChild(d);
+  }
+  function run(){try{vsCTA();}catch(e){}}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>

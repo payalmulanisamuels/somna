@@ -1,0 +1,341 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign pA = all_products['dreamx-silent-alarm-band'] -%}{%- assign pN = all_products['dreamx-anti-snore-nasal-strips'] -%}{%- assign pT = all_products['dreamx-sleep-mouth-tape'] -%}
+{%- assign vA = pA.selected_or_first_available_variant -%}{%- assign vN = pN.selected_or_first_available_variant -%}{%- assign vT = pT.selected_or_first_available_variant -%}
+<div class="dxsh">
+  <section class="dxsh-wrap dxsh-sec">
+    <div class="dxsh-hero">
+      <span class="dxsh-kick">{{ section.settings.kicker }}</span>
+      <h1 class="dxsh-h1">{{ section.settings.heading }}</h1>
+      <p class="dxsh-sub">{{ section.settings.subtitle }}</p>
+    </div>
+
+    {%- comment -%} ===== COMPARISON TABLE ===== {%- endcomment -%}
+    <div class="dxsh-cmp">
+      <h2 class="dxsh-h2 dxsh-cmp-head">{{ section.settings.cmp_head }}</h2>
+      <div class="dxsh-cmp-scroll">
+        <table class="dxsh-table">
+          <thead><tr><th></th><th>Nasal Strips</th><th>Mouth Tape</th><th>Alarm Band</th></tr></thead>
+          <tbody>
+            <tr><td class="dxsh-th">Problem</td><td>Snoring</td><td>Dry mouth</td><td>Oversleeping</td></tr>
+            <tr><td class="dxsh-th">Best for</td><td>Snorers</td><td>Mouth breathers</td><td>Heavy sleepers</td></tr>
+            <tr><td class="dxsh-th">Price</td><td>$24</td><td>$19</td><td>$56</td></tr>
+            <tr><td class="dxsh-th">Subscription</td><td>20% off</td><td>20% off</td><td>20% off</td></tr>
+            <tr><td class="dxsh-th">Money-back</td><td>30 days</td><td>30 days</td><td>30 days</td></tr>
+            <tr class="dxsh-cmp-cta"><td class="dxsh-th"></td><td><button type="button" class="dxsh-cmp-atc" data-vid="{{ vN.id }}">Add to cart</button></td><td><button type="button" class="dxsh-cmp-atc" data-vid="{{ vT.id }}">Add to cart</button></td><td><button type="button" class="dxsh-cmp-atc" data-vid="{{ vA.id }}">Add to cart</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {%- paginate collection.products by 12 -%}
+    <div class="dxsh-bar">
+      <span class="dxsh-count">{{ collection.products_count }} product{% if collection.products_count != 1 %}s{% endif %}</span>
+      <div class="dxsh-bar-btns">
+        {%- if collection.filters.size > 0 -%}<button type="button" class="dxsh-tool" id="dxOpenFilter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg> Filter</button>{%- endif -%}
+        <button type="button" class="dxsh-tool" id="dxOpenSort"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h12M3 12h9M3 18h6"/><path d="M17 8l3-3 3 3M20 5v14"/></svg> Sort</button>
+      </div>
+    </div>
+    <div class="dxsh-grid">
+      {%- for product in collection.products -%}
+        {%- if product.type == 'Protection' or product.type == 'Gift' -%}{%- continue -%}{%- endif -%}
+        {%- assign v = product.selected_or_first_available_variant -%}
+        {%- assign rt = '' -%}{%- assign rc = '' -%}{%- assign bdg = '' -%}{%- assign ben = '' -%}
+        {%- case product.handle -%}
+          {%- when 'dreamx-anti-snore-nasal-strips' -%}{%- assign rt = '4.7' -%}{%- assign rc = '3,910' -%}{%- assign bdg = 'Best Seller' -%}{%- assign ben = 'Breathe easier. Sleep deeper.' -%}
+          {%- when 'dreamx-sleep-mouth-tape' -%}{%- assign rt = '4.6' -%}{%- assign rc = '2,180' -%}{%- assign bdg = 'Popular' -%}{%- assign ben = 'Seal your mouth. Unlock nasal breathing.' -%}
+          {%- when 'dreamx-silent-alarm-band' -%}{%- assign rt = '4.8' -%}{%- assign rc = '1,240' -%}{%- assign bdg = 'Premium' -%}{%- assign ben = 'Wake without waking others.' -%}
+        {%- endcase -%}
+        <div class="dxsh-card">
+          <a class="dxsh-card-link" href="{{ product.url }}">
+          {% if bdg != blank %}<span class="dxsh-badge">{{ bdg }}</span>{% endif %}
+          {%- if product.featured_media -%}<div class="dxsh-img"><img src="{{ product.featured_media | image_url: width: 800 }}" alt="{{ product.title | escape }}" width="800" height="800" loading="lazy"></div>{%- else -%}<div class="dxsh-img dxsh-img-ph"></div>{%- endif -%}
+          {% if rt != blank %}<div class="dxsh-rate"><span class="dxsh-stars">★★★★★</span> <span class="dxsh-rn">{{ rt }}/5</span> <span class="dxsh-rc">({{ rc }} reviews)</span></div>{% endif %}
+          <div class="dxsh-n">{{ product.title | remove: 'Somna ' }}</div>
+          {% if ben != blank %}<div class="dxsh-bene">{{ ben }}</div>{% endif %}
+          <div class="dxsh-p">{{ v.price | money }}{% if v.compare_at_price > v.price %} <s>{{ v.compare_at_price | money }}</s>{%- assign pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round -%} <span class="dxsh-off">Save {{ pct }}%</span>{% endif %}</div>
+          <div class="dxsh-subln"><strong>Subscribe &amp; Save 20%</strong><span>{{ v.price | times: 0.8 | money }}/month</span></div>
+          </a>
+          <button type="button" class="dxsh-shop" data-vid="{{ v.id }}">Add to Cart</button>
+          <span class="dxsh-gtee">30-day money-back guarantee</span>
+        </div>
+      {%- else -%}
+        <p class="dxsh-muted">No products yet.</p>
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}<div class="dxsh-pag">{{ paginate | default_pagination }}</div>{%- endif -%}
+
+    {%- comment -%} ===== BUNDLE ===== {%- endcomment -%}
+    <div class="dxsh-bundle">
+      <div class="dxsh-bcard">
+        <div class="dxsh-bimg">
+          <span class="dxsh-badge dxsh-badge-b">{{ section.settings.bundle_badge }}</span>
+          {% if section.settings.bundle_img != blank %}<img src="{{ section.settings.bundle_img | image_url: width: 900 }}" alt="" loading="lazy">{% elsif section.settings.img_save1 != blank %}<img src="{{ section.settings.img_save1 | image_url: width: 900 }}" alt="" loading="lazy">{% elsif pN.featured_image %}<img src="{{ pN.featured_image | image_url: width: 900 }}" alt="" loading="lazy">{% endif %}
+        </div>
+        <div class="dxsh-binfo">
+          <h2 class="dxsh-h2">{{ section.settings.bundle_head }}</h2>
+          <p class="dxsh-bsub">{{ section.settings.bundle_sub }}</p>
+          <div class="dxsh-rate"><span class="dxsh-stars">★★★★★</span> <span class="dxsh-rn">{{ section.settings.bundle_rating }}/5</span> <span class="dxsh-rc">({{ section.settings.bundle_count }} reviews)</span></div>
+          <ul class="dxsh-bincl">
+            <li>Anti-Snore Nasal Strips</li>
+            <li>Cotton Mouth Tape</li>
+            <li>Silent Vibration Alarm Band</li>
+          </ul>
+          <div class="dxsh-bprice"><span class="dxsh-bnow">{{ section.settings.bundle_now }}</span> <s>was {{ section.settings.bundle_was }}</s> <span class="dxsh-off">Save {{ section.settings.bundle_save }}</span></div>
+          <a class="dxsh-bbtn" href="{{ section.settings.bundle_link | default: '/collections/all' }}">Get the Bundle</a>
+          <div class="dxsh-bproof">{{ section.settings.bundle_proof }}</div>
+          <div class="dxsh-gtee dxsh-gtee-l">30-day money-back guarantee</div>
+        </div>
+      </div>
+    </div>
+
+    {%- comment -%} ===== SORT SHEET ===== {%- endcomment -%}
+    <div class="dxsh-ov" id="dxSortSheet" aria-hidden="true">
+      <div class="dxsh-sheet">
+        <div class="dxsh-sheet-h"><span>Sort by</span><button type="button" class="dxsh-x" data-close><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+        <div class="dxsh-sheet-b">
+          {%- assign cur = collection.sort_by | default: collection.default_sort_by -%}
+          {%- for opt in collection.sort_options -%}
+            <button type="button" class="dxsh-opt{% if opt.value == cur %} active{% endif %}" data-sort="{{ opt.value }}">{{ opt.name }}{% if opt.value == cur %} <span class="dxsh-tick">✓</span>{% endif %}</button>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+
+    {%- if collection.filters.size > 0 -%}
+    {%- comment -%} ===== FILTER SHEET ===== {%- endcomment -%}
+    <div class="dxsh-ov" id="dxFilterSheet" aria-hidden="true">
+      <form class="dxsh-sheet dxsh-sheet-tall" method="get" action="{{ collection.url }}">
+        <div class="dxsh-sheet-h"><span>Filter</span><button type="button" class="dxsh-x" data-close><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+        <div class="dxsh-sheet-b">
+          {%- if collection.sort_by != blank -%}<input type="hidden" name="sort_by" value="{{ collection.sort_by }}">{%- endif -%}
+          {%- for filter in collection.filters -%}
+            <div class="dxsh-fgroup">
+              <div class="dxsh-fname">{{ filter.label }}</div>
+              {%- case filter.type -%}
+                {%- when 'list', 'boolean' -%}
+                  <div class="dxsh-fvals">
+                  {%- for value in filter.values -%}
+                    <label class="dxsh-fval{% if value.active %} on{% endif %}"><input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}><span>{{ value.label }}{% if value.count %} ({{ value.count }}){% endif %}</span></label>
+                  {%- endfor -%}
+                  </div>
+                {%- when 'price_range' -%}
+                  <div class="dxsh-price">
+                    <input type="number" inputmode="decimal" name="{{ filter.min_value.param_name }}" placeholder="Min" value="{{ filter.min_value.value }}" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                    <span>to</span>
+                    <input type="number" inputmode="decimal" name="{{ filter.max_value.param_name }}" placeholder="Max" value="{{ filter.max_value.value }}" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                  </div>
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </div>
+        <div class="dxsh-sheet-f"><a class="dxsh-clear" href="{{ collection.url }}">Clear all</a><button type="submit" class="dxsh-apply">Apply</button></div>
+      </form>
+    </div>
+    {%- endif -%}
+    {%- endpaginate -%}
+  </section>
+  <section class="dxsh-news"><div class="dxsh-wrap dxsh-news-in">
+    <div><h2 class="dxsh-h2" style="color:#fff">{{ section.settings.news_head }}</h2><p style="color:#eef0fb">{{ section.settings.news_sub }}</p></div>
+    <form class="dxsh-nform" onsubmit="return false">
+      <div class="dxsh-form"><input type="email" placeholder="you@email.com"><button class="dxsh-sub">{{ section.settings.news_btn }}</button></div>
+      <label class="dxsh-consent"><input type="checkbox"> <span>I agree to receive emails about sleep tips &amp; exclusive offers</span></label>
+      <div class="dxsh-nproof">{{ section.settings.news_proof }}</div>
+    </form>
+  </div></section>
+</div>
+<style>
+.dxsh{font-family:var(--cda-font);color:var(--cda-ink);--dxa:#98A3DE;--dxad:#6f7cc4}
+.dxsh-wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
+.dxsh-sec{padding:clamp(22px,4vw,44px) 0}
+.dxsh-hero{background:linear-gradient(150deg,#1a1726,#3a3f78);border-radius:22px;padding:clamp(28px,5vw,54px);color:#fff;margin-bottom:30px}
+.dxsh-kick{text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:800;color:#c9cdf0}
+.dxsh-h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.02em;margin:8px 0 10px}
+.dxsh-sub{display:inline-block;color:#eef0fb;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:9px 16px;border-radius:14px;margin:0;line-height:1.45;font-size:.92rem;max-width:100%}
+.dxsh-h2{font-size:clamp(1.45rem,3vw,2rem);font-weight:800;letter-spacing:-.02em;margin:0}
+.dxsh-cmp{margin-bottom:34px}
+.dxsh-cmp-head{text-align:center;margin-bottom:18px}
+.dxsh-cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--cda-line);border-radius:16px}
+.dxsh-table{width:100%;border-collapse:collapse;min-width:480px;font-size:.94rem}
+.dxsh-table th,.dxsh-table td{padding:15px 16px;text-align:center;border-bottom:1px solid var(--cda-line)}
+.dxsh-table thead th{background:var(--cda-ink);font-weight:800;color:#fff;font-size:.95rem;border-bottom:none}
+.dxsh-table tbody tr:nth-child(even){background:#f7f6fc}
+.dxsh-table tbody tr:last-child td{border-bottom:none}
+.dxsh-table .dxsh-th{text-align:left;font-weight:800;color:var(--cda-ink)}
+.dxsh-cmp-cta .dxsh-cmp-atc{display:inline-block;background:var(--dxa);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-weight:700;font-size:.82rem;cursor:pointer;font-family:inherit;transition:background .15s}
+.dxsh-cmp-cta .dxsh-cmp-atc:hover{background:var(--dxad)}
+.dxsh-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;padding:6px 2px 14px;border-bottom:1px solid var(--cda-line);margin-bottom:20px}
+.dxsh-count{color:var(--cda-muted);font-size:.9rem;font-weight:700}
+.dxsh-bar-btns{display:flex;gap:10px}
+.dxsh-tool{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px solid var(--cda-line);color:var(--cda-ink);font-family:inherit;font-weight:700;font-size:.9rem;padding:9px 16px;border-radius:999px;cursor:pointer;min-height:44px}
+.dxsh-tool:active{background:var(--cda-soft);border-color:var(--dxa)}
+.dxsh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.dxsh-card{display:flex;flex-direction:column;height:100%;border:1px solid var(--cda-line);border-radius:18px;padding:16px;color:inherit;background:#fff;position:relative;transition:.15s;box-shadow:0 6px 20px rgba(20,18,40,.05)}
+.dxsh-card:hover{box-shadow:0 14px 32px rgba(152,163,222,.2);transform:translateY(-3px)}
+.dxsh-card-link{display:block;text-decoration:none;color:inherit;flex:1}
+.dxsh-img{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:var(--cda-soft);margin-bottom:14px}
+.dxsh-img img{width:100%;height:100%;object-fit:cover;display:block}
+.dxsh-img-ph{background:var(--cda-soft)}
+.dxsh-badge{position:absolute;top:24px;left:24px;z-index:1;background:var(--cda-ink);color:#fff;font-size:.64rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.dxsh-rate{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:.92rem;margin-bottom:6px;color:var(--cda-ink)}
+.dxsh-stars{color:#f5a623;letter-spacing:1px;font-size:.95rem}
+.dxsh-rn{font-weight:800}
+.dxsh-rc{color:var(--cda-muted);font-weight:600}
+.dxsh-n{font-weight:800;font-size:1.12rem;line-height:1.25;letter-spacing:-.01em}
+.dxsh-bene{color:var(--cda-muted);font-weight:500;font-size:.92rem;margin:4px 0 0}
+.dxsh-p{font-weight:800;color:var(--cda-ink);margin-top:12px;font-size:1.2rem;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.dxsh-p s{color:var(--cda-muted);font-weight:500;font-size:.88rem}
+.dxsh-off{background:#e9f7ef;color:#0f7a44;font-weight:800;font-size:.68rem;padding:4px 9px;border-radius:999px}
+.dxsh-subln{display:flex;flex-direction:column;line-height:1.3;margin-top:10px;font-size:.82rem;color:var(--cda-muted)}
+.dxsh-subln strong{color:var(--dxad);font-weight:800;font-size:.86rem}
+.dxsh-shop{display:flex;align-items:center;justify-content:center;text-align:center;margin-top:14px;background:var(--dxa);color:#fff;border:none;border-radius:999px;padding:0 14px;font-weight:700;font-size:.95rem;min-height:48px;width:100%;cursor:pointer;font-family:inherit;transition:background .15s}
+.dxsh-shop:hover{background:var(--dxad)}
+.dxsh-gtee{display:block;text-align:center;font-size:.74rem;color:var(--cda-muted);margin-top:10px}
+.dxsh-muted{color:var(--cda-muted);grid-column:1/-1}
+.dxsh-pag{text-align:center;margin-top:30px;font-weight:600}
+.dxsh-pag a,.dxsh-pag .page{color:var(--cda-muted);text-decoration:none;padding:0 10px}
+.dxsh-pag .current{color:var(--dxad);font-weight:800}
+.dxsh-bundle{margin-top:40px}
+.dxsh-bcard{display:grid;grid-template-columns:1fr 1.05fr;gap:30px;align-items:center;background:#eef0fb;border-radius:24px;padding:clamp(24px,4vw,42px)}
+.dxsh-bimg{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center}
+.dxsh-bimg img{width:100%;height:100%;object-fit:cover}
+.dxsh-badge-b{top:18px;left:18px;background:var(--dxa)}
+.dxsh-bsub{color:var(--cda-muted);margin:8px 0 12px;font-size:.96rem;line-height:1.5}
+.dxsh-bincl{list-style:none;margin:14px 0;padding:0}
+.dxsh-bincl li{position:relative;padding:6px 0 6px 28px;font-weight:600;font-size:.96rem}
+.dxsh-bincl li::before{content:'✓';position:absolute;left:0;top:6px;color:#0f7a44;font-weight:800}
+.dxsh-bprice{margin:8px 0 0;font-size:1.7rem;font-weight:800;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dxsh-bprice s{color:var(--cda-muted);font-weight:500;font-size:1.05rem}
+.dxsh-bbtn{display:inline-flex;align-items:center;justify-content:center;margin-top:18px;background:var(--cda-ink);color:#fff;border-radius:999px;padding:0 34px;font-weight:700;font-size:.98rem;min-height:50px;text-decoration:none}
+.dxsh-bproof{color:var(--cda-muted);font-size:.8rem;margin-top:12px}
+.dxsh-gtee-l{text-align:left;margin-top:4px}
+.dxsh-ov{position:fixed;inset:0;z-index:120;background:rgba(15,13,26,.5);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;display:flex;align-items:flex-end}
+.dxsh-ov.open{opacity:1;visibility:visible}
+.dxsh-sheet{background:#fff;width:100%;border-radius:20px 20px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:82vh;display:flex;flex-direction:column;font-family:var(--cda-font)}
+.dxsh-ov.open .dxsh-sheet{transform:translateY(0)}
+.dxsh-sheet-tall{max-height:88vh}
+.dxsh-sheet-h{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--cda-line);font-weight:800;font-size:1.1rem}
+.dxsh-x{background:none;border:none;cursor:pointer;color:var(--cda-ink);padding:6px;margin:-6px;display:flex}
+.dxsh-sheet-b{padding:8px 20px 18px;overflow-y:auto}
+.dxsh-opt{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;border-bottom:1px solid var(--cda-line);text-align:left;font-family:inherit;font-size:1.02rem;font-weight:600;color:var(--cda-ink);padding:16px 2px;cursor:pointer;min-height:54px}
+.dxsh-opt.active{color:var(--dxad);font-weight:800}
+.dxsh-tick{color:var(--dxa)}
+.dxsh-fgroup{padding:16px 0;border-bottom:1px solid var(--cda-line)}
+.dxsh-fname{font-weight:800;margin-bottom:10px;font-size:1rem}
+.dxsh-fvals{display:flex;flex-direction:column;gap:2px}
+.dxsh-fval{display:flex;align-items:center;gap:11px;padding:11px 2px;font-weight:600;color:var(--cda-ink);cursor:pointer;min-height:46px}
+.dxsh-fval input{width:20px;height:20px;accent-color:var(--dxa)}
+.dxsh-fval.on{color:var(--dxad)}
+.dxsh-price{display:flex;align-items:center;gap:10px}
+.dxsh-price input{flex:1;border:1.5px solid var(--cda-line);border-radius:12px;padding:12px 14px;font:inherit;min-height:46px}
+.dxsh-sheet-f{display:flex;align-items:center;gap:12px;padding:14px 20px;border-top:1px solid var(--cda-line)}
+.dxsh-clear{flex:0 0 auto;color:var(--cda-muted);font-weight:700;text-decoration:none;padding:12px 8px}
+.dxsh-apply{flex:1;background:var(--dxa);color:#fff;border:none;border-radius:999px;padding:14px;font-family:inherit;font-weight:700;font-size:1rem;cursor:pointer;min-height:50px}
+.dxsh-news{background:var(--dxa);margin-top:40px}
+.dxsh-news-in{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:38px clamp(16px,4vw,24px);flex-wrap:wrap}
+.dxsh-nform{flex:1;max-width:460px;min-width:260px}
+.dxsh-form{display:flex;gap:10px}
+.dxsh-form input{flex:1;border:none;border-radius:999px;padding:15px 18px;font:inherit;min-height:48px}
+.dxsh-sub{background:#fff;color:var(--dxad);border:none;border-radius:999px;padding:15px 24px;font-weight:700;cursor:pointer;min-height:48px;white-space:nowrap}
+.dxsh-consent{display:flex;align-items:center;gap:8px;margin-top:12px;color:#fff;font-size:.82rem;font-weight:500}
+.dxsh-consent input{width:16px;height:16px;flex:0 0 auto;accent-color:#fff}
+.dxsh-nproof{color:#eef0fb;font-size:.78rem;font-weight:600;margin-top:10px}
+@media(max-width:900px){.dxsh-grid{grid-template-columns:repeat(2,1fr);gap:16px}.dxsh-bcard{grid-template-columns:1fr;gap:22px}}
+@media(max-width:560px){
+  .dxsh-sec{padding:14px 0}
+  .dxsh-hero{padding:18px 16px;border-radius:16px;margin-bottom:16px}
+  .dxsh-kick{font-size:.62rem}
+  .dxsh-h1{font-size:clamp(1.5rem,6.5vw,1.95rem);margin:6px 0 9px}
+  .dxsh-sub{font-size:.76rem;padding:6px 12px;border-radius:11px;line-height:1.4}
+  .dxsh-h2{font-size:1.15rem}
+  .dxsh-cmp{margin-bottom:18px}
+  .dxsh-cmp-head{margin-bottom:12px;font-size:1.1rem}
+  .dxsh-cmp-scroll{overflow-x:hidden}
+  .dxsh-table{min-width:0;width:100%;table-layout:fixed;font-size:.6rem}
+  .dxsh-table th,.dxsh-table td{padding:8px 4px;word-break:break-word;line-height:1.2}
+  .dxsh-table thead th{font-size:.62rem;padding:9px 4px}
+  .dxsh-table .dxsh-th{font-size:.6rem}
+  .dxsh-cmp-cta a{display:block;width:100%;box-sizing:border-box;padding:7px 2px;font-size:.58rem;text-align:center}
+  .dxsh-bar{margin-bottom:12px;padding:4px 2px 10px}
+  .dxsh-count{font-size:.82rem}
+  .dxsh-tool{min-height:38px;padding:7px 14px;font-size:.84rem}
+  .dxsh-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .dxsh-card{padding:10px;border-radius:14px}
+  .dxsh-img{margin-bottom:9px}
+  .dxsh-badge{top:18px;left:18px;font-size:.5rem;padding:2px 7px}
+  .dxsh-rate{font-size:.7rem;gap:3px;margin-bottom:3px}
+  .dxsh-stars{font-size:.72rem}
+  .dxsh-n{font-size:.88rem;line-height:1.2}
+  .dxsh-bene{font-size:.74rem;margin-top:2px}
+  .dxsh-p{font-size:.92rem;margin-top:6px;gap:5px}
+  .dxsh-p s{font-size:.72rem}
+  .dxsh-off{font-size:.54rem;padding:2px 6px}
+  .dxsh-subln{font-size:.66rem;margin-top:6px}
+  .dxsh-subln strong{font-size:.7rem}
+  .dxsh-shop{min-height:40px;font-size:.78rem;margin-top:9px;padding:0 8px}
+  .dxsh-gtee{font-size:.6rem;margin-top:6px}
+  .dxsh-bundle{margin-top:24px}
+  .dxsh-bcard{padding:18px 16px;border-radius:18px;gap:16px}
+  .dxsh-bsub{font-size:.86rem;margin:6px 0 10px}
+  .dxsh-bincl{margin:10px 0}
+  .dxsh-bincl li{font-size:.86rem;padding:5px 0 5px 24px}
+  .dxsh-bprice{font-size:1.3rem;margin-top:6px}
+  .dxsh-bprice s{font-size:.92rem}
+  .dxsh-bbtn{min-height:44px;padding:0 26px;font-size:.9rem;margin-top:14px}
+  .dxsh-bproof{font-size:.74rem;margin-top:10px}
+  .dxsh-news{margin-top:24px}
+  .dxsh-news-in{flex-direction:column;align-items:flex-start;padding:24px 18px;gap:14px}
+  .dxsh-form{flex-direction:column}
+  .dxsh-form input{min-height:44px;padding:13px 16px}
+  .dxsh-sub{width:100%;box-sizing:border-box;min-height:44px;padding:13px 20px}
+}
+@media(min-width:861px){.dxsh-ov{display:none}}
+</style>
+<script>
+(function(){
+  function sheet(id){return document.getElementById(id);}
+  function openSheet(s){if(!s)return;s.classList.add('open');document.body.style.overflow='hidden';}
+  function closeSheet(s){if(!s)return;s.classList.remove('open');document.body.style.overflow='';}
+  var sortBtn=document.getElementById('dxOpenSort'),sortSheet=sheet('dxSortSheet');
+  var filterBtn=document.getElementById('dxOpenFilter'),filterSheet=sheet('dxFilterSheet');
+  if(sortBtn)sortBtn.addEventListener('click',function(){openSheet(sortSheet);});
+  if(filterBtn)filterBtn.addEventListener('click',function(){openSheet(filterSheet);});
+  document.querySelectorAll('.dxsh-ov').forEach(function(ov){
+    ov.addEventListener('click',function(e){if(e.target===ov)closeSheet(ov);});
+    ov.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){closeSheet(ov);});});
+  });
+  document.querySelectorAll('.dxsh-opt').forEach(function(o){o.addEventListener('click',function(){var u=new URL(window.location);u.searchParams.set('sort_by',o.getAttribute('data-sort'));window.location=u.toString();});});
+})();
+</script>
+{% schema %}
+{
+  "name": "Somna Shop",
+  "settings": [
+    { "type": "header", "content": "Header" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "BESTSELLERS" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Our Bestsellers" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Trusted by 50,000+ sleepers. Clinically proven. Results in 3-5 nights." },
+    { "type": "header", "content": "Comparison table" },
+    { "type": "text", "id": "cmp_head", "label": "Comparison headline", "default": "Which product is right for you?" },
+    { "type": "header", "content": "Bundle section" },
+    { "type": "text", "id": "bundle_head", "label": "Bundle headline", "default": "Get the complete sleep system" },
+    { "type": "textarea", "id": "bundle_sub", "label": "Bundle subheadline", "default": "All three products work together for better, quieter sleep." },
+    { "type": "image_picker", "id": "bundle_img", "label": "Bundle image (all 3 products)" },
+    { "type": "text", "id": "bundle_name", "label": "Bundle name", "default": "Complete Sleep System" },
+    { "type": "text", "id": "bundle_rating", "label": "Bundle rating", "default": "4.9" },
+    { "type": "text", "id": "bundle_count", "label": "Bundle review count", "default": "156" },
+    { "type": "text", "id": "bundle_was", "label": "Was price", "default": "$99" },
+    { "type": "text", "id": "bundle_now", "label": "Now price", "default": "$69" },
+    { "type": "text", "id": "bundle_save", "label": "Save amount", "default": "$30" },
+    { "type": "text", "id": "bundle_badge", "label": "Bundle badge", "default": "Most Popular" },
+    { "type": "text", "id": "bundle_proof", "label": "Bundle social proof", "default": "Loved by customers who upgraded their whole night." },
+    { "type": "url", "id": "bundle_link", "label": "Bundle button link" },
+    { "type": "image_picker", "id": "img_save1", "label": "Bundle image (fallback)" },
+    { "type": "header", "content": "Newsletter" },
+    { "type": "text", "id": "news_head", "label": "Headline", "default": "Get 15% off your first order" },
+    { "type": "textarea", "id": "news_sub", "label": "Subline", "default": "Join 50,000+ sleepers + exclusive sleep science tips." },
+    { "type": "text", "id": "news_btn", "label": "Button", "default": "Unlock my discount" },
+    { "type": "text", "id": "news_proof", "label": "Social proof line", "default": "Join 50,000+ subscribers" }
+  ],
+  "presets": [{ "name": "Somna Shop" }]
+}
+{% endschema %}

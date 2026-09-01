@@ -1,0 +1,21 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="cda-section cda-faq-sec" id="cda-faq">
+  <div class="cda-wrap" style="max-width:760px">
+    <div class="cda-sec-head"><h2 class="cda-h2">{{ section.settings.title }}</h2></div>
+    <div class="cda-acc" style="margin-top:26px">
+      {%- for block in section.blocks -%}
+        <details {{ block.shopify_attributes }}><summary>{{ block.settings.q }}<span class="cda-ic">+</span></summary><div class="cda-ans">{{ block.settings.a }}</div></details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<style>#shopify-section-{{ section.id }} h2{color:var(--cda-ink);}</style>
+{% schema %}
+{
+  "name": "Clone — FAQ",
+  "settings": [ { "type": "text", "id": "title", "label": "Title", "default": "Frequently asked questions" } ],
+  "blocks": [ { "type": "faq", "name": "FAQ", "settings": [ { "type": "text", "id": "q", "label": "Question", "default": "Will it wake a heavy sleeper?" }, { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>That’s exactly what it’s built for.</p>" } ] } ],
+  "max_blocks": 20,
+  "presets": [{ "name": "Clone — FAQ" }]
+}
+{% endschema %}

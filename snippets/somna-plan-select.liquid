@@ -1,0 +1,48 @@
+{% doc %}
+  Compact selling plan selector for Somna add-to-cart flows.
+
+  @param {object} variant - Product variant
+  @param {string} id_prefix - Unique ID prefix for the select
+  @param {string} [plan_attr] - Data attribute for JS hook (default: data-cart-addon-plan)
+{% enddoc %}
+
+{%- liquid
+  assign plan_attr = plan_attr | default: 'data-cart-addon-plan'
+  assign select_id = id_prefix | append: '-plan'
+-%}
+
+{%- if variant.selling_plan_allocations.size > 0 -%}
+  <label class="visually-hidden" for="{{ select_id }}">Purchase option</label>
+  <select
+    id="{{ select_id }}"
+    class="somna-plan-select"
+    {{ plan_attr }}
+  >
+    <option value="">One-time · {{ variant.price | money }}</option>
+    {%- for allocation in variant.selling_plan_allocations -%}
+      <option value="{{ allocation.selling_plan.id }}">
+        {{ allocation.selling_plan.name }} · {{ allocation.price | money }}
+      </option>
+    {%- endfor -%}
+  </select>
+{%- endif -%}
+
+{% stylesheet %}
+  .somna-plan-select {
+    width: 100%;
+    margin-top: 6px;
+    padding: 6px 8px;
+    border: 1px solid var(--cda-line, #e6e3f1);
+    border-radius: 8px;
+    background: #fff;
+    font-family: var(--cda-font, inherit);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--cda-ink, #1a1726);
+  }
+
+  .spdp-addon .somna-plan-select {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+{% endstylesheet %}

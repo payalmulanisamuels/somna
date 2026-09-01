@@ -1,0 +1,38 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr">
+      <h2 class="sjp-h2">{{ section.settings.title_a | default: '8 engineering details,' }} <em>{{ section.settings.title_em | default: 'one perfect strip' }}</em></h2>
+      {%- if section.settings.sub != blank -%}<p class="sjp-sub">{{ section.settings.sub }}</p>{%- endif -%}
+    </div>
+    <div class="sjp-ing-grid somna-sr-stag">
+      {%- for block in section.blocks -%}
+      <div class="sjp-ing" {{ block.shopify_attributes }}>
+        <div class="sjp-ing-img">{%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 500 }}" loading="lazy" alt="{{ block.settings.title | escape }}">{%- else -%}<div class="sjp-ph">Insert image</div>{%- endif -%}</div>
+        <b>{{ block.settings.title }}</b>
+        {%- if block.settings.sub != blank -%}<span>{{ block.settings.sub }}</span>{%- endif -%}
+      </div>
+      {%- endfor -%}
+    </div>
+    <div class="sjp-ctawrap somna-sr"><a class="sjp-cta" href="#somna-jp-buy">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a></div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — Detail grid",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "8 engineering details," },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "one perfect strip" },
+    { "type": "text", "id": "sub", "label": "Subtitle" },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "tile", "name": "Detail tile", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image (square)" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Tension band" },
+    { "type": "text", "id": "sub", "label": "Sub", "default": "gentle constant lift" }
+  ] } ],
+  "max_blocks": 12,
+  "presets": [{ "name": "JP — Detail grid", "blocks": [ {"type":"tile"},{"type":"tile"},{"type":"tile"},{"type":"tile"},{"type":"tile"},{"type":"tile"},{"type":"tile"},{"type":"tile"} ] }]
+}
+{% endschema %}

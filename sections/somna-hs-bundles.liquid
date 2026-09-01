@@ -1,0 +1,65 @@
+{{ 'somna-hs-styles.css' | asset_url | stylesheet_tag }}
+<section class="shs shs-sec" style="background:{{ section.settings.bg | default: '#ffffff' }}">
+  <div class="shs-wrap">
+    <div class="somna-sr" style="text-align:center;max-width:760px;margin:0 auto">
+      {%- if section.settings.eyebrow != blank -%}<span class="shs-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="shs-h2">{{ section.settings.title | default: 'Save on our bundles' }}</h2>
+    </div>
+    <div class="shs-bnd-grid somna-sr-stag">
+      {%- for block in section.blocks -%}
+      {%- assign p = block.settings.prod -%}
+      <a class="shs-bnd" href="{% if p != blank %}{{ p.url }}{% else %}#{% endif %}" {{ block.shopify_attributes }}>
+        <div class="shs-bnd-img">
+          {%- assign badge_txt = block.settings.badge -%}
+          {%- if badge_txt == blank and p != blank and p.compare_at_price > p.price -%}
+            {%- assign pct = p.compare_at_price | minus: p.price | times: 100.0 | divided_by: p.compare_at_price | round -%}
+            {%- capture badge_txt -%}Save {{ pct }}%{%- endcapture -%}
+          {%- endif -%}
+          {%- if badge_txt != blank -%}<span class="shs-bnd-badge">{{ badge_txt }}</span>{%- endif -%}
+          {%- if block.settings.img != blank -%}
+            <img src="{{ block.settings.img | image_url: width: 800 }}" loading="lazy" alt="{{ block.settings.title | default: p.title | escape }}">
+          {%- elsif p != blank and p.featured_image != blank -%}
+            <img src="{{ p.featured_image | image_url: width: 800 }}" loading="lazy" alt="{{ p.title | escape }}">
+          {%- else -%}
+            <div class="shs-bnd-ph">Link a product or add an image</div>
+          {%- endif -%}
+          {%- if block.settings.img2 != blank -%}
+            <img class="shs-bnd-alt" src="{{ block.settings.img2 | image_url: width: 800 }}" loading="lazy" alt="">
+          {%- elsif p != blank and p.images[1] != blank -%}
+            <img class="shs-bnd-alt" src="{{ p.images[1] | image_url: width: 800 }}" loading="lazy" alt="">
+          {%- endif -%}
+        </div>
+        <div class="shs-bnd-title">{{ block.settings.title | default: p.title }}</div>
+        <div>
+          {%- if p != blank -%}
+            <span class="shs-bnd-price">{{ p.price | money }}</span>
+            {%- if p.compare_at_price > p.price -%}<span class="shs-bnd-was">{{ p.compare_at_price | money }}</span>{%- endif -%}
+          {%- elsif block.settings.price != blank -%}
+            <span class="shs-bnd-price">{{ block.settings.price }}</span>
+          {%- endif -%}
+        </div>
+      </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "HS — Bundles grid",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Better together" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Save on our bundles" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#ffffff" }
+  ],
+  "blocks": [ { "type": "bundle", "name": "Bundle card", "settings": [
+    { "type": "product", "id": "prod", "label": "Linked product (price + link auto-fill)" },
+    { "type": "image_picker", "id": "img", "label": "Image override" },
+    { "type": "image_picker", "id": "img2", "label": "Hover image override" },
+    { "type": "text", "id": "title", "label": "Title override" },
+    { "type": "text", "id": "badge", "label": "Badge override (auto Save % if linked)" },
+    { "type": "text", "id": "price", "label": "Price text (only if no product linked)" }
+  ] } ],
+  "max_blocks": 12,
+  "presets": [{ "name": "HS — Bundles grid", "blocks": [ {"type":"bundle"},{"type":"bundle"},{"type":"bundle"},{"type":"bundle"} ] }]
+}
+{% endschema %}

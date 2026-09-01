@@ -1,0 +1,37 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr">
+      <h2 class="sjp-h2">{{ section.settings.title_a | default: 'Your new nightly ritual —' }} <em>{{ section.settings.title_em | default: 'done in 10 seconds' }}</em></h2>
+      {%- if section.settings.sub != blank -%}<p class="sjp-sub">{{ section.settings.sub }}</p>{%- endif -%}
+    </div>
+    <div class="sjp-steps somna-sr-stag">
+      {%- for block in section.blocks -%}
+      <div class="sjp-step" {{ block.shopify_attributes }}>
+        <div class="sjp-step-img"><span class="sjp-step-n">Step {{ forloop.index }}</span>{%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 800 }}" loading="lazy" alt="{{ block.settings.title | escape }}">{%- else -%}<div class="sjp-ph">Insert step photo</div>{%- endif -%}</div>
+        <div class="sjp-step-b"><b>{{ block.settings.title }}</b><p>{{ block.settings.sub }}</p></div>
+      </div>
+      {%- endfor -%}
+    </div>
+    <div class="sjp-ctawrap somna-sr"><a class="sjp-cta" href="#somna-jp-buy">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a></div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — Ritual steps",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "Your new nightly ritual —" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "done in 10 seconds" },
+    { "type": "text", "id": "sub", "label": "Subtitle" },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "step", "name": "Step", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo (4:3)" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Peel" },
+    { "type": "text", "id": "sub", "label": "Sub", "default": "Remove the backing from a fresh strip." }
+  ] } ],
+  "max_blocks": 4,
+  "presets": [{ "name": "JP — Ritual steps", "blocks": [ {"type":"step"},{"type":"step"},{"type":"step"} ] }]
+}
+{% endschema %}

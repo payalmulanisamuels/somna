@@ -1,0 +1,462 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "clone-dreamx-alarm-hero",
+      "blocks": {
+        "i1": {
+          "type": "info",
+          "settings": {
+            "q": "What is this?",
+            "a": "<p>A silent vibrating wrist alarm. Instead of a loud sound, it wakes you with a firm vibration on your wrist — calmer for you, silent for the room.</p>"
+          }
+        },
+        "i2": {
+          "type": "info",
+          "settings": {
+            "q": "Will it actually wake me?",
+            "a": "<p>Yes. The vibration gradually increases until you respond, so even deep sleepers feel it.</p>"
+          }
+        },
+        "i3": {
+          "type": "info",
+          "settings": {
+            "q": "How does it work?",
+            "a": "<p>Set your time, wear the band, and it activates silently when it’s time to wake. Alarms live on the band — no phone needed after setup.</p>"
+          }
+        },
+        "i4": {
+          "type": "info",
+          "settings": {
+            "q": "Shipping & returns",
+            "a": "<p>Free shipping over $50, dispatched within 24 hours, 3–7 day delivery with tracking. Backed by a 100-night guarantee.</p>"
+          }
+        },
+        "info_FYEgXx": {
+          "type": "info",
+          "settings": {
+            "q": "What is this?",
+            "a": "<p>A silent vibrating wrist alarm that wakes you with a firm vibration instead of sound.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "info_FYEgXx"
+      ],
+      "settings": {
+        "heading": "Somna — The Silent Vibration Alarm",
+        "tagline": "<p>A strong, escalating vibration wakes you on the wrist — silently. Built for heavy sleepers and couples who don’t want to wake each other.</p>",
+        "rating_label": "4.8 · 1,240 reviews",
+        "pack_heading": "Choose your pack",
+        "cta_label": "Add to cart",
+        "bullet_1": "Built by heavy sleepers, for heavy sleepers",
+        "bullet_2": "Escalating vibration guaranteed to wake you",
+        "bullet_3": "Silent — never disturbs the person beside you",
+        "bullet_4": "100-night risk-free money-back guarantee",
+        "bg_color": "#ffffff"
+      }
+    },
+    "vprops": {
+      "type": "clone-dreamx-alarm-vprops",
+      "blocks": {
+        "v1": {
+          "type": "vp",
+          "settings": {
+            "title": "Better sleep quality",
+            "sub": "Wake calm, not startled"
+          }
+        },
+        "v2": {
+          "type": "vp",
+          "settings": {
+            "title": "Energized mornings",
+            "sub": "No cortisol-spiking noise"
+          }
+        },
+        "v3": {
+          "type": "vp",
+          "settings": {
+            "title": "Partner stays asleep",
+            "sub": "Silent, 0 dB wake-up"
+          }
+        },
+        "v4": {
+          "type": "vp",
+          "settings": {
+            "title": "Reliable every time",
+            "sub": "99% wake rate in trials"
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ],
+      "settings": {}
+    },
+    "stats": {
+      "type": "clone-dreamx-alarm-stats",
+      "settings": {
+        "kicker": "Studied & trusted",
+        "title": "Built for optimizers and loving couples.",
+        "big1": "91%",
+        "sub1": "report improved sleep recovery and less morning irritation.*",
+        "big2": "97%",
+        "sub2": "notice an energy improvement within 1–2 weeks of use.*",
+        "footnote": "*Self-reported by customers. Illustrative example."
+      }
+    },
+    "compare": {
+      "type": "clone-dreamx-alarm-compare",
+      "blocks": {
+        "c1": {
+          "type": "row",
+          "settings": {
+            "label": "Wakes you silently",
+            "us": "✓",
+            "a": "✕",
+            "b": "~"
+          }
+        },
+        "c2": {
+          "type": "row",
+          "settings": {
+            "label": "Won’t wake your partner",
+            "us": "✓",
+            "a": "✕",
+            "b": "✕"
+          }
+        },
+        "c3": {
+          "type": "row",
+          "settings": {
+            "label": "No cortisol-spiking noise",
+            "us": "✓",
+            "a": "✕",
+            "b": "✕"
+          }
+        },
+        "c4": {
+          "type": "row",
+          "settings": {
+            "label": "Escalating intensity",
+            "us": "✓",
+            "a": "✕",
+            "b": "✕"
+          }
+        },
+        "c5": {
+          "type": "row",
+          "settings": {
+            "label": "7+ day battery",
+            "us": "✓",
+            "a": "✕",
+            "b": "✕"
+          }
+        },
+        "c6": {
+          "type": "row",
+          "settings": {
+            "label": "No screen by your head",
+            "us": "✓",
+            "a": "✕",
+            "b": "~"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
+      "settings": {
+        "kicker": "Why not just a phone?",
+        "title": "Physical vibration beats sound. Every time.",
+        "col_us": "Somna",
+        "col_a": "Phone alarm",
+        "col_b": "Smartwatch"
+      }
+    },
+    "features": {
+      "type": "clone-dreamx-alarm-features",
+      "blocks": {
+        "f1": {
+          "type": "feat",
+          "settings": {
+            "title": "Strong, escalating vibration",
+            "body": "<p>Starts gentle and builds through three intensity levels. On your wrist, your brain can’t tune it out like sound.</p>",
+            "image": "shopify://shop_images/hf_20260617_132823_8058d9a7-f3e1-41a5-94c9-4e7416380297.png",
+            "stat1": "3",
+            "stat1label": "Intensity levels",
+            "stat2": "99%",
+            "stat2label": "Wake rate"
+          }
+        },
+        "f2": {
+          "type": "feat",
+          "settings": {
+            "title": "A calm, silent wake-up",
+            "body": "<p>No blaring tone, no jolt of adrenaline. Just a vibration only you feel — so the person next to you sleeps right through.</p>",
+            "image": "shopify://shop_images/hf_20260617_132831_61643891-8b7f-4924-be96-bc88e6e1d10b.png",
+            "stat1": "0 dB",
+            "stat1label": "Noise level",
+            "stat2": "100%",
+            "stat2label": "Silent"
+          }
+        },
+        "f3": {
+          "type": "feat",
+          "settings": {
+            "title": "7+ days on a charge",
+            "body": "<p>Set it and forget it. A full week of alarms on one charge, with fast USB top-ups. Water resistant for everyday wear.</p>",
+            "image": "shopify://shop_images/hf_20260617_132839_097f20f9-d0a7-4dbe-8098-39882235f5e9.png",
+            "stat1": "7+",
+            "stat1label": "Days battery",
+            "stat2": "USB",
+            "stat2label": "Fast charge"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "settings": {
+        "kicker": "Reclaim your morning",
+        "title": "Set your time. Reset your mornings."
+      }
+    },
+    "reviews": {
+      "type": "clone-dreamx-alarm-reviews",
+      "blocks": {
+        "rf1": {
+          "type": "feat",
+          "settings": {
+            "quote": "My husband wakes at 5am and used to wake the whole house. Now he’s the only one up. Saved my sleep.",
+            "name": "Macarena R.",
+            "role": "Verified buyer"
+          }
+        },
+        "rf2": {
+          "type": "feat",
+          "settings": {
+            "quote": "Strongest vibration of any wearable I’ve tried, and not bulky. Replaced my phone and watch as an alarm.",
+            "name": "Lena & Camilo",
+            "role": "Couple"
+          }
+        },
+        "rf3": {
+          "type": "feat",
+          "settings": {
+            "quote": "We’re both athletes and recovery is everything. Waking without a jarring noise made a real difference.",
+            "name": "Carlo E.",
+            "role": "Pro athlete"
+          }
+        },
+        "rw1": {
+          "type": "wall",
+          "settings": {
+            "text": "Honestly the first thing that’s ever reliably woken me. Wish I’d bought it years ago.",
+            "name": "Jordan M."
+          }
+        },
+        "rw2": {
+          "type": "wall",
+          "settings": {
+            "text": "My partner sleeps right through it now. No more 5am arguments before coffee.",
+            "name": "Aisha N."
+          }
+        },
+        "rw3": {
+          "type": "wall",
+          "settings": {
+            "text": "Quality feels premium and setup took two minutes. Exactly what I wanted.",
+            "name": "Devon H."
+          }
+        },
+        "rw4": {
+          "type": "wall",
+          "settings": {
+            "text": "I travel constantly and this has made waking up in new time zones so much easier.",
+            "name": "Priya K."
+          }
+        },
+        "rw5": {
+          "type": "wall",
+          "settings": {
+            "text": "Night-shift life is brutal. This wakes me without blasting noise through the whole house.",
+            "name": "Marcus T."
+          }
+        },
+        "rw6": {
+          "type": "wall",
+          "settings": {
+            "text": "Comfortable enough that I forget I’m wearing it. Battery genuinely lasts.",
+            "name": "Hannah L."
+          }
+        }
+      },
+      "block_order": [
+        "rf1",
+        "rf2",
+        "rf3",
+        "rw1",
+        "rw2",
+        "rw3",
+        "rw4",
+        "rw5",
+        "rw6"
+      ],
+      "settings": {
+        "title": "Backed by Experts & Trusted by  Athletes & Couples Worldwide"
+      }
+    },
+    "faq": {
+      "type": "clone-dreamx-alarm-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Will it wake a heavy sleeper?",
+            "a": "<p>That’s exactly what it’s built for. The escalating vibration intensifies until you wake — even from deep sleep.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Is it loud? Will it wake my partner?",
+            "a": "<p>No. Somna makes zero sound. The wake-up is a vibration felt only on your wrist.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Does it need a phone or app?",
+            "a": "<p>No. Alarms live on the band. Use the optional app to set them quickly, then leave your phone anywhere.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "How long does the battery last?",
+            "a": "<p>Up to 7 days on a single charge with daily alarms, with fast USB top-ups.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "Is it water resistant?",
+            "a": "<p>Yes — it handles sweat, rain and splashes. We don’t recommend swimming or hot showers with it.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "Is it comfortable to sleep in?",
+            "a": "<p>Very. The band is lightweight, soft and breathable — most people forget they’re wearing it.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "title": "Frequently asked questions"
+      }
+    },
+    "kit": {
+      "type": "clone-dreamx-alarm-kit",
+      "blocks": {
+        "k1": {
+          "type": "item",
+          "settings": {
+            "linked_product": "",
+            "name": "Anti-Snore Nasal Strips",
+            "price": "$24",
+            "was": "$40",
+            "link": "/products/dreamx-anti-snore-nasal-strips"
+          }
+        },
+        "k2": {
+          "type": "item",
+          "settings": {
+            "linked_product": "",
+            "name": "Sleep Mouth Tape",
+            "price": "$19",
+            "was": "$32",
+            "link": "/products/dreamx-sleep-mouth-tape"
+          }
+        },
+        "k3": {
+          "type": "item",
+          "settings": {
+            "linked_product": "",
+            "name": "Recovery Light Panel",
+            "price": "$199",
+            "was": "$349",
+            "link": "/products/dreamx-recovery-light-panel"
+          }
+        }
+      },
+      "block_order": [
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "settings": {
+        "title": "Complete your sleep kit"
+      }
+    },
+    "cta": {
+      "type": "clone-dreamx-alarm-cta",
+      "settings": {
+        "title": "Never sleep through an alarm again.",
+        "body": "<p>Wake up on time, quietly, and on your own terms — backed by a 100-night money-back guarantee.</p>",
+        "cta_label": "Order Yours Today",
+        "cta_link": ""
+      }
+    },
+    "sticky": {
+      "type": "clone-dreamx-alarm-sticky",
+      "settings": {
+        "short_title": "Silent Alarm",
+        "cta_label": "Add to cart"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "vprops",
+    "stats",
+    "compare",
+    "features",
+    "reviews",
+    "faq",
+    "kit",
+    "cta",
+    "sticky"
+  ]
+}

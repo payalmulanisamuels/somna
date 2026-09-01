@@ -1,0 +1,42 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FAF7F2' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr" style="text-align:center;max-width:900px;margin:0 auto">
+      <h2 class="sjp-igt">{{ section.settings.title_a | default: 'The missing piece:' }} <em>{{ section.settings.title_em | default: 'open airways' }}</em></h2>
+      {%- if section.settings.body != blank -%}<p class="sjp-sub" style="max-width:860px">{{ section.settings.body }}</p>{%- endif -%}
+    </div>
+    <div class="sjp-mp-one somna-sr somna-zoomin">
+      {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 2000 }}" loading="lazy" alt="{{ section.settings.title_em | escape }}">
+      {%- else -%}
+      <div class="sjp-ph" style="aspect-ratio:2/1">Insert one big landscape image (whole tile)</div>
+      {%- endif -%}
+    </div>
+    <div class="sjp-ctawrap somna-sr">
+      <a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a>
+      {%- if section.settings.gline != blank -%}<div class="sjp-gline"><span class="sjp-gdot">✓</span>{{ section.settings.gline }}</div>{%- endif -%}
+    </div>
+  </div>
+</section>
+<style>
+.sjp-mp-one{margin-top:40px;border-radius:22px;overflow:hidden}
+.sjp-mp-one img{width:100%;height:auto;display:block}
+.sjp-gline{display:flex;align-items:center;justify-content:center;gap:7px;font-size:.85rem;font-weight:700;margin-top:13px;color:var(--ink)}
+.sjp-gdot{width:17px;height:17px;border-radius:50%;background:var(--band);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;flex:none}
+</style>
+{% schema %}
+{
+  "name": "JP — Missing piece",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "The missing piece:" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "open airways" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Most restless nights start with a narrowed nasal passage. When air has to squeeze through, you mouth-breathe, wake up dry, and your partner hears every breath. Somna gently lifts the passage open so air flows the way it should — that's the entire reason it exists." },
+    { "type": "image_picker", "id": "image", "label": "ONE big landscape image (whole tile)" },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: buy box)" },
+    { "type": "text", "id": "gline", "label": "Guarantee line under CTA", "default": "30-Day Feel-It Guarantee" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FAF7F2" }
+  ],
+  "presets": [{ "name": "JP — Missing piece" }]
+}
+{% endschema %}

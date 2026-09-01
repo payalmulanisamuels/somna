@@ -1,0 +1,485 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign pA = all_products['dreamx-silent-alarm-band'] -%}{%- assign pN = all_products['dreamx-anti-snore-nasal-strips'] -%}{%- assign pT = all_products['dreamx-sleep-mouth-tape'] -%}
+{%- assign vA = pA.selected_or_first_available_variant -%}{%- assign vN = pN.selected_or_first_available_variant -%}{%- assign vT = pT.selected_or_first_available_variant -%}
+<div class="dxh">
+
+  {%- comment -%} ===== HERO ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <div class="dxh-hero">
+      {% if section.settings.hero_image != blank %}<img class="dxh-hero-bg dxh-hero-bg-d" src="{{ section.settings.hero_image | image_url: width: 2200 }}" alt="" loading="eager">{% endif %}
+      {% if section.settings.hero_image_mobile != blank %}<img class="dxh-hero-bg dxh-hero-bg-m" style="object-position:{{ section.settings.hero_focus_mobile | default: '50% 50%' }}" src="{{ section.settings.hero_image_mobile | image_url: width: 1200 }}" alt="" loading="eager">{% elsif section.settings.hero_image != blank %}<img class="dxh-hero-bg dxh-hero-bg-m" style="object-position:{{ section.settings.hero_focus_mobile | default: '50% 50%' }}" src="{{ section.settings.hero_image | image_url: width: 1600 }}" alt="" loading="eager">{% endif %}
+      <div class="dxh-hero-in">
+        <span class="dxh-kick">{{ section.settings.hero_kicker }}</span>
+        <h1 class="dxh-h1"><span class="dxh-h1a">{{ section.settings.hero_line1 }}</span><span class="dxh-h1b">{{ section.settings.hero_line2 }}</span></h1>
+        <div class="dxh-hero-proof"><span class="dxh-hero-stars">★★★★★</span> <span>{{ section.settings.hero_proof }}</span></div>
+        <a class="cda-btn dxh-btn" href="{{ section.settings.hero_cta_link | default: '/collections/all' }}">{{ section.settings.hero_cta }}</a>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ===== AS SEEN IN ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-seenbar">
+    <div class="dxh-seen-k">AS SEEN IN</div>
+    <div class="dxh-marquee"><div class="dxh-marquee-t">
+      {%- assign seen = section.settings.seen_logos | split: ',' -%}
+      {%- for l in seen -%}<span>{{ l | strip }}</span>{%- endfor -%}
+      {%- for l in seen -%}<span>{{ l | strip }}</span>{%- endfor -%}
+    </div></div>
+  </section>
+
+  {%- comment -%} ===== PROBLEM STATEMENT ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <div class="dxh-center"><h2 class="dxh-h2">{{ section.settings.prob_head }}</h2><p class="dxh-muted" style="margin-top:10px">{{ section.settings.prob_body }}</p></div>
+    <div class="dxh-grid3">
+      <div class="dxh-prob"><div class="dxh-ic">{{ section.settings.prob1_ic }}</div><div class="dxh-pn">{{ section.settings.prob1_t }}</div><p class="dxh-muted2">{{ section.settings.prob1_d }}</p></div>
+      <div class="dxh-prob"><div class="dxh-ic">{{ section.settings.prob2_ic }}</div><div class="dxh-pn">{{ section.settings.prob2_t }}</div><p class="dxh-muted2">{{ section.settings.prob2_d }}</p></div>
+      <div class="dxh-prob"><div class="dxh-ic">{{ section.settings.prob3_ic }}</div><div class="dxh-pn">{{ section.settings.prob3_t }}</div><p class="dxh-muted2">{{ section.settings.prob3_d }}</p></div>
+    </div>
+    <p class="dxh-center dxh-probsub">{{ section.settings.prob_sub }}</p>
+  </section>
+
+  {%- comment -%} ===== BESTSELLERS ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec dxh-sec-bs">
+    <h2 class="dxh-h2 dxh-center">Explore our bestsellers</h2>
+    <div class="dxh-grid3 dxh-prodgrid">
+      <div class="dxh-pcard dxh-pcard-rich">
+        <a class="dxh-card-link" href="/products/dreamx-anti-snore-nasal-strips"><span class="dxh-badge">Best Seller</span>{% if section.settings.img_best2 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_best2 | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% elsif pN.featured_image %}<div class="cda-ph"><img src="{{ pN.featured_image | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-rate"><span class="dxh-stars">★★★★★</span> <strong>{{ section.settings.best2_rating }}</strong> <span class="dxh-rc">({{ section.settings.best2_count }})</span></div><div class="dxh-pn">Anti-Snore Nasal Strips</div><div class="dxh-bene">{{ section.settings.best2_bene }}</div><p class="dxh-muted2">{{ section.settings.best2_desc }}</p><div class="dxh-pp">$24 <s>$40</s></div><span class="dxh-gtee">{{ section.settings.card_gtee }}</span></a>
+        <button type="button" class="dxh-shop" data-vid="{{ vN.id }}">Add to cart</button>
+      </div>
+
+      <div class="dxh-pcard dxh-pcard-rich">
+        <a class="dxh-card-link" href="/products/dreamx-sleep-mouth-tape"><span class="dxh-badge">Most Popular</span>{% if section.settings.img_best3 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_best3 | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% elsif pT.featured_image %}<div class="cda-ph"><img src="{{ pT.featured_image | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-rate"><span class="dxh-stars">★★★★★</span> <strong>{{ section.settings.best3_rating }}</strong> <span class="dxh-rc">({{ section.settings.best3_count }})</span></div><div class="dxh-pn">Sleep Mouth Tape</div><div class="dxh-bene">{{ section.settings.best3_bene }}</div><p class="dxh-muted2">{{ section.settings.best3_desc }}</p><div class="dxh-pp">$19 <s>$32</s></div><span class="dxh-gtee">{{ section.settings.card_gtee }}</span></a>
+        <button type="button" class="dxh-shop" data-vid="{{ vT.id }}">Add to cart</button>
+      </div>
+
+      <div class="dxh-pcard dxh-pcard-rich">
+        <a class="dxh-card-link" href="/products/dreamx-silent-alarm-band"><span class="dxh-badge">Bundle</span>{% if section.settings.img_best1 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_best1 | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% elsif section.settings.img_kit != blank %}<div class="cda-ph"><img src="{{ section.settings.img_kit | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-rate"><span class="dxh-stars">★★★★★</span> <strong>{{ section.settings.best1_rating }}</strong> <span class="dxh-rc">({{ section.settings.best1_count }})</span></div><div class="dxh-pn">Complete Sleep System</div><div class="dxh-bene">{{ section.settings.kit_bene }}</div><p class="dxh-muted2">{{ section.settings.kit_desc }}</p><div class="dxh-pp">$69 <s>$137</s></div><span class="dxh-gtee">{{ section.settings.card_gtee }}</span></a>
+        <button type="button" class="dxh-shop" data-vid="{{ vA.id }}">Get the system</button>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ===== WHY CHOOSE SOMNA ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <h2 class="dxh-h2 dxh-center">{{ section.settings.why_head }}</h2>
+    <div class="dxh-grid3" style="margin-top:24px">
+      <div class="dxh-cmp"><h3 class="dxh-cmp-h">{{ section.settings.why1_h }}</h3>{{ section.settings.why1_list }}</div>
+      <div class="dxh-cmp"><h3 class="dxh-cmp-h">{{ section.settings.why2_h }}</h3>{{ section.settings.why2_list }}</div>
+      <div class="dxh-cmp"><h3 class="dxh-cmp-h">{{ section.settings.why3_h }}</h3>{{ section.settings.why3_list }}</div>
+    </div>
+  </section>
+
+  {%- comment -%} ===== WHICH SLEEP PROBLEM ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <div class="dxh-center"><h2 class="dxh-h2">{{ section.settings.fit_head }}</h2><p class="dxh-muted" style="margin-top:8px">{{ section.settings.fit_sub }}</p></div>
+    <div class="dxh-grid4">
+      <a class="dxh-solve" href="{{ section.settings.fit1_link | default: '/collections/all' }}"><div class="dxh-pn">{{ section.settings.fit1_t }}</div><p class="dxh-muted2">{{ section.settings.fit1_s }}</p><div class="dxh-solve-x">{{ section.settings.fit1_sol }}</div></a>
+      <a class="dxh-solve" href="{{ section.settings.fit2_link | default: '/products/dreamx-anti-snore-nasal-strips' }}"><div class="dxh-pn">{{ section.settings.fit2_t }}</div><p class="dxh-muted2">{{ section.settings.fit2_s }}</p><div class="dxh-solve-x">{{ section.settings.fit2_sol }}</div></a>
+      <a class="dxh-solve" href="{{ section.settings.fit3_link | default: '/products/dreamx-sleep-mouth-tape' }}"><div class="dxh-pn">{{ section.settings.fit3_t }}</div><p class="dxh-muted2">{{ section.settings.fit3_s }}</p><div class="dxh-solve-x">{{ section.settings.fit3_sol }}</div></a>
+      <a class="dxh-solve" href="{{ section.settings.fit4_link | default: '/collections/all' }}"><div class="dxh-pn">{{ section.settings.fit4_t }}</div><p class="dxh-muted2">{{ section.settings.fit4_s }}</p><div class="dxh-solve-x">{{ section.settings.fit4_sol }}</div></a>
+    </div>
+  </section>
+
+  {%- comment -%} ===== HOW IT WORKS ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec" id="how">
+    <div class="dxh-center"><h2 class="dxh-h2">{{ section.settings.how_head }}</h2><p class="dxh-muted" style="margin-top:8px">{{ section.settings.how_sub }}</p></div>
+    <div class="dxh-steps">
+      <div class="dxh-step"><div class="dxh-step-n">1</div><div class="dxh-pn">{{ section.settings.how1_t }}</div><p class="dxh-muted2">{{ section.settings.how1_d }}</p></div>
+      <div class="dxh-step"><div class="dxh-step-n">2</div><div class="dxh-pn">{{ section.settings.how2_t }}</div><p class="dxh-muted2">{{ section.settings.how2_d }}</p></div>
+      <div class="dxh-step"><div class="dxh-step-n">3</div><div class="dxh-pn">{{ section.settings.how3_t }}</div><p class="dxh-muted2">{{ section.settings.how3_d }}</p></div>
+      <div class="dxh-step"><div class="dxh-step-n">4</div><div class="dxh-pn">{{ section.settings.how4_t }}</div><p class="dxh-muted2">{{ section.settings.how4_d }}</p></div>
+    </div>
+    <p class="dxh-center dxh-probsub">{{ section.settings.how_foot }}</p>
+  </section>
+
+  {%- comment -%} ===== STATS ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <div class="dxh-band">
+      <h2 class="dxh-h2" style="color:#fff">{{ section.settings.stat_head }}</h2>
+      <p style="color:#cabff2;max-width:52ch;margin:8px auto 0">{{ section.settings.stat_sub }}</p>
+      <div class="dxh-stats3">
+        <div><div class="dxh-big">{{ section.settings.stat1_n }}</div><div class="dxh-ss">{{ section.settings.stat1_l }}</div><div class="dxh-src">{{ section.settings.stat1_src }}</div></div>
+        <div><div class="dxh-big">{{ section.settings.stat2_n }}</div><div class="dxh-ss">{{ section.settings.stat2_l }}</div><div class="dxh-src">{{ section.settings.stat2_src }}</div></div>
+        <div><div class="dxh-big">{{ section.settings.stat3_n }}</div><div class="dxh-ss">{{ section.settings.stat3_l }}</div><div class="dxh-src">{{ section.settings.stat3_src }}</div></div>
+      </div>
+      <p class="dxh-disc">{{ section.settings.stat_disc }}</p>
+    </div>
+  </section>
+
+  {%- comment -%} ===== EXPERTS ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <div class="dxh-center"><div class="dxh-stars">★★★★★</div><h2 class="dxh-h2">{{ section.settings.exp_head }}</h2></div>
+    <div class="dxh-grid3">
+      {%- for i in (1..3) -%}
+        {%- assign qk = 'exp' | append: i | append: '_q' -%}{%- assign nk = 'exp' | append: i | append: '_name' -%}{%- assign rk = 'exp' | append: i | append: '_role' -%}{%- assign ik = 'img_exp' | append: i -%}
+        <div class="dxh-rcard"><p class="dxh-q">{{ section.settings[qk] }}</p><div class="dxh-who">{% if section.settings[ik] != blank %}<div class="cda-ph round" style="width:42px;height:42px"><img src="{{ section.settings[ik] | image_url: width: 120 }}" alt="" width="120" height="120"></div>{% else %}<div class="cda-ph round" style="width:42px;height:42px"></div>{% endif %}<div><div class="dxh-pn">{{ section.settings[nk] }}</div><div class="dxh-muted2">{{ section.settings[rk] }}</div></div></div></div>
+      {%- endfor -%}
+    </div>
+  </section>
+
+  {%- comment -%} ===== BUNDLES ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <h2 class="dxh-h2 dxh-center">Save on our bundles</h2>
+    <div class="dxh-grid3 dxh-prodgrid">
+      <div class="dxh-pcard">
+        <a class="dxh-card-link" href="/products/dreamx-silent-alarm-band"><span class="dxh-save">SAVE 55%</span>{% if section.settings.img_save1 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_save1 | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn">Couple’s Favorite</div><div class="dxh-pp">$90 <s>$178</s></div></a>
+        <button type="button" class="dxh-shop" data-vid="{{ vA.id }}">Add to cart</button>
+      </div>
+      <div class="dxh-pcard">
+        <a class="dxh-card-link" href="/products/dreamx-silent-alarm-band"><span class="dxh-save">SAVE 49%</span>{% if section.settings.img_save2 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_save2 | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn">Perfect Sleep Kit</div><div class="dxh-pp">$69 <s>$137</s></div></a>
+        <button type="button" class="dxh-shop" data-vid="{{ vA.id }}">Add to cart</button>
+      </div>
+      <div class="dxh-pcard">
+        <a class="dxh-card-link" href="/products/dreamx-silent-alarm-band"><span class="dxh-save">SAVE 60%</span>{% if section.settings.img_save4 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_save4 | image_url: width: 600 }}" alt="" width="600" height="600" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn">Family 4-Pack</div><div class="dxh-pp">$136 <s>$356</s></div></a>
+        <button type="button" class="dxh-shop" data-vid="{{ vA.id }}">Add to cart</button>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ===== FAQ ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec" style="max-width:840px">
+    <h2 class="dxh-h2 dxh-center">{{ section.settings.faq_head }}</h2>
+    {% if section.settings.faq_sub != blank %}<p class="dxh-muted dxh-center" style="margin:8px auto 26px;max-width:520px">{{ section.settings.faq_sub }}</p>{% endif %}
+    <div class="dxh-faq">
+      {%- for i in (1..12) -%}{%- assign qk = 'faq_q' | append: i -%}{%- assign ak = 'faq_a' | append: i -%}{% if section.settings[qk] != blank %}<details class="dxh-faqr"><summary>{{ section.settings[qk] }}<span class="dxh-faqic">+</span></summary><div class="dxh-faqa">{{ section.settings[ak] }}</div></details>{% endif %}{%- endfor -%}
+    </div>
+  </section>
+
+  {%- comment -%} ===== COMPLIANCE / TRUST ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <h2 class="dxh-h2 dxh-center">{{ section.settings.trust_head }}</h2>
+    <div class="dxh-grid3" style="margin-top:24px">
+      <div class="dxh-cmp"><h3 class="dxh-cmp-h">{{ section.settings.trust1_h }}</h3>{{ section.settings.trust1_list }}</div>
+      <div class="dxh-cmp"><h3 class="dxh-cmp-h">{{ section.settings.trust2_h }}</h3>{{ section.settings.trust2_list }}</div>
+      <div class="dxh-cmp"><h3 class="dxh-cmp-h">{{ section.settings.trust3_h }}</h3>{{ section.settings.trust3_list }}</div>
+    </div>
+    <p class="dxh-disc dxh-disc-light">{{ section.settings.trust_disc }}</p>
+  </section>
+
+  {%- comment -%} ===== JOURNAL ===== {%- endcomment -%}
+  <section class="dxh-wrap dxh-sec">
+    <h2 class="dxh-h2">From the journal</h2>
+    <div class="dxh-grid3" style="margin-top:24px">
+      <a class="dxh-jcard" href="{{ section.settings.jour1_url | default: '/pages/the-science' }}">{% if section.settings.img_jour1 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_jour1 | image_url: width: 700 }}" alt="" width="700" height="700" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn" style="margin-top:12px">{{ section.settings.jour1_title }}</div><p class="dxh-muted2">{{ section.settings.jour1_desc }}</p></a>
+      <a class="dxh-jcard" href="{{ section.settings.jour2_url | default: '/pages/the-science' }}">{% if section.settings.img_jour2 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_jour2 | image_url: width: 700 }}" alt="" width="700" height="700" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn" style="margin-top:12px">{{ section.settings.jour2_title }}</div><p class="dxh-muted2">{{ section.settings.jour2_desc }}</p></a>
+      <a class="dxh-jcard" href="{{ section.settings.jour3_url | default: '/pages/the-science' }}">{% if section.settings.img_jour3 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_jour3 | image_url: width: 700 }}" alt="" width="700" height="700" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn" style="margin-top:12px">{{ section.settings.jour3_title }}</div><p class="dxh-muted2">{{ section.settings.jour3_desc }}</p></a>
+    </div>
+  </section>
+
+  {%- comment -%} ===== NEWSLETTER ===== {%- endcomment -%}
+  <section class="dxh-news">
+    <div class="dxh-wrap dxh-news-in">
+      <div><h2 class="dxh-h2" style="color:#fff">{{ section.settings.news_head }}</h2><p style="color:#eef0fb">{{ section.settings.news_sub }}</p></div>
+      <form class="dxh-form" onsubmit="return false"><input type="email" placeholder="you@email.com" aria-label="Email"><button class="dxh-sub">{{ section.settings.news_btn }}</button></form>
+    </div>
+  </section>
+
+</div>
+<style>
+.dxh{font-family:var(--cda-font);color:var(--cda-ink);background:#fbfbff;--cda-accent:#98A3DE;--cda-accent-d:#6f7cc4;--cda-soft:#eef0fb}
+.dxh-wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
+.dxh-sec{padding:clamp(30px,5vw,48px) 0}
+.dxh-seenbar{padding:14px 0 4px}
+.dxh-sec-bs{padding-top:18px}
+.dxh-h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:900;line-height:.98;letter-spacing:-.03em;color:#fff;margin:12px 0 14px;text-transform:uppercase;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.dxh-h1a{display:block}
+.dxh-h1b{display:block;color:var(--cda-accent);font-size:1.12em}
+.dxh-h2{font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.02em;margin:0}
+.dxh-h2 em{color:var(--cda-accent);font-style:italic}
+.dxh-center{text-align:center;max-width:720px;margin:0 auto 24px}
+.dxh-muted{color:var(--cda-muted)}
+.dxh-muted2{color:var(--cda-muted);font-size:.88rem;margin:4px 0 0}
+.dxh-kick{display:inline-block;text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.4)}
+.dxh-stars{color:#34c759;letter-spacing:2px}
+.dxh-btn{max-width:230px;background:var(--cda-accent);border:none;box-shadow:0 4px 14px rgba(15,13,26,.25);min-height:48px;display:flex;align-items:center;justify-content:center}
+.dxh-hero{position:relative;background:#1a1726;border-radius:22px;padding:clamp(28px,5vw,56px);min-height:clamp(480px,58vw,640px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.dxh-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
+.dxh-hero-bg-m{display:none}
+.dxh-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,11,24,.9),rgba(13,11,24,.42) 46%,rgba(13,11,24,.08));z-index:1}
+.dxh-hero-in{position:relative;z-index:2;max-width:620px}
+.dxh-hero-proof{display:flex;align-items:center;gap:9px;color:#fff;font-weight:600;margin:0 0 22px;text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.dxh-hero-stars{color:#34c759;letter-spacing:2px}
+.dxh-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.dxh-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dxh-grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dxh-pcard{display:flex;flex-direction:column;border:1px solid var(--cda-line);border-radius:18px;padding:12px;color:inherit;background:#fff;transition:.18s;position:relative;box-shadow:0 6px 22px rgba(20,18,40,.05)}
+.dxh-pcard:hover{box-shadow:0 16px 36px rgba(152,163,222,.22);transform:translateY(-4px)}
+.dxh-card-link{display:block;text-decoration:none;color:inherit;flex:1}
+.dxh-pcard .cda-ph{margin-bottom:10px;border-radius:12px;overflow:hidden}
+.dxh-pcard-rich{padding:14px}
+.dxh-rate{display:flex;align-items:center;gap:6px;font-size:.85rem;margin-bottom:4px}
+.dxh-rate .dxh-stars{color:#f5a623}
+.dxh-rate strong{font-weight:800}
+.dxh-rc{color:var(--cda-muted)}
+.dxh-pn{font-weight:700;font-size:.98rem;letter-spacing:-.01em}
+.dxh-bene{color:var(--cda-accent-d);font-weight:700;font-size:.92rem;margin:3px 0 4px}
+.dxh-pp{font-weight:800;color:var(--cda-ink);margin-top:8px;font-size:1.08rem}
+.dxh-pp s{color:var(--cda-muted);font-weight:500;font-size:.85rem;margin-left:4px}
+.dxh-gtee{display:block;font-size:.74rem;color:var(--cda-muted);margin:6px 0 0}
+.dxh-shop{display:flex;align-items:center;justify-content:center;text-align:center;margin-top:12px;background:var(--cda-accent);color:#fff;border:none;border-radius:999px;padding:12px;font-weight:700;font-size:.9rem;min-height:44px;width:100%;cursor:pointer;font-family:inherit;transition:background .15s}
+.dxh-shop:hover{background:var(--cda-accent-d)}
+.dxh-badge{position:absolute;top:12px;left:12px;z-index:1;background:var(--cda-ink);color:#fff;font-size:.64rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+.dxh-save{position:absolute;top:10px;left:10px;background:#1b8a5a;color:#fff;font-size:.64rem;font-weight:700;padding:3px 8px;border-radius:999px;z-index:1}
+.dxh-prob{background:#fff;border:1px solid var(--cda-line);border-radius:16px;padding:24px;text-align:center;box-shadow:0 6px 22px rgba(20,18,40,.04)}
+.dxh-probsub{margin-top:22px;font-weight:700;color:var(--cda-accent-d)}
+.dxh-ic{font-size:1.8rem;margin-bottom:8px}
+.dxh-cmp{background:#fff;border:1px solid var(--cda-line);border-radius:16px;padding:24px;box-shadow:0 6px 22px rgba(20,18,40,.04)}
+.dxh-cmp-h{font-size:1.05rem;font-weight:800;margin:0 0 14px;letter-spacing:-.01em}
+.dxh-cmp ul{list-style:none;margin:0;padding:0}
+.dxh-cmp li{position:relative;padding:0 0 10px 26px;color:var(--cda-ink);font-size:.92rem;line-height:1.45}
+.dxh-cmp li::before{content:'✓';position:absolute;left:0;top:0;color:var(--cda-accent-d);font-weight:800}
+.dxh-cmp p{margin:0 0 10px}
+.dxh-solve{display:block;background:#faf9ff;border:1px solid var(--cda-line);border-radius:16px;padding:20px;text-decoration:none;color:inherit;transition:.18s}
+.dxh-solve:hover{border-color:var(--cda-accent);box-shadow:0 12px 28px rgba(152,163,222,.2);transform:translateY(-3px)}
+.dxh-solve-x{margin-top:12px;padding-top:12px;border-top:1px solid var(--cda-line);font-size:.85rem;font-weight:700;color:var(--cda-accent-d)}
+.dxh-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.dxh-step{background:#fff;border:1px solid var(--cda-line);border-radius:16px;padding:24px;position:relative}
+.dxh-step-n{width:34px;height:34px;border-radius:50%;background:var(--cda-accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.dxh-band{background:linear-gradient(150deg,#1a1726,#3a3f78);border-radius:24px;padding:clamp(30px,5vw,52px);color:#fff;text-align:center}
+.dxh-stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+.dxh-big{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:800;color:#fff}
+.dxh-ss{color:#e7e9f6;font-size:.92rem;margin-top:4px}
+.dxh-src{color:#a9aedb;font-size:.74rem;margin-top:8px;line-height:1.4}
+.dxh-disc{color:#a9aedb;font-size:.72rem;line-height:1.5;max-width:70ch;margin:24px auto 0;text-align:center}
+.dxh-disc-light{color:var(--cda-muted)}
+.dxh-tcard{background:#fff;border:1px solid var(--cda-line);border-radius:16px;padding:22px;box-shadow:0 6px 22px rgba(20,18,40,.05)}
+.dxh-res{display:inline-block;background:var(--cda-soft);color:var(--cda-accent-d);font-weight:700;font-size:.8rem;padding:5px 11px;border-radius:999px;margin:0 0 14px}
+.dxh-rcard{border:1px solid var(--cda-line);border-radius:16px;padding:22px;background:#fff}
+.dxh-q{font-weight:500;margin:0 0 16px;line-height:1.5}
+.dxh-who{display:flex;align-items:center;gap:12px}
+.dxh-jcard{display:block;text-decoration:none;color:inherit}
+.dxh-seen-k{text-align:center;text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;font-weight:800;color:var(--cda-muted);margin-bottom:18px}
+.dxh-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.dxh-marquee-t{display:flex;gap:52px;width:max-content;animation:dxhmar 28s linear infinite}
+.dxh-marquee-t span{font-weight:800;letter-spacing:.06em;color:var(--cda-muted);opacity:.55;white-space:nowrap;font-size:1.1rem}
+@keyframes dxhmar{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.dxh-faq{margin-top:6px;border-top:1px solid var(--cda-line)}
+.dxh-faqr{border-bottom:1px solid var(--cda-line)}
+.dxh-faqr summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 4px;cursor:pointer;font-weight:600;font-size:1rem}
+.dxh-faqr summary::-webkit-details-marker{display:none}
+.dxh-faqic{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--cda-ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;line-height:1;transition:transform .2s}
+.dxh-faqr[open] .dxh-faqic{transform:rotate(45deg)}
+.dxh-faqa{padding:0 4px 22px;color:var(--cda-muted);line-height:1.55}
+.dxh-news{background:var(--cda-accent);margin-top:30px}
+.dxh-news-in{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:34px clamp(16px,4vw,24px);flex-wrap:wrap}
+.dxh-form{display:flex;gap:10px;flex:1;max-width:440px;min-width:260px}
+.dxh-form input{flex:1;border:none;border-radius:999px;padding:14px 18px;font:inherit}
+.dxh-sub{background:#fff;color:var(--cda-accent-d);border:none;border-radius:999px;padding:14px 26px;font-weight:700;cursor:pointer}
+@media(max-width:900px){.dxh-grid4{grid-template-columns:repeat(2,1fr)}.dxh-grid3{grid-template-columns:1fr}.dxh-stats3{grid-template-columns:1fr}.dxh-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){
+  .dxh-sec{padding:22px 0}
+  .dxh-h2{font-size:1.4rem}
+  .dxh-center{margin-bottom:16px}
+  .dxh-prodgrid{grid-template-columns:1fr 1fr;gap:12px}
+  .dxh-pcard{padding:10px;border-radius:14px}
+  .dxh-pcard-rich{padding:12px}
+  .dxh-pcard .cda-ph{margin-bottom:8px}
+  .dxh-rate{font-size:.72rem;gap:4px;margin-bottom:2px}
+  .dxh-pn{font-size:.86rem;line-height:1.2;margin-top:2px}
+  .dxh-bene{font-size:.78rem}
+  .dxh-pp{font-size:.92rem}
+  .dxh-pp s{font-size:.74rem}
+  .dxh-shop{padding:11px;font-size:.8rem;margin-top:8px}
+  .dxh-save{font-size:.56rem;padding:2px 6px}
+  .dxh-grid4{gap:12px}
+  .dxh-prob,.dxh-cmp,.dxh-step,.dxh-tcard,.dxh-rcard{padding:18px}
+  .dxh-band{padding:28px 20px}
+  .dxh-big{font-size:2.1rem}
+  .dxh-news{margin-top:18px}
+  .dxh-news-in{padding:26px 16px}
+  .dxh-marquee-t{gap:34px;animation-duration:22s}
+  .dxh-marquee-t span{font-size:.95rem}
+  .dxh-seen-k{margin-bottom:12px}
+  .cda-btn.dxh-btn{padding:13px 22px;font-size:.95rem}
+}
+@media(max-width:560px){
+  .dxh-grid2{grid-template-columns:1fr}
+  .dxh-grid4{grid-template-columns:1fr 1fr}
+  .dxh-steps{grid-template-columns:1fr}
+  .dxh-news-in{flex-direction:column;align-items:flex-start}
+  .dxh-hero{min-height:56vh;border-radius:18px;padding:24px 22px 26px;align-items:flex-end}
+  .dxh-hero-bg-d{display:none}
+  .dxh-hero-bg-m{display:block}
+  .dxh-hero::after{background:linear-gradient(to top,rgba(12,10,22,.96) 5%,rgba(12,10,22,.62) 36%,rgba(12,10,22,.16) 64%,rgba(12,10,22,0) 86%)}
+  .dxh-hero-in{max-width:100%}
+  .dxh-kick{font-size:.7rem;letter-spacing:.16em}
+  .dxh-h1{font-size:clamp(2.6rem,13vw,3.9rem);margin:5px 0 9px;line-height:.94}
+  .dxh-h1b{font-size:1.2em}
+  .dxh-hero-proof{margin:0 0 15px;font-size:.92rem}
+  .dxh-btn{width:100%;max-width:none}
+}
+</style>
+{% schema %}
+{
+  "name": "Somna Homepage",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image — desktop (wide)" },
+    { "type": "image_picker", "id": "hero_image_mobile", "label": "Hero image — mobile (tall/portrait crop)" },
+    { "type": "select", "id": "hero_focus_mobile", "label": "Mobile image focus", "info": "Which part of the image stays in frame on phones.", "options": [ { "value": "50% 50%", "label": "Center" }, { "value": "35% 50%", "label": "Center-left" }, { "value": "65% 50%", "label": "Center-right" }, { "value": "0% 50%", "label": "Left edge" }, { "value": "100% 50%", "label": "Right edge" }, { "value": "50% 0%", "label": "Top" }, { "value": "50% 100%", "label": "Bottom" } ], "default": "50% 50%" },
+    { "type": "text", "id": "hero_kicker", "label": "Hero kicker", "default": "THE SOMNA SLEEP SYSTEM" },
+    { "type": "text", "id": "hero_line1", "label": "Hero line 1", "default": "NO LIMITS." },
+    { "type": "text", "id": "hero_line2", "label": "Hero line 2 (accent)", "default": "ONLY SLEEP." },
+    { "type": "text", "id": "hero_proof", "label": "Hero social proof", "default": "Rated 4.8/5 by 4,000+ customers" },
+    { "type": "text", "id": "hero_cta", "label": "Hero button", "default": "Shop Now" },
+    { "type": "url", "id": "hero_cta_link", "label": "Hero button link" },
+    { "type": "header", "content": "As seen in" },
+    { "type": "text", "id": "seen_logos", "label": "Publications (comma separated)", "default": "Forbes, People, Vogue, Women's Health, Cosmopolitan, Elle, Goop, Oprah Magazine" },
+    { "type": "header", "content": "Problem statement" },
+    { "type": "text", "id": "prob_head", "label": "Headline", "default": "Why sleep matters (and why you're probably not getting enough)" },
+    { "type": "textarea", "id": "prob_body", "label": "Body", "default": "Can't fall asleep? Wake up at 3 AM? Groggy all morning? You're not alone. The good news: better sleep can start tonight." },
+    { "type": "text", "id": "prob1_ic", "label": "Card 1 icon", "default": "⏰" },
+    { "type": "text", "id": "prob1_t", "label": "Card 1 title", "default": "Can't fall asleep" },
+    { "type": "text", "id": "prob1_d", "label": "Card 1 text", "default": "Lying awake for what feels like forever before you drift off." },
+    { "type": "text", "id": "prob2_ic", "label": "Card 2 icon", "default": "😴" },
+    { "type": "text", "id": "prob2_t", "label": "Card 2 title", "default": "Sleep disruption" },
+    { "type": "text", "id": "prob2_d", "label": "Card 2 text", "default": "Snoring, dry mouth and waking up several times a night." },
+    { "type": "text", "id": "prob3_ic", "label": "Card 3 icon", "default": "🌫️" },
+    { "type": "text", "id": "prob3_t", "label": "Card 3 title", "default": "Groggy mornings" },
+    { "type": "text", "id": "prob3_d", "label": "Card 3 text", "default": "Foggy, unfocused and exhausted before the day even starts." },
+    { "type": "text", "id": "prob_sub", "label": "Closing line", "default": "Sound familiar? Somna was built to fix this." },
+    { "type": "header", "content": "Bestseller cards (real products)" },
+    { "type": "text", "id": "card_gtee", "label": "Guarantee line (all cards)", "default": "30-day money-back guarantee" },
+    { "type": "image_picker", "id": "img_best2", "label": "Nasal Strips image" },
+    { "type": "text", "id": "best2_rating", "label": "Nasal rating", "default": "4.9" },
+    { "type": "text", "id": "best2_count", "label": "Nasal review count", "default": "3,910" },
+    { "type": "text", "id": "best2_bene", "label": "Nasal benefit line", "default": "Breathe easier, snore less" },
+    { "type": "textarea", "id": "best2_desc", "label": "Nasal description", "default": "Gentle nasal strips that help open your airway for quieter, calmer nights. Drug-free and easy to use." },
+    { "type": "image_picker", "id": "img_best3", "label": "Mouth Tape image" },
+    { "type": "text", "id": "best3_rating", "label": "Tape rating", "default": "4.6" },
+    { "type": "text", "id": "best3_count", "label": "Tape review count", "default": "2,180" },
+    { "type": "text", "id": "best3_bene", "label": "Tape benefit line", "default": "Encourages nasal breathing" },
+    { "type": "textarea", "id": "best3_desc", "label": "Tape description", "default": "Comfortable, gentle mouth tape that encourages nose breathing for less dry mouth and deeper rest." },
+    { "type": "image_picker", "id": "img_best1", "label": "Bundle / system image" },
+    { "type": "text", "id": "best1_rating", "label": "Bundle rating", "default": "4.8" },
+    { "type": "text", "id": "best1_count", "label": "Bundle review count", "default": "1,284" },
+    { "type": "text", "id": "kit_bene", "label": "Bundle benefit line", "default": "Everything for a quieter night" },
+    { "type": "textarea", "id": "kit_desc", "label": "Bundle description", "default": "Our best-selling combination: nasal strips + mouth tape + silent alarm band. The full Somna sleep system, bundled and discounted." },
+    { "type": "image_picker", "id": "img_kit", "label": "Perfect Sleep Kit image (fallback)" },
+    { "type": "header", "content": "Why choose Somna" },
+    { "type": "text", "id": "why_head", "label": "Headline", "default": "Why people choose Somna" },
+    { "type": "text", "id": "why1_h", "label": "Column 1 heading", "default": "vs. doing nothing" },
+    { "type": "richtext", "id": "why1_list", "label": "Column 1 list", "default": "<ul><li>A simple nightly routine</li><li>Drug-free and non-habit-forming</li><li>Works from the first night</li><li>No prescription needed</li></ul>" },
+    { "type": "text", "id": "why2_h", "label": "Column 2 heading", "default": "vs. gadgets and apps" },
+    { "type": "richtext", "id": "why2_list", "label": "Column 2 list", "default": "<ul><li>Actually changes how you sleep</li><li>Nothing to charge or sync</li><li>No subscription required</li><li>Physical solution, not just tracking</li></ul>" },
+    { "type": "text", "id": "why3_h", "label": "Column 3 heading", "default": "vs. one-off fixes" },
+    { "type": "richtext", "id": "why3_list", "label": "Column 3 list", "default": "<ul><li>A complete system, not a single product</li><li>Designed to work together</li><li>Backed by a money-back guarantee</li><li>Loved by thousands of sleepers</li></ul>" },
+    { "type": "header", "content": "Which sleep problem" },
+    { "type": "text", "id": "fit_head", "label": "Headline", "default": "Which sleep problem do you have?" },
+    { "type": "text", "id": "fit_sub", "label": "Subline", "default": "Find the Somna product built for your night." },
+    { "type": "text", "id": "fit1_t", "label": "Card 1 title", "default": "💤 Light sleeper" },
+    { "type": "text", "id": "fit1_s", "label": "Card 1 subtitle", "default": "Wake at every little sound" },
+    { "type": "text", "id": "fit1_sol", "label": "Card 1 solution", "default": "The silent alarm band wakes only you →" },
+    { "type": "url", "id": "fit1_link", "label": "Card 1 link" },
+    { "type": "text", "id": "fit2_t", "label": "Card 2 title", "default": "😮‍💨 You snore" },
+    { "type": "text", "id": "fit2_s", "label": "Card 2 subtitle", "default": "Restless nights for you and your partner" },
+    { "type": "text", "id": "fit2_sol", "label": "Card 2 solution", "default": "Nasal strips help open your airway →" },
+    { "type": "url", "id": "fit2_link", "label": "Card 2 link" },
+    { "type": "text", "id": "fit3_t", "label": "Card 3 title", "default": "💧 Dry mouth" },
+    { "type": "text", "id": "fit3_s", "label": "Card 3 subtitle", "default": "Waking up parched and groggy" },
+    { "type": "text", "id": "fit3_sol", "label": "Card 3 solution", "default": "Mouth tape encourages nose breathing →" },
+    { "type": "url", "id": "fit3_link", "label": "Card 3 link" },
+    { "type": "text", "id": "fit4_t", "label": "Card 4 title", "default": "🌫️ All of the above" },
+    { "type": "text", "id": "fit4_s", "label": "Card 4 subtitle", "default": "You want the full reset" },
+    { "type": "text", "id": "fit4_sol", "label": "Card 4 solution", "default": "Get the complete sleep system →" },
+    { "type": "url", "id": "fit4_link", "label": "Card 4 link" },
+    { "type": "header", "content": "How it works" },
+    { "type": "text", "id": "how_head", "label": "Headline", "default": "How Somna works" },
+    { "type": "text", "id": "how_sub", "label": "Subline", "default": "A simple nightly system designed around how you actually sleep." },
+    { "type": "text", "id": "how1_t", "label": "Step 1 title", "default": "Open your airway" },
+    { "type": "textarea", "id": "how1_d", "label": "Step 1 text", "default": "Apply the nasal strips before bed to gently open your nasal passage so you can breathe more easily." },
+    { "type": "text", "id": "how2_t", "label": "Step 2 title", "default": "Breathe through your nose" },
+    { "type": "textarea", "id": "how2_d", "label": "Step 2 text", "default": "Mouth tape encourages nose breathing through the night, helping reduce snoring and dry mouth." },
+    { "type": "text", "id": "how3_t", "label": "Step 3 title", "default": "Wake up gently" },
+    { "type": "textarea", "id": "how3_d", "label": "Step 3 text", "default": "The silent alarm band wakes you with vibration — quiet enough that your partner stays asleep." },
+    { "type": "text", "id": "how4_t", "label": "Step 4 title", "default": "Feel the difference" },
+    { "type": "textarea", "id": "how4_d", "label": "Step 4 text", "default": "Used together night after night, the system helps you build calmer, more consistent sleep." },
+    { "type": "text", "id": "how_foot", "label": "Closing line", "default": "Not for you? You're covered by our 30-day money-back guarantee." },
+    { "type": "header", "content": "Statistics (edit with your real data + sources)" },
+    { "type": "text", "id": "stat_head", "label": "Headline", "default": "Sleep better with Somna" },
+    { "type": "text", "id": "stat_sub", "label": "Subline", "default": "Loved by sleepers who were tired of being tired." },
+    { "type": "text", "id": "stat1_n", "label": "Stat 1 number", "default": "96%" },
+    { "type": "text", "id": "stat1_l", "label": "Stat 1 label", "default": "fall asleep more easily" },
+    { "type": "text", "id": "stat1_src", "label": "Stat 1 source (add real source)", "default": "Add your real source or survey here" },
+    { "type": "text", "id": "stat2_n", "label": "Stat 2 number", "default": "91%" },
+    { "type": "text", "id": "stat2_l", "label": "Stat 2 label", "default": "sleep through the night more often" },
+    { "type": "text", "id": "stat2_src", "label": "Stat 2 source (add real source)", "default": "Add your real source or survey here" },
+    { "type": "text", "id": "stat3_n", "label": "Stat 3 number", "default": "94%" },
+    { "type": "text", "id": "stat3_l", "label": "Stat 3 label", "default": "would recommend it to a friend" },
+    { "type": "text", "id": "stat3_src", "label": "Stat 3 source (add real source)", "default": "Add your real source or survey here" },
+    { "type": "textarea", "id": "stat_disc", "label": "Disclaimer", "default": "Individual results vary. Somna products are not medical devices and are not intended to diagnose, treat, cure, or prevent any condition, including sleep apnea. If you have a sleep disorder, please consult a healthcare professional." },
+    { "type": "header", "content": "Experts (add real, named endorsements only)" },
+    { "type": "text", "id": "exp_head", "label": "Headline", "default": "Trusted by experts and sleepers alike" },
+    { "type": "image_picker", "id": "img_exp1", "label": "Expert 1 photo" },
+    { "type": "text", "id": "exp1_name", "label": "Expert 1 name", "default": "Add a real name" },
+    { "type": "text", "id": "exp1_role", "label": "Expert 1 role", "default": "Add their title" },
+    { "type": "textarea", "id": "exp1_q", "label": "Expert 1 quote", "default": "Add a real endorsement here." },
+    { "type": "image_picker", "id": "img_exp2", "label": "Expert 2 photo" },
+    { "type": "text", "id": "exp2_name", "label": "Expert 2 name", "default": "Add a real name" },
+    { "type": "text", "id": "exp2_role", "label": "Expert 2 role", "default": "Add their title" },
+    { "type": "textarea", "id": "exp2_q", "label": "Expert 2 quote", "default": "Add a real endorsement here." },
+    { "type": "image_picker", "id": "img_exp3", "label": "Expert 3 photo" },
+    { "type": "text", "id": "exp3_name", "label": "Expert 3 name", "default": "Add a real name" },
+    { "type": "text", "id": "exp3_role", "label": "Expert 3 role", "default": "Add their title" },
+    { "type": "textarea", "id": "exp3_q", "label": "Expert 3 quote", "default": "Add a real endorsement here." },
+    { "type": "header", "content": "Bundle cards" },
+    { "type": "image_picker", "id": "img_save1", "label": "Bundle 1" },
+    { "type": "image_picker", "id": "img_save2", "label": "Bundle 2" },
+    { "type": "image_picker", "id": "img_save4", "label": "Bundle 3" },
+    { "type": "header", "content": "FAQ" },
+    { "type": "text", "id": "faq_head", "label": "FAQ headline", "default": "Got questions about Somna?" },
+    { "type": "text", "id": "faq_sub", "label": "FAQ subline", "default": "Quick answers on safety, ingredients, results, shipping and returns." },
+    { "type": "text", "id": "faq_q1", "label": "Q1", "default": "Is Somna safe to use every night?" },
+    { "type": "richtext", "id": "faq_a1", "label": "A1", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q2", "label": "Q2", "default": "Will I feel groggy in the morning?" },
+    { "type": "richtext", "id": "faq_a2", "label": "A2", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q3", "label": "Q3", "default": "Can I use the nasal strips and mouth tape together?" },
+    { "type": "richtext", "id": "faq_a3", "label": "A3", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q4", "label": "Q4", "default": "Are there any side effects?" },
+    { "type": "richtext", "id": "faq_a4", "label": "A4", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q5", "label": "Q5", "default": "What are the nasal strips made of?" },
+    { "type": "richtext", "id": "faq_a5", "label": "A5", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q6", "label": "Q6", "default": "How do I use the mouth tape?" },
+    { "type": "richtext", "id": "faq_a6", "label": "A6", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q7", "label": "Q7", "default": "How long until I see results?" },
+    { "type": "richtext", "id": "faq_a7", "label": "A7", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q8", "label": "Q8", "default": "Is Somna right for sleep apnea?" },
+    { "type": "richtext", "id": "faq_a8", "label": "A8", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q9", "label": "Q9", "default": "How does the silent alarm band work?" },
+    { "type": "richtext", "id": "faq_a9", "label": "A9", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q10", "label": "Q10", "default": "What's your return policy?" },
+    { "type": "richtext", "id": "faq_a10", "label": "A10", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q11", "label": "Q11", "default": "How does Subscribe & Save work?" },
+    { "type": "richtext", "id": "faq_a11", "label": "A11", "default": "<p>Add your answer here.</p>" },
+    { "type": "text", "id": "faq_q12", "label": "Q12", "default": "How long does shipping take?" },
+    { "type": "richtext", "id": "faq_a12", "label": "A12", "default": "<p>Add your answer here.</p>" },
+    { "type": "header", "content": "Compliance & trust (use your real claims)" },
+    { "type": "text", "id": "trust_head", "label": "Headline", "default": "Built on trust" },
+    { "type": "text", "id": "trust1_h", "label": "Column 1 heading", "default": "Quality you can trust" },
+    { "type": "richtext", "id": "trust1_list", "label": "Column 1 list", "default": "<ul><li>Add your testing or quality claim</li><li>Add your sourcing claim</li><li>Add a verifiable detail</li></ul>" },
+    { "type": "text", "id": "trust2_h", "label": "Column 2 heading", "default": "Certified & safe" },
+    { "type": "richtext", "id": "trust2_list", "label": "Column 2 list", "default": "<ul><li>Add your real certifications</li><li>Add manufacturing details</li><li>Add country of origin</li></ul>" },
+    { "type": "text", "id": "trust3_h", "label": "Column 3 heading", "default": "Customer verified" },
+    { "type": "richtext", "id": "trust3_list", "label": "Column 3 list", "default": "<ul><li>Add your average rating</li><li>30-day money-back guarantee</li><li>Add your customer count</li></ul>" },
+    { "type": "textarea", "id": "trust_disc", "label": "Compliance disclaimer", "default": "Somna products are not medical devices and are not intended to diagnose, treat, cure, or prevent any disease or condition, including sleep apnea. Individual results may vary. Always consult a healthcare professional about persistent sleep problems." },
+    { "type": "header", "content": "Journal cards" },
+    { "type": "image_picker", "id": "img_jour1", "label": "Journal 1 image" },
+    { "type": "text", "id": "jour1_title", "label": "Journal 1 title", "default": "Why nose breathing matters for sleep" },
+    { "type": "text", "id": "jour1_desc", "label": "Journal 1 description", "default": "The simple shift that calms your nights." },
+    { "type": "url", "id": "jour1_url", "label": "Journal 1 link" },
+    { "type": "image_picker", "id": "img_jour2", "label": "Journal 2 image" },
+    { "type": "text", "id": "jour2_title", "label": "Journal 2 title", "default": "The frequent traveler's guide to better sleep" },
+    { "type": "text", "id": "jour2_desc", "label": "Journal 2 description", "default": "Beat jet lag with a no-phone alarm." },
+    { "type": "url", "id": "jour2_url", "label": "Journal 2 link" },
+    { "type": "image_picker", "id": "img_jour3", "label": "Journal 3 image" },
+    { "type": "text", "id": "jour3_title", "label": "Journal 3 title", "default": "The cortisol cost of a jarring alarm" },
+    { "type": "text", "id": "jour3_desc", "label": "Journal 3 description", "default": "Why a calmer wake-up changes your day." },
+    { "type": "url", "id": "jour3_url", "label": "Journal 3 link" },
+    { "type": "header", "content": "Newsletter" },
+    { "type": "text", "id": "news_head", "label": "Headline", "default": "Get 15% off your first order" },
+    { "type": "text", "id": "news_sub", "label": "Subline", "default": "Join our list for better-sleep tips and first-access offers." },
+    { "type": "text", "id": "news_btn", "label": "Button", "default": "Unlock discount" }
+  ],
+  "presets": [{ "name": "Somna Homepage" }]
+}
+{% endschema %}

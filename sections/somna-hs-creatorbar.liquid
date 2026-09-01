@@ -1,0 +1,32 @@
+{{ 'somna-hs-styles.css' | asset_url | stylesheet_tag }}
+<section class="shs" style="background:{{ section.settings.bg | default: '#ffffff' }};padding:clamp(18px,3vw,30px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--ink)">
+  <div class="shs-marq" style="--marq-dur:{{ section.settings.speed | default: 34 }}s">
+    <div class="shs-marq-in">
+      {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+      <div class="shs-cb-item"{% if i == 1 %} {{ block.shopify_attributes }}{% endif %}>
+        <div class="shs-cb-ava">{%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 160 }}" loading="lazy" alt="{{ block.settings.name | escape }}">{%- endif -%}</div>
+        <div class="shs-cb-name">{{ block.settings.name }}</div>
+        <div class="shs-cb-role">{{ block.settings.role }}</div>
+      </div>
+      {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "HS — Creator marquee",
+  "settings": [
+    { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 2, "unit": "s", "label": "Loop duration", "default": 34 },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#ffffff" }
+  ],
+  "blocks": [ { "type": "person", "name": "Person", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Avatar (square)" },
+    { "type": "text", "id": "name", "label": "Name", "default": "Your athlete" },
+    { "type": "text", "id": "role", "label": "Role", "default": "Endurance athlete" }
+  ] } ],
+  "max_blocks": 20,
+  "presets": [{ "name": "HS — Creator marquee", "blocks": [ {"type":"person"},{"type":"person"},{"type":"person"},{"type":"person"},{"type":"person"},{"type":"person"} ] }]
+}
+{% endschema %}

@@ -1,0 +1,63 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "clone-dxstory",
+      "settings": {
+        "hero_h": "Why we sleep better",
+        "hero_sub": "A complete sleep system designed for real sleep problems.",
+        "hero_stat": "Trusted by thousands of sleepers · results you can feel",
+        "q1": "A genuinely different way to wake up — tactile, calm, and quiet enough that no one else in the room ever knows.",
+        "q1_a": "Sandy Newton",
+        "hero_cta": "Shop our products",
+        "hero_cta_link": "shopify://products/dreamx-anti-snore-nasal-strips",
+        "hero_cta2": "Learn how it works",
+        "hero_cta2_link": "shopify://pages/the-science",
+        "b_h": "Built for sleep.",
+        "b_sub": "Backed by science.",
+        "b_body": "Somna is a complete sleep system. Three products work together to help you breathe easier, stay asleep, and wake up gently — without waking your partner.",
+        "b_list": "<ul><li><strong>Nasal Strips:</strong> Open your airway. Breathe easier.</li><li><strong>Mouth Tape:</strong> Promote nasal breathing. Sleep deeper.</li><li><strong>Alarm Band:</strong> Wake gently. Wake only you.</li></ul>",
+        "b_cred": "Doctor recommended  ·  Drug-free  ·  30-day guarantee",
+        "b_cta": "Start your sleep journey",
+        "b_cta_link": "shopify://products/dreamx-sleep-mouth-tape",
+        "img1": "shopify://shop_images/hf_20260618_141021_2f92f529-a0d2-45c2-b64c-4103a23de632.png",
+        "r_h": "From restless nights to calmer mornings",
+        "r_sub": "The Somna difference",
+        "r_body": "Most people struggle with sleep for years. Restless nights. Waking at 3 AM. Exhausted mornings. Somna goes after the root causes.",
+        "r_list": "<ul><li>Can't fall asleep? Nasal Strips help you breathe easier.</li><li>Waking at 3 AM? Mouth Tape keeps you asleep.</li><li>Can't wake up? The Alarm Band wakes only you.</li></ul>",
+        "r_rating": "Loved by sleepers like you",
+        "r_results_head": "What customers report",
+        "r_res1": "Fall asleep more easily",
+        "r_res2": "Fewer night-time wake-ups",
+        "r_res3": "Wake up more refreshed",
+        "r_cta": "See how it works",
+        "r_cta_link": "shopify://pages/the-science",
+        "img2": "shopify://shop_images/hf_20260618_141027_64029118-95ae-4f62-bac9-a580e4845a34.png",
+        "f_head": "From our founder",
+        "f_name": "",
+        "f_creds": "",
+        "f_story": "We didn't build Somna to sell another gadget. We built it because too many people — students, nurses, parents, shift workers — were starting every day behind, woken by noise that disturbed everyone but them. We design for the quiet, repeatable wins: waking on time, breathing easier, recovering fully. Every product has to earn its place on your nightstand, night after night.",
+        "f_quote": "Sleep better. Wake quieter.",
+        "f_cta": "Learn more about our science",
+        "f_cta_link": "shopify://pages/the-science",
+        "img3": "shopify://shop_images/hf_20260618_141035_1ca1d2a0-c7e9-4ba3-b78c-9ee6bce9524f.png",
+        "news_head": "Get 15% off your first order",
+        "news_sub": "Plus exclusive sleep science tips and early access to new products.",
+        "news_btn": "Unlock my discount",
+        "news_proof": "Join our growing community of better sleepers.",
+        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. Somna products are not intended to diagnose, treat, cure, or prevent any disease or condition, including sleep apnea. They are designed to support healthy sleep habits. Individual results may vary. Always consult a healthcare professional about persistent sleep problems."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

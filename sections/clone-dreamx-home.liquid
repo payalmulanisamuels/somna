@@ -1,0 +1,59 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="cda-section cdx-home">
+  <div class="cda-wrap">
+    <div class="cdx-hero">
+      <div>
+        <span class="cda-kicker">{{ section.settings.kicker }}</span>
+        <h1 class="cdx-h1">{{ section.settings.title }}</h1>
+        <p class="cdx-sub">{{ section.settings.subtitle }}</p>
+        <a class="cda-btn" style="max-width:300px" href="/products/dreamx-silent-alarm-band">{{ section.settings.cta_label }}</a>
+        <div class="cdx-hbul">✓ 100-night guarantee · ✓ Free shipping over $50 · ✓ Ships in 24h</div>
+      </div>
+      <div class="cda-ph" data-label="Brand hero image (1:1)"></div>
+    </div>
+    <div class="cdx-sec-head"><h2 class="cda-h2">{{ section.settings.grid_title }}</h2></div>
+    <div class="cdx-grid">
+      <a class="cdx-card" href="/products/dreamx-silent-alarm-band"><div class="cda-ph" data-label="1:1"></div><div class="cdx-cn">Silent Vibration Alarm</div><div class="cdx-cp">$44 <span>$89</span></div></a>
+      <a class="cdx-card" href="/products/dreamx-anti-snore-nasal-strips"><div class="cda-ph" data-label="1:1"></div><div class="cdx-cn">Anti-Snore Nasal Strips</div><div class="cdx-cp">$24 <span>$40</span></div></a>
+      <a class="cdx-card" href="/products/dreamx-sleep-mouth-tape"><div class="cda-ph" data-label="1:1"></div><div class="cdx-cn">Sleep Mouth Tape</div><div class="cdx-cp">$19 <span>$32</span></div></a>
+      <a class="cdx-card" href="/products/dreamx-recovery-light-panel"><div class="cda-ph" data-label="1:1"></div><div class="cdx-cn">Recovery Light Panel</div><div class="cdx-cp">$199 <span>$349</span></div></a>
+    </div>
+    <div class="cda-vprops" style="margin-top:48px">
+      <div class="cda-vprop"><div class="cda-vt">Better sleep quality</div><div class="cda-vs">Wake calm, not startled</div></div>
+      <div class="cda-vprop"><div class="cda-vt">Drug-free system</div><div class="cda-vs">No pills, no sprays</div></div>
+      <div class="cda-vprop"><div class="cda-vt">Partner-friendly</div><div class="cda-vs">Silent, calmer nights</div></div>
+      <div class="cda-vprop"><div class="cda-vt">100-night guarantee</div><div class="cda-vs">Love it or refund</div></div>
+    </div>
+  </div>
+</section>
+<style>
+#shopify-section-{{ section.id }}{background:#fff;}
+.cdx-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.cdx-h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;line-height:1.05;letter-spacing:-.025em;margin:8px 0 16px;color:var(--cda-ink)}
+.cdx-sub{font-size:1.1rem;color:var(--cda-muted);margin-bottom:24px;max-width:42ch}
+.cdx-hbul{margin-top:14px;font-size:.85rem;color:var(--cda-muted)}
+.cdx-sec-head{text-align:center;margin:64px 0 0}
+.cdx-sec-head h2{color:var(--cda-ink)}
+.cdx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:30px}
+.cdx-card{border:1px solid var(--cda-line);border-radius:16px;padding:16px;background:#fff;text-decoration:none;color:inherit;text-align:center;transition:.15s;display:block}
+.cdx-card:hover{box-shadow:0 10px 30px rgba(109,73,224,.12);transform:translateY(-3px)}
+.cdx-card .cda-ph{margin-bottom:14px}
+.cdx-cn{font-weight:700}
+.cdx-cp{margin-top:6px;font-weight:700;color:var(--cda-accent-d)}
+.cdx-cp span{color:var(--cda-muted);text-decoration:line-through;font-weight:500;font-size:.85rem;margin-left:4px}
+@media(max-width:860px){.cdx-hero{grid-template-columns:1fr;gap:28px}.cdx-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cdx-grid{grid-template-columns:1fr}}
+</style>
+{% schema %}
+{
+  "name": "DreamX Home",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "The complete sleep system" },
+    { "type": "text", "id": "title", "label": "Headline", "default": "Better sleep, engineered." },
+    { "type": "textarea", "id": "subtitle", "label": "Subheadline", "default": "Silent wake-ups, easier breathing, deeper recovery — the DreamX system helps you fall asleep calmer and wake up sharper." },
+    { "type": "text", "id": "cta_label", "label": "Button text", "default": "Shop the Silent Alarm" },
+    { "type": "text", "id": "grid_title", "label": "Grid title", "default": "Build your sleep kit" }
+  ],
+  "presets": [{ "name": "DreamX Home" }]
+}
+{% endschema %}

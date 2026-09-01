@@ -1,0 +1,436 @@
+{%- assign band = all_products['dreamx-silent-alarm-band'] -%}
+{%- assign nasal = all_products['dreamx-anti-snore-nasal-strips'] -%}
+{%- assign tape = all_products['dreamx-sleep-mouth-tape'] -%}
+{%- assign allimgs = band.images | concat: nasal.images | concat: tape.images -%}
+<section class="qz" id="somna-quiz">
+<div class="qz-shell">
+  <div class="qz-head">
+    <div class="qz-logo">som<span>na.</span></div>
+    <div class="qz-prog"><div class="qz-prog-f" id="qz-progf"></div></div>
+  </div>
+  <div class="qz-body">
+
+    <div class="qz-s qz-on" data-type="q" data-q="1">
+      <h1 class="qz-intro-h">Find out what's <span>really</span> wrecking your sleep</h1>
+      <p class="qz-assess"><span class="qz-check">✓</span> This 60-second assessment reads your symptoms and routine to find the fix built for you.</p>
+      <div class="qz-testi">{% if section.settings.testi_img %}<img class="qz-testi-av" src="{{ section.settings.testi_img | image_url: width: 120 }}" alt="">{% else %}<div class="qz-testi-av qz-ph">MD</div>{% endif %}<div><p class="qz-testi-q">“{{ section.settings.testi_quote }}”</p><p class="qz-testi-n">{{ section.settings.testi_name }} <span>✓ Verified buyer</span></p></div></div>
+      <h2 class="qz-q">First — how do your mornings usually feel?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-b="2">I hit snooze a bunch and still struggle to get up</button>
+        <button class="qz-opt" data-t="2">Groggy and foggy even after a full night</button>
+        <button class="qz-opt" data-t="2">Tired with a dry mouth or sore throat</button>
+        <button class="qz-opt" data-s="1">Mornings are fine — it's my nights</button>
+      </div>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="2">
+      <h2 class="qz-q">Be honest — how many alarms does it take to get you up?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-b="0">One. I'm up.</button>
+        <button class="qz-opt" data-b="2">Two or three, with snoozing</button>
+        <button class="qz-opt" data-b="3">Four+ — someone has to wake me</button>
+        <button class="qz-opt" data-b="3">I've slept straight through them</button>
+      </div>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="3">
+      <h2 class="qz-q">Does your sleep affect anyone else?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-b="2">My alarm blasts my partner awake too</button>
+        <button class="qz-opt" data-s="3">My snoring drives them off (or to another room)</button>
+        <button class="qz-opt" data-b="2" data-s="2">Both 😬</button>
+        <button class="qz-opt" data-tag="solo">I sleep solo</button>
+      </div>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="4">
+      <h2 class="qz-q">When you wake up, what's the inside of your mouth like?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-t="3">Bone dry — reaching for water in the night</button>
+        <button class="qz-opt" data-t="2">Drooled on the pillow / rough morning breath</button>
+        <button class="qz-opt" data-s="2" data-t="1">Nose so blocked I have to mouth-breathe</button>
+        <button class="qz-opt">Totally fine</button>
+      </div>
+      <div class="qz-why"><span>Why we ask</span>Mouth-breathing dries you out and breaks deep sleep — one of the most missed causes of waking up unrested.</div>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="5">
+      <h2 class="qz-q">How's your nose at night?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-s="3">Always congested — worse when I lie down</button>
+        <button class="qz-opt" data-s="3">I snore, or I've been told I do</button>
+        <button class="qz-opt" data-s="1">Stuffy only with allergies or a cold</button>
+        <button class="qz-opt">Clear, no problems</button>
+      </div>
+      <div class="qz-why"><span>Why we ask</span>A blocked airway lying down is what turns into snoring — and the lighter, broken sleep that follows.</div>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="6">
+      <h2 class="qz-q">Once you're in bed, how long does it take to fall asleep?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-tag="fast">Out cold in minutes</button>
+        <button class="qz-opt" data-tag="normal">15–30 minutes</button>
+        <button class="qz-opt" data-tag="racing">30–60 min — mind won't shut off</button>
+        <button class="qz-opt" data-tag="severe">Over an hour, most nights</button>
+      </div>
+    </div>
+
+    <div class="qz-s" data-type="baswap" data-prog="55">
+      <div class="qz-inter-tag">✓ You're in the right place</div>
+      <h2 class="qz-q">{{ section.settings.proof_count | default: '12,000+' }} sleepers have found their fix.</h2>
+      <p class="qz-sub">Real people, real mornings.</p>
+      <div class="qz-cw" id="qz-cw">
+        {%- assign cwi = 0 -%}
+        {%- for block in section.blocks -%}{%- if block.type == 'cust' -%}
+          {%- assign cimg = block.settings.img | default: allimgs[cwi] -%}{%- assign cwi = cwi | plus: 1 -%}
+          <div class="qz-cwcard" {{ block.shopify_attributes }}>
+            <div class="qz-cwhead"><div class="qz-cwcap">{{ block.settings.caption }}</div><span class="qz-cwage">{{ block.settings.age }}</span></div>
+            <div class="qz-cwimg">{% if cimg %}<img src="{{ cimg | image_url: width: 500 }}" alt="">{% else %}<div class="qz-cwph">Upload customer photo</div>{% endif %}</div>
+          </div>
+        {%- endif -%}{%- endfor -%}
+      </div>
+      <button class="qz-cta" data-next>Continue →</button>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="7">
+      <h2 class="qz-q">Even after 7–8 hours, how do you feel during the day?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-impact="High">Foggy and low — caffeine is life support</button>
+        <button class="qz-opt" data-impact="High">I crash hard around 3pm</button>
+        <button class="qz-opt" data-impact="High">Honestly? Exhausted most days</button>
+        <button class="qz-opt" data-impact="Moderate">Pretty good — I just want to optimize</button>
+      </div>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="8">
+      <h2 class="qz-q">What is bad sleep costing you most right now?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-cost="energy">My energy — I'm dragging all day</button>
+        <button class="qz-opt" data-cost="focus">My focus &amp; work — brain fog</button>
+        <button class="qz-opt" data-cost="mood">My mood &amp; relationships</button>
+        <button class="qz-opt" data-cost="health">My health — long-term worry</button>
+      </div>
+    </div>
+
+    <div class="qz-s" data-type="analyze" data-prog="78">
+      <h2 class="qz-q">{{ section.settings.analyze_title | default: 'Analyzing your sleep profile…' }}</h2>
+      <p class="qz-sub">Reading what's breaking your sleep and the factors behind your tired mornings.</p>
+      <div class="qz-ring"><svg viewBox="0 0 120 120"><circle class="qz-ring-bg" cx="60" cy="60" r="52"/><circle class="qz-ring-f" id="qz-ring-f" cx="60" cy="60" r="52"/></svg><div class="qz-ring-n" id="qz-ring-n">0%</div></div>
+      <div class="qz-loadbar"><div class="qz-loadbar-f" id="qz-loadbar-f"></div></div>
+      <div class="qz-ring-lbl" id="qz-analyze-lbl">Reading your answers</div>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="9">
+      <h2 class="qz-q">What have you already tried to fix your sleep?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-tried="melatonin">Melatonin / sleep supplements</button>
+        <button class="qz-opt" data-tried="more">Just sleeping more or earlier</button>
+        <button class="qz-opt" data-tried="alarms">Louder or multiple alarms</button>
+        <button class="qz-opt" data-tried="stripstape">Nose strips or mouth tape before</button>
+        <button class="qz-opt" data-tried="nothing">Honestly — nothing yet</button>
+      </div>
+    </div>
+
+    <div class="qz-s" data-type="q" data-q="10">
+      <h2 class="qz-q">Has your sleep gotten worse over the last few years?</h2>
+      <div class="qz-opts">
+        <button class="qz-opt" data-pattern="Progressive">Yeah — it used to be easy</button>
+        <button class="qz-opt" data-pattern="Long-standing">It's always been a struggle</button>
+        <button class="qz-opt" data-pattern="Intermittent">Comes and goes</button>
+        <button class="qz-opt" data-pattern="Recent onset">It's a recent thing</button>
+      </div>
+      <p class="qz-reframe">It's not you. Your sleep mechanics changed — and that's fixable.</p>
+    </div>
+
+    <div class="qz-s" data-type="build" data-prog="100">
+      <h2 class="qz-q">{{ section.settings.build_title | default: 'Building your profile…' }}</h2>
+      <p class="qz-sub">Mapping your answers against the SOMNA sleep framework.</p>
+      <div class="qz-checks">
+        <div class="qz-chk"><span class="qz-chk-i"></span>Analyzing your symptoms</div>
+        <div class="qz-chk"><span class="qz-chk-i"></span>Cross-referencing your routine</div>
+        <div class="qz-chk"><span class="qz-chk-i"></span>Calibrating your protocol</div>
+        <div class="qz-chk"><span class="qz-chk-i"></span>Personalizing your result</div>
+      </div>
+      <p class="qz-fine">Your sleep profile is almost ready…</p>
+    </div>
+
+    <div class="qz-s" data-type="assess" data-prog="100">
+      <div class="qz-acard">
+        <div class="qz-acard-top"><span class="qz-acard-ic">!</span><div><div class="qz-acard-lbl">{{ section.settings.assess_heading | default: 'Your Sleep Assessment' }}</div><div class="qz-acard-badge" id="qz-a-type">—</div></div></div>
+        <p class="qz-acard-desc" id="qz-a-desc"></p>
+        <div class="qz-acard-meterlbl">{{ section.settings.assess_levellbl | default: 'Sleep disruption level' }}</div>
+        <div class="qz-acard-pill" id="qz-a-level">MODERATE</div>
+        <div class="qz-meter"><div class="qz-meter-dot" id="qz-a-dot"></div></div>
+        <div class="qz-meter-ends"><span>Low</span><span>High</span></div>
+      </div>
+      <div class="qz-stats">
+        <div class="qz-stat"><div class="qz-stat-l">{{ section.settings.stat_pattern | default: 'Pattern' }}</div><div class="qz-stat-v" id="qz-s-pat">—</div></div>
+        <div class="qz-stat"><div class="qz-stat-l">{{ section.settings.stat_primary | default: 'Primary driver' }}</div><div class="qz-stat-v" id="qz-s-pri">—</div></div>
+        <div class="qz-stat"><div class="qz-stat-l">{{ section.settings.stat_secondary | default: 'Secondary driver' }}</div><div class="qz-stat-v" id="qz-s-sec">—</div></div>
+        <div class="qz-stat"><div class="qz-stat-l">{{ section.settings.stat_impact | default: 'Daytime impact' }}</div><div class="qz-stat-v" id="qz-s-imp">—</div></div>
+      </div>
+      <button class="qz-cta" data-next>{{ section.settings.assess_cta | default: "Show me what's possible →" }}</button>
+    </div>
+
+    <div class="qz-s" data-type="project" data-prog="100">
+      <h2 class="qz-q">{{ section.settings.project_title | default: 'The fix built for your Sleep Type.' }}</h2>
+      <p class="qz-sub">Based on your answers, most people in your profile feel noticeably more rested by <strong id="qz-date"></strong>.</p>
+      <div class="qz-chart">
+        <div class="qz-chart-top"><div class="qz-chart-cell"><div class="qz-chart-k">Status</div><div class="qz-chart-v" id="qz-chart-status">Moderate disruption</div></div><div class="qz-chart-cell"><div class="qz-chart-k">Projected</div><div class="qz-chart-v qz-chart-accent">Rested sleep</div></div><div class="qz-chart-cell"><div class="qz-chart-k">ETA</div><div class="qz-chart-v" id="qz-eta">—</div></div></div>
+        <div class="qz-chart-mid"><div class="qz-chart-y"><span>Rested</span><span>OK</span><span>Poor</span></div><div class="qz-chart-plot"><div class="qz-chart-grid"><i></i><i></i><i></i></div><span class="qz-chart-goal">Goal · rested</span><svg viewBox="0 0 300 160" preserveAspectRatio="none"><defs><linearGradient id="qzg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6D49E0" stop-opacity=".55"/><stop offset="1" stop-color="#6D49E0" stop-opacity="0"/></linearGradient></defs><path d="M0,138 C90,132 175,92 300,16 L300,160 L0,160 Z" fill="url(#qzg2)"/><path d="M0,138 C90,132 175,92 300,16" fill="none" stroke="#8b6cf0" stroke-width="3"/></svg><span class="qz-chart-here">You are here</span><span class="qz-chart-pt qz-chart-pt-a"></span><span class="qz-chart-pt qz-chart-pt-b"></span></div></div>
+        <div class="qz-chart-x"><span id="qz-x1">Today</span><span id="qz-x2">—</span><span id="qz-x3">—</span></div>
+      </div>
+      <button class="qz-cta" data-next>{{ section.settings.project_cta | default: 'Get my protocol →' }}</button>
+    </div>
+
+    <div class="qz-s" data-type="offer" data-prog="100">
+      <h2 class="qz-q qz-offer-h">{{ section.settings.offer_title | default: 'Sleep deep and wake rested — with your 90-night SOMNA plan.' }}</h2>
+      <p class="qz-oguar">{{ section.settings.offer_guar_pre | default: 'Because you qualify, ' }}<strong class="qz-uline">{{ section.settings.offer_guar_emph | default: "we guarantee you'll wake up more rested" }}</strong>{{ section.settings.offer_guar_post | default: ' with your 90-night SOMNA plan.' }}</p>
+      <p class="qz-orefund">{{ section.settings.offer_refund | default: "If your mornings don't change, you don't pay — full refund, no questions asked." }}</p>
+      <div class="qz-ohero-imgwrap"><div class="qz-ohero-badge">{{ section.settings.proof_count | default: '12,000+' }} rested</div><div class="qz-ohero-img qz-ph" id="qz-o-img"></div></div>
+      <button class="qz-cta" id="qz-claim">{{ section.settings.offer_cta | default: 'Claim my discount →' }}</button>
+      <p class="qz-fine" id="qz-o-note"></p>
+    </div>
+
+    <div class="qz-s" data-type="applying" data-prog="100">
+      <h2 class="qz-q">{{ section.settings.applying_title | default: 'Applying your discount…' }}</h2>
+      <p class="qz-sub">Securing your plan and loading your personalized offer.</p>
+      <div class="qz-checks">
+        <div class="qz-chk"><span class="qz-chk-i"></span>Verifying your eligibility</div>
+        <div class="qz-chk"><span class="qz-chk-i"></span>Locking in your plan</div>
+        <div class="qz-chk"><span class="qz-chk-i"></span>Activating your guarantee</div>
+        <div class="qz-chk"><span class="qz-chk-i"></span>Loading your offer</div>
+      </div>
+      <div class="qz-loadbar"><div class="qz-loadbar-f" id="qz-applybar"></div></div>
+      <p class="qz-fine">Please don't refresh — taking you to your plan…</p>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.shopify-section-group-header-group,.shopify-section-group-footer-group{display:none !important}
+#somna-quiz{--bg:#0d0d1c;--card:#16162b;--card2:#1d1d36;--ink:#fff;--mut:#9a98b5;--accent:#6D49E0;--lav:#98A3DE;--line:#2a2a45;--cwblue:#2746cf;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:block}
+.qz-shell{max-width:560px;margin:0 auto;padding:20px 18px 70px;min-height:100vh;display:flex;flex-direction:column}
+.qz-head{position:sticky;top:0;background:var(--bg);padding:6px 0 12px;z-index:3}
+.qz-logo{font-weight:800;font-size:1.35rem;text-align:center;letter-spacing:-.02em;margin-bottom:14px;color:#fff}
+.qz-logo span{color:var(--lav)}
+.qz-prog{height:5px;border-radius:999px;background:#23233e;overflow:hidden}
+.qz-prog-f{height:100%;width:8%;background:linear-gradient(90deg,#98A3DE,#6D49E0);border-radius:999px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.qz-body{flex:1;margin-top:20px}
+.qz-s{display:none;animation:qzin .35s ease}
+.qz-s.qz-on{display:block}
+@keyframes qzin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.qz-intro-h{font-size:2rem;line-height:1.1;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 14px}
+.qz-intro-h span{color:var(--lav)}
+.qz-assess{display:flex;gap:9px;align-items:flex-start;font-size:.95rem;color:var(--mut);line-height:1.45;margin:0 0 18px}
+.qz-check{flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;margin-top:1px}
+.qz-testi{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:24px}
+.qz-testi-av{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:0 0 auto}
+.qz-testi-av.qz-ph{display:flex;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:800;font-size:.9rem}
+.qz-testi-q{font-size:.9rem;font-style:italic;margin:0 0 4px;line-height:1.35}
+.qz-testi-n{font-size:.78rem;font-weight:700;margin:0}
+.qz-testi-n span{color:var(--lav);font-weight:600}
+.qz-q{font-size:1.55rem;line-height:1.2;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 18px}
+.qz-sub{font-size:1rem;color:var(--mut);line-height:1.5;margin:0 0 20px}
+.qz-sub strong{color:#fff}
+.qz-opts{display:flex;flex-direction:column;gap:11px}
+.qz-opt{appearance:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:18px;font:inherit;font-size:1rem;font-weight:600;text-align:left;cursor:pointer;line-height:1.3;transition:transform .08s,border-color .15s,background .15s;min-height:60px;display:flex;align-items:center}
+.qz-opt:hover{border-color:var(--lav)}
+.qz-opt:active{transform:scale(.985)}
+.qz-opt.qz-picked{border-color:var(--accent);background:var(--accent)}
+.qz-why{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:.88rem;color:var(--mut);line-height:1.45}
+.qz-why span{display:block;color:var(--lav);font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.qz-reframe{margin-top:18px;text-align:center;font-size:.95rem;font-weight:700;color:var(--lav);line-height:1.4}
+.qz-inter-tag{display:inline-block;background:rgba(152,163,222,.15);color:var(--lav);font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:14px}
+.qz-cw{display:flex;gap:10px;margin:6px 0 16px;min-height:320px;align-items:stretch}
+.qz-cwcard{display:none;flex:1;min-width:0;flex-direction:column;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.qz-cwcard.qz-on{display:flex}
+.qz-cwhead{padding:11px 12px}
+.qz-cwcap{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.25;margin-bottom:8px;min-height:2.5em}
+.qz-cwage{display:inline-block;font-size:.7rem;font-weight:800;padding:4px 11px;border-radius:8px}
+.qz-cwimg{flex:1;aspect-ratio:3/4;background:var(--card2);position:relative}
+.qz-cwimg img{width:100%;height:100%;object-fit:cover;display:block}
+.qz-cwph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8a88a8;font-size:.76rem;text-align:center;padding:10px}
+.qz-cw-left .qz-cwhead{background:#fff}
+.qz-cw-left .qz-cwcap{color:var(--cwblue)}
+.qz-cw-left .qz-cwage{background:var(--cwblue);color:#fff}
+.qz-cw-right .qz-cwhead{background:var(--cwblue)}
+.qz-cw-right .qz-cwcap{color:#fff}
+.qz-cw-right .qz-cwage{background:#fff;color:var(--cwblue)}
+.qz-cta{appearance:none;border:none;width:100%;background:var(--accent);color:#fff;border-radius:999px;padding:18px;font:inherit;font-size:1.05rem;font-weight:800;cursor:pointer;text-align:center;text-transform:uppercase;letter-spacing:.04em;box-shadow:0 8px 24px rgba(109,73,224,.35);transition:transform .06s,background .15s;margin-top:6px}
+.qz-cta:hover{background:#7d5ce8}
+.qz-cta:active{transform:scale(.99)}
+.qz-fine{font-size:.78rem;color:var(--mut);text-align:center;line-height:1.4;margin:14px 0 0}
+.qz-ring{position:relative;width:150px;height:150px;margin:30px auto 16px}
+.qz-ring svg{transform:rotate(-90deg);width:150px;height:150px}
+.qz-ring-bg{fill:none;stroke:#23233e;stroke-width:9}
+.qz-ring-f{fill:none;stroke:var(--accent);stroke-width:9;stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset .2s linear}
+.qz-ring-n{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:800}
+.qz-ring-lbl{text-align:center;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:6px}
+.qz-loadbar{height:6px;border-radius:999px;background:#23233e;overflow:hidden;max-width:300px;margin:0 auto}
+.qz-loadbar-f{height:100%;width:0;background:linear-gradient(90deg,#98A3DE,#6D49E0);border-radius:999px;transition:width .3s linear}
+.qz-checks{display:flex;flex-direction:column;gap:11px;margin-top:8px}
+.qz-chk{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;font-size:.98rem;font-weight:600;color:var(--mut);transition:.3s}
+.qz-chk-i{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);position:relative;transition:.3s}
+.qz-chk.qz-doing{color:#fff;border-color:var(--accent)}
+.qz-chk.qz-doing .qz-chk-i{border-color:var(--accent);border-top-color:transparent;animation:qzspin .7s linear infinite}
+.qz-chk.qz-done{color:#fff;border-color:rgba(109,73,224,.5)}
+.qz-chk.qz-done .qz-chk-i{border-color:var(--accent);background:var(--accent);animation:none}
+.qz-chk.qz-done .qz-chk-i:after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;font-weight:800}
+@keyframes qzspin{to{transform:rotate(360deg)}}
+.qz-acard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}
+.qz-acard-top{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.qz-acard-ic{flex:0 0 auto;width:34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.qz-acard-lbl{font-size:.82rem;color:var(--mut)}
+.qz-acard-badge{font-size:1.25rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+.qz-acard-desc{font-size:.95rem;color:var(--mut);line-height:1.45;margin:0 0 16px}
+.qz-acard-meterlbl{font-size:.78rem;font-weight:700;text-align:center;color:var(--mut);margin-bottom:6px}
+.qz-acard-pill{display:block;width:fit-content;margin:0 auto 10px;background:rgba(109,73,224,.18);color:var(--lav);font-size:.74rem;font-weight:800;letter-spacing:.06em;padding:5px 12px;border-radius:999px}
+.qz-meter{height:8px;border-radius:999px;background:linear-gradient(90deg,#2ecc71,#f1c40f,#e74c3c);position:relative}
+.qz-meter-dot{position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--accent);transform:translate(-50%,-50%);left:60%;transition:left .6s ease}
+.qz-meter-ends{display:flex;justify-content:space-between;font-size:.72rem;color:var(--mut);margin-top:7px}
+.qz-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.qz-stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px}
+.qz-stat-l{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--lav);margin-bottom:5px}
+.qz-stat-v{font-size:.92rem;font-weight:700;line-height:1.25}
+.qz-chart{background:linear-gradient(180deg,#15152c,#101022);border:1px solid var(--line);border-radius:16px;padding:14px;margin:6px 0 22px}
+.qz-chart-top{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:8px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px}
+.qz-chart-k{font-size:.56rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:3px}
+.qz-chart-v{font-size:.84rem;font-weight:800}
+.qz-chart-accent{color:var(--lav)}
+.qz-chart-mid{display:flex;gap:8px}
+.qz-chart-y{display:flex;flex-direction:column;justify-content:space-between;font-size:.55rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);padding:2px 0 26px}
+.qz-chart-plot{position:relative;flex:1;height:160px}
+.qz-chart-plot svg{width:100%;height:140px;display:block;position:relative;z-index:1}
+.qz-chart-grid{position:absolute;left:0;right:0;top:2px;bottom:22px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none;z-index:0}
+.qz-chart-grid i{display:block;border-top:1px dashed rgba(255,255,255,.10)}
+.qz-chart-goal{position:absolute;top:6px;right:2px;background:var(--accent);color:#fff;font-size:.56rem;font-weight:800;padding:3px 9px;border-radius:999px;z-index:2}
+.qz-chart-here{position:absolute;left:0;bottom:26px;background:#fff;color:var(--bg);font-size:.55rem;font-weight:800;padding:3px 8px;border-radius:999px;z-index:2}
+.qz-chart-pt{position:absolute;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--accent);z-index:2}
+.qz-chart-pt-a{left:-3px;bottom:32px}
+.qz-chart-pt-b{right:-3px;top:4px}
+.qz-chart-x{display:flex;justify-content:space-between;font-size:.55rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--mut);margin-top:6px;padding-left:48px}
+.qz-offer-h{text-align:center}
+.qz-oguar{font-size:.95rem;color:var(--mut);line-height:1.5;text-align:center;margin:0 0 8px}
+.qz-uline{color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:2px;text-decoration-color:var(--lav)}
+.qz-orefund{font-size:.92rem;font-weight:800;text-align:center;color:#fff;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:2px;text-decoration-color:var(--lav);margin:0 0 20px}
+.qz-ohero-imgwrap{position:relative;width:100%;margin:4px 0 22px}
+.qz-ohero-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);z-index:2;background:var(--accent);color:#fff;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:6px 14px;border-radius:999px;white-space:nowrap}
+.qz-ohero-img{width:100%;border-radius:18px;background:var(--card2);overflow:hidden;border:1px solid var(--line);min-height:220px}
+.qz-ohero-img img{width:100%;height:auto;display:block}
+.qz-ph{display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:.78rem}
+@media(max-width:480px){.qz-intro-h{font-size:1.6rem}.qz-q{font-size:1.3rem}.qz-cw{min-height:280px}}
+</style>
+
+<script>
+(function(){
+  var root=document.getElementById('somna-quiz');if(!root)return;
+  var screens=[].slice.call(root.querySelectorAll('.qz-s'));
+  var progf=root.querySelector('#qz-progf');
+  var i=0, score={b:0,t:0,s:0}, meta={pattern:'Progressive',impact:'High',cost:'',tried:'',onset:''}, QTOTAL=10, leadFired=false, baTimer=null, lastLevel='MODERATE';
+  var PROD={
+    b:{name:'Somna Silent Alarm Band',url:'/products/dreamx-silent-alarm-band',img:'{{ band.featured_image | image_url: width: 700 }}'},
+    t:{name:'Somna Cotton Mouth Tape',url:'/products/dreamx-sleep-mouth-tape',img:'{{ tape.featured_image | image_url: width: 700 }}'},
+    s:{name:'Somna Anti-Snore Nasal Strips',url:'/products/dreamx-anti-snore-nasal-strips',img:'{{ nasal.featured_image | image_url: width: 700 }}'},
+    full:{name:'The SOMNA Sleep System',url:'/products/dreamx-silent-alarm-band',img:'{{ band.featured_image | image_url: width: 700 }}'}
+  };
+  var TYPES={
+    b:{name:{{ section.settings.type_b_name | default: "The Heavy Sleeper" | json }},desc:{{ section.settings.type_b_desc | default: "Sound alarms barely register for you — so you snooze and oversleep. You're not lazy; you're built like a deep sleeper, and that's exactly what Somna is designed for." | json }},note:{{ section.settings.type_b_note | default: "30-day money-back guarantee." | json }}},
+    t:{name:{{ section.settings.type_t_name | default: "The Mouth Breather" | json }},desc:{{ section.settings.type_t_desc | default: "You sleep through the night but breathe wrong the whole time — which is why you wake dry, foggy and unrested. Tape. is designed to fix that." | json }},note:{{ section.settings.type_t_note | default: "30-day money-back guarantee." | json }}},
+    s:{name:{{ section.settings.type_s_name | default: "The Night Rumbler" | json }},desc:{{ section.settings.type_s_desc | default: "When your nose can't move enough air lying down, you snore — and your partner pays for it. Strips. are designed to open the airway." | json }},note:{{ section.settings.type_s_note | default: "30-day money-back guarantee." | json }}},
+    full:{name:{{ section.settings.type_full_name | default: "The Full Reset" | json }},desc:{{ section.settings.type_full_desc | default: "Your sleep is breaking down in more than one place — waking, breathing and snoring. Fixing one won't cut it. The full system targets all three." | json }},note:{{ section.settings.type_full_note | default: "30-day money-back guarantee." | json }}}
+  };
+  var BL={b:'Deep-sleep wake difficulty',t:'Mouth-breathing / dry mouth',s:'Nasal congestion / snoring'};
+  function show(n){screens.forEach(function(s,k){s.classList.toggle('qz-on',k===n);});i=n;var sc=screens[n];var q=sc.getAttribute('data-q');var dp=sc.getAttribute('data-prog');if(q){progf.style.width=(q/12*100)+'%';}else if(dp){progf.style.width=dp+'%';}var pbar=root.querySelector('.qz-prog');var ty0=sc.getAttribute('data-type');if(pbar)pbar.style.display=(['assess','project','offer','applying'].indexOf(ty0)>-1)?'none':'block';try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);}var fn=HOOK[ty0];if(fn)fn(sc);}
+  function lead(){var k='b',m=-1;['b','t','s'].forEach(function(x){if(score[x]>m){m=score[x];k=x;}});return k;}
+  function decide(){var a=[['b',score.b],['t',score.t],['s',score.s]];a.sort(function(x,y){return y[1]-x[1];});if(a[0][1]<=0)return 'full';if(a[1][1]>0&&(a[0][1]-a[1][1])<=1)return 'full';return a[0][0];}
+  root.querySelectorAll('.qz-s[data-type="q"]').forEach(function(card){
+    card.querySelectorAll('.qz-opt').forEach(function(opt){
+      opt.addEventListener('click',function(){
+        card.querySelectorAll('.qz-opt').forEach(function(o){o.classList.remove('qz-picked');});opt.classList.add('qz-picked');
+        if(opt.hasAttribute('data-impact'))meta.impact=opt.getAttribute('data-impact');
+        if(opt.hasAttribute('data-pattern'))meta.pattern=opt.getAttribute('data-pattern');
+        if(opt.hasAttribute('data-cost'))meta.cost=opt.getAttribute('data-cost');
+        if(opt.hasAttribute('data-tried'))meta.tried=opt.getAttribute('data-tried');
+        var tg=opt.getAttribute('data-tag');if(tg&&['fast','normal','racing','severe'].indexOf(tg)>-1)meta.onset=tg;
+        if(opt.hasAttribute('data-impact')){var lb=lead();score[lb]+=1;}
+        ['b','t','s'].forEach(function(x){var v=parseInt(opt.getAttribute('data-'+x)||'0',10);if(v)score[x]+=v;});
+        setTimeout(function(){show(i+1);},220);
+      });
+    });
+  });
+  root.querySelectorAll('[data-next]').forEach(function(b){b.addEventListener('click',function(){show(i+1);});});
+  var HOOK={
+    baswap:function(sc){if(baTimer)return;var cards=[].slice.call(sc.querySelectorAll('.qz-cwcard'));if(!cards.length)return;var per=2;var groups=Math.ceil(cards.length/per);var g=0;function showg(){cards.forEach(function(c){c.classList.remove('qz-on','qz-cw-left','qz-cw-right');});for(var k=0;k<per;k++){var c=cards[(g*per+k)%cards.length];if(!c)continue;c.classList.add('qz-on');c.classList.add(k%2===0?'qz-cw-left':'qz-cw-right');}g=(g+1)%groups;}showg();baTimer=setInterval(showg,1000);},
+    analyze:function(){var n=0,el=root.querySelector('#qz-ring-n'),rf=root.querySelector('#qz-ring-f'),bar=root.querySelector('#qz-loadbar-f'),lbl=root.querySelector('#qz-analyze-lbl');var msgs=['Reading your answers','Checking your airway profile','Scoring your wake difficulty','Cross-referencing your routine'];var t=setInterval(function(){n+=Math.max(1,Math.round((100-n)/9));if(n>=100){n=100;clearInterval(t);setTimeout(function(){show(i+1);},450);}el.textContent=n+'%';rf.style.strokeDashoffset=(327-327*n/100);bar.style.width=n+'%';lbl.textContent=msgs[Math.min(3,Math.floor(n/26))];},85);},
+    build:function(sc){seqChecks(sc.querySelectorAll('.qz-chk'),function(){setTimeout(function(){show(i+1);},350);});},
+    assess:function(){if(!leadFired){try{if(window.fbq)fbq('track','Lead',{content_name:'Sleep Type Quiz'});}catch(e){}leadFired=true;}var key=decide();var ty=TYPES[key];root.querySelector('#qz-a-type').textContent=ty.name;root.querySelector('#qz-a-desc').textContent=ty.desc;var tot=score.b+score.t+score.s;var lvl=tot>=11?'HIGH':(tot>=6?'MODERATE':'MILD');lastLevel=lvl;root.querySelector('#qz-a-level').textContent=lvl;root.querySelector('#qz-a-dot').style.left=(lvl==='HIGH'?86:(lvl==='MODERATE'?58:26))+'%';root.querySelector('#qz-s-pat').textContent=meta.pattern;var a=[['b',score.b],['t',score.t],['s',score.s]];a.sort(function(x,y){return y[1]-x[1];});root.querySelector('#qz-s-pri').textContent=a[0][1]>0?BL[a[0][0]]:'—';root.querySelector('#qz-s-sec').textContent=a[1][1]>0?BL[a[1][0]]:'—';root.querySelector('#qz-s-imp').textContent=meta.impact;},
+    project:function(){var f=function(dd){return dd.toLocaleDateString('en-US',{month:'short',day:'numeric'});};var aM=function(nn){var d=new Date();d.setMonth(d.getMonth()+nn);return d;};var t1=aM(1),t2=aM(2);var dl=root.querySelector('#qz-date');if(dl)dl.textContent=t2.toLocaleDateString('en-US',{month:'long',day:'numeric'});var et=root.querySelector('#qz-eta');if(et)et.textContent=f(t2);var stt=root.querySelector('#qz-chart-status');if(stt)stt.textContent=lastLevel.charAt(0)+lastLevel.slice(1).toLowerCase()+' disruption';var map={'#qz-x2':f(t1),'#qz-x3':f(t2)};Object.keys(map).forEach(function(id){var e=root.querySelector(id);if(e)e.textContent=map[id];});try{if(window.fbq)fbq('track','ViewContent',{content_name:'Quiz Result'});}catch(e){}},
+    offer:function(){var key=decide();var p=PROD[key],ty=TYPES[key];var img=root.querySelector('#qz-o-img');if(p.img){img.innerHTML='<img src="'+p.img+'" alt="">';img.classList.remove('qz-ph');img.style.minHeight='0';}root.querySelector('#qz-o-note').textContent=ty.note;},
+    applying:function(sc){var bar=root.querySelector('#qz-applybar');var n=0;var bt=setInterval(function(){n+=4;if(n>=100){n=100;clearInterval(bt);}bar.style.width=n+'%';},95);seqChecks(sc.querySelectorAll('.qz-chk'),function(){var key=decide();var url=PROD[key].url+'?st='+key+(meta.cost?'&c='+meta.cost:'')+(meta.tried?'&tr='+meta.tried:'');setTimeout(function(){window.location.href=url;},500);});}
+  };
+  function seqChecks(nodes,done){var arr=[].slice.call(nodes),k=0;function step(){if(k>0){arr[k-1].classList.remove('qz-doing');arr[k-1].classList.add('qz-done');}if(k>=arr.length){done&&done();return;}arr[k].classList.add('qz-doing');k++;setTimeout(step,720);}step();}
+  root.querySelector('#qz-claim').addEventListener('click',function(){show(i+1);});
+  show(0);
+})();
+</script>
+</section>
+
+{% schema %}
+{
+  "name": "Somna Quiz",
+  "settings": [
+    { "type": "header", "content": "Intro testimonial" },
+    { "type": "text", "id": "testi_quote", "label": "Testimonial quote", "default": "Took maybe a minute. First thing in years that actually gets me up — and my wife sleeps right through it." },
+    { "type": "text", "id": "testi_name", "label": "Testimonial name", "default": "Marcus D." },
+    { "type": "image_picker", "id": "testi_img", "label": "Testimonial avatar" },
+    { "type": "text", "id": "proof_count", "label": "Social proof count", "default": "12,000+" },
+    { "type": "header", "content": "Loader & button text (editable)" },
+    { "type": "text", "id": "analyze_title", "label": "Analyzing screen title", "default": "Analyzing your sleep profile…" },
+    { "type": "text", "id": "build_title", "label": "Building screen title", "default": "Building your profile…" },
+    { "type": "text", "id": "assess_cta", "label": "Assessment button", "default": "Show me what's possible →" },
+    { "type": "text", "id": "project_title", "label": "Projection title", "default": "The fix built for your Sleep Type." },
+    { "type": "text", "id": "project_cta", "label": "Projection button", "default": "Get my protocol →" },
+    { "type": "text", "id": "offer_title", "label": "Offer title", "default": "Sleep deep and wake rested — with your 90-night SOMNA plan." },
+    { "type": "text", "id": "offer_guar_pre", "label": "Guarantee — start", "default": "Because you qualify, " },
+    { "type": "text", "id": "offer_guar_emph", "label": "Guarantee — underlined phrase", "default": "we guarantee you'll wake up more rested" },
+    { "type": "text", "id": "offer_guar_post", "label": "Guarantee — end", "default": " with your 90-night SOMNA plan." },
+    { "type": "text", "id": "offer_refund", "label": "Offer refund line (underlined)", "default": "If your mornings don't change, you don't pay — full refund, no questions asked." },
+    { "type": "text", "id": "offer_cta", "label": "Offer button (Claim my discount)", "default": "Claim my discount →" },
+    { "type": "text", "id": "applying_title", "label": "Applying screen title", "default": "Applying your discount…" },
+    { "type": "header", "content": "Result screen labels (editable)" },
+    { "type": "text", "id": "assess_heading", "label": "Result eyebrow", "default": "Your Sleep Assessment" },
+    { "type": "text", "id": "assess_levellbl", "label": "Disruption meter label", "default": "Sleep disruption level" },
+    { "type": "text", "id": "stat_pattern", "label": "Stat 1 label", "default": "Pattern" },
+    { "type": "text", "id": "stat_primary", "label": "Stat 2 label", "default": "Primary driver" },
+    { "type": "text", "id": "stat_secondary", "label": "Stat 3 label", "default": "Secondary driver" },
+    { "type": "text", "id": "stat_impact", "label": "Stat 4 label", "default": "Daytime impact" },
+    { "type": "header", "content": "Result: Heavy Sleeper" },
+    { "type": "text", "id": "type_b_name", "label": "Name", "default": "The Heavy Sleeper" },
+    { "type": "textarea", "id": "type_b_desc", "label": "Description", "default": "Sound alarms barely register for you — so you snooze and oversleep. You're not lazy; you're built like a deep sleeper, and that's exactly what Somna is designed for." },
+    { "type": "text", "id": "type_b_note", "label": "Guarantee note", "default": "30-day money-back guarantee." },
+    { "type": "header", "content": "Result: Mouth Breather" },
+    { "type": "text", "id": "type_t_name", "label": "Name", "default": "The Mouth Breather" },
+    { "type": "textarea", "id": "type_t_desc", "label": "Description", "default": "You sleep through the night but breathe wrong the whole time — which is why you wake dry, foggy and unrested. Tape. is designed to fix that." },
+    { "type": "text", "id": "type_t_note", "label": "Guarantee note", "default": "30-day money-back guarantee." },
+    { "type": "header", "content": "Result: Night Rumbler" },
+    { "type": "text", "id": "type_s_name", "label": "Name", "default": "The Night Rumbler" },
+    { "type": "textarea", "id": "type_s_desc", "label": "Description", "default": "When your nose can't move enough air lying down, you snore — and your partner pays for it. Strips. are designed to open the airway." },
+    { "type": "text", "id": "type_s_note", "label": "Guarantee note", "default": "30-day money-back guarantee." },
+    { "type": "header", "content": "Result: Full Reset" },
+    { "type": "text", "id": "type_full_name", "label": "Name", "default": "The Full Reset" },
+    { "type": "textarea", "id": "type_full_desc", "label": "Description", "default": "Your sleep is breaking down in more than one place — waking, breathing and snoring. Fixing one won't cut it. The full system targets all three." },
+    { "type": "text", "id": "type_full_note", "label": "Guarantee note", "default": "30-day money-back guarantee." }
+  ],
+  "blocks": [
+    { "type": "cust", "name": "Customer card", "settings": [
+      { "type": "image_picker", "id": "img", "label": "Customer photo" },
+      { "type": "text", "id": "caption", "label": "Top caption (what they said)", "default": "Best sleep in years." },
+      { "type": "text", "id": "age", "label": "Age line", "default": "Age: 34" }
+    ] }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Somna Quiz", "blocks": [ {"type":"cust"},{"type":"cust"},{"type":"cust"},{"type":"cust"},{"type":"cust"},{"type":"cust"},{"type":"cust"},{"type":"cust"},{"type":"cust"},{"type":"cust"} ] }]
+}
+{% endschema %}

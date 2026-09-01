@@ -1,0 +1,69 @@
+<style id='somna-rr5'>
+@media(max-width:768px){
+/* ===== BUY BOX bundle cards -> reference (full-width stacked rows) ===== */
+#somna-mbb .mbb-cards{display:flex !important;flex-direction:column !important;align-items:stretch !important;gap:22px !important;grid-template-columns:none !important;margin:18px 0 20px !important;padding:0 !important}
+#somna-mbb .mbb-card{display:grid !important;grid-template-columns:auto 62px 1fr auto !important;grid-template-areas:'radio img name price' 'radio img sub save' !important;align-items:center !important;column-gap:13px !important;row-gap:2px !important;width:100% !important;box-sizing:border-box !important;text-align:left !important;padding:13px 16px !important;min-height:0 !important;position:relative !important;overflow:visible !important;border:1.5px solid #E7E9EF !important;border-radius:18px !important;background:#fff !important;box-shadow:none !important}
+#somna-mbb .mbb-card::before{content:'' !important;grid-area:radio !important;width:23px !important;height:23px !important;border-radius:50% !important;border:2px solid #cfd2e0 !important;background:#fff !important;box-sizing:border-box !important;align-self:center !important;margin:0 !important}
+#somna-mbb .mbb-card.on{background:#4A56D6 !important;border-color:#4A56D6 !important;box-shadow:0 10px 22px -10px rgba(74,86,214,.55) !important}
+#somna-mbb .mbb-card.on::before{border:2.5px solid #fff !important;background:transparent !important}
+#somna-mbb .mbb-cimg{grid-area:img !important;width:62px !important;height:58px !important;display:flex !important;align-items:center !important;justify-content:center !important;margin:0 !important}
+#somna-mbb .mbb-cimg img{max-width:100% !important;max-height:100% !important;object-fit:contain !important;display:block !important}
+#somna-mbb .mbb-cname{grid-area:name !important;text-align:left !important;font-size:1.12rem !important;font-weight:800 !important;letter-spacing:-.01em !important;min-height:0 !important;margin:0 !important;align-self:end !important;line-height:1.1 !important;color:var(--cda-ink) !important;display:block !important;justify-content:flex-start !important}
+#somna-mbb .mbb-csub{grid-area:sub !important;font-size:.8rem !important;opacity:.7 !important;line-height:1.2 !important;align-self:start !important;margin-top:2px !important}
+#somna-mbb .mbb-cprice{grid-area:price !important;display:flex !important;flex-direction:row-reverse !important;align-items:baseline !important;justify-content:flex-end !important;gap:6px !important;align-self:end !important;margin:0 !important}
+#somna-mbb .mbb-cprice b{font-size:1.12rem !important;font-weight:800 !important;color:#4A56D6 !important}
+#somna-mbb .mbb-cprice s{font-size:.8rem !important;color:#9a97ad !important;font-weight:400 !important}
+#somna-mbb .mbb-csave{grid-area:save !important;justify-self:end !important;align-self:start !important;margin:4px 0 0 !important;background:#4A56D6 !important;color:#fff !important;font-size:.6rem !important;font-weight:800 !important;letter-spacing:.03em !important;text-transform:uppercase !important;padding:4px 10px !important;border-radius:999px !important;white-space:nowrap !important}
+#somna-mbb .mbb-csupply{display:none !important}
+#somna-mbb .mbb-cbadge{position:absolute !important;top:-12px !important;left:50% !important;transform:translateX(-50%) !important;background:#C9F27E !important;color:#1c3b2e !important;font-size:.66rem !important;font-weight:800 !important;letter-spacing:.01em !important;text-transform:none !important;padding:4px 13px !important;border-radius:999px !important;white-space:nowrap !important;z-index:3 !important}
+/* selected (most-popular) card: white text + outlined save pill */
+#somna-mbb .mbb-card.on .mbb-cname,#somna-mbb .mbb-card.on .mbb-csub{color:#fff !important}
+#somna-mbb .mbb-card.on .mbb-cprice b{color:#fff !important}
+#somna-mbb .mbb-card.on .mbb-cprice s{color:rgba(255,255,255,.6) !important}
+#somna-mbb .mbb-card.on .mbb-csave{background:transparent !important;color:#fff !important;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.9) !important}
+/* order: 4-bag (best value) top, 3-bag (most popular) middle, 1-bag bottom */
+#somna-mbb .mbb-card[data-i='2']{order:1 !important}
+#somna-mbb .mbb-card[data-i='1']{order:2 !important}
+#somna-mbb .mbb-card[data-i='0']{order:3 !important}
+/* bottom (1-bag): single dark price, no strike/save */
+#somna-mbb .mbb-card[data-i='0'] .mbb-cprice b{color:var(--cda-ink) !important}
+#somna-mbb .mbb-card[data-i='0'] .mbb-cprice s,#somna-mbb .mbb-card[data-i='0'] .mbb-csave{display:none !important}
+}
+</style>
+<script>
+(function(){
+  function mob(){return window.matchMedia&&window.matchMedia('(max-width:768px)').matches;}
+  function go(){
+    if(!mob())return;
+    var mbb=document.getElementById('somna-mbb');if(!mbb)return;
+    if(mbb.getAttribute('data-r5')==='1')return;
+    var cards=[].slice.call(mbb.querySelectorAll('.mbb-card'));if(!cards.length)return;
+    var bcards=[].slice.call(document.querySelectorAll('.spdp-bcard'));
+    function bByU(u){for(var i=0;i<bcards.length;i++){if(Math.round(parseFloat(bcards[i].getAttribute('data-units')||'0'))===u)return bcards[i];}return null;}
+    var unitByI={0:1,1:3,2:4};
+    var subMap={4:'4 Month Supply',3:'3 Month Supply',1:'1 Month Supply'};
+    cards.forEach(function(c){
+      if(c.querySelector('.mbb-cimg'))return;
+      var i=parseInt(c.getAttribute('data-i'),10)||0;
+      var u=unitByI[i]||1;
+      var b=bByU(u);
+      var src='';if(b){var im=b.querySelector('.spdp-bimg img');if(im)src=im.getAttribute('src');}
+      var iw=document.createElement('span');iw.className='mbb-cimg';
+      if(src)iw.innerHTML=`<img src='${src}' alt=''>`;
+      c.insertBefore(iw,c.firstChild);
+      var sup=subMap[u]||(b?(b.getAttribute('data-supply')||''):'');
+      if(sup){var sb=document.createElement('span');sb.className='mbb-csub';sb.textContent=sup;var nm=c.querySelector('.mbb-cname');if(nm)nm.insertAdjacentElement('afterend',sb);}
+      var sv=c.querySelector('.mbb-csave');
+      if(sv&&b){var sr=parseFloat(b.getAttribute('data-sreg')||'0'),sf=parseFloat(b.getAttribute('data-sfirst')||'0');if(sr>sf&&sf>0)sv.textContent='Save $'+Math.round(sr-sf);}
+      var bd=c.querySelector('.mbb-cbadge');
+      if(bd){if(u===4)bd.textContent='best value';else if(u===3)bd.textContent='most popular';}
+    });
+    var pop=cards.filter(function(c){return (parseInt(c.getAttribute('data-i'),10)||0)===1;})[0];
+    if(pop&&!pop.classList.contains('on'))pop.click();
+    mbb.setAttribute('data-r5','1');
+  }
+  function run(){try{go();}catch(e){}}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+  setTimeout(run,350);
+})();
+</script>

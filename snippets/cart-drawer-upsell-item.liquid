@@ -1,0 +1,68 @@
+{% doc %}
+  Single cart drawer upsell card for a product not already in the cart.
+
+  @param {product} product - Product to recommend
+{% enddoc %}
+
+{%- liquid
+  assign upsell_product = product | default: blank
+-%}
+
+{%- if upsell_product != blank -%}
+  {%- liquid
+    assign upsell_variant = upsell_product.selected_or_first_available_variant
+    assign in_cart = false
+    for item in cart.items
+      if item.product_id == upsell_product.id
+        assign in_cart = true
+        break
+      endif
+    endfor
+  -%}
+
+  {%- unless in_cart -%}
+  <div class="cart-drawer__upsell-card">
+    <a href="{{ upsell_product.url }}" class="cart-drawer__upsell-media">
+      {%- if upsell_product.featured_image -%}
+        {{
+          upsell_product.featured_image
+          | image_url: width: 160
+          | image_tag: alt: upsell_product.title, loading: 'lazy', width: 80, height: 80
+        }}
+      {%- else -%}
+        <span class="cart-drawer__upsell-ph"></span>
+      {%- endif -%}
+    </a>
+    <div class="cart-drawer__upsell-info">
+      <a href="{{ upsell_product.url }}" class="cart-drawer__upsell-name">
+        {{- upsell_product.title | remove: 'Somna ' -}}
+      </a>
+      <span class="cart-drawer__upsell-price">{{ upsell_variant.price | money }}</span>
+
+      {%- if upsell_variant.selling_plan_allocations.size > 0 -%}
+        <label class="visually-hidden" for="cart-upsell-plan-{{ upsell_product.id }}">Purchase option</label>
+        <select
+          id="cart-upsell-plan-{{ upsell_product.id }}"
+          class="cart-drawer__plan-select"
+          data-cart-upsell-plan
+        >
+          <option value="">One-time · {{ upsell_variant.price | money }}</option>
+          {%- for allocation in upsell_variant.selling_plan_allocations -%}
+            <option value="{{ allocation.selling_plan.id }}">
+              {{ allocation.selling_plan.name }} · {{ allocation.price | money }}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- endif -%}
+    </div>
+    <button
+      type="button"
+      class="cart-drawer__upsell-add"
+      data-somna-upsell-add="{{ upsell_variant.id }}"
+      aria-label="{{ 'actions.add_to_cart' | t }}: {{ upsell_product.title | escape }}"
+    >
+      Add
+    </button>
+  </div>
+  {%- endunless -%}
+{%- endif -%}

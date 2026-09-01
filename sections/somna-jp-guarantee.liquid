@@ -1,0 +1,31 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#F3F1FB' }}">
+  <div class="sjp-wrap">
+    <div class="sjp-guar-wrap somna-sr">
+      <div class="sjp-guar-img somna-zoomin">
+        {%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1200 }}" loading="lazy" alt="">{%- else -%}<div class="sjp-ph">Insert product lifestyle image (16:9)</div>{%- endif -%}
+        <span class="sjp-seal"><b>{{ section.settings.seal_big | default: '30' }}</b>{{ section.settings.seal_small | default: 'day risk-free trial' }}</span>
+      </div>
+      <h2 class="sjp-h2" style="margin-top:28px">{{ section.settings.title_a | default: 'Try it for 30 nights,' }} <em>{{ section.settings.title_em | default: 'risk-free' }}</em></h2>
+      <p class="sjp-sub">{{ section.settings.body | default: "If you don't sleep better, breathe easier, or wake up more rested — send it back and we'll refund every cent. No forms, no fight, no hard feelings." }}</p>
+      <div class="sjp-ctawrap"><a class="sjp-cta sjp-cta--band" href="{{ section.settings.cta_url | default: '#somna-jp-buy' }}">{{ section.settings.cta | default: 'Start My Risk-Free Trial' }} →</a></div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — Guarantee",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image (16:9)" },
+    { "type": "text", "id": "seal_big", "label": "Seal number", "default": "30" },
+    { "type": "text", "id": "seal_small", "label": "Seal text", "default": "day risk-free trial" },
+    { "type": "text", "id": "title_a", "label": "Title", "default": "Try it for 30 nights," },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "risk-free" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "If you don't sleep better, breathe easier, or wake up more rested — send it back and we'll refund every cent. No forms, no fight, no hard feelings." },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Start My Risk-Free Trial" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: jump to buy box)" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#F3F1FB" }
+  ],
+  "presets": [{ "name": "JP — Guarantee" }]
+}
+{% endschema %}

@@ -1,0 +1,101 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<div class="dxsp">
+  <section class="dxsp-sec">
+    <div class="dxsp-wrap dxsp-head">
+      <span class="dxsp-kick">{{ section.settings.kicker }}</span>
+      <h1 class="dxsp-h1">{{ section.settings.heading }}</h1>
+      <p class="dxsp-sub">{{ section.settings.subtitle }}</p>
+    </div>
+  </section>
+  <section class="dxsp-sec dxsp-sec-tight">
+    <div class="dxsp-wrap">
+      <div class="dxsp-track">
+        <div class="dxsp-track-l"><span class="dxsp-track-ic">📦</span><div><div class="dxsp-track-k">{{ section.settings.track_kicker }}</div><div class="dxsp-track-t">{{ section.settings.track_text }}</div></div></div>
+        <a class="dxsp-track-btn" href="{{ section.settings.track_link | default: '/account' }}">{{ section.settings.track_btn }}</a>
+      </div>
+    </div>
+  </section>
+  <section class="dxsp-sec dxsp-sec-tight">
+    <div class="dxsp-wrap">
+      {%- assign open = false -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'cat' -%}
+          {%- if open %}</div>{% endif -%}
+          <div class="dxsp-cat" {{ block.shopify_attributes }}><span class="dxsp-cat-k">{{ block.settings.kicker }}</span><h2 class="dxsp-cat-h">{{ block.settings.title }}</h2></div>
+          <div class="dxsp-card">
+          {%- assign open = true -%}
+        {%- elsif block.type == 'faq' -%}
+          <details class="dxsp-faqr" {{ block.shopify_attributes }}><summary>{{ block.settings.q }}<span class="dxsp-faqic">+</span></summary><div class="dxsp-faqa">{{ block.settings.a }}</div></details>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if open %}</div>{% endif -%}
+    </div>
+  </section>
+  <section class="dxsp-sec">
+    <div class="dxsp-wrap dxsp-contact">
+      <span class="dxsp-kick">{{ section.settings.c_kicker }}</span>
+      <h2 class="dxsp-c-h">{{ section.settings.c_title }}</h2>
+      <p class="dxsp-sub">{{ section.settings.c_sub }}</p>
+      <a class="cda-btn dxsp-c-btn" href="{{ section.settings.c_link | default: '/pages/contact' }}">{{ section.settings.c_btn }}</a>
+    </div>
+  </section>
+</div>
+<style>
+.dxsp{font-family:var(--cda-font);color:var(--cda-ink)}
+.dxsp-wrap{max-width:880px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
+.dxsp-sec{padding:clamp(28px,4vw,44px) 0}
+.dxsp-sec-tight{padding:10px 0}
+.dxsp-head{text-align:center;max-width:640px}
+.dxsp-kick{display:inline-block;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:800;color:var(--cda-accent)}
+.dxsp-h1{font-size:clamp(2rem,4.6vw,2.9rem);font-weight:800;letter-spacing:-.02em;margin:10px 0 12px;color:var(--cda-ink)}
+.dxsp-sub{color:var(--cda-muted);font-size:1.02rem;margin:0 auto;max-width:60ch;line-height:1.55}
+.dxsp-track{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;background:var(--cda-soft);border:1px solid var(--cda-line);border-radius:18px;padding:18px 22px}
+.dxsp-track-l{display:flex;align-items:center;gap:14px}
+.dxsp-track-ic{width:44px;height:44px;flex:0 0 auto;border-radius:50%;background:var(--cda-accent);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.dxsp-track-k{text-transform:uppercase;letter-spacing:.1em;font-size:.66rem;font-weight:800;color:var(--cda-accent-d)}
+.dxsp-track-t{font-weight:600;margin-top:2px}
+.dxsp-track-btn{background:var(--cda-accent);color:#fff;border-radius:999px;padding:11px 22px;font-weight:700;text-decoration:none;font-size:.9rem;white-space:nowrap}
+.dxsp-cat{margin:30px 0 12px}
+.dxsp-cat-k{text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;font-weight:800;color:var(--cda-accent)}
+.dxsp-cat-h{font-size:clamp(1.4rem,2.6vw,1.8rem);font-weight:800;letter-spacing:-.01em;margin:4px 0 0}
+.dxsp-card{background:#faf9ff;border:1px solid var(--cda-line);border-radius:18px;padding:6px 22px}
+.dxsp-faqr{border-bottom:1px solid var(--cda-line)}
+.dxsp-faqr:last-child{border-bottom:none}
+.dxsp-faqr summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;cursor:pointer;font-weight:600;font-size:.98rem}
+.dxsp-faqr summary::-webkit-details-marker{display:none}
+.dxsp-faqic{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--cda-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;line-height:1;transition:transform .2s}
+.dxsp-faqr[open] .dxsp-faqic{transform:rotate(45deg)}
+.dxsp-faqa{padding:0 0 18px;color:var(--cda-muted);line-height:1.55}
+.dxsp-contact{text-align:center;background:var(--cda-soft);border-radius:24px;padding:clamp(30px,5vw,52px)}
+.dxsp-c-h{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.02em;margin:8px 0 10px}
+.dxsp-c-btn{max-width:200px;margin:18px auto 0}
+@media(max-width:560px){.dxsp-track{flex-direction:column;align-items:flex-start}.dxsp-track-btn{align-self:stretch;text-align:center}}
+</style>
+{% schema %}
+{
+  "name": "Somna Support Hub",
+  "settings": [
+    { "type": "header", "content": "Header" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "SUPPORT HUB" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How can we help?" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Find answers in seconds. Browse by category below — or contact us directly if you'd rather talk to a person." },
+    { "type": "header", "content": "Track order bar" },
+    { "type": "text", "id": "track_kicker", "label": "Track kicker", "default": "TRACK YOUR ORDER" },
+    { "type": "text", "id": "track_text", "label": "Track text", "default": "Got an order on the way? Check its status here." },
+    { "type": "text", "id": "track_btn", "label": "Track button", "default": "Track order →" },
+    { "type": "url", "id": "track_link", "label": "Track button link" },
+    { "type": "header", "content": "Contact CTA" },
+    { "type": "text", "id": "c_kicker", "label": "Contact kicker", "default": "STILL NOT CLEAR?" },
+    { "type": "text", "id": "c_title", "label": "Contact title", "default": "Contact us." },
+    { "type": "textarea", "id": "c_sub", "label": "Contact subtitle", "default": "Our team usually replies within a few hours during business days." },
+    { "type": "text", "id": "c_btn", "label": "Contact button", "default": "Contact us" },
+    { "type": "url", "id": "c_link", "label": "Contact button link" }
+  ],
+  "blocks": [
+    { "type": "cat", "name": "Category heading", "settings": [ { "type": "text", "id": "kicker", "label": "Kicker", "default": "PRODUCT" }, { "type": "text", "id": "title", "label": "Title", "default": "Product questions" } ] },
+    { "type": "faq", "name": "FAQ", "settings": [ { "type": "text", "id": "q", "label": "Question", "default": "Question?" }, { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>Add your answer here.</p>" } ] }
+  ],
+  "max_blocks": 60,
+  "presets": [{ "name": "Somna Support Hub" }]
+}
+{% endschema %}

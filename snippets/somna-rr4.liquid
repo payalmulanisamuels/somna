@@ -1,0 +1,13 @@
+<style id='somna-rr4'>
+@media(max-width:768px){
+/* ===== Real Results: every card identical height. Tallest card (the first) sets the height; each image stays its natural size, extra space becomes whitespace at the bottom. No crop, no stretch, no height jump while swiping. ===== */
+.sjp-ig-grid{align-items:stretch !important}
+.sjp-ig-cardfull{aspect-ratio:auto !important;display:flex !important;flex-direction:column !important;justify-content:flex-start !important;overflow:visible !important}
+.sjp-ig-cardfull .sjp-ig-full{width:100% !important;height:auto !important;aspect-ratio:auto !important;object-fit:contain !important;object-position:top !important;max-height:none !important;flex:0 0 auto !important}
+/* Instagram badge: float fully above the top-center of every card (never clipped) */
+.sjp-ig-cardfull .sjp-ig-badge{top:-17px !important;z-index:6 !important}
+/* ===== Somna vs Others: lighten the highlight so the product photo blends into the cell ===== */
+.sjvs-hcell.on,.sjvs-cell.on{background:#F6F9FF !important}
+.sjvs-hcell img,.sjvs-iph{mix-blend-mode:multiply !important}
+}
+</style>

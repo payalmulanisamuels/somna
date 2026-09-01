@@ -1,0 +1,60 @@
+{% # SRA target for /cart endpoints. The Section Rendering API provides the section wrapper. %}
+{% render 'cart-drawer',
+  render_wrapper: false,
+  free_shipping_threshold: section.settings.free_shipping_threshold,
+  upsell_product_1: section.settings.upsell_product_1,
+  upsell_product_2: section.settings.upsell_product_2,
+  upsell_product_3: section.settings.upsell_product_3,
+  upsell_product: section.settings.upsell_product,
+  upsell_title: section.settings.upsell_title
+%}
+
+{% schema %}
+{
+  "name": "t:names.cart_drawer",
+  "settings": [
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Free shipping threshold",
+      "default": 50,
+      "info": "Cart subtotal in dollars required for free shipping."
+    },
+    {
+      "type": "header",
+      "content": "Cart upsells"
+    },
+    {
+      "type": "paragraph",
+      "content": "Shows products the customer has not added yet. Leave empty to auto-recommend Alarm Band, Nasal Strips, and Mouth Tape."
+    },
+    {
+      "type": "text",
+      "id": "upsell_title",
+      "label": "Upsell section title",
+      "default": "Complete your stack"
+    },
+    {
+      "type": "product",
+      "id": "upsell_product_1",
+      "label": "Upsell product 1"
+    },
+    {
+      "type": "product",
+      "id": "upsell_product_2",
+      "label": "Upsell product 2"
+    },
+    {
+      "type": "product",
+      "id": "upsell_product_3",
+      "label": "Upsell product 3"
+    },
+    {
+      "type": "product",
+      "id": "upsell_product",
+      "label": "Legacy upsell product",
+      "info": "Optional fallback if upsell products 1–3 are not set."
+    }
+  ]
+}
+{% endschema %}

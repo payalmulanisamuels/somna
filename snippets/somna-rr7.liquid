@@ -1,0 +1,67 @@
+<style id='somna-rr7-css'>
+/* Top banner: dot as a true separator, vertically centred on the text */
+.cdx-marqi span{display:inline-flex !important;align-items:center !important;gap:9px !important;margin:0 20px !important;vertical-align:middle !important}
+.cdx-marqi span::before{content:'' !important;display:block !important;width:5px !important;height:5px !important;border-radius:50% !important;background:currentColor !important;flex:none !important;opacity:.85 !important}
+/* Next-Gen heading: one line per line, on every phone */
+@media(max-width:820px){
+.shsng-h{font-size:clamp(1.35rem,6.9vw,1.85rem) !important;letter-spacing:-.045em !important;line-height:1.06 !important;white-space:nowrap !important}
+.shsng-h em{white-space:nowrap !important}
+}
+</style>
+<script id='somna-rr7'>
+(function(){
+  function mob(){return window.matchMedia&&window.matchMedia('(max-width:768px)').matches;}
+  var CTA='Sleep Quieter Tonight →';
+  var GN='The 30-Night Sleep Guarantee';
+  var GB='Sleep better in 30 nights or your money back — keep the strips.';
+  var MAP=[
+    ['30 Days Risk-Free Money Back Guarantee',GN],
+    ['30-Day Feel-It Guarantee',GN],
+    ['30-Day Feel It or It\'s Free guarantee',GN],
+    ['30-Day Risk-Free Trial',GN],
+    ['30-Night Sleep guarantee',GN],
+    ['Try Somna Today','Sleep Quieter Tonight'],
+    ['Try Somna Tonight','Sleep Quieter Tonight'],
+    ['Try Somna Risk-Free','Sleep Quieter Tonight'],
+    ['Try Somna for Less','Sleep Quieter Tonight']
+  ];
+  function walk(){
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      var p=n.parentNode;if(!p)return NodeFilter.FILTER_REJECT;
+      var tag=p.nodeName;
+      if(tag==='SCRIPT'||tag==='STYLE'||tag==='NOSCRIPT')return NodeFilter.FILTER_REJECT;
+      return n.nodeValue&&n.nodeValue.indexOf('Somna')<0&&n.nodeValue.indexOf('30')<0?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT;
+    }});
+    var n,hits=[];
+    while((n=w.nextNode()))hits.push(n);
+    hits.forEach(function(t){
+      var v=t.nodeValue,o=v;
+      for(var i=0;i<MAP.length;i++){if(v.indexOf(MAP[i][0])>-1)v=v.split(MAP[i][0]).join(MAP[i][1]);}
+      if(v!==o)t.nodeValue=v;
+    });
+  }
+  function setText(sel,txt){var e=document.querySelector(sel);if(e&&e.textContent.trim()!==txt)e.textContent=txt;}
+  function go(){
+    if(!mob())return;
+    walk();
+    setText('.spdp-gcard-t',GN);
+    setText('.spdp-gcard-p',GB);
+    setText('.sjp-bg-p',GB);
+    var bt=document.querySelector('.sjp-bg-t');
+    if(bt&&bt.textContent.trim()!=='The 30-Night Sleep Guarantee'){bt.innerHTML='The 30-Night<br><em>Sleep Guarantee</em>';}
+    var sticky=document.querySelector('.cda-btn');
+    if(sticky&&sticky.textContent.trim()!==CTA)sticky.textContent=CTA;
+    [].slice.call(document.querySelectorAll('a,button')).forEach(function(el){
+      if(el.querySelector('img,svg'))return;
+      var t=(el.textContent||'').trim();
+      if(t.indexOf('Try Somna')===0||t==='Sleep Quieter Tonight'||t==='Sleep Quieter Tonight →'){
+        if(t!==CTA)el.textContent=CTA;
+      }
+    });
+  }
+  function run(){try{go();}catch(e){}}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+  setTimeout(run,450);
+  setTimeout(run,1400);
+})();
+</script>

@@ -1,0 +1,54 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr" style="text-align:center">
+      <h2 class="sjp-igt">{{ section.settings.title_a | default: '8 Performance-Grade' }} <em>{{ section.settings.title_em | default: 'Details' }}</em></h2>
+      {%- if section.settings.sub != blank -%}<p class="sjp-sub" style="margin-top:8px">{{ section.settings.sub }}</p>{%- endif -%}
+    </div>
+    <div class="sjp-icg somna-sr-stag">
+      {%- for block in section.blocks -%}
+      <div class="sjp-icc" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 700 }}" loading="lazy" alt="{{ block.settings.title | escape }}">{%- else -%}<div class="sjp-ph" style="position:absolute;inset:0">Insert photo</div>{%- endif -%}
+        <span class="sjp-icc-scrim"></span>
+        <div class="sjp-icc-c"><b>{{ block.settings.title }}</b><p>{{ block.settings.body }}</p></div>
+      </div>
+      {%- endfor -%}
+    </div>
+    <div class="sjp-ctawrap somna-sr">
+      <a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a>
+      {%- if section.settings.gline != blank -%}<div class="sjp-gline"><span class="sjp-gdot">✓</span>{{ section.settings.gline }}</div>{%- endif -%}
+    </div>
+  </div>
+</section>
+<style>
+.sjp-icg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px}
+.sjp-icc{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#161422;transition:transform .4s cubic-bezier(.16,.84,.44,1),box-shadow .4s}
+.sjp-icc:hover{transform:translateY(-4px);box-shadow:0 22px 44px -22px rgba(22,20,34,.35)}
+.sjp-icc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sjp-icc-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,12,24,.85) 0%,rgba(14,12,24,.25) 45%,rgba(14,12,24,0) 70%)}
+.sjp-icc-c{position:absolute;left:0;right:0;bottom:0;padding:16px;color:#fff;z-index:2}
+.sjp-icc-c b{display:block;font-size:1rem;font-weight:800;letter-spacing:-.01em;margin-bottom:5px}
+.sjp-icc-c p{margin:0;font-size:.78rem;line-height:1.5;color:#E8E4F5}
+@media(max-width:860px){.sjp-icg{grid-template-columns:1fr 1fr;gap:12px}.sjp-icc-c{padding:12px}.sjp-icc-c b{font-size:.9rem}.sjp-icc-c p{font-size:.72rem}}
+</style>
+{% schema %}
+{
+  "name": "JP — Detail photo grid",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "8 Performance-Grade" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "Details" },
+    { "type": "text", "id": "sub", "label": "Subtitle", "default": "No fillers. No fluff. Every detail earns its place." },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: buy box)" },
+    { "type": "text", "id": "gline", "label": "Guarantee line", "default": "30-Day Feel-It Guarantee" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "card", "name": "Photo card", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo (4:5)" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Tension band" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Gentle, constant lift that keeps the passage open all night." }
+  ] } ],
+  "max_blocks": 12,
+  "presets": [{ "name": "JP — Detail photo grid", "blocks": [ {"type":"card"},{"type":"card"},{"type":"card"},{"type":"card"},{"type":"card"},{"type":"card"},{"type":"card"},{"type":"card"} ] }]
+}
+{% endschema %}

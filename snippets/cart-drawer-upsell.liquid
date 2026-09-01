@@ -1,0 +1,52 @@
+{% doc %}
+  Cart drawer upsells — shows Somna products that are not already in the cart.
+
+  @param {string} [title] - Section heading
+  @param {product} [upsell_product_1] - Optional upsell product 1
+  @param {product} [upsell_product_2] - Optional upsell product 2
+  @param {product} [upsell_product_3] - Optional upsell product 3
+  @param {product} [upsell_product] - Legacy single-product setting
+{% enddoc %}
+
+{%- liquid
+  assign title = title | default: 'Complete your stack'
+  assign default_handles = 'dreamx-silent-alarm-band|dreamx-anti-snore-nasal-strips|dreamx-sleep-mouth-tape' | split: '|'
+  assign has_custom_upsells = false
+
+  if upsell_product_1 != blank or upsell_product_2 != blank or upsell_product_3 != blank or upsell_product != blank
+    assign has_custom_upsells = true
+  endif
+-%}
+
+{%- capture upsell_cards -%}
+  {%- if has_custom_upsells -%}
+    {%- if upsell_product_1 != blank -%}
+      {%- render 'cart-drawer-upsell-item', product: upsell_product_1 -%}
+    {%- elsif upsell_product != blank -%}
+      {%- render 'cart-drawer-upsell-item', product: upsell_product -%}
+    {%- endif -%}
+    {%- if upsell_product_2 != blank -%}
+      {%- render 'cart-drawer-upsell-item', product: upsell_product_2 -%}
+    {%- endif -%}
+    {%- if upsell_product_3 != blank -%}
+      {%- render 'cart-drawer-upsell-item', product: upsell_product_3 -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- for handle in default_handles -%}
+      {%- assign stack_product = all_products[handle] -%}
+      {%- if stack_product != blank -%}
+        {%- render 'cart-drawer-upsell-item', product: stack_product -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- assign upsell_cards_stripped = upsell_cards | strip -%}
+{%- if upsell_cards_stripped != blank -%}
+  <div class="cart-drawer__upsell">
+    <p class="cart-drawer__upsell-title">{{ title }}</p>
+    <div class="cart-drawer__upsell-list">
+      {{ upsell_cards }}
+    </div>
+  </div>
+{%- endif -%}

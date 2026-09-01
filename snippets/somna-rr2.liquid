@@ -1,0 +1,73 @@
+<style id='somna-rr2'>
+@media(max-width:768px){
+/* ===== FAQ: centered title/sub + single white rounded accordion card (Jupi) ===== */
+.sjp-fc{gap:36px !important}
+.sjp-fc-t{text-align:center !important;font-size:1.72rem !important;margin:0 0 10px !important}
+.sjp-fc-s{text-align:center !important;font-size:.9rem !important;margin:0 auto 4px !important;max-width:340px !important}
+.sjp-fc .sjp-accs{background:#fff !important;border:1px solid #ECE6DC !important;border-radius:16px !important;margin:20px 0 0 !important;padding:2px 16px !important;overflow:hidden}
+.sjp-fc .sjp-acc{border-bottom:1px solid #F1ECE3 !important}
+.sjp-fc .sjp-acc:last-child{border-bottom:0 !important}
+.sjp-fc .sjp-acc summary{padding:17px 2px !important;font-size:.96rem !important;font-weight:600 !important}
+.sjp-fc .sjp-acc summary:after{font-size:1.35rem !important;font-weight:400 !important;color:#9a97ad !important}
+.sjp-fc .sjp-acc-b{padding:0 2px 15px !important}
+
+/* ===== Stay Connected card (Jupi): portrait crop, bottom overlay, full-width dark CTA ===== */
+.sjp-fc-card{aspect-ratio:4/5 !important}
+.sjp-fc-scrim{background:linear-gradient(to top,rgba(16,14,26,.92) 0%,rgba(16,14,26,.5) 34%,rgba(16,14,26,0) 62%) !important}
+.sjp-fc-cc{padding:24px 22px !important}
+.sjp-fc-cc b{font-size:1.5rem !important;margin-bottom:9px !important}
+.sjp-fc-cc p{font-size:.85rem !important;margin-bottom:16px !important;color:#EDEAF8 !important}
+.sjp-fc-cc .sjp-cta{width:100% !important;justify-content:center !important;padding:15px 20px !important;font-size:.95rem !important}
+
+/* ===== Customer Reviews: horizontal swipe carousel (Jupi 1:1) ===== */
+.sjp:has(.sjp-sp-grid) .sjp-igt{text-align:left !important}
+.sjp:has(.sjp-sp-grid) .sjp-sp-meta{text-align:left !important}
+.somna-hidden{display:none !important}
+.somna-rev{margin-top:26px}
+.somna-rev-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:20px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;margin:0 -20px;padding:0 20px 4px}
+.somna-rev-track::-webkit-scrollbar{display:none}
+.somna-rev-card{flex:0 0 86%;scroll-snap-align:start;display:flex;flex-direction:column;gap:14px}
+.somna-rev-img{border-radius:16px;overflow:hidden;aspect-ratio:16/10;background:#E7E2D8}
+.somna-rev-img img{width:100%;height:100%;object-fit:cover;display:block}
+.somna-rev-imgph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#E7E2D8;color:#a49f93;font-size:.8rem;font-weight:700;letter-spacing:.04em}
+.somna-rev-quote{background:#5B79F3;color:#fff;border-radius:18px;padding:22px 22px 20px;flex:1}
+.somna-rev-stars{color:#fff;letter-spacing:3px;font-size:.82rem;margin-bottom:14px}
+.somna-rev-quote p{margin:0 0 22px;font-size:.94rem;line-height:1.55;color:#fff}
+.somna-rev-name{font-size:.9rem;font-weight:500;margin-bottom:10px}
+.somna-rev-vb{display:flex;align-items:center;gap:8px;font-size:.85rem}
+.somna-rev-ck{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.3);display:inline-flex;align-items:center;justify-content:center;font-size:.58rem;flex:none}
+.somna-rev-quote-ph{background:#ECE7DE !important}
+.somna-rev-quote-ph .somna-rev-stars,.somna-rev-quote-ph p,.somna-rev-quote-ph .somna-rev-name,.somna-rev-quote-ph .somna-rev-vb{color:#b0aa9c !important}
+.somna-rev-quote-ph .somna-rev-ck{background:#d7d1c5 !important}
+.sjp:has(.sjp-sp-grid) .sjp-ctawrap{margin-top:24px !important}
+.sjp:has(.sjp-sp-grid) .sjp-ctawrap .sjp-cta{width:100% !important;justify-content:center !important;padding:17px 20px !important}
+.sjp:has(.sjp-sp-grid) .sjp-gline{justify-content:center !important;margin-top:13px !important}
+.sjp:has(.sjp-sp-grid) .sjp-gdot{background:#5B79F3 !important}
+}
+</style>
+<script>
+(function(){
+  function mob(){return window.matchMedia&&window.matchMedia('(max-width:768px)').matches;}
+  function reviews(){
+    if(!mob())return;
+    var grid=document.querySelector('.sjp-sp-grid');if(!grid)return;
+    if(grid.parentNode.querySelector('.somna-rev'))return;
+    var imgEl=grid.querySelector('.sjp-sp-one');
+    var src=imgEl?imgEl.getAttribute('src'):'';
+    var fc=grid.querySelector('.sjp-sp-card');
+    var q=fc?((fc.querySelector('p')||{}).textContent||'').replace(/^[\s“”\u0022]+|[\s“”\u0022]+$/g,''):'';
+    var nm=fc?((fc.querySelector('.sjp-sp-by span')||{}).textContent||'').replace(/placeholder\s*[—–-]\s*/i,'').trim():'';
+    if(!nm)nm='Verified Customer';
+    if(!q)q='Somna changed my nights — I fall asleep faster and wake up clear.';
+    var top=src?`<img src='${src}' alt='Customer result'>`:`<div class='somna-rev-imgph'>Before / After</div>`;
+    var real=`<div class='somna-rev-card'><div class='somna-rev-img'>${top}</div><div class='somna-rev-quote'><div class='somna-rev-stars'>★★★★★</div><p>“${q}”</p><div class='somna-rev-name'>${nm}</div><div class='somna-rev-vb'><span class='somna-rev-ck'>✓</span>Verified Buyer</div></div></div>`;
+    var ph=`<div class='somna-rev-card'><div class='somna-rev-img'><div class='somna-rev-imgph'>Before / After</div></div><div class='somna-rev-quote somna-rev-quote-ph'><div class='somna-rev-stars'>★★★★★</div><p>Your next review goes here — add the before/after photo and customer quote.</p><div class='somna-rev-name'>Customer name</div><div class='somna-rev-vb'><span class='somna-rev-ck'>✓</span>Verified Buyer</div></div></div>`;
+    var wrap=document.createElement('div');wrap.className='somna-rev';
+    wrap.innerHTML=`<div class='somna-rev-track'>${real}${ph}${ph}</div>`;
+    grid.classList.add('somna-hidden');
+    grid.parentNode.insertBefore(wrap,grid);
+  }
+  function run(){try{reviews();}catch(e){}}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+})();
+</script>

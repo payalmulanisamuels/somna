@@ -1,0 +1,80 @@
+<section class="somna-ugc">
+  <div class="su-wrap">
+    <div class="su-head somna-sr">
+      {%- if section.settings.title != blank -%}<h2 class="su-title">{{ section.settings.title }}</h2>{%- endif -%}
+      <div class="su-rate"><span class="su-rnum" data-count>{{ section.settings.rating | default: '4.7' }}</span><span class="su-stars">★★★★★</span></div>
+      <div class="su-rmeta">Based on <strong>{{ section.settings.count | default: '3,910' }}</strong> verified reviews</div>
+      <div class="su-bars">
+        <div class="su-bar"><b>5★</b><span class="su-track"><span class="su-fill" style="width:{{ section.settings.b5 | default: 86 }}%"></span></span></div>
+        <div class="su-bar"><b>4★</b><span class="su-track"><span class="su-fill" style="width:{{ section.settings.b4 | default: 10 }}%"></span></span></div>
+        <div class="su-bar"><b>3★</b><span class="su-track"><span class="su-fill" style="width:{{ section.settings.b3 | default: 2 }}%"></span></span></div>
+        <div class="su-bar"><b>2★</b><span class="su-track"><span class="su-fill" style="width:{{ section.settings.b2 | default: 1 }}%"></span></span></div>
+        <div class="su-bar"><b>1★</b><span class="su-track"><span class="su-fill" style="width:{{ section.settings.b1 | default: 1 }}%"></span></span></div>
+      </div>
+    </div>
+    <div class="su-wall somna-sr">
+      {%- for block in section.blocks -%}
+        {%- assign sc = block.settings.stars | default: 5 | plus: 0 -%}
+        <div class="su-card" {{ block.shopify_attributes }}>
+          {%- if block.settings.img != blank -%}<div class="su-img"><img src="{{ block.settings.img | image_url: width: 600 }}" alt="{{ block.settings.name | escape }}" loading="lazy"></div>{%- endif -%}
+          <div class="su-cstars">{%- for s in (1..5) -%}{% if s <= sc %}★{% else %}☆{% endif %}{%- endfor -%}</div>
+          <p class="su-quote">{{ block.settings.quote }}</p>
+          <div class="su-by"><span class="su-name">{{ block.settings.name }}</span>{%- if block.settings.verified -%}<span class="su-vf">✓ Verified</span>{%- endif -%}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<style>
+.somna-ugc{background:#fff;padding:60px 18px;color:#14141f;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.su-wrap{max-width:1080px;margin:0 auto}
+.su-head{text-align:center;margin-bottom:34px}
+.su-title{font-size:1.9rem;font-weight:800;letter-spacing:-.01em;margin:0 0 12px}
+.su-rate{display:flex;align-items:center;justify-content:center;gap:10px}
+.su-rnum{font-size:2.5rem;font-weight:800;line-height:1}
+.su-stars{color:#ffb400;letter-spacing:2px;font-size:1.15rem}
+.su-rmeta{color:#6b6b80;font-size:.95rem;margin-top:6px}
+.su-rmeta strong{color:#14141f}
+.su-bars{max-width:320px;margin:16px auto 0;display:flex;flex-direction:column;gap:6px}
+.su-bar{display:flex;align-items:center;gap:8px;font-size:.72rem;color:#6b6b80}
+.su-bar b{width:24px;text-align:right;font-weight:700;color:#14141f}
+.su-track{flex:1;height:7px;border-radius:999px;background:#ececf3;overflow:hidden}
+.su-fill{display:block;height:100%;background:#ffb400;border-radius:999px}
+.su-wall{column-count:3;column-gap:16px}
+.su-card{break-inside:avoid;-webkit-column-break-inside:avoid;background:#f7f7fb;border:1px solid #ececf3;border-radius:16px;padding:16px;margin:0 0 16px}
+.su-img{border-radius:12px;overflow:hidden;margin-bottom:12px}
+.su-img img{width:100%;height:auto;display:block}
+.su-cstars{color:#ffb400;letter-spacing:1px;font-size:.95rem;margin-bottom:8px}
+.su-quote{font-size:.94rem;line-height:1.5;margin:0 0 12px;color:#2a2a38}
+.su-by{display:flex;align-items:center;gap:8px;font-size:.85rem}
+.su-name{font-weight:800}
+.su-vf{color:#1a9d54;font-weight:700;font-size:.7rem;background:#e7f7ee;padding:2px 7px;border-radius:999px}
+@media(max-width:900px){.su-wall{column-count:2}}
+@media(max-width:560px){.su-wall{column-count:1}.su-rnum{font-size:2.1rem}.su-title{font-size:1.5rem}}
+</style>
+{% schema %}
+{
+  "name": "Somna UGC Wall",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "What sleepers are saying" },
+    { "type": "text", "id": "rating", "label": "Rating number", "default": "4.7" },
+    { "type": "text", "id": "count", "label": "Review count", "default": "3,910" },
+    { "type": "range", "id": "b5", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "5-star %", "default": 86 },
+    { "type": "range", "id": "b4", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "4-star %", "default": 10 },
+    { "type": "range", "id": "b3", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "3-star %", "default": 2 },
+    { "type": "range", "id": "b2", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "2-star %", "default": 1 },
+    { "type": "range", "id": "b1", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "1-star %", "default": 1 }
+  ],
+  "blocks": [
+    { "type": "rev", "name": "Review", "settings": [
+      { "type": "image_picker", "id": "img", "label": "Customer photo (optional)" },
+      { "type": "textarea", "id": "quote", "label": "Review text", "default": "Best sleep I've had in years." },
+      { "type": "text", "id": "name", "label": "Name", "default": "Verified buyer" },
+      { "type": "text", "id": "stars", "label": "Stars (1-5)", "default": "5" },
+      { "type": "checkbox", "id": "verified", "label": "Show verified badge", "default": true }
+    ] }
+  ],
+  "max_blocks": 24,
+  "presets": [{ "name": "Somna UGC Wall", "blocks": [ {"type":"rev"},{"type":"rev"},{"type":"rev"},{"type":"rev"},{"type":"rev"},{"type":"rev"} ] }]
+}
+{% endschema %}

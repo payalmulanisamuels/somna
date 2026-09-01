@@ -1,0 +1,41 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="sjp-stat-grid">
+      <div class="sjp-stat-img somna-sr somna-zoomin" data-plx>
+        {%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1000 }}" loading="lazy" alt="{{ section.settings.title_a | escape }}">{%- else -%}<div class="sjp-ph">Insert product-in-hand photo</div>{%- endif -%}
+      </div>
+      <div class="somna-sr">
+        <h2 class="sjp-h2" style="text-align:left">{{ section.settings.title_a | default: 'One strip.' }} <em>{{ section.settings.title_em | default: 'Zero effort.' }}</em></h2>
+        {%- if section.settings.sub != blank -%}<p class="sjp-sub" style="text-align:left;margin-left:0">{{ section.settings.sub }}</p>{%- endif -%}
+        <div class="sjp-stats somna-sr-stag" style="margin-top:24px">
+          {%- for block in section.blocks -%}
+          <div class="sjp-stat" {{ block.shopify_attributes }}><b data-count>{{ block.settings.value }}</b><span>{{ block.settings.label }}</span></div>
+          {%- endfor -%}
+        </div>
+        <p class="sjp-note" style="text-align:left">{{ section.settings.note | default: '*Self-reported by customers. Illustrative example — replace with your data.' }}</p>
+        <div style="margin-top:18px"><a class="sjp-cta" href="#somna-jp-buy">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — Stats split",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image (1:1)" },
+    { "type": "text", "id": "title_a", "label": "Title", "default": "One strip." },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "Zero effort." },
+    { "type": "text", "id": "sub", "label": "Subtitle", "default": "Stick it on before bed or training — the tension band does the rest." },
+    { "type": "text", "id": "note", "label": "Disclaimer", "default": "*Self-reported by customers. Illustrative example — replace with your data." },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "stat", "name": "Stat", "settings": [
+    { "type": "text", "id": "value", "label": "Value", "default": "93%" },
+    { "type": "text", "id": "label", "label": "Label", "default": "report waking up more rested*" }
+  ] } ],
+  "max_blocks": 4,
+  "presets": [{ "name": "JP — Stats split", "blocks": [ {"type":"stat"},{"type":"stat"},{"type":"stat"},{"type":"stat"} ] }]
+}
+{% endschema %}

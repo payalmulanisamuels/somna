@@ -1,0 +1,29 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+<section class="cda-section cda-stats-sec" id="cda-science">
+  <div class="cda-wrap">
+    <div class="cda-stats">
+      <span class="cda-kicker">{{ section.settings.kicker }}</span>
+      <h2 class="cda-h2">{{ section.settings.title }}</h2>
+      <div class="cda-stat-grid">
+        <div><div class="cda-stat-big">{{ section.settings.big1 }}</div><div class="cda-stat-sub">{{ section.settings.sub1 }}</div></div>
+        <div><div class="cda-stat-big">{{ section.settings.big2 }}</div><div class="cda-stat-sub">{{ section.settings.sub2 }}</div></div>
+      </div>
+      <div class="cda-foot">{{ section.settings.footnote }}</div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Clone — Stats",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Studied & trusted" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Built for optimizers and loving couples." },
+    { "type": "text", "id": "big1", "label": "Stat 1", "default": "91%" },
+    { "type": "text", "id": "sub1", "label": "Stat 1 sub", "default": "report improved sleep recovery and less morning irritation.*" },
+    { "type": "text", "id": "big2", "label": "Stat 2", "default": "97%" },
+    { "type": "text", "id": "sub2", "label": "Stat 2 sub", "default": "notice an energy improvement within 1–2 weeks of use.*" },
+    { "type": "text", "id": "footnote", "label": "Footnote", "default": "*Self-reported by customers. Illustrative example." }
+  ],
+  "presets": [{ "name": "Clone — Stats" }]
+}
+{% endschema %}

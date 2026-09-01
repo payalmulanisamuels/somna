@@ -1,0 +1,37 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#F3F1FB' }}">
+  <div class="sjp-wrap">
+    <div class="sjp-feel">
+      <div class="sjp-feel-img somna-sr somna-zoomin" data-plx>
+        {%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1000 }}" loading="lazy" alt="">{%- else -%}<div class="sjp-ph">Insert lifestyle portrait (4:5)</div>{%- endif -%}
+      </div>
+      <div class="somna-sr">
+        <h2>{{ section.settings.title_a | default: "It's time to wake up" }} <em>{{ section.settings.title_em | default: 'actually rested' }}</em></h2>
+        <div class="somna-sr-stag">
+          {%- for block in section.blocks -%}
+          <div class="sjp-feel-item" {{ block.shopify_attributes }}><span><b>{{ block.settings.title }}</b><span>{{ block.settings.sub }}</span></span></div>
+          {%- endfor -%}
+        </div>
+        <div style="margin-top:26px"><a class="sjp-cta" href="#somna-jp-buy">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — Feel better",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Portrait image (4:5)" },
+    { "type": "text", "id": "title_a", "label": "Title", "default": "It's time to wake up" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "actually rested" },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#F3F1FB" }
+  ],
+  "blocks": [ { "type": "item", "name": "Checklist item", "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Fall asleep faster" },
+    { "type": "text", "id": "sub", "label": "Sub", "default": "easy nasal breathing calms the nervous system before bed." }
+  ] } ],
+  "max_blocks": 6,
+  "presets": [{ "name": "JP — Feel better", "blocks": [ {"type":"item"},{"type":"item"},{"type":"item"},{"type":"item"} ] }]
+}
+{% endschema %}

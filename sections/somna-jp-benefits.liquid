@@ -1,0 +1,38 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp" style="background:{{ section.settings.bg | default: '#FBFAF7' }};padding:clamp(24px,4vw,52px) 20px">
+  <div class="sjp-wrap" style="padding:0">
+    <div class="sjp-band somna-sr">
+      <div class="sjp-band-in">
+        <div>
+          <h2>{{ section.settings.title_a | default: 'Feel like your' }} <em>{{ section.settings.title_em | default: 'best-rested self' }}</em> {{ section.settings.title_b | default: 'every single day' }}</h2>
+          <div class="sjp-checks somna-sr-stag">
+            {%- for block in section.blocks -%}
+            <div class="sjp-check" {{ block.shopify_attributes }}><span><b>{{ block.settings.title }}</b>{% if block.settings.sub != blank %} — {{ block.settings.sub }}{% endif %}</span></div>
+            {%- endfor -%}
+          </div>
+          <div style="margin-top:26px"><a class="sjp-cta sjp-cta--white" href="#somna-jp-buy">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a></div>
+        </div>
+        <div class="sjp-band-img somna-zoomin">{%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 900 }}" loading="lazy" alt="">{%- else -%}<div class="sjp-ph" style="background:transparent;color:#EFE9FF">Insert product image</div>{%- endif -%}</div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "JP — Benefits band",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title part 1", "default": "Feel like your" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "best-rested self" },
+    { "type": "text", "id": "title_b", "label": "Title part 2", "default": "every single day" },
+    { "type": "image_picker", "id": "image", "label": "Image (1:1)" },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "color", "id": "bg", "label": "Outer background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "check", "name": "Check item", "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Quieter nights" },
+    { "type": "text", "id": "sub", "label": "Sub (optional)", "default": "less snoring from night one" }
+  ] } ],
+  "max_blocks": 8,
+  "presets": [{ "name": "JP — Benefits band", "blocks": [ {"type":"check"},{"type":"check"},{"type":"check"},{"type":"check"},{"type":"check"},{"type":"check"} ] }]
+}
+{% endschema %}

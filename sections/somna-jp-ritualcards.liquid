@@ -1,0 +1,59 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp sjp-sec" style="background:{{ section.settings.bg | default: '#FBFAF7' }}">
+  <div class="sjp-wrap">
+    <div class="somna-sr" style="text-align:center">
+      <h2 class="sjp-igt">{{ section.settings.title_a | default: 'Your new nightly ritual — done in' }} <em>{{ section.settings.title_em | default: '10 seconds.' }}</em></h2>
+      {%- if section.settings.sub != blank -%}<p class="sjp-sub" style="margin-top:8px">{{ section.settings.sub }}</p>{%- endif -%}
+    </div>
+    <div class="sjp-rcg somna-sr-stag">
+      {%- for block in section.blocks -%}
+      <div class="sjp-rc" {{ block.shopify_attributes }} style="background:linear-gradient(165deg,{{ section.settings.card | default: '#6D49E0' }},{{ section.settings.card2 | default: '#8B6FF0' }})">
+        {%- unless section.settings.hide_steps -%}<span class="sjp-rc-step">Step {{ forloop.index }}</span>{%- endunless -%}
+        <div class="sjp-rc-img">{%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 800 }}" loading="lazy" alt="{{ block.settings.title | escape }}">{%- else -%}<div class="sjp-ph" style="background:rgba(255,255,255,.14);color:#EFE9FF">Insert step photo</div>{%- endif -%}</div>
+        {%- if block.settings.title != blank -%}<div class="sjp-rc-cap"><b>{{ block.settings.title }}</b><p>{{ block.settings.body }}</p></div>{%- endif -%}
+      </div>
+      {%- endfor -%}
+    </div>
+    <div class="sjp-ctawrap somna-sr">
+      <a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a>
+      {%- if section.settings.gline != blank -%}<div class="sjp-gline"><span class="sjp-gdot">✓</span>{{ section.settings.gline }}</div>{%- endif -%}
+    </div>
+  </div>
+</section>
+<style>
+.sjp-rcg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;max-width:920px;margin-left:auto;margin-right:auto}
+.sjp-rc{position:relative;border-radius:20px;padding:14px;display:flex;flex-direction:column;box-shadow:0 20px 42px -24px rgba(109,73,224,.5);transition:transform .4s cubic-bezier(.16,.84,.44,1)}
+.sjp-rc:hover{transform:translateY(-4px)}
+.sjp-rc-step{font-family:'Fraunces',serif;font-style:italic;font-weight:600;color:#fff;font-size:1.05rem;margin:2px 4px 10px}
+.sjp-rc-img{position:relative;border-radius:13px;overflow:hidden;flex:1;min-height:0;aspect-ratio:4/5;background:rgba(255,255,255,.1)}
+.sjp-rc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sjp-rc-img .sjp-ph{position:absolute;inset:0}
+.sjp-rc-cap{background:#fff;border-radius:12px;padding:12px 14px;margin-top:12px}
+.sjp-rc-cap b{display:block;font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1rem;color:var(--ink);margin-bottom:3px}
+.sjp-rc-cap p{margin:0;font-size:.76rem;line-height:1.5;color:var(--mut)}
+@media(max-width:860px){.sjp-rcg{grid-template-columns:1fr;max-width:420px}}
+</style>
+{% schema %}
+{
+  "name": "JP — Ritual cards",
+  "settings": [
+    { "type": "text", "id": "title_a", "label": "Title", "default": "Your new nightly ritual — done in" },
+    { "type": "text", "id": "title_em", "label": "Italic accent", "default": "10 seconds." },
+    { "type": "text", "id": "sub", "label": "Subtitle (optional)" },
+    { "type": "checkbox", "id": "hide_steps", "label": "Hide Step 1/2/3 labels (full-image mode)", "default": false },
+    { "type": "color", "id": "card", "label": "Card color 1", "default": "#6D49E0" },
+    { "type": "color", "id": "card2", "label": "Card color 2", "default": "#8B6FF0" },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: buy box)" },
+    { "type": "text", "id": "gline", "label": "Guarantee line", "default": "30-Day Feel-It Guarantee" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FBFAF7" }
+  ],
+  "blocks": [ { "type": "step", "name": "Step card", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Step photo (4:5)" },
+    { "type": "text", "id": "title", "label": "Caption title (blank = hide caption box)", "default": "Peel" },
+    { "type": "textarea", "id": "body", "label": "Caption body", "default": "Pull one strip from the resealable pouch." }
+  ] } ],
+  "max_blocks": 4,
+  "presets": [{ "name": "JP — Ritual cards", "blocks": [ {"type":"step"},{"type":"step"},{"type":"step"} ] }]
+}
+{% endschema %}

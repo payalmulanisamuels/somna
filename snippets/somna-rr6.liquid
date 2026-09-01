@@ -1,0 +1,161 @@
+<style id='somna-rr6'>
+@media(max-width:768px){
+/* ===== Mobile hero: rating, meta, headline, subhead ===== */
+#somna-mbb .mbb-rate{margin:2px 0 6px !important;font-weight:600 !important;color:var(--cda-ink) !important}
+#somna-mbb .mbb-rate b{font-weight:800 !important;color:var(--cda-ink) !important}
+#somna-mbb .mbb-meta{font-size:.72rem !important;font-weight:700 !important;letter-spacing:.02em !important;color:var(--cda-muted) !important;margin:0 0 13px !important}
+#somna-mbb .mbb-title{margin:0 0 10px !important}
+#somna-mbb .mbb-sub{font-size:.9rem !important;line-height:1.55 !important;color:var(--cda-muted) !important;font-weight:400 !important;margin:0 0 16px !important}
+/* ===== Four benefits: plain black icon + text ===== */
+#somna-mbb .mbb-benefits{grid-template-columns:1fr 1fr !important;gap:13px 16px !important;margin:0 0 18px !important}
+#somna-mbb .mbb-ben{background:none !important;border:none !important;border-radius:0 !important;padding:0 !important;box-shadow:none !important;display:flex !important;align-items:center !important;gap:9px !important;font-size:.87rem !important;font-weight:700 !important;line-height:1.2 !important;color:var(--cda-ink) !important}
+#somna-mbb .mbb-ben svg{width:25px !important;height:25px !important;flex:none !important;color:#0e0e16 !important}
+#somna-mbb .mbb-benefits{align-items:stretch !important}
+#somna-mbb .mbb-ben{align-items:center !important;min-height:36px !important}
+#somna-mbb .mbb-ben svg{margin-top:0 !important;align-self:center !important}
+#somna-mbb .mbb-ben>span{display:flex !important;align-items:center !important;min-height:36px !important;padding-top:0 !important;margin:0 !important;line-height:1.25 !important}
+/* ===== Bundle cards: locked 4-column grid (radio | image | info | price+save) ===== */
+#somna-mbb .mbb-cards{gap:26px !important}
+#somna-mbb .mbb-card{grid-template-columns:20px 48px minmax(0,1fr) 112px !important;grid-template-areas:'radio img name price' 'radio img sub save' !important;column-gap:10px !important;row-gap:2px !important;padding:10px 12px !important;min-height:66px !important;align-items:center !important;border-radius:16px !important}
+#somna-mbb .mbb-card::before{width:20px !important;height:20px !important;border-width:2px !important;align-self:center !important}
+#somna-mbb .mbb-card.on::before{border-width:2.5px !important}
+#somna-mbb .mbb-cimg{grid-area:img !important;width:48px !important;height:48px !important;align-self:center !important}
+#somna-mbb .mbb-cimg img{mix-blend-mode:multiply !important}
+#somna-mbb .mbb-card.on .mbb-cimg img{mix-blend-mode:normal !important}
+#somna-mbb .mbb-cname{grid-area:name !important;font-size:1rem !important;font-weight:800 !important;white-space:nowrap !important;align-self:end !important;line-height:1.08 !important;letter-spacing:-.01em !important;margin:0 !important}
+#somna-mbb .mbb-csub{grid-area:sub !important;align-self:start !important;display:block !important;margin:0 !important;opacity:1 !important;min-width:0 !important}
+#somna-mbb .mbb-csub .l1{display:block;font-size:.68rem;font-weight:600;line-height:1.18;white-space:nowrap;opacity:.9}
+#somna-mbb .mbb-csub .l2{display:block;font-size:.6rem;font-weight:400;line-height:1.18;white-space:nowrap;opacity:.6}
+#somna-mbb .mbb-csub .l3{display:block;font-size:.66rem;font-weight:700;line-height:1.2;margin-top:1px;white-space:nowrap;opacity:.8}
+#somna-mbb .mbb-cprice{grid-area:price !important;justify-self:end !important;align-self:end !important;gap:4px !important;margin:0 !important}
+#somna-mbb .mbb-cprice b{font-size:.92rem !important}
+#somna-mbb .mbb-cprice s{font-size:.68rem !important}
+#somna-mbb .mbb-csave{grid-area:save !important;justify-self:end !important;align-self:start !important;font-size:.66rem !important;font-weight:800 !important;letter-spacing:.01em !important;padding:5px 11px !important;margin:5px 0 0 !important;border-radius:999px !important}
+#somna-mbb .mbb-cbadge{font-size:.62rem !important;padding:4px 12px !important;top:-11px !important}
+/* ===== Buy box: no Gifts card, reorder, blue progress bar with spark ===== */
+#somna-mbb .mbb-gifts{display:none !important}
+#somna-mbb .mbb-oncemeta{display:none !important}
+#somna-mbb .mbb-note{display:none !important}
+#somna-mbb .mbb-rate{order:1 !important}
+#somna-mbb .mbb-meta{order:2 !important}
+#somna-mbb .mbb-title{order:3 !important}
+#somna-mbb .mbb-sub{order:4 !important}
+#somna-mbb .mbb-benefits{order:5 !important}
+#somna-mbb .mbb-label{order:6 !important}
+#somna-mbb .mbb-cards{order:7 !important}
+#somna-mbb .mbb-once{order:8 !important}
+#somna-mbb .somna-gb{order:9 !important}
+#somna-mbb .mbb-checks{order:10 !important}
+#somna-mbb .mbb-cta{order:11 !important}
+#somna-mbb .mbb-trust{order:12 !important}
+#somna-mbb .spdp-faq{order:15 !important}
+#somna-mbb .mbb-once{margin:16px auto 6px !important;font-size:.95rem !important;font-weight:700 !important}
+#somna-mbb .somna-gb{width:100% !important;margin:6px 0 20px !important}
+#somna-mbb .somna-gb-tr{position:relative;height:7px;border-radius:999px;background:#E4E8F6;margin-right:44px}
+#somna-mbb .somna-gb-end{position:absolute;right:-44px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:#0e0e16;color:#fff;font-size:1.2rem;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1}
+#somna-mbb .somna-gb.on .somna-gb-end{background:#0e0e16;color:#fff}
+#somna-mbb .somna-gb-fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;background:linear-gradient(90deg,#5B79F3,#4A56D6);transition:width .3s ease}
+#somna-mbb .somna-gb-dot{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:20px;height:20px;color:#4A56D6;transition:left .3s ease;pointer-events:none}
+#somna-mbb .somna-gb-dot svg{width:100%;height:100%;display:block}
+#somna-mbb .somna-gb-t{margin-top:11px;text-align:center;font-size:.86rem;font-weight:600;color:var(--cda-ink)}
+#somna-mbb .somna-gb-t b{color:#4A56D6;font-weight:800}
+#somna-mbb .somna-gb.on .somna-gb-t{color:#4A56D6;font-weight:800}
+}
+</style>
+<script>
+(function(){
+  function mob(){return window.matchMedia&&window.matchMedia('(max-width:768px)').matches;}
+  var AIR=`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 8h11a3 3 0 1 0-3-3'/><path d='M3 12h15a3 3 0 1 1-3 3'/><path d='M3 16h8'/></svg>`;
+  var BAN=`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round'><circle cx='12' cy='12' r='9'/><path d='M5.6 5.6l12.8 12.8'/></svg>`;
+  var DROP=`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 3s6 6.4 6 10.4a6 6 0 0 1-12 0C6 9.4 12 3 12 3z'/></svg>`;
+  var SUN=`<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='13' r='3.6'/><path d='M12 4.6v1.6M5.2 8.2l1.2 1.2M2.6 16h1.8M19.6 16h1.8M17.6 9.4l1.2-1.2'/><path d='M2 20h20'/></svg>`;
+  var SPARK=`<svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z'/></svg>`;
+  var BEN=[['Opens airway instantly',AIR],['Drug-free',BAN],['No dry mouth',DROP],['Stays put till morning',SUN]];
+  var UNIT={0:1,1:3,2:4};
+  var NAME={4:'3 + 1 Bags',3:'2 Bags',1:'1 Bag'};
+  var SUP={4:'4 Month Supply',3:'2 Month Supply',1:'1 Month Supply'};
+  var BADGE={4:'Best Value',3:'Most Popular'};
+  function money(n){return '$'+(Math.round(n*100)/100).toFixed(2).replace(/\.00$/,'');}
+  function go(){
+    if(!mob())return;
+    var mbb=document.getElementById('somna-mbb');if(!mbb)return;
+    if(mbb.getAttribute('data-r6')==='1')return;
+    var bcards=[].slice.call(document.querySelectorAll('.spdp-bcard'));
+    function bByU(u){for(var i=0;i<bcards.length;i++){if(Math.round(parseFloat(bcards[i].getAttribute('data-units')||'0'))===u)return bcards[i];}return null;}
+    function nOf(u,a){var b=bByU(u);return b?parseFloat(b.getAttribute(a)||'0'):0;}
+
+    var rate=mbb.querySelector('.mbb-rate');
+    if(rate){
+      rate.innerHTML=`<span class='st'>★★★★★</span> <b>4.7</b> · 3,910 verified reviews`;
+      if(!mbb.querySelector('.mbb-meta')){
+        var meta=document.createElement('div');meta.className='mbb-meta';
+        var pns=[1,3,4].map(function(u){var f=nOf(u,'data-sfirst');return f>0?f/(u*30):0;}).filter(function(x){return x>0;});
+        var best=pns.length?Math.min.apply(null,pns):0;
+        meta.textContent='As seen on TikTok · Made in the USA'+(best?' · From '+Math.round(best*100)+'¢/night':'');
+        rate.insertAdjacentElement('afterend',meta);
+      }
+    }
+    var t=mbb.querySelector('.mbb-title');
+    if(t){
+      t.textContent='Stop Snoring. Without Wearing a Machine.';
+      if(!mbb.querySelector('.mbb-sub')){
+        var s=document.createElement('div');s.className='mbb-sub';
+        s.textContent='The tension-release strips open your nasal airway. You breathe through your nose all night, and the room stays quiet.';
+        t.insertAdjacentElement('afterend',s);
+      }
+    }
+    var bens=[].slice.call(mbb.querySelectorAll('.mbb-ben'));
+    BEN.forEach(function(b,i){var el=bens[i];if(!el)return;el.innerHTML=b[1]+`<span>${b[0]}</span>`;});
+
+    var cards=[].slice.call(mbb.querySelectorAll('.mbb-card'));
+    cards.forEach(function(c){
+      var u=UNIT[parseInt(c.getAttribute('data-i'),10)||0]||1;
+      var sf=nOf(u,'data-sfirst'),sr=nOf(u,'data-sreg');
+      var nm=c.querySelector('.mbb-cname');
+      if(nm&&NAME[u])nm.textContent=NAME[u];
+      var sub=c.querySelector('.mbb-csub');
+      if(sub&&SUP[u]){
+        sub.innerHTML=`<span class='l1'>${SUP[u]}</span><span class='l2'>Delivered every month</span>`;
+      }
+      var sv=c.querySelector('.mbb-csave');
+      if(sv&&sr>sf&&sf>0)sv.textContent='✦ Save '+money(sr-sf);
+      var bd=c.querySelector('.mbb-cbadge');
+      if(bd&&BADGE[u])bd.textContent=BADGE[u];
+    });
+
+    var once=mbb.querySelector('.mbb-once');
+    function fixOnce(){
+      if(!once)return;
+      var x=(once.textContent||'').trim();
+      if(x.indexOf('Try it Once for')===0){once.textContent='Buy once for '+x.replace('Try it Once for','').trim();}
+    }
+    fixOnce();
+    if(once&&window.MutationObserver){new MutationObserver(fixOnce).observe(once,{childList:true,characterData:true,subtree:true});}
+
+    var gb=document.createElement('div');gb.className='somna-gb';
+    gb.innerHTML=`<div class='somna-gb-tr'><span class='somna-gb-fill'></span><span class='somna-gb-dot'>${SPARK}</span><span class='somna-gb-end'>3</span></div><div class='somna-gb-t'></div>`;
+    var anchor=once||mbb.querySelector('.mbb-cards');
+    if(anchor)anchor.insertAdjacentElement('afterend',gb);
+    var fill=gb.querySelector('.somna-gb-fill'),dot=gb.querySelector('.somna-gb-dot'),txt=gb.querySelector('.somna-gb-t');
+    function curUnits(){var c=mbb.querySelector('.mbb-card.on');if(!c)return 1;return UNIT[parseInt(c.getAttribute('data-i'),10)||0]||1;}
+    function onceMode(){var ck=mbb.querySelector('.mbb-checks');return !!(ck&&ck.style.display==='none');}
+    function upd(){
+      var top=nOf(4,'data-sfirst');
+      if(!top){gb.style.display='none';return;}
+      gb.style.display=onceMode()?'none':'';
+      var u=curUnits(),cur=nOf(u,'data-sfirst');
+      var pct=Math.max(6,Math.min(100,Math.round(cur/top*100)));
+      fill.style.width=pct+'%';dot.style.left=pct+'%';
+      if(u>=4){gb.classList.add('on');txt.innerHTML=`🎁 <b>FREE GIFT unlocked</b>`;}
+      else{gb.classList.remove('on');txt.innerHTML=`You're <b>${money(Math.max(0,top-cur))}</b> away to get <b>FREE GIFT</b>`;}
+    }
+    cards.forEach(function(c){c.addEventListener('click',function(){setTimeout(upd,0);});});
+    if(once)once.addEventListener('click',function(){setTimeout(function(){fixOnce();upd();},0);});
+    upd();
+    mbb.setAttribute('data-r6','1');
+  }
+  function run(){try{go();}catch(e){}}
+  if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+  setTimeout(run,380);
+})();
+</script>

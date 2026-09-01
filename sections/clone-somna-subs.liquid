@@ -1,0 +1,180 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign acct = section.settings.account_url | default: '/account' -%}
+<section class="sub">
+  {%- comment -%} ===== LOGIN ===== {%- endcomment -%}
+  <div class="sub-wrap sub-login">
+    <span class="sub-kick">Manage subscriptions</span>
+    <h1 class="sub-h1">{{ section.settings.head | default: 'Manage Your Sleep Routine' }}</h1>
+    <p class="sub-sub">{{ section.settings.sub | default: 'Log in to update your delivery schedule, add products, or manage payment details.' }}</p>
+    <form class="sub-form" onsubmit="return false">
+      <input type="email" class="sub-in" placeholder="Email address on your subscription">
+      <a class="sub-btn" href="{{ acct }}">Send login link</a>
+    </form>
+    <p class="sub-note">{{ section.settings.login_note }}</p>
+  </div>
+
+  {%- comment -%} ===== FLEXIBILITY ===== {%- endcomment -%}
+  <div class="sub-band">
+    <div class="sub-wrap">
+      <h2 class="sub-h2">Full control, zero hassle</h2>
+      <p class="sub-lead">Once you're logged in, you can do all of this in seconds — flexibility first, always.</p>
+      <div class="sub-grid">
+        <div class="sub-feat"><div class="sub-ic">⏭</div><div class="sub-ft">Skip next delivery</div><p>Not ready for your next box? Push it back without losing your discount.</p></div>
+        <div class="sub-feat"><div class="sub-ic">📅</div><div class="sub-ft">Change delivery date</div><p>Pick the exact date your next order is charged and shipped.</p></div>
+        <div class="sub-feat"><div class="sub-ic">🔁</div><div class="sub-ft">Adjust frequency</div><p>Switch between every 30, 60, or 90 days whenever your routine changes.</p></div>
+        <div class="sub-feat"><div class="sub-ic">⚡</div><div class="sub-ft">Ship immediately</div><p>Run low early? Send your next order now with one tap.</p></div>
+      </div>
+      <a class="sub-btn sub-btn-wide" href="{{ acct }}">Manage in my account</a>
+    </div>
+  </div>
+
+  {%- comment -%} ===== UPSELL CAROUSEL ===== {%- endcomment -%}
+  <div class="sub-wrap sub-up">
+    <h2 class="sub-h2">Add to your next delivery</h2>
+    <p class="sub-lead">Add items to your upcoming box with no extra shipping costs.</p>
+    <div class="sub-cards">
+      {%- assign handles = 'dreamx-anti-snore-nasal-strips,dreamx-sleep-mouth-tape,dreamx-silent-alarm-band' | split: ',' -%}
+      {%- for h in handles -%}{%- assign p = all_products[h] -%}{% if p != blank %}
+        <div class="sub-pcard">
+          <a class="sub-pimg cda-ph" href="{{ p.url }}">{% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 500 }}" alt="{{ p.title | escape }}">{% endif %}</a>
+          <div class="sub-pname">{{ p.title | remove: 'Somna ' }}</div>
+          <div class="sub-pprice">{{ p.price | money }}</div>
+          <div class="sub-pacts">
+            <a class="sub-ghost" href="{{ p.url }}">+ Add one-time</a>
+            <a class="sub-btn sub-btn-sm" href="{{ p.url }}">Subscribe &amp; Save</a>
+          </div>
+        </div>
+      {% endif %}{%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} ===== ACCOUNT SETTINGS ===== {%- endcomment -%}
+  <div class="sub-band">
+    <div class="sub-wrap">
+      <h2 class="sub-h2">Account settings</h2>
+      <div class="sub-rows">
+        <div class="sub-row"><div class="sub-rinfo"><div class="sub-rt">Shipping address</div><div class="sub-rs">Update where your boxes are delivered.</div></div><a class="sub-ghost" href="{{ acct }}">Edit</a></div>
+        <div class="sub-row"><div class="sub-rinfo"><div class="sub-rt">Payment method</div><div class="sub-rs">Keep your card on file current to avoid missed deliveries.</div></div><a class="sub-ghost" href="{{ acct }}">Update</a></div>
+        <div class="sub-row"><div class="sub-rinfo"><div class="sub-rt">Order history</div><div class="sub-rs">View past subscription orders and download invoices.</div></div><a class="sub-ghost" href="{{ acct }}">View</a></div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ===== CANCEL / SAVE FLOW ===== {%- endcomment -%}
+  <div class="sub-wrap sub-cancel">
+    <a class="sub-cancel-link" href="#" data-sub-cancel>Cancel subscription</a>
+    <div class="sub-save" data-sub-save hidden>
+      <div class="sub-save-card" data-sub-step="1">
+        <h3>Having trouble keeping up?</h3>
+        <p>Before you cancel — you can pause for a month or slow down your deliveries instead. You keep your discount either way.</p>
+        <div class="sub-save-btns">
+          <a class="sub-btn" href="{{ acct }}">Pause for 1 month</a>
+          <a class="sub-ghost" href="{{ acct }}">Change to every 60 days</a>
+          <button class="sub-text-btn" data-sub-next>Continue to cancel</button>
+        </div>
+      </div>
+      <div class="sub-save-card" data-sub-step="2" hidden>
+        <h3>We're sorry to see you go.</h3>
+        <p>Quick question — why are you canceling?</p>
+        <div class="sub-reasons">
+          <label><input type="radio" name="reason"> Too expensive</label>
+          <label><input type="radio" name="reason"> Have too much product</label>
+          <label><input type="radio" name="reason"> Didn't work for me</label>
+          <label><input type="radio" name="reason"> Other</label>
+        </div>
+        <a class="sub-btn sub-btn-wide" href="{{ acct }}">Confirm cancellation in my account</a>
+        <p class="sub-save-fine">You'll finish canceling securely in your account. You will not be charged again once cancellation is confirmed.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-wrap"><p class="sub-legal">Changes to your subscription must be made at least 48 hours before your next scheduled billing date to take effect for the upcoming cycle. See our full <a href="/pages/subscription-policy">Subscription Policy</a> for details.</p></div>
+</section>
+<style>
+.sub{font-family:var(--cda-font);color:var(--cda-ink);overflow-x:hidden}
+.sub *{box-sizing:border-box}
+.sub-wrap{max-width:980px;margin:0 auto;padding:0 clamp(18px,4vw,24px)}
+.sub-kick{display:inline-block;text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;color:var(--cda-accent-d);margin-bottom:10px}
+.sub-login{text-align:center;padding:clamp(44px,7vw,80px) clamp(18px,4vw,24px);max-width:560px}
+.sub-h1{font-size:clamp(1.9rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.025em;margin:0 0 12px;line-height:1.06}
+.sub-sub{color:var(--cda-muted);font-size:clamp(1rem,1.6vw,1.12rem);margin:0 0 24px;line-height:1.5}
+.sub-form{display:flex;gap:10px;max-width:440px;margin:0 auto}
+.sub-in{flex:1;border:1.5px solid var(--cda-line);border-radius:999px;padding:14px 18px;font:inherit;font-size:1rem;min-height:48px}
+.sub-in:focus{outline:none;border-color:var(--cda-accent)}
+.sub-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;background:var(--cda-accent);color:#fff;border:none;border-radius:999px;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;white-space:nowrap;transition:filter .15s}
+.sub-btn:hover{filter:brightness(.93)}
+.sub-btn-wide{display:flex;width:100%;max-width:340px;margin:26px auto 0}
+.sub-btn-sm{min-height:42px;padding:0 14px;font-size:.86rem;flex:1}
+.sub-note{color:var(--cda-muted);font-size:.84rem;margin:14px 0 0}
+.sub-band{background:#f7f7fb;padding:clamp(40px,6vw,64px) 0;margin-top:0}
+.sub-h2{font-size:clamp(1.5rem,3.2vw,2rem);font-weight:800;letter-spacing:-.02em;margin:0 0 8px;text-align:center}
+.sub-lead{color:var(--cda-muted);text-align:center;margin:0 auto 26px;max-width:52ch;line-height:1.55}
+.sub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sub-feat{background:#fff;border:1px solid var(--cda-line);border-radius:16px;padding:22px}
+.sub-ic{font-size:1.5rem;margin-bottom:10px}
+.sub-ft{font-weight:800;font-size:1rem;margin-bottom:6px}
+.sub-feat p{color:var(--cda-muted);font-size:.9rem;line-height:1.5;margin:0}
+.sub-up{padding:clamp(40px,6vw,64px) clamp(18px,4vw,24px)}
+.sub-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sub-pcard{border:1px solid var(--cda-line);border-radius:16px;padding:16px;background:#fff;display:flex;flex-direction:column}
+.sub-pimg{display:block;aspect-ratio:1/1;border-radius:12px;overflow:hidden;margin-bottom:12px}
+.sub-pimg img{width:100%;height:100%;object-fit:cover}
+.sub-pname{font-weight:800;font-size:1rem;line-height:1.2;margin-bottom:4px}
+.sub-pprice{font-weight:800;color:var(--cda-accent-d);margin-bottom:12px}
+.sub-pacts{display:flex;gap:8px;margin-top:auto}
+.sub-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 14px;border:1.5px solid var(--cda-line);border-radius:999px;color:var(--cda-ink);font-weight:700;font-size:.86rem;text-decoration:none;background:#fff;cursor:pointer;flex:1;white-space:nowrap}
+.sub-ghost:hover{background:var(--cda-soft)}
+.sub-rows{display:grid;gap:12px;max-width:680px;margin:0 auto}
+.sub-row{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--cda-line);border-radius:14px;padding:18px 20px}
+.sub-rinfo{min-width:0}
+.sub-rt{font-weight:800;font-size:1rem}
+.sub-rs{color:var(--cda-muted);font-size:.88rem;margin-top:2px}
+.sub-row .sub-ghost{margin-left:auto;flex:0 0 auto;min-width:84px}
+.sub-cancel{text-align:center;padding:clamp(36px,5vw,56px) clamp(18px,4vw,24px) 0}
+.sub-cancel-link{color:var(--cda-muted);font-size:.92rem;font-weight:600;text-decoration:underline}
+.sub-save{max-width:480px;margin:22px auto 0}
+.sub-save-card{border:1px solid var(--cda-line);border-radius:16px;padding:24px;background:#faf9ff;text-align:left}
+.sub-save-card h3{font-size:1.15rem;font-weight:800;margin:0 0 8px}
+.sub-save-card p{color:var(--cda-muted);font-size:.94rem;line-height:1.55;margin:0 0 16px}
+.sub-save-btns{display:grid;gap:10px}
+.sub-text-btn{background:none;border:none;color:var(--cda-muted);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:8px;min-height:44px}
+.sub-reasons{display:grid;gap:10px;margin-bottom:18px}
+.sub-reasons label{display:flex;align-items:center;gap:10px;font-size:.94rem;font-weight:600;cursor:pointer}
+.sub-save-fine{font-size:.8rem;color:var(--cda-muted);margin-top:12px;text-align:center}
+.sub-legal{color:var(--cda-muted);font-size:.76rem;line-height:1.55;text-align:center;margin:clamp(30px,5vw,48px) auto;max-width:72ch}
+.sub-legal a{color:var(--cda-accent-d);font-weight:700}
+@media(max-width:860px){.sub-grid{grid-template-columns:1fr 1fr}.sub-cards{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .sub-row{flex-direction:column;align-items:stretch;text-align:center;gap:12px}
+  .sub-rinfo{text-align:center}
+  .sub-row .sub-ghost{margin-left:0;width:100%;min-width:0;flex:1 1 auto}
+}
+@media(max-width:560px){
+  .sub-form{flex-direction:column}
+  .sub-btn{width:100%}
+  .sub-grid{grid-template-columns:1fr}
+  .sub-pacts{flex-direction:column}
+  .sub-ghost,.sub-btn-sm{width:100%}
+}
+</style>
+<script>
+(function(){
+  var root=document.currentScript.closest('section')||document;
+  var link=root.querySelector('[data-sub-cancel]'),save=root.querySelector('[data-sub-save]');
+  var s1=root.querySelector('[data-sub-step="1"]'),s2=root.querySelector('[data-sub-step="2"]'),next=root.querySelector('[data-sub-next]');
+  if(link)link.addEventListener('click',function(e){e.preventDefault();if(save){save.hidden=false;save.scrollIntoView({behavior:'smooth',block:'center'});}});
+  if(next)next.addEventListener('click',function(){if(s1)s1.hidden=true;if(s2)s2.hidden=false;});
+})();
+</script>
+{% schema %}
+{
+  "name": "Somna Manage Subs",
+  "settings": [
+    { "type": "text", "id": "head", "label": "Headline", "default": "Manage Your Sleep Routine" },
+    { "type": "textarea", "id": "sub", "label": "Subheadline", "default": "Log in to update your delivery schedule, add products, or manage payment details." },
+    { "type": "url", "id": "account_url", "label": "Account portal link", "info": "Defaults to your Shopify customer account (/account), where subscriptions are managed." },
+    { "type": "textarea", "id": "login_note", "label": "Login note", "default": "No password required. We'll email you a secure link to access your portal." }
+  ],
+  "presets": [{ "name": "Somna Manage Subs" }]
+}
+{% endschema %}

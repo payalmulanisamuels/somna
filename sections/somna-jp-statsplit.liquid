@@ -1,0 +1,79 @@
+{{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
+<section class="sjp" style="background:{{ section.settings.bg | default: '#FAF7F2' }}">
+  {%- if section.settings.tile != blank -%}
+  <div class="sjp-wrap" style="padding-top:clamp(30px,5vw,60px);padding-bottom:clamp(30px,5vw,60px)">
+    <div class="sjp-tilefull somna-sr"><img src="{{ section.settings.tile | image_url: width: 2000 }}" loading="lazy" alt="{{ section.settings.title_a | escape }}"></div>
+    <div class="sjp-ctawrap somna-sr">
+      <a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a>
+      {%- if section.settings.gline != blank -%}<div class="sjp-gline"><span class="sjp-gdot2">✓</span>{{ section.settings.gline }}</div>{%- endif -%}
+    </div>
+  </div>
+  {%- else -%}
+  <div class="sjp-ss">
+    <div class="sjp-ss-img somna-zoomin">
+      {%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1400 }}" loading="lazy" alt="{{ section.settings.title_a | escape }}">{%- else -%}<div class="sjp-ph">Insert image (product in hands)</div>{%- endif -%}
+      <span class="sjp-ss-fade" style="background:linear-gradient(90deg,rgba(255,255,255,0) 55%,{{ section.settings.bg | default: '#FAF7F2' }} 100%)"></span>
+    </div>
+    <div class="sjp-ss-body somna-sr">
+      <h2 class="sjp-ss-t">{{ section.settings.title_a | default: 'One strip. All night.' }}<br><em>{{ section.settings.title_em | default: 'Zero effort.' }}</em></h2>
+      <div class="sjp-ss-grid somna-sr-stag">
+        {%- for block in section.blocks -%}
+        <div class="sjp-ss-stat" {{ block.shopify_attributes }}>
+          <b data-count>{{ block.settings.value }}</b>
+          <span>{{ block.settings.label }}</span>
+          {%- if block.settings.sub != blank -%}<i>{{ block.settings.sub }}</i>{%- endif -%}
+        </div>
+        {%- endfor -%}
+      </div>
+      <div class="sjp-ss-cta">
+        <a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a>
+        {%- if section.settings.gline != blank -%}<div class="sjp-gline"><span class="sjp-gdot2">✓</span>{{ section.settings.gline }}</div>{%- endif -%}
+      </div>
+      {%- if section.settings.note != blank -%}<p class="sjp-note" style="text-align:left;margin-top:16px">{{ section.settings.note }}</p>{%- endif -%}
+    </div>
+  </div>
+  {%- endif -%}
+</section>
+<style>
+.sjp-tilefull{border-radius:22px;overflow:hidden;box-shadow:0 24px 50px -28px rgba(22,20,34,.3)}
+.sjp-tilefull img{width:100%;height:auto;display:block}
+.sjp-ss{display:grid;grid-template-columns:1fr 1fr;align-items:center}
+.sjp-ss-img{position:relative;min-height:420px;height:100%}
+.sjp-ss-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sjp-ss-img .sjp-ph{position:absolute;inset:0}
+.sjp-ss-fade{position:absolute;inset:0;pointer-events:none}
+.sjp-ss-body{padding:clamp(36px,6vw,90px) clamp(24px,6vw,110px)}
+.sjp-ss-t{font-family:'Lora',Georgia,serif;font-weight:600;font-size:clamp(1.7rem,3.6vw,2.4rem);letter-spacing:-.01em;line-height:1.14;margin:0 0 30px;color:var(--ink)}
+.sjp-ss-t em{font-style:italic;color:var(--band)}
+.sjp-ss-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 30px}
+.sjp-ss-stat b{display:block;font-family:'Lora',Georgia,serif;font-weight:600;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--band);line-height:1;letter-spacing:-.01em}
+.sjp-ss-stat span{display:block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-top:8px}
+.sjp-ss-stat i{display:block;font-style:normal;font-size:.68rem;color:var(--mut);margin-top:3px}
+.sjp-ss-cta{margin-top:34px}
+.sjp-ss-cta .sjp-gline{justify-content:flex-start}
+.sjp-gdot2{width:17px;height:17px;border-radius:50%;background:var(--band);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;flex:none}
+@media(max-width:860px){.sjp-ss{grid-template-columns:1fr}.sjp-ss-img{min-height:300px;aspect-ratio:4/3;height:auto}.sjp-ss-fade{display:none}.sjp-ss-body{padding:30px 20px 44px}.sjp-ss-grid{gap:20px 16px}}
+</style>
+{% schema %}
+{
+  "name": "JP — Stats fullsplit",
+  "settings": [
+    { "type": "image_picker", "id": "tile", "label": "FULL TILE image (replaces whole section, CTA stays below)" },
+    { "type": "image_picker", "id": "image", "label": "Left image (blends into right side)" },
+    { "type": "text", "id": "title_a", "label": "Title line 1", "default": "One strip. All night." },
+    { "type": "text", "id": "title_em", "label": "Title line 2 (italic accent)", "default": "Zero effort." },
+    { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
+    { "type": "url", "id": "cta_url", "label": "CTA link (default: buy box)" },
+    { "type": "text", "id": "gline", "label": "Guarantee line", "default": "30-Day Feel-It Guarantee" },
+    { "type": "text", "id": "note", "label": "Disclaimer footnote", "default": "*Self-reported by customers. Illustrative — replace with your data." },
+    { "type": "color", "id": "bg", "label": "Background (image fades into this)", "default": "#FAF7F2" }
+  ],
+  "blocks": [ { "type": "stat", "name": "Stat", "settings": [
+    { "type": "text", "id": "value", "label": "Big value", "default": "93%" },
+    { "type": "text", "id": "label", "label": "Label (small caps)", "default": "WAKE UP MORE RESTED*" },
+    { "type": "text", "id": "sub", "label": "Tiny sub-line (optional)" }
+  ] } ],
+  "max_blocks": 4,
+  "presets": [{ "name": "JP — Stats fullsplit", "blocks": [ {"type":"stat"},{"type":"stat"},{"type":"stat"},{"type":"stat"} ] }]
+}
+{% endschema %}

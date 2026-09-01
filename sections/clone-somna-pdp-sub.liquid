@@ -1,0 +1,315 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign cur = product.selected_or_first_available_variant -%}
+{%- assign fid = 'spsb-' | append: section.id -%}
+<section class="cda-section spdp" id="cda-buy"><div class="cda-wrap"><div class="spdp-grid">
+  <div class="spdp-media">
+    {%- if product.media.size > 0 -%}
+      <div class="spdp-main cda-ph" id="{{ fid }}-main"><img src="{{ product.featured_media | image_url: width: 1100 }}" alt="{{ product.title | escape }}" width="1100" height="1100" loading="eager"><button type="button" class="spdp-gnav spdp-gnav-l" data-gprev aria-label="Previous image">‹</button><button type="button" class="spdp-gnav spdp-gnav-r" data-gnext aria-label="Next image">›</button>{% if section.settings.hero_badge != blank %}<span class="spdp-hbadge">{{ section.settings.hero_badge }}</span>{% endif %}</div>
+      <div class="spdp-thumbs">{%- for m in product.media limit: 6 -%}<button class="cda-ph" data-spsb-thumb="{{ m | image_url: width: 1100 }}"><img src="{{ m | image_url: width: 240 }}" alt="" width="240" height="240" loading="lazy"></button>{%- endfor -%}</div>
+    {%- else -%}
+      <div class="spdp-main cda-ph" id="{{ fid }}-main" data-label="Main image"></div>
+      <div class="spdp-thumbs"><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div></div>
+    {%- endif -%}
+  </div>
+  <div class="spdp-buy">
+    <div class="spdp-herocard">
+    <div class="spdp-rate"><span class="cda-stars">★★★★★</span> <strong>{{ section.settings.rating }}</strong> <span class="cda-muted">· {{ section.settings.reviews }} reviews</span></div>
+    <div class="spdp-kick">{{ section.settings.kicker }}</div>
+    <h1 class="spdp-h1">{{ section.settings.head_a }} <span class="spdp-accent">{{ section.settings.head_b }}</span></h1>
+    <div class="spdp-sub">{{ section.settings.subhead }}</div>
+    {%- assign pills = section.settings.pills | split: ',' -%}
+    <div class="spdp-pills">{%- for p in pills -%}<span>✓ {{ p | strip }}</span>{%- endfor -%}</div>
+    <div class="spdp-card"><div class="spdp-card-h">{{ section.settings.why_title }}</div><p class="cda-muted" style="margin:0 0 14px">{{ section.settings.why_body }}</p>{%- assign checks = section.settings.checks | newline_to_br | split: '<br />' -%}<ul class="spdp-checks">{%- for c in checks -%}{%- assign ct = c | strip -%}{% if ct != '' %}<li>{{ ct }}</li>{% endif %}{%- endfor -%}</ul></div>
+    {%- assign vm = product.variants[0] -%}{%- assign vq = product.variants[1] -%}
+    {%- assign moBilledC = vm.price | times: 0.8 -%}{%- assign qBilledC = vq.price | times: 0.65 -%}
+    {%- assign moBase = moBilledC | divided_by: 100.0 -%}{%- assign qBase = qBilledC | divided_by: 100.0 -%}{%- assign oneBase = vm.price | divided_by: 100.0 -%}
+    {%- assign moDayC = moBilledC | divided_by: 30 -%}{%- assign qDayC = qBilledC | divided_by: 90 -%}
+    {%- assign kitblocks = section.blocks | where: 'type', 'kit' -%}{%- assign giftblocks = section.blocks | where: 'type', 'gift' -%}
+    <div class="spdp-label">{{ section.settings.plan_label | default: 'Choose your plan' }}</div>
+    <div class="spdp-opts spsb" id="{{ fid }}-opts">
+      <label class="spsb-card sel" data-bundle data-items="{{ vq.id }}|5928714471" data-base="{{ qBase }}" data-name="Quarterly (90-Day)">
+        <div class="spsb-ban">★ MOST POPULAR · BEST VALUE · SAVE 35%</div>
+        <div class="spsb-pad">
+          <div class="spsb-top"><strong>90-Day Subscription</strong><span class="spsb-savebadge">SAVE 35%</span></div>
+          <div class="spsb-price"><span class="spsb-day">{{ qDayC | money }}</span><span class="spsb-dayl">/day</span><s class="spsb-was">{{ vq.price | money }}</s></div>
+          <div class="spsb-line">Billed {{ qBilledC | money }} today · ships every 90 days · cancel anytime</div>
+          <div class="spsb-body">
+            <div class="spsb-kit-h"><span>{{ section.settings.kit_title }}</span><span class="spsb-val">{{ section.settings.kit_value }} value FREE</span></div>
+            <div class="spsb-kit-row">{% if kitblocks.size > 0 %}{% for kb in kitblocks %}<div class="spsb-item">{% if kb.settings.img %}<div class="cda-ph"><img src="{{ kb.settings.img | image_url: width: 160 }}" alt=""></div>{% else %}<div class="cda-ph"></div>{% endif %}<div class="spsb-it-n">{{ kb.settings.name }}</div><div class="spsb-it-p">{{ kb.settings.value }}</div></div>{% endfor %}{% else %}{%- assign kitlines = section.settings.kit_items | newline_to_br | split: '<br />' -%}{% for kl in kitlines %}{%- assign kp = kl | strip | split: '|' -%}{% if kp[0] != blank %}<div class="spsb-item"><div class="cda-ph"></div><div class="spsb-it-n">{{ kp[0] | strip }}</div><div class="spsb-it-p">{{ kp[1] | strip }}</div></div>{% endif %}{% endfor %}{% endif %}</div>
+            <div class="spsb-kit-h" style="margin-top:12px"><span>{{ section.settings.gift_title }}</span></div>
+            <div class="spsb-kit-row">{% if giftblocks.size > 0 %}{% for gb in giftblocks %}{% unless gb.settings.plan == 'm' %}<div class="spsb-item"><div class="spsb-month">{{ gb.settings.month }}</div>{% if gb.settings.img %}<div class="cda-ph"><img src="{{ gb.settings.img | image_url: width: 160 }}" alt=""></div>{% else %}<div class="cda-ph"></div>{% endif %}<div class="spsb-it-n">{{ gb.settings.name }}</div><div class="spsb-it-p">{{ gb.settings.value }}</div></div>{% endunless %}{% endfor %}{% else %}{%- assign giftlines = section.settings.gifts_90 | newline_to_br | split: '<br />' -%}{% for gl in giftlines %}{%- assign gp = gl | strip | split: '|' -%}{% if gp[0] != blank %}<div class="spsb-item"><div class="spsb-month">{{ gp[0] | strip }}</div><div class="cda-ph"></div><div class="spsb-it-n">{{ gp[1] | strip }}</div><div class="spsb-it-p">{{ gp[2] | strip }}</div></div>{% endif %}{% endfor %}{% endif %}</div>
+          </div>
+        </div>
+      </label>
+      <label class="spsb-card" data-bundle data-items="{{ vm.id }}|5928681703" data-base="{{ moBase }}" data-name="Monthly (30-Day)">
+        <div class="spsb-pad">
+          <div class="spsb-top"><strong>Monthly Subscription</strong><span class="spsb-savebadge">SAVE 20%</span></div>
+          <div class="spsb-price"><span class="spsb-day">{{ moDayC | money }}</span><span class="spsb-dayl">/day</span><s class="spsb-was">{{ vm.price | money }}</s></div>
+          <div class="spsb-line">Billed {{ moBilledC | money }} today · ships every 30 days · cancel anytime</div>
+          <div class="spsb-body">
+            <div class="spsb-kit-h"><span>{{ section.settings.kit_title }}</span><span class="spsb-val">{{ section.settings.kit_value }} value FREE</span></div>
+            <div class="spsb-kit-row">{% if kitblocks.size > 0 %}{% for kb in kitblocks %}<div class="spsb-item">{% if kb.settings.img %}<div class="cda-ph"><img src="{{ kb.settings.img | image_url: width: 160 }}" alt=""></div>{% else %}<div class="cda-ph"></div>{% endif %}<div class="spsb-it-n">{{ kb.settings.name }}</div><div class="spsb-it-p">{{ kb.settings.value }}</div></div>{% endfor %}{% else %}{%- assign kitlines = section.settings.kit_items | newline_to_br | split: '<br />' -%}{% for kl in kitlines %}{%- assign kp = kl | strip | split: '|' -%}{% if kp[0] != blank %}<div class="spsb-item"><div class="cda-ph"></div><div class="spsb-it-n">{{ kp[0] | strip }}</div><div class="spsb-it-p">{{ kp[1] | strip }}</div></div>{% endif %}{% endfor %}{% endif %}</div>
+            <div class="spsb-kit-h" style="margin-top:12px"><span>{{ section.settings.gift_title }}</span></div>
+            <div class="spsb-kit-row">{% if giftblocks.size > 0 %}{% for gb in giftblocks %}{% unless gb.settings.plan == 'q' %}<div class="spsb-item"><div class="spsb-month">{{ gb.settings.month }}</div>{% if gb.settings.img %}<div class="cda-ph"><img src="{{ gb.settings.img | image_url: width: 160 }}" alt=""></div>{% else %}<div class="cda-ph"></div>{% endif %}<div class="spsb-it-n">{{ gb.settings.name }}</div><div class="spsb-it-p">{{ gb.settings.value }}</div></div>{% endunless %}{% endfor %}{% else %}{%- assign giftlines = section.settings.gifts_30 | newline_to_br | split: '<br />' -%}{% for gl in giftlines %}{%- assign gp = gl | strip | split: '|' -%}{% if gp[0] != blank %}<div class="spsb-item"><div class="spsb-month">{{ gp[0] | strip }}</div><div class="cda-ph"></div><div class="spsb-it-n">{{ gp[1] | strip }}</div><div class="spsb-it-p">{{ gp[2] | strip }}</div></div>{% endif %}{% endfor %}{% endif %}</div>
+          </div>
+        </div>
+      </label>
+      <label class="spsb-once" data-bundle data-items="{{ vm.id }}" data-base="{{ vm.price | divided_by: 100.0 }}" data-name="One-time"><span class="spsb-once-inner"><span class="spdp-radio"></span><span class="spsb-once-copy"><span class="spsb-once-t">One-time purchase</span><span class="spsb-once-meta">{{ vm.price | money }} · + $9 shipping</span></span><span class="spsb-once-badge">No subscription</span></span></label>
+    </div>
+    <button class="cda-btn spsb-cta" id="{{ fid }}-cta">Add to cart — <span data-spdp-cta-price></span></button>
+    <div class="cda-trust" style="text-align:center">🔒 Secure checkout · {{ section.settings.guarantee }}</div>
+    <div class="spdp-pays"><span>VISA</span><span>MC</span><span>AMEX</span><span>PayPal</span><span>G Pay</span></div>
+
+    {%- assign tlist = section.settings.trust_items | newline_to_br | split: '<br />' -%}
+    {% if section.settings.trust_items != blank %}<ul class="spdp-trust">{%- for t in tlist -%}{%- assign tt = t | strip -%}{% if tt != '' %}<li>{{ tt }}</li>{% endif %}{%- endfor -%}</ul>{% endif %}
+    
+
+    </div>
+
+    {%- assign hasfaq = false -%}{%- for b in section.blocks -%}{%- if b.type == 'faq' -%}{%- assign hasfaq = true -%}{%- endif -%}{%- endfor -%}
+    {%- if hasfaq -%}<div class="spdp-faq"><div class="spdp-faq-h">{{ section.settings.faq_title }}</div><div class="cda-acc">{%- for block in section.blocks -%}{%- if block.type == 'faq' -%}<details {{ block.shopify_attributes }}><summary>{{ block.settings.q }}<span class="cda-ic">+</span></summary><div class="cda-ans">{{ block.settings.a }}</div></details>{%- endif -%}{%- endfor -%}</div></div>{%- endif -%}
+
+    {%- assign hasaddon = false -%}{%- for b in section.blocks -%}{%- if b.type == 'addon' -%}{%- assign hasaddon = true -%}{%- endif -%}{%- endfor -%}
+    {%- if hasaddon -%}<div class="spdp-sys"><h3>{{ section.settings.sys_title }}</h3><p class="cda-muted" style="margin:2px 0 0">{{ section.settings.sys_sub }}</p>{%- for block in section.blocks -%}{%- if block.type == 'addon' -%}{%- assign ap = block.settings.prod -%}<div class="spdp-addon" {{ block.shopify_attributes }}>{% if ap != blank and ap.featured_image %}<div class="cda-ph"><img src="{{ ap.featured_image | image_url: width: 160 }}" alt=""></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div><div class="spdp-an">{{ ap.title | default: block.settings.name }}</div><div class="cda-muted" style="font-size:.84rem">{{ block.settings.desc }}</div><div class="spdp-ap">{% if ap != blank %}{{ ap.price | money }}{% endif %}</div>{% if ap != blank %}{% render 'somna-plan-select', variant: ap.selected_or_first_available_variant, id_prefix: block.id %}{% endif %}</div>{% if ap != blank %}<button class="spdp-add" data-spsb-add="{{ ap.selected_or_first_available_variant.id }}">Add +</button>{% endif %}</div>{%- endif -%}{%- endfor -%}</div>{%- endif -%}
+
+    {%- assign hasvid = false -%}{%- for b in section.blocks -%}{%- if b.type == 'vid' -%}{%- assign hasvid = true -%}{%- endif -%}{%- endfor -%}
+    {%- if hasvid -%}<div class="spdp-testi"><div class="spdp-testi-h">{{ section.settings.testi_title }} <span class="cda-muted" style="font-weight:500">· tap to play</span></div><div class="spdp-testi-row">{%- for block in section.blocks -%}{%- if block.type == 'vid' -%}{%- if block.settings.vid != blank -%}<div class="spdp-tcard" {{ block.shopify_attributes }}><video class="spdp-tv" playsinline controls preload="none"{% if block.settings.image != blank %} poster="{{ block.settings.image | image_url: width: 600 }}"{% endif %}>{%- for source in block.settings.vid.sources -%}<source src="{{ source.url }}" type="{{ source.mime_type }}">{%- endfor -%}</video><span class="spdp-tcap">{{ block.settings.caption }}</span></div>{%- elsif block.settings.url != blank -%}<a class="spdp-tcard" href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{% if block.settings.image != blank %}<div class="cda-ph"><img src="{{ block.settings.image | image_url: width: 400 }}" alt=""></div>{% else %}<div class="cda-ph" data-label="Video"></div>{% endif %}<span class="spdp-tplay">▶</span><span class="spdp-tcap">{{ block.settings.caption }}</span></a>{%- else -%}<div class="spdp-tcard" {{ block.shopify_attributes }}>{% if block.settings.image != blank %}<div class="cda-ph"><img src="{{ block.settings.image | image_url: width: 400 }}" alt=""></div>{% else %}<div class="cda-ph" data-label="Video"></div>{% endif %}<span class="spdp-tcap">{{ block.settings.caption }}</span></div>{%- endif -%}{%- endif -%}{%- endfor -%}</div></div>{%- endif -%}
+  </div>
+</div></div>
+  <div class="spdp-sticky" data-spsb-sticky>
+    <button type="button" class="spdp-sticky-sel" data-spsb-stickysel aria-haspopup="true"><span class="spdp-sticky-txt"><span class="spdp-sticky-name" data-spsb-stickyname></span><span class="spdp-sticky-price" data-spsb-stickyprice></span></span><i class="spdp-sticky-car">▾</i></button>
+    <button type="button" class="spdp-sticky-cta" id="{{ fid }}-stickycta">ADD TO CART</button>
+    <div class="spdp-sticky-menu" data-spsb-stickymenu></div>
+  </div>
+</section>
+<style>
+.spdp .cda-wrap{max-width:1120px}
+.spdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;font-family:var(--cda-font)}
+.spdp-media{position:sticky;top:80px}
+.spdp-main{margin-bottom:10px}.spdp-thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.spdp-thumbs button{border:2px solid #111129;border-radius:9px;padding:0;cursor:pointer;background:none;overflow:hidden}.spdp-thumbs button.sel{box-shadow:0 0 0 2px #111129}.spdp-thumbs button:hover{box-shadow:0 0 0 2px rgba(17,17,41,.2)}
+.spdp-rate{display:flex;align-items:center;gap:8px;font-size:.92rem}
+.spdp-kick{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:800;color:var(--cda-accent);margin:14px 0 6px}
+.spdp-h1{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;line-height:1.02;letter-spacing:-.02em;margin:0 0 12px;text-transform:uppercase;color:var(--cda-ink)}
+.spdp-accent{color:var(--cda-accent)}
+.spdp-sub{color:var(--cda-muted);font-size:1.02rem;margin-bottom:16px}
+.spdp-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.spdp-pills span{background:var(--cda-soft);color:var(--cda-accent-d);font-weight:700;font-size:.76rem;padding:5px 11px;border-radius:999px}
+.spdp-card{border:1px solid var(--cda-line);border-radius:16px;padding:20px;margin-bottom:22px}
+.spdp-card-h{font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.8rem;color:var(--cda-accent);margin-bottom:10px}
+.spdp-checks{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.spdp-checks li{padding-left:26px;position:relative;font-weight:500;font-size:.95rem}
+.spdp-checks li:before{content:'✓';position:absolute;left:0;color:#fff;background:var(--cda-accent);width:18px;height:18px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;top:2px}
+.spdp-label{font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--cda-muted);margin:0 0 10px}
+.spsb-swrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.spdp-sets{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--cda-line);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.spdp-set{border:none;border-right:1px solid var(--cda-line);background:#fff;padding:18px 8px;cursor:pointer;text-align:center;font:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.spdp-set:last-child{border-right:none}
+.spdp-set.sel{background:var(--cda-soft)}
+.spdp-set-n{font-weight:800;font-size:1.35rem;color:var(--cda-ink)}.spdp-set-s{font-size:.72rem;color:var(--cda-muted)}
+.spdp-set-p{font-size:.84rem;font-weight:800;color:var(--cda-accent-d);margin-top:3px}.spdp-set-p s{color:var(--cda-muted);font-weight:500;margin-left:3px}
+.spsb-stock{font-size:.85rem;color:var(--cda-ink);margin-bottom:22px}
+.spsb-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e0533a;margin-right:4px}
+.spsb{display:grid;gap:12px}
+.spsb-card{border:1.5px solid var(--cda-line);border-radius:16px;overflow:hidden;cursor:pointer;background:#fff}
+.spsb-card.sel{border-color:var(--cda-accent);box-shadow:0 0 0 3px var(--cda-soft),0 6px 20px rgba(109,73,224,.12)}
+.spsb-ban{background:var(--cda-accent);color:#fff;text-align:center;font-size:.7rem;font-weight:800;letter-spacing:.05em;padding:7px}
+.spsb-pad{padding:14px 16px 16px}
+.spsb-top{display:flex;align-items:center;gap:10px;font-size:1.05rem}
+.spsb-savebadge{margin-left:auto;background:#d8f3e3;color:#1b8a5a;font-size:.66rem;font-weight:800;padding:3px 9px;border-radius:999px}
+.spsb-price{display:flex;align-items:baseline;gap:6px;margin-top:6px}
+.spsb-day{font-size:2.2rem;font-weight:800;color:var(--cda-accent)}
+.spsb-dayl{color:var(--cda-muted);font-weight:600}
+.spsb-was{margin-left:auto;color:var(--cda-muted);text-decoration:line-through}
+.spsb-line{font-size:.86rem;color:var(--cda-muted);display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.spsb-save{margin-left:auto;color:#1b8a5a;font-weight:700}
+.spsb-body{display:none;margin-top:14px;border-top:1px solid var(--cda-line);padding-top:14px}
+.spsb-card.sel .spsb-body{display:block}
+.spsb-kit-h{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--cda-muted);margin-bottom:10px;display:flex;justify-content:space-between}
+.spsb-val{color:var(--cda-accent-d)}
+.spsb-kit-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.spsb-item{flex:0 0 80px;text-align:center}
+.spsb-item .cda-ph{aspect-ratio:1/1;border-radius:10px;overflow:hidden}
+.spsb-item .cda-ph img{width:100%;height:100%;object-fit:cover}
+.spsb-it-p{font-size:.7rem;color:var(--cda-muted);margin-top:4px}
+.spsb-it-n{font-size:.72rem;font-weight:600;line-height:1.2}
+.spsb-month{font-size:.62rem;font-weight:800;color:var(--cda-accent);text-transform:uppercase;margin-bottom:4px}
+.spsb-cta{margin-top:4px;font-size:1.05rem}
+.spdp-pays{display:flex;gap:6px;justify-content:center;margin-top:14px}
+.spdp-pays span{border:1px solid var(--cda-line);border-radius:6px;padding:3px 8px;font-size:.66rem;font-weight:700;color:var(--cda-muted)}
+.spdp-trust{list-style:none;margin:18px 0 0;padding:16px 18px;background:var(--cda-soft);border-radius:14px;display:grid;grid-template-columns:1fr 1fr;gap:9px 16px}
+.spdp-trust li{position:relative;padding-left:24px;font-size:.84rem;font-weight:600;color:var(--cda-ink);line-height:1.3}
+.spdp-trust li:before{content:'✓';position:absolute;left:0;top:1px;color:#fff;background:var(--cda-accent);width:17px;height:17px;border-radius:50%;font-size:.64rem;display:flex;align-items:center;justify-content:center}
+.spdp-proof{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:14px;justify-content:center;font-size:.9rem}
+.spdp-proof .cda-stars{font-size:.95rem}
+.spdp-proof-line{width:100%;text-align:center;color:var(--cda-muted);font-weight:600;font-size:.84rem;margin-top:2px}
+.spdp-faq{margin-top:28px}.spdp-faq-h{font-weight:800;font-size:1.1rem;margin-bottom:6px}
+.spdp-sys{margin-top:28px}.spdp-sys h3{font-size:1.15rem;font-weight:800;margin:0}
+.spdp-addon{display:flex;align-items:center;gap:12px;border:1px solid var(--cda-line);border-radius:14px;padding:12px;margin-top:12px;flex-wrap:wrap}
+.spdp-addon>div:nth-child(2){flex:1;min-width:140px}
+.spdp-addon .cda-ph{width:60px;height:60px;flex:0 0 auto;border-radius:10px}
+.spdp-an{font-weight:700;font-size:.95rem}.spdp-ap{font-weight:700;color:var(--cda-accent-d);margin-top:2px}
+.spdp-add{margin-left:auto;background:#1b8a5a;color:#fff;border:none;border-radius:999px;padding:9px 16px;font-weight:700;cursor:pointer;flex:0 0 auto;font-size:.85rem}
+.spdp-testi{margin-top:28px}.spdp-testi-h{font-weight:800;margin-bottom:12px}
+.spdp-testi-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px}
+.spdp-tcard{position:relative;flex:0 0 130px;border-radius:14px;overflow:hidden;text-decoration:none;color:#fff}
+.spdp-tcard .cda-ph{aspect-ratio:9/16;border-radius:14px;background:var(--cda-ink)}
+.spdp-tcard .cda-ph img{width:100%;height:100%;object-fit:cover}
+.spdp-tv{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:var(--cda-ink);display:block}
+.spdp-tplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.9);color:var(--cda-accent);display:flex;align-items:center;justify-content:center}
+.spdp-tcap{position:absolute;left:8px;right:8px;bottom:8px;font-size:.72rem;font-weight:700;text-shadow:0 1px 5px rgba(0,0,0,.6)}
+#shopify-section-{{ section.id }} h1{color:var(--cda-ink)}
+@media(max-width:860px){.spdp-grid{grid-template-columns:1fr;gap:28px}.spdp-media{position:static}}
+@media(max-width:560px){.spdp-trust{grid-template-columns:1fr}.spsb-cta{width:100%}.spdp-set{padding:14px 6px}.spdp-set-n{font-size:1.2rem}.spsb-day{font-size:1.9rem}}
+
+/* gallery arrows */
+.spdp-main{position:relative}
+.spdp-gnav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:2px solid #111129;background:rgba(255,255,255,.96);color:var(--cda-ink);font-size:1.5rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:4;box-shadow:0 2px 10px rgba(20,18,40,.14)}
+.spdp-gnav:hover{background:#fff;border-color:var(--cda-accent);color:var(--cda-accent-d)}
+.spdp-gnav-l{left:10px}.spdp-gnav-r{right:10px}
+
+/* hero card + free shipping + tighter mobile */
+.spdp-herocard{border:2px solid #111129;border-radius:20px;padding:20px 18px;background:#fff}
+@media(max-width:768px){
+.spdp-herocard{padding:15px 13px;border-radius:18px}
+.spdp-grid{gap:16px}
+.spdp-kick{margin:9px 0 4px}
+.spdp-h1{font-size:1.55rem;margin-bottom:8px}
+.spdp-sub{font-size:.94rem;margin-bottom:12px}
+.spdp-pills{margin-bottom:13px}
+.spdp-card{padding:13px;margin-bottom:14px}
+.spsb-swrow{margin-bottom:13px}
+.spdp-thumbs{gap:6px}
+}
+
+/* hide qty pricing + sticky mobile cart */
+.spdp-set-p{display:none}
+.spdp-sticky{display:none}
+@media(max-width:768px){
+.spdp-sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:999;background:#111129;align-items:center;gap:11px;padding:9px 13px;box-shadow:0 -4px 18px rgba(0,0,0,.22)}
+body{padding-bottom:76px}
+}
+
+/* IM8 sticky dropdown */
+.spdp-sticky-sel{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:7px 12px;cursor:pointer;text-align:left}
+.spdp-sticky-txt{display:flex;flex-direction:column;min-width:0;line-height:1.15}
+.spdp-sticky-name{font-size:.82rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spdp-sticky-price{font-size:.74rem;font-weight:600;color:rgba(255,255,255,.75)}
+.spdp-sticky-car{margin-left:auto;color:rgba(255,255,255,.8);font-size:.85rem;flex:0 0 auto}
+.spdp-sticky-cta{flex:0 0 auto;min-height:52px;background:#98A3DE;color:#fff;border:none;border-radius:14px;padding:0 22px;font-size:1rem;font-weight:800;cursor:pointer;white-space:nowrap}
+.spdp-sticky-menu{display:none;position:absolute;left:13px;right:13px;bottom:calc(100% + 8px);background:#fff;border-radius:14px;box-shadow:0 -8px 30px rgba(0,0,0,.28);overflow:hidden;border:1px solid rgba(17,17,41,.1)}
+.spdp-sticky-menu.open{display:block}
+.spdp-smenu-i{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid rgba(17,17,41,.08);padding:15px 16px;font-size:.95rem;font-weight:700;color:#111129;cursor:pointer;font-family:inherit}
+.spdp-smenu-i:last-child{border-bottom:none}
+.spdp-smenu-i:active{background:var(--cda-soft)}
+
+/* mobile cleanup final */
+.spdp-main{border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;background:#fff;position:relative}
+.spdp-hbadge{position:absolute;top:10px;right:10px;z-index:5;background:#98A3DE;color:#111129;font-size:.64rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;box-shadow:0 2px 8px rgba(20,18,40,.16)}
+.spdp-thumbs button.sel{box-shadow:0 0 0 2px #111129}
+@media(max-width:768px){
+.spdp-main img{max-height:58vh;object-fit:contain}
+.spdp-herocard{padding:13px 12px}
+.spsb{gap:9px}
+.spdp-card{padding:12px;margin-bottom:12px}
+.spdp-pills{margin-bottom:11px}
+.spdp-h1{font-size:1.45rem}
+}
+
+/* subscription box restore */
+.spsb-card{text-align:left}
+.spsb-top strong{font-weight:800;font-size:1.02rem}
+.spsb-kit-row .spsb-item .cda-ph{background:var(--cda-soft)}
+</style>
+<script>
+(function(){
+  var root=document.getElementById('shopify-section-{{ section.id }}');if(!root)return;
+  var opts=root.querySelectorAll('[data-bundle]');
+  var ctaPrice=root.querySelector('[data-spdp-cta-price]'),btn=document.getElementById('{{ fid }}-cta');
+  function money(n){return '$'+(Math.round(n*100)/100).toFixed(2).replace(/\.00$/,'');}
+  function curOpt(){return root.querySelector('[data-bundle].sel')||opts[0];}
+  function render(){opts.forEach(function(o){var pe=o.querySelector('[data-price]');if(!pe)return;var base=parseFloat(o.getAttribute('data-base'))||0;pe.textContent=money(base);});var o=curOpt(),pr=parseFloat(o.getAttribute('data-base'))||0;var isSub=(o.getAttribute('data-items')||'').indexOf('|')>-1;if(ctaPrice)ctaPrice.textContent=money(pr);if(btn)btn.textContent=(isSub?'Subscribe & Save · ':'Add to cart · ')+money(pr);var sp=root.querySelector('[data-spsb-stickyprice]');if(sp)sp.textContent=money(pr);var sn=root.querySelector('[data-spsb-stickyname]');if(sn)sn.textContent=o.getAttribute('data-name')||'';var scl=document.getElementById('{{ fid }}-stickycta');if(scl)scl.textContent=(isSub?'SUBSCRIBE & SAVE':'ADD TO CART');}
+  opts.forEach(function(o){o.addEventListener('click',function(e){e.preventDefault();opts.forEach(function(x){x.classList.remove('sel');});o.classList.add('sel');render();});});
+  root.querySelectorAll('[data-spsb-thumb]').forEach(function(t){t.addEventListener('click',function(){var big=document.querySelector('#{{ fid }}-main img');if(big)big.src=t.getAttribute('data-spsb-thumb');});});
+  var ssel=root.querySelector('[data-spsb-stickysel]'),smenu=root.querySelector('[data-spsb-stickymenu]');
+  if(ssel&&smenu){opts.forEach(function(o,i){if((o.getAttribute('data-items')||'').indexOf('|')===-1){return;}var mi=document.createElement('button');mi.type='button';mi.className='spdp-smenu-i';mi.textContent=(o.getAttribute('data-name')||('Option '+(i+1)));mi.addEventListener('click',function(e){e.preventDefault();opts.forEach(function(x){x.classList.remove('sel');});o.classList.add('sel');render();smenu.classList.remove('open');});smenu.appendChild(mi);});ssel.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();smenu.classList.toggle('open');});document.addEventListener('click',function(e){if(ssel.contains(e.target)||smenu.contains(e.target))return;smenu.classList.remove('open');});}
+  render();
+})();
+</script>
+<script>
+(function(){
+  var root=document.getElementById('shopify-section-{{ section.id }}');if(!root)return;
+  var box=document.getElementById('{{ fid }}-main');var main=box?box.querySelector('img'):null;
+  var th=[].slice.call(root.querySelectorAll('[data-spsb-thumb],[data-spdp-thumb]'));
+  var navs=root.querySelectorAll('.spdp-gnav');
+  if(!main||th.length<2){for(var k=0;k<navs.length;k++)navs[k].style.display='none';return;}
+  var urls=th.map(function(t){return t.getAttribute('data-spsb-thumb')||t.getAttribute('data-spdp-thumb');});
+  var idx=0;
+  function setA(){th.forEach(function(t,j){t.classList.toggle('sel',j===idx);});}
+  function show(i){idx=(i+urls.length)%urls.length;main.src=urls[idx];setA();}
+  th.forEach(function(t,i){t.addEventListener('click',function(){idx=i;setA();});});
+  var pa=root.querySelector('[data-gprev]'),na=root.querySelector('[data-gnext]');
+  if(pa)pa.addEventListener('click',function(e){e.preventDefault();show(idx-1);});
+  if(na)na.addEventListener('click',function(e){e.preventDefault();show(idx+1);});
+  var sx=null;
+  box.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  box.addEventListener('touchend',function(e){if(sx==null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)show(dx<0?idx+1:idx-1);sx=null;},{passive:true});
+  setA();
+})();
+</script>
+<script>
+(function(){
+  var r=document.getElementById('shopify-section-{{ section.id }}');if(!r)return;
+  var fill=r.querySelector('[data-spdp-fsfill]'),txt=r.querySelector('[data-spdp-fstxt]');if(!fill)return;var TH=5000;
+  fetch('/cart.js').then(function(x){return x.json();}).then(function(c){var t=c.total_price||0;var bdg=r.querySelector('[data-spsb-cartcount]');if(bdg)bdg.textContent=c.item_count||0;var pct=Math.min(100,Math.round(t/TH*100));if(t<TH){pct=Math.max(6,pct);}fill.style.width=pct+'%';if(t>=TH){txt.textContent='You have unlocked free shipping';}else{txt.textContent='You are $'+((TH-t)/100).toFixed(2)+' away from free shipping';}}).catch(function(){fill.style.width='0%';});
+})();
+</script>
+{% schema %}
+{
+  "name": "Somna PDP Sub",
+  "settings": [
+    { "type": "text", "id": "rating", "label": "Rating", "default": "4.7" },
+    { "type": "text", "id": "reviews", "label": "Reviews", "default": "3,910" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "MOUTH TAPE · SLEEP" },
+    { "type": "text", "id": "hero_badge", "label": "Hero badge (top-right)", "default": "BESTSELLER" },
+    { "type": "text", "id": "head_a", "label": "Headline (dark)", "default": "Mouth breathing?" },
+    { "type": "text", "id": "head_b", "label": "Headline (accent)", "default": "Tape it shut." },
+    { "type": "richtext", "id": "subhead", "label": "Subhead", "default": "<p>Gentle mouth tape that trains nasal breathing for deeper, quieter sleep.</p>" },
+    { "type": "text", "id": "pills", "label": "Pills (comma)", "default": "Nasal breathing, Less snoring, Gentle hold, Latex-free" },
+    { "type": "text", "id": "why_title", "label": "Why title", "default": "WHY IT WORKS" },
+    { "type": "richtext", "id": "why_body", "label": "Why body", "default": "<p>Keeping the mouth gently closed encourages nasal breathing through the night.</p>" },
+    { "type": "textarea", "id": "checks", "label": "Checklist", "default": "Encourages nasal breathing\nReduces snoring and dry mouth\nGentle, skin-safe adhesive\nLatex-free and comfortable" },
+    { "type": "text", "id": "swatch_label", "label": "Swatch label", "default": "Choose Your Color" },
+    { "type": "text", "id": "set_label", "label": "Quantity label", "default": "Select Quantity" },
+    { "type": "text", "id": "plan_label", "label": "Plan section label", "default": "Choose your plan" },
+    { "type": "text", "id": "once_ship", "label": "One-time shipping note", "default": "+ $9 shipping" },
+    { "type": "text", "id": "guarantee", "label": "Guarantee", "default": "100-night money-back guarantee" },
+    { "type": "header", "content": "Trust & social proof (use real data)" },
+    { "type": "textarea", "id": "trust_items", "label": "Trust checklist (one per line)", "default": "30-day money-back guarantee\nFree shipping on orders over $50\nHypoallergenic & latex-free\nShips in 1-2 business days" },
+    { "type": "text", "id": "proof_line", "label": "Social proof line (use a real, verifiable claim)", "default": "Most popular with mouth breathers" },
+    { "type": "header", "content": "Subscribe perks" },
+    { "type": "textarea", "id": "perks", "label": "Perks (one per line)", "default": "FREE Welcome Kit + free travel packs + free future gifts\n$120+ in member value — yours free with a subscription\nLowest cost per night + first access to new drops\nComplete flexibility — pause, skip, swap or cancel anytime\n100-night money-back guarantee" },
+    { "type": "text", "id": "kit_title", "label": "Welcome kit title", "default": "Welcome kit — arrives with first order" },
+    { "type": "text", "id": "kit_value", "label": "Welcome kit value", "default": "$120+" },
+    { "type": "textarea", "id": "kit_items", "label": "Welcome kit items (fallback) (Name | $value)", "default": "Somna Sleep Mask | $25\nTravel Carry Case | $20\nSilk Eye Pillow | $25\n5 Nasal Strip Packs | $15\n5 Mouth Tape Packs | $15" },
+    { "type": "text", "id": "gift_title", "label": "Future gifts title", "default": "Future monthly gifts" },
+    { "type": "textarea", "id": "gifts_90", "label": "90-Day gifts fallback (Month | Name | $value)", "default": "Month 3 | Signature Sleep Bottle | $25\nMonth 6 | Limited Sleep Cap | $20\nMonth 6 | Travel Pouch | $25\nMonth 6 | 14ct Travel Sachets | $45" },
+    { "type": "textarea", "id": "gifts_30", "label": "30-Day gifts fallback (Month | Name | $value)", "default": "Month 2 | Travel Charging Case | $20\nMonth 3 | Signature Sleep Bottle | $25\nMonth 4 | Limited Sleep Cap | $20\nMonth 5 | Travel Pouch | $25\nMonth 6 | 14ct Travel Sachets | $45" },
+    { "type": "text", "id": "note", "label": "Note", "default": "Most people feel calmer, quieter nights within a couple of weeks — the routine builds from there." },
+    { "type": "header", "content": "Complete your system" },
+    { "type": "text", "id": "sys_title", "label": "Title", "default": "Complete your sleep system" },
+    { "type": "text", "id": "sys_sub", "label": "Subtitle", "default": "Support your nights with these curated additions." },
+    { "type": "text", "id": "faq_title", "label": "FAQ title", "default": "Frequently asked questions" },
+    { "type": "text", "id": "testi_title", "label": "Videos title", "default": "What our customers are saying" }
+  ],
+  "blocks": [
+    { "type": "swatch", "name": "Swatch", "settings": [ { "type": "image_picker", "id": "image", "label": "Swatch square image" }, { "type": "image_picker", "id": "hero", "label": "Hero image (shown when this swatch is selected)" }, { "type": "text", "id": "name", "label": "Name", "default": "Black" } ] },
+    { "type": "kit", "name": "Welcome kit item", "settings": [ { "type": "image_picker", "id": "img", "label": "Image" }, { "type": "text", "id": "name", "label": "Name", "default": "Sleep Mask" }, { "type": "text", "id": "value", "label": "Value", "default": "$25" } ] },
+    { "type": "gift", "name": "Future gift", "settings": [ { "type": "image_picker", "id": "img", "label": "Image" }, { "type": "text", "id": "month", "label": "Month", "default": "Month 3" }, { "type": "text", "id": "name", "label": "Name", "default": "Gift" }, { "type": "text", "id": "value", "label": "Value", "default": "$25" }, { "type": "select", "id": "plan", "label": "Show on plan", "options": [ { "value": "both", "label": "Both plans" }, { "value": "q", "label": "Quarterly only" }, { "value": "m", "label": "Monthly only" } ], "default": "both" } ] },
+    { "type": "faq", "name": "FAQ", "settings": [ { "type": "text", "id": "q", "label": "Q", "default": "How do I use it?" }, { "type": "richtext", "id": "a", "label": "A", "default": "<p>Answer.</p>" } ] },
+    { "type": "addon", "name": "Cross-sell", "settings": [ { "type": "product", "id": "prod", "label": "Product" }, { "type": "text", "id": "desc", "label": "Description", "default": "A great add-on." }, { "type": "text", "id": "name", "label": "Fallback name", "default": "Add-on" } ] },
+    { "type": "vid", "name": "Customer video", "settings": [ { "type": "video", "id": "vid", "label": "Upload video (UGC)" }, { "type": "image_picker", "id": "image", "label": "Poster image (optional)" }, { "type": "text", "id": "caption", "label": "Caption", "default": "best sleep in years" }, { "type": "url", "id": "url", "label": "Video link (only if not uploading)" } ] }
+  ],
+  "max_blocks": 40,
+  "presets": [{ "name": "Somna PDP Sub" }]
+}
+{% endschema %}

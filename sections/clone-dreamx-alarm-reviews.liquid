@@ -1,0 +1,111 @@
+{{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+{%- assign rid = 'rev2-' | append: section.id -%}
+<section class="cda-section cda-rev2">
+  <div class="cda-wrap">
+    <div class="cda-rev2-head">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="cda-rev2-summary">
+        <span class="cda-rev2-big">{{ section.settings.summary_rating }}</span>
+        <div><span class="cda-stars">★★★★★</span><div class="cda-rev2-sub">Based on {{ section.settings.summary_count }} reviews</div></div>
+      </div>
+    </div>
+    {%- assign rl = section.settings.reviews_list | strip | newline_to_br | split: '<br />' -%}
+    <div class="cda-rev2-list" id="{{ rid }}-list">
+      {%- for line in rl -%}{%- assign lt = line | strip -%}{%- if lt != '' -%}
+        {%- assign p = lt | split: '|' -%}
+        {%- assign nm = p[0] | strip -%}{%- assign rr = p[1] | strip | times: 1 -%}
+        <article class="cda-rev2-item">
+          <div class="cda-rev2-top">
+            <div class="cda-rev2-av">{{ nm | slice: 0 | upcase }}</div>
+            <div class="cda-rev2-who"><div class="cda-rev2-nm">{{ nm }}<span class="cda-rev2-vf">✓ Verified buyer</span></div><div class="cda-rev2-date">{{ p[4] | strip }}</div></div>
+            <div class="cda-rev2-rs">{% for i in (1..5) %}{% if i <= rr %}★{% else %}<span class="cda-rev2-empty">★</span>{% endif %}{% endfor %}</div>
+          </div>
+          {%- if p[2] != blank -%}<div class="cda-rev2-title">{{ p[2] | strip }}</div>{%- endif -%}
+          <p class="cda-rev2-text">{{ p[3] | strip }}</p>
+        </article>
+      {%- endif -%}{%- endfor -%}
+    </div>
+    <div class="cda-rev2-pager" id="{{ rid }}-pager"></div>
+  </div>
+</section>
+<style>
+.cda-rev2{font-family:var(--cda-font)}
+.cda-rev2-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:8px;border-bottom:1px solid var(--cda-line);padding-bottom:20px}
+.cda-rev2-head h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;margin:0;letter-spacing:-.02em;color:var(--cda-ink)}
+.cda-rev2-summary{display:flex;align-items:center;gap:12px}
+.cda-rev2-big{font-size:2.4rem;font-weight:800;color:var(--cda-ink);line-height:1}
+.cda-rev2-summary .cda-stars{font-size:1.05rem;color:#f5a623;letter-spacing:1px}
+.cda-rev2-sub{font-size:.84rem;color:var(--cda-muted);margin-top:2px}
+.cda-rev2-list{display:block}
+.cda-rev2-item{padding:22px 0;border-bottom:1px solid var(--cda-line)}
+.cda-rev2-top{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+.cda-rev2-av{width:42px;height:42px;border-radius:50%;background:var(--cda-soft);color:var(--cda-accent-d);font-weight:800;display:flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:1.05rem}
+.cda-rev2-who{min-width:0}
+.cda-rev2-nm{font-weight:700;font-size:.95rem;color:var(--cda-ink)}
+.cda-rev2-vf{color:#1b8a5a;font-weight:600;font-size:.74rem;margin-left:6px;white-space:nowrap}
+.cda-rev2-date{font-size:.8rem;color:var(--cda-muted);margin-top:1px}
+.cda-rev2-rs{margin-left:auto;color:#f5a623;letter-spacing:1px;font-size:1.02rem;white-space:nowrap;flex:0 0 auto}
+.cda-rev2-rs .cda-rev2-empty{color:#dcdce4}
+.cda-rev2-title{font-weight:700;font-size:1rem;color:var(--cda-ink);margin:0 0 5px}
+.cda-rev2-text{font-size:.95rem;line-height:1.55;color:var(--cda-muted);margin:0}
+.cda-rev2-pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin-top:26px}
+.cda-rev2-pg{min-width:38px;height:38px;border:1px solid var(--cda-line);background:#fff;border-radius:10px;font-weight:700;font-size:.9rem;color:var(--cda-ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0 10px;font-family:inherit}
+.cda-rev2-pg:hover{border-color:var(--cda-accent);color:var(--cda-accent-d)}
+.cda-rev2-pg.on{background:var(--cda-accent);color:#fff;border-color:var(--cda-accent)}
+.cda-rev2-pg.dots{border:none;background:none;cursor:default;min-width:18px;padding:0}
+.cda-rev2-pg[disabled]{opacity:.4;cursor:default}
+@media(max-width:560px){.cda-rev2-head{flex-direction:column;align-items:flex-start;gap:10px}.cda-rev2-text{font-size:.92rem}}
+#shopify-section-{{ section.id }} h2{color:var(--cda-ink)}
+</style>
+<script>
+(function(){
+  var root=document.getElementById('shopify-section-{{ section.id }}');if(!root)return;
+  var list=document.getElementById('{{ rid }}-list'),pager=document.getElementById('{{ rid }}-pager');
+  if(!list||!pager)return;
+  var items=[].slice.call(list.querySelectorAll('.cda-rev2-item'));
+  var per=5,total=items.length,pages=Math.ceil(total/per),cur=1;
+  if(pages<=1){pager.style.display='none';return;}
+  function render(){
+    items.forEach(function(it,i){var pg=Math.floor(i/per)+1;it.style.display=(pg===cur)?'':'none';});
+    pager.innerHTML='';
+    function btn(label,page,opts){opts=opts||{};var b=document.createElement('button');b.className='cda-rev2-pg'+(opts.on?' on':'')+(opts.nav?' nav':'');b.textContent=label;if(opts.dis){b.disabled=true;b.className+='';}else{b.addEventListener('click',function(){cur=page;render();list.scrollIntoView({behavior:'smooth',block:'start'});});}pager.appendChild(b);}
+    function dots(){var s=document.createElement('span');s.className='cda-rev2-pg dots';s.textContent='…';pager.appendChild(s);}
+    btn('‹',cur-1,{nav:true,dis:cur===1});
+    var win=[];win.push(1);
+    for(var i=cur-1;i<=cur+1;i++){if(i>1&&i<pages)win.push(i);}
+    if(pages>1)win.push(pages);
+    win=win.filter(function(v,i,a){return a.indexOf(v)===i;}).sort(function(a,b){return a-b;});
+    var prev=0;
+    win.forEach(function(p){if(p-prev>1)dots();btn(String(p),p,{on:p===cur});prev=p;});
+    btn('›',cur+1,{nav:true,dis:cur===pages});
+  }
+  render();
+})();
+</script>
+{% schema %}
+{
+  "name": "Clone — Reviews",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "What our customers are saying" },
+    { "type": "text", "id": "summary_rating", "label": "Summary rating", "default": "4.8" },
+    { "type": "text", "id": "summary_count", "label": "Summary review count", "default": "3,910" },
+    { "type": "paragraph", "content": "One review per line: Name | Rating(1-5) | Title | Review text | Date" },
+    { "type": "textarea", "id": "reviews_list", "label": "Reviews", "default": "Sarah M.|5|Finally sleeping through the night|I was skeptical but within a week my sleep completely changed. Wouldn't go a night without it now.|2 weeks ago\nJames T.|5|Wish I found this sooner|Genuinely the best sleep purchase I've made. Simple, comfortable, and it just works.|3 weeks ago\nPriya K.|4|Great, takes a couple nights|Took me two or three nights to get used to it, but now it's part of my routine. Noticeably better mornings.|1 month ago\nMarcus D.|5|My partner is thrilled|We both sleep so much better now. No more disturbing each other through the night.|1 month ago\nEmily R.|5|Worth every penny|Premium quality and it actually delivers. I've already recommended it to three friends.|1 month ago\nDavid L.|5|Travel essential now|Goes everywhere with me. Hotels, flights, you name it — my sleep stays consistent.|2 months ago\nAisha N.|4|Really solid|Does exactly what it promises. Knocked off a star only because shipping took a few days.|2 months ago\nTom B.|5|Life changer for a light sleeper|I wake up at the slightest thing normally. This has been the first thing to actually help.|2 months ago\nHannah L.|5|So comfortable|Forgot I was even wearing/using it after the first night. Brilliant.|2 months ago\nCarlos E.|5|Recovery game changer|As someone who trains hard, better sleep has made a real difference to how I feel.|3 months ago\nMegan W.|4|Good value|Happy with it overall. Would love a few more options but it does the job well.|3 months ago\nRyan P.|5|Quietest nights in years|My household finally sleeps in peace. Cannot recommend enough.|3 months ago\nNina S.|5|Exactly as described|No gimmicks, just works. Fast shipping and lovely packaging too.|4 months ago\nOliver H.|5|Bought a second one|Liked the first so much I got one for my partner. We're both converts.|4 months ago\nGrace F.|4|Comfortable and effective|Settled into my routine quickly. Small learning curve but worth it.|5 months ago\nDaniel K.|5|Best sleep upgrade|Tried a lot of things over the years. This is the one that stuck.|6 months ago" }
+  ],
+  "blocks": [
+    { "type": "feat", "name": "Featured review (legacy)", "settings": [
+      { "type": "textarea", "id": "quote", "label": "Quote" },
+      { "type": "text", "id": "name", "label": "Name" },
+      { "type": "text", "id": "role", "label": "Role" },
+      { "type": "image_picker", "id": "image", "label": "Avatar (1:1)" }
+    ] },
+    { "type": "wall", "name": "Wall review (legacy)", "settings": [
+      { "type": "textarea", "id": "text", "label": "Text" },
+      { "type": "text", "id": "name", "label": "Name" },
+      { "type": "image_picker", "id": "image", "label": "Avatar (1:1)" }
+    ] }
+  ],
+  "max_blocks": 20,
+  "presets": [{ "name": "Clone — Reviews" }]
+}
+{% endschema %}
