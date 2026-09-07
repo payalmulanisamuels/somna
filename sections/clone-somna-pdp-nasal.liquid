@@ -99,7 +99,10 @@
         {%- endif -%}
       </div>
     </div>
-    <button class="spdp-bigcta spdp-cta" id="{{ fid }}-cta" data-jb-atc><span>{{ section.settings.cta_main | default: 'Try Somna Today' }} →</span><span class="spdp-ctapr"><s data-jb-ctawas></s><b data-jb-ctanow></b></span></button>
+    <button class="spdp-bigcta spdp-cta" 
+        data-ph-capture-attribute-product-name="{{product.title}}"
+  data-ph-capture-attribute-product-price="{{product.price | divided_by: 100 }}"
+      id="{{ fid }}-cta" data-jb-atc><span>{{ section.settings.cta_main | default: 'Try Somna Today' }} →</span><span class="spdp-ctapr"><s data-jb-ctawas></s><b data-jb-ctanow></b></span></button>
     <a href="#" class="spdp-once" data-jb-toggle data-once-label="{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' | escape }}" data-sub-label="{{ section.settings.toggle_sub | default: 'Switch to Subscription — 50% OFF first order' | escape }}">{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' }}</a>
     <div class="spdp-oncemeta">{{ section.settings.once_meta | default: 'Shipping: $6.99 | No Free Gift' }}</div>
     <div class="spdp-subvalue">{{ section.settings.sub_value | default: 'Subscribers save more, receive exclusive first-order benefits, and can cancel anytime.' }}</div>
