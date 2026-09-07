@@ -56,7 +56,11 @@
       </label>
       <label class="spsb-once" data-bundle data-items="{{ vm.id }}" data-base="{{ vm.price | divided_by: 100.0 }}" data-name="One-time"><span class="spsb-once-inner"><span class="spdp-radio"></span><span class="spsb-once-copy"><span class="spsb-once-t">One-time purchase</span><span class="spsb-once-meta">{{ vm.price | money }} · + $9 shipping</span></span><span class="spsb-once-badge">No subscription</span></span></label>
     </div>
-    <button class="cda-btn spsb-cta" id="{{ fid }}-cta">Add to cart — <span data-spdp-cta-price></span></button>
+    <button class="cda-btn spsb-cta"
+        data-ph-capture-attribute-product-name="{{product.title}}"
+  data-ph-capture-attribute-product-price="{{product.price | divided_by: 100 }}"
+
+      id="{{ fid }}-cta">Add to cart — <span data-spdp-cta-price></span></button>
     <div class="cda-trust" style="text-align:center">🔒 Secure checkout · {{ section.settings.guarantee }}</div>
     <div class="spdp-pays"><span>VISA</span><span>MC</span><span>AMEX</span><span>PayPal</span><span>G Pay</span></div>
 
