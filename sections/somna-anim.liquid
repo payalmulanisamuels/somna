@@ -30,25 +30,7 @@ a[href$="#cda-buy"].somna-atc-loading{opacity:.55;pointer-events:none;cursor:wai
 /* Reorder testimonial / IG cards (visual only, per request) */
 .sjp-ig-grid>*:nth-child(1){order:3}.sjp-ig-grid>*:nth-child(2){order:1}.sjp-ig-grid>*:nth-child(3){order:2}
 .sjp-sp2-track>*:nth-child(1){order:1}.sjp-sp2-track>*:nth-child(2){order:3}.sjp-sp2-track>*:nth-child(3){order:2}
-/* Lock nav off this PDP while the rest of the site is being built. Header (burger, logo, menu links, search) + footer non-clickable; CART stays active. */
-#header-group a,#header-group button,#header-group summary,#header-group [role="button"],#header-group label[for]{pointer-events:none!important;cursor:default!important}
-#header-group [href*="/cart"],#header-group [data-somna-cart-toggle],#header-group [aria-label*="cart" i],#header-group .cdx-count,#header-group a:has(.cdx-count),#header-group button:has(.cdx-count),#header-group [class*="cart" i],#header-group cart-icon{pointer-events:auto!important;cursor:pointer!important}
-footer a,footer button,footer summary,footer [role="button"]{pointer-events:none!important;cursor:default!important}
 </style>
-<script>
-(function(){
-if(window.__somnaNavLock)return;window.__somnaNavLock=1;
-/* Belt-and-suspenders: block clicks that would navigate off this PDP (header nav + footer),
-   while always allowing the cart. Keeps everyone on the nasal PDP while the rest of the site is built. */
-function isCart(t){try{return !!(t.closest&&t.closest('[href*="/cart"],[data-somna-cart-toggle],[aria-label*="cart" i],.cdx-count,[class*="cart" i],cart-icon'));}catch(e){return /cart/i.test((t.className||'')+'');}}
-document.addEventListener('click',function(e){
-  var t=e.target;if(!t||!t.closest)return;
-  if(isCart(t))return;
-  var lk=t.closest('#header-group a,#header-group button,#header-group summary,#header-group [role="button"],footer a,footer button,footer summary,footer [role="button"]');
-  if(lk){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();}
-},true);
-})();
-</script>
 <script>
 (function(){
 if(window.__somnaAnim)return;window.__somnaAnim=2;
