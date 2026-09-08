@@ -76,11 +76,33 @@
           {%- else -%}
           <div class="sdw-scroll">
 
-            <div class="sdw-ship" data-cart-drawer-shipping data-threshold="{{ free_shipping_threshold_cents }}">
-              <div class="sdw-ship-pill"><span data-cart-drawer-shipping-text>You unlocked free shipping!</span></div>
+            {%- assign threshold_cents = free_shipping_threshold_cents | default: 5000 -%}
+            {%- assign cart_total = cart.total_price -%}
+            {%- assign progress_pct = cart_total | times: 100 | divided_by: threshold_cents -%}
+            {%- if progress_pct > 100 -%}{%- assign progress_pct = 100 -%}{%- endif -%}
+
+
+
+            <div class="sdw-ship" data-cart-drawer-shipping data-threshold="{{ threshold_cents }}">
+              <div class="sdw-ship-pill">
+                <span data-cart-drawer-shipping-text>
+                  {%- if cart_total >= threshold_cents -%}
+                    You unlocked free shipping!
+                  {%- else -%}
+                    {%- assign remaining = threshold_cents | minus: cart_total | money -%}
+                    Add {{ remaining }} more for free shipping!
+                  {%- endif -%}
+                </span>
+              </div>
               <div class="sdw-ship-track">
-                <i class="sdw-ship-fill" data-cart-drawer-shipping-fill style="width:100%"></i>
-                <span class="sdw-ship-truck"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M3 5h11v11H3zM14 8h4l3 3v5h-7zM7 19a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"/></svg></span>
+                <i class="sdw-ship-fill" data-cart-drawer-shipping-fill style="width: {{ progress_pct }}%;">
+                <span class="sdw-ship-truck">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                    <path d="M3 5h11v11H3zM14 8h4l3 3v5h-7zM7 19a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"/>
+                  </svg>
+                </span>
+                </i>
+
               </div>
             </div>
 
