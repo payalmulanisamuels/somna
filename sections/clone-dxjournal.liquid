@@ -14,7 +14,7 @@
           {% if section.settings.hero_cta2 != blank %}<a class="dxj-sbtn" href="{{ section.settings.hero_cta2_link | default: '/collections/all' }}">{{ section.settings.hero_cta2 }}</a>{% endif %}
         </div>
       </div>
-      {% if section.settings.img_feat != blank %}<div class="cda-ph dxj-hero-img"><img src="{{ section.settings.img_feat | image_url: width: 1200 }}" alt="" loading="lazy"></div>{% else %}<div class="cda-ph dxj-hero-img" data-label="Featured image"></div>{% endif %}
+      {% if section.settings.img_feat != blank %}<div class="cda-ph dxj-hero-img"><img src="{{ section.settings.img_feat | image_url: width: 1200 }}" alt="{{ section.settings.img_feat.alt }}" loading="lazy"></div>{% else %}<div class="cda-ph dxj-hero-img" data-label="Featured image"></div>{% endif %}
     </div>
   </section>
 
@@ -38,7 +38,7 @@
           {%- assign im = 'img' | append: i -%}
           <article class="dxj-card">
             <a class="dxj-card-link" href="{{ section.settings[rd] | default: '/pages/the-science' }}">
-              {% if section.settings[im] != blank %}<div class="cda-ph"><img src="{{ section.settings[im] | image_url: width: 800 }}" alt="" width="800" height="800" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Article {{ i }}"></div>{% endif %}
+              {% if section.settings[im] != blank %}<div class="cda-ph"><img src="{{ section.settings[im] | image_url: width: 800 }}" alt="{{ section.settings[im].alt }}" width="800" height="800" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Article {{ i }}"></div>{% endif %}
             </a>
             <div class="dxj-card-body">
               {% if section.settings[bd] != blank %}<span class="dxj-badge dxj-b-{{ section.settings[cl] }}">{{ section.settings[bd] }}</span>{% endif %}
