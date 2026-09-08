@@ -1,6 +1,6 @@
 /**
  * Somna cart drawer engine + site-wide helpers:
- * - Free-shipping bar always unlocked; topbar marquee dots centered.
+ * - Free-shipping bar dynamically calculated against threshold; updates width of [data-cart-drawer-shipping-fill].
  * - Shipping Protection auto-added with real items; removable per session; auto-removed when alone.
  * - 2x FREE E-Books gift auto-added while the 3+1 bundle (4-bag variant) is in the cart.
  * - Hides the gift + protection products from catalog/search grids (they stay purchasable for the auto-add).
@@ -18,6 +18,8 @@
     5969674471: 'every month', 5969707239: 'every 2 months', 5969740007: 'every 4 months',
     5971902695: 'every month', 5971935463: 'every 2 months', 5971968231: 'every month'
   };
+
+  var lastCart = null;
 
   try {
     var st = document.createElement('style');
@@ -71,13 +73,37 @@
     return Promise.resolve();
   }
 
-  function setBarFree() {
+  function formatMoney(cents) {
+    return '$' + (cents / 100).toFixed(2);
+  }
+
+  function updateShippingBar(cart) {
     var bar = document.querySelector('[data-cart-drawer-shipping]');
     if (!bar) return;
     var fill = bar.querySelector('[data-cart-drawer-shipping-fill]');
     var text = bar.querySelector('[data-cart-drawer-shipping-text]');
-    if (fill && fill.style.width !== '100%') fill.style.width = '100%';
-    if (text && !/unlocked/i.test(text.textContent)) { text.textContent = 'You unlocked free shipping!'; }
+    var threshold = parseInt(bar.getAttribute('data-threshold'), 10) || 5000;
+
+    var currentCart = cart || lastCart;
+    if (!currentCart || typeof currentCart.total_price !== 'number') return;
+
+    var total = currentCart.total_price;
+    var pct = Math.min(100, Math.max(0, Math.round((total / threshold) * 100)));
+
+    if (fill) {
+      fill.style.width = pct + '%';
+    }
+
+    if (text) {
+      if (total >= threshold) {
+        if (!/unlocked/i.test(text.textContent)) {
+          text.textContent = 'You unlocked free shipping!';
+        }
+      } else {
+        var remaining = threshold - total;
+        text.textContent = 'Add ' + formatMoney(remaining) + ' more for free shipping!';
+      }
+    }
   }
 
   function monthLabel(s) {
@@ -106,6 +132,9 @@
     fetch('/cart.js', { credentials: 'same-origin' })
       .then(function (r) { return r.json(); })
       .then(function (cart) {
+        lastCart = cart;
+        updateShippingBar(cart);
+
         var items = cart.items || [];
         var prot = null, gift = null, hasTrigger = false, realCount = 0;
         items.forEach(function (i) {
@@ -152,8 +181,8 @@
     if (rem) { e.preventDefault(); changeLine(rem.getAttribute('data-key'), 0); return; }
   }, true);
 
-  function tick() { setBarFree(); relabelFreq(); fixCatalogCount(); unfreeze(); }
-  function onCartEvent() { setBarFree(); relabelFreq(); ensureExtras(); setTimeout(function () { setBarFree(); relabelFreq(); }, 450); }
+  function tick() { updateShippingBar(); relabelFreq(); fixCatalogCount(); unfreeze(); }
+  function onCartEvent() { updateShippingBar(); relabelFreq(); ensureExtras(); setTimeout(function () { updateShippingBar(); relabelFreq(); }, 450); }
   document.addEventListener('cart:refresh', onCartEvent);
   document.addEventListener('shopify:cart:lines-update', onCartEvent);
   window.addEventListener('pageshow', function (ev) { if (ev.persisted) { setTimeout(unfreeze, 60); setTimeout(unfreeze, 400); } });
