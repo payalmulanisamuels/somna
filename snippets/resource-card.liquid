@@ -102,6 +102,7 @@
             widths: widths,
             sizes: image_sizes,
             ref: ref_image_to_transition,
+            alt: resource.title,
             data-media-id: featured_image.id,
             style: primary_focal_point_style
         }}
@@ -121,6 +122,7 @@
               widths: widths,
               sizes: image_sizes,
               ref: ref_image_to_transition,
+              alt: resource.media[1].alt,
               data-media-id: resource.media[1].id,
               style: secondary_focal_point_style
           }}
@@ -141,7 +143,7 @@
             {{
               product.featured_image
               | image_url: width: image_width
-              | image_tag: loading: 'lazy', class: 'resource-card__collection-image', sizes: image_sizes, widths: widths
+              | image_tag: loading: 'lazy',alt:product.title, class: 'resource-card__collection-image', sizes: image_sizes, widths: widths
             }}
           {% endfor %}
         </div>

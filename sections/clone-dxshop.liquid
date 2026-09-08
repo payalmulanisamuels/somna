@@ -69,7 +69,7 @@
       <div class="dxsh-bcard">
         <div class="dxsh-bimg">
           <span class="dxsh-badge dxsh-badge-b">{{ section.settings.bundle_badge }}</span>
-          {% if section.settings.bundle_img != blank %}<img src="{{ section.settings.bundle_img | image_url: width: 900 }}" alt="" loading="lazy">{% elsif section.settings.img_save1 != blank %}<img src="{{ section.settings.img_save1 | image_url: width: 900 }}" alt="" loading="lazy">{% elsif pN.featured_image %}<img src="{{ pN.featured_image | image_url: width: 900 }}" alt="" loading="lazy">{% endif %}
+          {% if section.settings.bundle_img != blank %}<img src="{{ section.settings.bundle_img | image_url: width: 900 }}" alt="{{section.settings.bundle_img.alt}}" loading="lazy">{% elsif section.settings.img_save1 != blank %}<img src="{{ section.settings.img_save1 | image_url: width: 900 }}" alt="{{ section.settings.img_save1.alt }}" loading="lazy">{% elsif pN.featured_image %}<img src="{{ pN.featured_image | image_url: width: 900 }}" alt="{{pN.title}}" loading="lazy">{% endif %}
         </div>
         <div class="dxsh-binfo">
           <h2 class="dxsh-h2">{{ section.settings.bundle_head }}</h2>

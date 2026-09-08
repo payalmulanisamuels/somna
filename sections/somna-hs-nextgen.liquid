@@ -13,7 +13,7 @@
         <div class="shsng-feats somna-sr-stag">
           {%- for block in section.blocks -%}
           <div class="shsng-feat" {{ block.shopify_attributes }}>
-            {%- if block.settings.icon != blank -%}<img class="shsng-ic" src="{{ block.settings.icon | image_url: width: 100 }}" loading="lazy" alt="">
+            {%- if block.settings.icon != blank -%}<img class="shsng-ic" src="{{ block.settings.icon | image_url: width: 100 }}" loading="lazy" alt="{{ block.settings.icon.alt }}">
             {%- else -%}
               {%- assign ic = forloop.index0 | modulo: 3 -%}
               {%- case ic -%}

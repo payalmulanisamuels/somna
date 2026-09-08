@@ -24,14 +24,14 @@
         {% if section.settings.b_cred != blank %}<div class="dxs-credline">{{ section.settings.b_cred }}</div>{% endif %}
         <a class="cda-btn dxs-btn" href="{{ section.settings.b_cta_link | default: '/collections/all' }}">{{ section.settings.b_cta }}</a>
       </div>
-      {% if section.settings.img1 != blank %}<div class="cda-ph"><img src="{{ section.settings.img1 | image_url: width: 900 }}" alt="" width="900" height="900" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Lifestyle photo (1:1)"></div>{% endif %}
+      {% if section.settings.img1 != blank %}<div class="cda-ph"><img src="{{ section.settings.img1 | image_url: width: 900 }}" alt="{{ section.settings.img1.alt }}" width="900" height="900" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Lifestyle photo (1:1)"></div>{% endif %}
     </div>
   </section>
 
   {%- comment -%} ===== RESTLESS NIGHTS ===== {%- endcomment -%}
   <section class="dxs-wrap dxs-sec">
     <div class="dxs-split">
-      {% if section.settings.img2 != blank %}<div class="cda-ph"><img src="{{ section.settings.img2 | image_url: width: 900 }}" alt="" width="900" height="900" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Lifestyle photo (1:1)"></div>{% endif %}
+      {% if section.settings.img2 != blank %}<div class="cda-ph"><img src="{{ section.settings.img2 | image_url: width: 900 }}" alt="{{ section.settings.img2.alt }}" width="900" height="900" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Lifestyle photo (1:1)"></div>{% endif %}
       <div>
         <span class="dxs-kick">{{ section.settings.r_sub }}</span>
         <h2 class="dxs-h2">{{ section.settings.r_h }}</h2>
@@ -58,7 +58,7 @@
         {% if section.settings.f_quote != blank %}<p class="dxs-fquote">{{ section.settings.f_quote }}{% if section.settings.f_name != blank %}<span class="dxs-fquote-a"> — {{ section.settings.f_name }}</span>{% endif %}</p>{% endif %}
         {% if section.settings.f_cta != blank %}<a class="cda-btn dxs-btn" href="{{ section.settings.f_cta_link | default: '/pages/the-science' }}">{{ section.settings.f_cta }}</a>{% endif %}
       </div>
-      {% if section.settings.img3 != blank %}<div class="cda-ph"><img src="{{ section.settings.img3 | image_url: width: 900 }}" alt="" width="900" height="900" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Founder / studio photo (1:1)"></div>{% endif %}
+      {% if section.settings.img3 != blank %}<div class="cda-ph"><img src="{{ section.settings.img3 | image_url: width: 900 }}" alt="{{ section.settings.img3.alt }}" width="900" height="900" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Founder / studio photo (1:1)"></div>{% endif %}
     </div>
   </section>
 

@@ -1,7 +1,7 @@
 {{ 'somna-jp-styles.css' | asset_url | stylesheet_tag }}
 <section class="sjp" style="background:{{ section.settings.bg | default: '#ffffff' }};padding:clamp(30px,5vw,64px) 20px">
   <div class="sjp-bg-card" style="background:linear-gradient(170deg,{{ section.settings.card | default: '#8B6FF0' }},{{ section.settings.card2 | default: '#6D49E0' }})">
-    {%- if section.settings.image != blank -%}<img class="sjp-bg-img" src="{{ section.settings.image | image_url: width: 1600 }}" loading="lazy" alt="">{%- endif -%}
+    {%- if section.settings.image != blank -%}<img class="sjp-bg-img" src="{{ section.settings.image | image_url: width: 1600 }}" loading="lazy" alt="{{ section.settings.image.alt }}">{%- endif -%}
     <div class="sjp-bg-c somna-sr">
       {%- unless section.settings.hide_overlay -%}
       <svg class="sjp-burst" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0l6.7 12.9L68 5.4l1.6 14.4L84 16.6l-3.9 14 14.5 1.8-9 11.4 12.9 6.9-12.9 6.9 9 11.4-14.5 1.8 3.9 14-14.4-3.2L69.6 96l-11.4-9L50 100l-8.2-13-11.4 9-1.6-14.4-14.4 3.2 3.9-14-14.5-1.8 9-11.4L0 50.7l12.9-6.9-9-11.4 14.5-1.8-3.9-14 14.4 3.2L30.5 5.4l11.3 7.5z" fill="rgba(255,255,255,.95)"/><text x="50" y="46" text-anchor="middle" font-size="17" font-weight="800" fill="#6D49E0" font-family="Hanken Grotesk,sans-serif">{{ section.settings.seal_big | default: '30' }}</text><text x="50" y="62" text-anchor="middle" font-size="11" font-weight="800" fill="#6D49E0" font-family="Hanken Grotesk,sans-serif">{{ section.settings.seal_small | default: 'DAY' }}</text></svg>

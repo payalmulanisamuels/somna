@@ -8,7 +8,7 @@
           <div class="shss-lab"><span>{{ section.settings.l2 | default: 'Wake-up Energized' }}</span><i></i></div>
           <div class="shss-lab"><span>{{ section.settings.l3 | default: "Don't Disturb Partner" }}</span><i></i></div>
         </div>
-        <div class="shss-img">{%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1000 }}" loading="lazy" alt="">{%- else -%}<div class="shss-ph">Insert image</div>{%- endif -%}</div>
+        <div class="shss-img">{%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1000 }}" loading="lazy" alt="{{ section.settings.image.alt }}">{%- else -%}<div class="shss-ph">Insert image</div>{%- endif -%}</div>
         <div class="shss-col shss-col-r">
           <div class="shss-lab"><i></i><span>{{ section.settings.l4 | default: 'Waking Up Naturally' }}</span></div>
           <div class="shss-lab"><i></i><span>{{ section.settings.l5 | default: 'Stop Snoring' }}</span></div>

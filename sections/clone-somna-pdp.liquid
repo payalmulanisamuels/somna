@@ -5,7 +5,7 @@
   <div class="spdp-media">
     {%- if product.media.size > 0 -%}
       <div class="spdp-main cda-ph" id="{{ fid }}-main"><img src="{{ product.featured_media | image_url: width: 1100 }}" alt="{{ product.title | escape }}" width="1100" height="1100" loading="eager"><button type="button" class="spdp-gnav spdp-gnav-l" data-gprev aria-label="Previous image">‹</button><button type="button" class="spdp-gnav spdp-gnav-r" data-gnext aria-label="Next image">›</button>{% if section.settings.hero_badge != blank %}<span class="spdp-hbadge">{{ section.settings.hero_badge }}</span>{% endif %}</div>
-      <div class="spdp-thumbs">{%- for m in product.media limit: 6 -%}<button class="cda-ph" data-spdp-thumb="{{ m | image_url: width: 1100 }}"><img src="{{ m | image_url: width: 240 }}" alt="" width="240" height="240" loading="lazy"></button>{%- endfor -%}</div>
+      <div class="spdp-thumbs">{%- for m in product.media limit: 6 -%}<button class="cda-ph" data-spdp-thumb="{{ m | image_url: width: 1100 }}"><img src="{{ m | image_url: width: 240 }}" alt="{{ m.alt }}" width="240" height="240" loading="lazy"></button>{%- endfor -%}</div>
     {%- else -%}
       <div class="spdp-main cda-ph" data-label="Main image — upload in Products › Media"></div>
       <div class="spdp-thumbs"><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div></div>
@@ -64,7 +64,7 @@
       <p class="cda-muted" style="margin:2px 0 0">{{ section.settings.sys_sub }}</p>
       {%- for block in section.blocks -%}{%- if block.type == 'addon' -%}{%- assign ap = block.settings.prod -%}
         <div class="spdp-addon" {{ block.shopify_attributes }}>
-          {% if ap != blank and ap.featured_image %}<div class="cda-ph"><img src="{{ ap.featured_image | image_url: width: 160 }}" alt="" width="160" height="160"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}
+          {% if ap != blank and ap.featured_image %}<div class="cda-ph"><img src="{{ ap.featured_image | image_url: width: 160 }}" alt="{{ ap.title }}" width="160" height="160"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}
           <div><div class="spdp-an">{{ ap.title | default: block.settings.name }}</div><div class="cda-muted" style="font-size:.84rem">{{ block.settings.desc }}</div><div class="spdp-ap">{% if ap != blank %}{{ ap.price | money }}{% else %}{{ block.settings.price }}{% endif %}</div>{% if ap != blank %}{% render 'somna-plan-select', variant: ap.selected_or_first_available_variant, id_prefix: block.id %}{% endif %}</div>
           {% if ap != blank %}<button class="spdp-add" data-spdp-add="{{ ap.selected_or_first_available_variant.id }}">Add +</button>{% else %}<a class="spdp-add" href="{{ block.settings.link | default: '/' }}">Add +</a>{% endif %}
         </div>
