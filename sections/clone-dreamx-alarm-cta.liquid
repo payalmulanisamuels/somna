@@ -1,19 +1,62 @@
 {{ 'clone-dreamx-alarm-styles.css' | asset_url | stylesheet_tag }}
+
 <section class="cda-section cda-cta-sec">
   <div class="cda-wrap">
     <div class="cda-final">
-      <h2 class="cda-h2">{{ section.settings.title }}</h2>
-      <p>{{ section.settings.body }}</p>
-      <a class="cda-btn" href="{{ section.settings.cta_link | default: '#cda-buy' }}">{{ section.settings.cta_label }}</a>
-      <div class="cda-badges">
-        <div><div class="cda-bi">🔒</div><div class="cda-bt" style="color:#fff">Secure checkout</div><div class="cda-bs">256-bit encrypted</div></div>
-        <div><div class="cda-bi">↩️</div><div class="cda-bt" style="color:#fff">100-night guarantee</div><div class="cda-bs">Love it or full refund</div></div>
-        <div><div class="cda-bi">🚚</div><div class="cda-bt" style="color:#fff">Fast free shipping</div><div class="cda-bs">Ships within 24 hours</div></div>
-        <div><div class="cda-bi">💬</div><div class="cda-bt" style="color:#fff">Real human support</div><div class="cda-bs">7 days a week</div></div>
-      </div>
+
+      {% if section.settings.title != blank %}
+        <h2 class="cda-h2">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.settings.body != blank %}
+        <div class="cda-body">
+          {{ section.settings.body }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.cta_label != blank %}
+        <a
+          class="cda-btn"
+          href="{{ section.settings.cta_link | default: '#cda-buy' }}"
+        >
+          {{ section.settings.cta_label }}
+        </a>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="cda-badges">
+
+          {% for block in section.blocks %}
+            <div class="cda-badge-new" {{ block.shopify_attributes }}>
+
+              {% if block.settings.icon != blank %}
+                <div class="cda-bi">
+                  {{ block.settings.icon }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <div class="cda-bt">
+                  {{ block.settings.title }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <div class="cda-bs">
+                  {{ block.settings.description }}
+                </div>
+              {% endif %}
+
+            </div>
+          {% endfor %}
+
+        </div>
+      {% endif %}
+
     </div>
   </div>
 </section>
+
 {% schema %}
 {
   "name": "Clone — Final CTA",
@@ -21,8 +64,57 @@
     { "type": "text", "id": "title", "label": "Title", "default": "Never sleep through an alarm again." },
     { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Wake up on time, quietly, and on your own terms — backed by a 100-night money-back guarantee.</p>" },
     { "type": "text", "id": "cta_label", "label": "Button text", "default": "Order Yours Today" },
-    { "type": "url", "id": "cta_link", "label": "Button link (blank = scroll to buy box)" }
+    { "type": "url", "id": "cta_link", "label": "Button link", "info": "Leave blank to scroll to the buy box." }
   ],
-  "presets": [{ "name": "Clone — Final CTA" }]
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon", "default": "🔒" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Secure checkout" },
+        { "type": "text", "id": "description", "label": "Description", "default": "256-bit encrypted" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clone — Final CTA",
+      "blocks": [
+          {
+          "type": "badge",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure checkout",
+            "description": "256-bit encrypted"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "↩️",
+            "title": "30-night guarantee",
+            "description": "Love it or full refund"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "title": "Fast free shipping",
+            "description": "Ships within 24 hours"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "💬",
+            "title": "Real human support",
+            "description": "7 days a week"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
