@@ -350,6 +350,46 @@
     },
     "cta": {
       "type": "clone-dreamx-alarm-cta",
+      "blocks": {
+        "badge_cTyier": {
+          "type": "badge",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure checkout",
+            "description": "256-bit encrypted"
+          }
+        },
+        "badge_H7hUEG": {
+          "type": "badge",
+          "settings": {
+            "icon": "↩️",
+            "title": "30-night guarantee",
+            "description": "Love it or full refund"
+          }
+        },
+        "badge_338BKF": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "title": "Fast free shipping",
+            "description": "Ships within 24 hours"
+          }
+        },
+        "badge_8bR6YM": {
+          "type": "badge",
+          "settings": {
+            "icon": "💬",
+            "title": "Real human support",
+            "description": "7 days a week"
+          }
+        }
+      },
+      "block_order": [
+        "badge_cTyier",
+        "badge_H7hUEG",
+        "badge_338BKF",
+        "badge_8bR6YM"
+      ],
       "settings": {
         "title": "Wake up refreshed, not parched.",
         "body": "<p>Gentle tape for calmer nasal breathing — backed by a 30-night money-back guarantee.</p>",
