@@ -367,6 +367,46 @@
     },
     "cta": {
       "type": "clone-dreamx-alarm-cta",
+      "blocks": {
+        "badge_fmAaQC": {
+          "type": "badge",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure checkout",
+            "description": "256-bit encrypted"
+          }
+        },
+        "badge_MgBXQ8": {
+          "type": "badge",
+          "settings": {
+            "icon": "↩️",
+            "title": "90-night guarantee",
+            "description": "Love it or full refund"
+          }
+        },
+        "badge_wXCJax": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "title": "Fast free shipping",
+            "description": "Ships within 24 hours"
+          }
+        },
+        "badge_3qnREe": {
+          "type": "badge",
+          "settings": {
+            "icon": "💬",
+            "title": "Real human support",
+            "description": "7 days a week"
+          }
+        }
+      },
+      "block_order": [
+        "badge_fmAaQC",
+        "badge_MgBXQ8",
+        "badge_wXCJax",
+        "badge_3qnREe"
+      ],
       "settings": {
         "title": "Never sleep through an alarm again.",
         "body": "<p>Wake up on time, quietly, and on your own terms — backed by a 100-night money-back guarantee.</p>",

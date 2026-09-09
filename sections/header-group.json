@@ -1,1 +1,32 @@
-{"type":"header","name":"Header","sections":{"dreamx_header":{"type":"clone-dreamx-header","settings":{"logo_a":"som","logo_b":"na","b1":"Free shipping","b2":"","b3":"Clinically tested & doctor recommended","cat1_img":"shopify://shop_images/hf_20260619_114748_daf18f9e-0911-4347-a7b8-6090d788053b.png","cat2_img":"shopify://shop_images/hf_20260619_115248_32c1ff29-2b69-4ff2-a15a-e46ab4b9c4d1.png","cat3_img":"shopify://shop_images/hf_20260619_115237_f1e31cab-0193-4518-866d-a0e44a8cadbd.png","cat4_img":"shopify://shop_images/hf_20260619_115227_ddc05723-a94f-499b-9f7e-acbd8a208698.png"}}},"order":["dreamx_header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "dreamx_header": {
+      "type": "clone-dreamx-header",
+      "settings": {
+        "logo_a": "som",
+        "logo_b": "na",
+        "b1": "Free shipping",
+        "b2": "",
+        "b3": "Clinically tested & doctor recommended",
+        "cat1_img": "shopify://shop_images/hf_20260619_114748_daf18f9e-0911-4347-a7b8-6090d788053b.png",
+        "cat2_img": "shopify://shop_images/hf_20260619_115248_32c1ff29-2b69-4ff2-a15a-e46ab4b9c4d1.png",
+        "cat3_img": "shopify://shop_images/hf_20260619_115237_f1e31cab-0193-4518-866d-a0e44a8cadbd.png",
+        "cat4_img": "shopify://shop_images/hf_20260619_115227_ddc05723-a94f-499b-9f7e-acbd8a208698.png"
+      }
+    }
+  },
+  "order": [
+    "dreamx_header"
+  ]
+}
