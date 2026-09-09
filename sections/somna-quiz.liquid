@@ -330,10 +330,10 @@
   var progf=root.querySelector('#qz-progf');
   var i=0, score={b:0,t:0,s:0}, meta={pattern:'Progressive',impact:'High',cost:'',tried:'',onset:''}, QTOTAL=10, leadFired=false, baTimer=null, lastLevel='MODERATE';
   var PROD={
-    b:{name:'Somna Silent Alarm Band',url:'/products/dreamx-silent-alarm-band',img:'{{ band.featured_image | image_url: width: 700 }}'},
-    t:{name:'Somna Cotton Mouth Tape',url:'/products/dreamx-sleep-mouth-tape',img:'{{ tape.featured_image | image_url: width: 700 }}'},
-    s:{name:'Somna Anti-Snore Nasal Strips',url:'/products/dreamx-anti-snore-nasal-strips',img:'{{ nasal.featured_image | image_url: width: 700 }}'},
-    full:{name:'The SOMNA Sleep System',url:'/products/dreamx-silent-alarm-band',img:'{{ band.featured_image | image_url: width: 700 }}'}
+    b:{name:'Somna Silent Alarm Band',url:'/products/silent-alarm-band',img:'{{ band.featured_image | image_url: width: 700 }}'},
+    t:{name:'Somna Cotton Mouth Tape',url:'/products/sleep-mouth-tape',img:'{{ tape.featured_image | image_url: width: 700 }}'},
+    s:{name:'Somna Anti-Snore Nasal Strips',url:'/products/anti-snore-nasal-strips',img:'{{ nasal.featured_image | image_url: width: 700 }}'},
+    full:{name:'The SOMNA Sleep System',url:'/products/silent-alarm-band',img:'{{ band.featured_image | image_url: width: 700 }}'}
   };
   var TYPES={
     b:{name:{{ section.settings.type_b_name | default: "The Heavy Sleeper" | json }},desc:{{ section.settings.type_b_desc | default: "Sound alarms barely register for you — so you snooze and oversleep. You're not lazy; you're built like a deep sleeper, and that's exactly what Somna is designed for." | json }},note:{{ section.settings.type_b_note | default: "30-day money-back guarantee." | json }}},

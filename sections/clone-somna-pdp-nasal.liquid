@@ -30,7 +30,7 @@
   <div class="spdp-buy">
     <div class="spdp-herocard" data-jstate="sub" id="{{ fid }}-box">
     <h1 class="spdp-h1jp">{{ section.settings.head_a }} {{ section.settings.head_b }}</h1>
-    <div class="spdp-rate"><span class="cda-stars">★★★★★</span> <strong>{{ section.settings.rating }}</strong> <span class="cda-muted spdp-ratemeta">({{ section.settings.reviews }}+ reviews){% if section.settings.meta != blank %} · {{ section.settings.meta }}{% endif %}</span></div>
+    <div class="spdp-rate"><span class="cda-muted spdp-ratemeta"> {% if section.settings.meta != blank %}  {{ section.settings.meta }}{% endif %}</span></div>
     <div class="spdp-sub">{{ section.settings.subhead }}</div>
     {%- assign checks = section.settings.checks | newline_to_br | split: '<br />' -%}
     <div class="spdp-jbl">{%- for c in checks -%}{%- assign ct = c | strip -%}{% if ct != '' %}<div class="spdp-jb">{{ ct }}</div>{% endif %}{%- endfor -%}</div>
@@ -101,7 +101,7 @@
     </div>
     <button class="spdp-bigcta spdp-cta" id="{{ fid }}-cta" data-jb-atc><span>{{ section.settings.cta_main | default: 'Try Somna Today' }} →</span><span class="spdp-ctapr"><s data-jb-ctawas></s><b data-jb-ctanow></b></span></button>
     <a href="#" class="spdp-once" data-jb-toggle data-once-label="{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' | escape }}" data-sub-label="{{ section.settings.toggle_sub | default: 'Switch to Subscription — 50% OFF first order' | escape }}">{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' }}</a>
-    <div class="spdp-oncemeta">{{ section.settings.once_meta | default: 'Shipping: $6.99 | No Free Gift' }}</div>
+    <div class="spdp-oncemeta">{{ section.settings.once_meta }}</div>
     <div class="spdp-subvalue">{{ section.settings.sub_value | default: 'Subscribers save more, receive exclusive first-order benefits, and can cancel anytime.' }}</div>
     <div class="spdp-shipsby"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>{{ section.settings.ships_label | default: 'Ships by:' }} <b data-jb-shipsby></b></span></div>
     </div>
