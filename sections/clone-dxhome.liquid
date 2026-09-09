@@ -92,6 +92,7 @@
     <p class="dxh-center dxh-probsub">{{ section.settings.how_foot }}</p>
   </section>
 
+  {% if section.settings.stat1_n != blank or  section.settings.stat2_n != blank or section.settings.stat3_n != blank %}
   {%- comment -%} ===== STATS ===== {%- endcomment -%}
   <section class="dxh-wrap dxh-sec">
     <div class="dxh-band">
@@ -105,6 +106,7 @@
       <p class="dxh-disc">{{ section.settings.stat_disc }}</p>
     </div>
   </section>
+  {% endif %}
 
   {%- comment -%} ===== EXPERTS ===== {%- endcomment -%}
   <section class="dxh-wrap dxh-sec">
