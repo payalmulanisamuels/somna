@@ -254,7 +254,7 @@
           "settings": {
             "icon": "shopify://shop_images/usp3.svg",
             "emoji": "💨",
-            "label": "Up To 40% More Air, Every Single Breath*"
+            "label": "Opens nasal passages for easier breathing."
           }
         }
       },
@@ -269,7 +269,7 @@
         "title": "Engineered In Layers.",
         "title2": "Not Just Another Strip.",
         "accent": "#8491c5",
-        "lead": "Every Somna strip is built in three layers that work together — a tension spring that lifts your nasal walls open, a skin-safe base that won't tug, and an adhesive that locks on for 8 hours. The result: up to 40% more air, every breath.*",
+        "lead": "Every Somna strip is built in three layers that work together — a tension spring that lifts your nasal walls open, a skin-safe base that won’t tug, and an adhesive that locks on for 8 hours. The result: opens your nasal passages so you breathe easier through the night.",
         "video": "shopify://files/videos/5127b05fbf5c45bd9918ab1cf14f5dce.HD-1080p-2.5Mbps-54683797.mp4",
         "bg": "{{ settings.color_palette.background }}"
       }
