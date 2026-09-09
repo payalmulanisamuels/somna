@@ -13,7 +13,6 @@
   </div>
   <div class="spdp-buy">
     <div class="spdp-herocard">
-    <div class="spdp-rate"><span class="cda-stars">★★★★★</span> <strong>{{ section.settings.rating }}</strong> <span class="cda-muted">· {{ section.settings.reviews }} reviews</span></div>
     <div class="spdp-kick">{{ section.settings.kicker }}</div>
     <h1 class="spdp-h1">{{ section.settings.head_a }} <span class="spdp-accent">{{ section.settings.head_b }}</span></h1>
     <div class="spdp-sub">{{ section.settings.subhead }}</div>
@@ -54,7 +53,7 @@
           </div>
         </div>
       </label>
-      <label class="spsb-once" data-bundle data-items="{{ vm.id }}" data-base="{{ vm.price | divided_by: 100.0 }}" data-name="One-time"><span class="spsb-once-inner"><span class="spdp-radio"></span><span class="spsb-once-copy"><span class="spsb-once-t">One-time purchase</span><span class="spsb-once-meta">{{ vm.price | money }} · + $9 shipping</span></span><span class="spsb-once-badge">No subscription</span></span></label>
+      <label class="spsb-once" data-bundle data-items="{{ vm.id }}" data-base="{{ vm.price | divided_by: 100.0 }}" data-name="One-time"><span class="spsb-once-inner"><span class="spdp-radio"></span><span class="spsb-once-copy"><span class="spsb-once-t">One-time purchase</span><span class="spsb-once-meta">{{ vm.price | money }} · + $5.95 shipping</span></span><span class="spsb-once-badge">No subscription</span></span></label>
     </div>
     <button class="cda-btn spsb-cta"
         data-ph-capture-attribute-product-name="{{product.title}}"
@@ -271,8 +270,6 @@ body{padding-bottom:76px}
 {
   "name": "Somna PDP Sub",
   "settings": [
-    { "type": "text", "id": "rating", "label": "Rating", "default": "4.7" },
-    { "type": "text", "id": "reviews", "label": "Reviews", "default": "3,910" },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "MOUTH TAPE · SLEEP" },
     { "type": "text", "id": "hero_badge", "label": "Hero badge (top-right)", "default": "BESTSELLER" },
     { "type": "text", "id": "head_a", "label": "Headline (dark)", "default": "Mouth breathing?" },
@@ -285,7 +282,7 @@ body{padding-bottom:76px}
     { "type": "text", "id": "swatch_label", "label": "Swatch label", "default": "Choose Your Color" },
     { "type": "text", "id": "set_label", "label": "Quantity label", "default": "Select Quantity" },
     { "type": "text", "id": "plan_label", "label": "Plan section label", "default": "Choose your plan" },
-    { "type": "text", "id": "once_ship", "label": "One-time shipping note", "default": "+ $9 shipping" },
+    { "type": "text", "id": "once_ship", "label": "One-time shipping note", "default": "+ $5.95 shipping" },
     { "type": "text", "id": "guarantee", "label": "Guarantee", "default": "100-night money-back guarantee" },
     { "type": "header", "content": "Trust & social proof (use real data)" },
     { "type": "textarea", "id": "trust_items", "label": "Trust checklist (one per line)", "default": "30-day money-back guarantee\nFree shipping on orders over $50\nHypoallergenic & latex-free\nShips in 1-2 business days" },

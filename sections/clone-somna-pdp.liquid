@@ -13,7 +13,6 @@
   </div>
   <div class="spdp-buy">
     <div class="spdp-herocard">
-    <div class="spdp-rate"><span class="cda-stars">★★★★★</span> <strong>{{ section.settings.rating }}</strong> <span class="cda-muted">· {{ section.settings.reviews }} reviews</span></div>
     <div class="spdp-kick">{{ section.settings.kicker }}</div>
     <h1 class="spdp-h1">{{ section.settings.head_a }} <span class="spdp-accent">{{ section.settings.head_b }}</span></h1>
     <div class="spdp-sub">{{ section.settings.subhead }}</div>
@@ -37,7 +36,7 @@
     <div class="spdp-opts" id="{{ fid }}-opts">
       <label class="spdp-opt spdp-opt-sub sel" data-bundle data-items="{{ bandv.id }},{{ nasalv.id }}|5928681703" data-base="79" data-code="ALARMPOP" data-name="Alarm Band + Monthly Nasal Strips" data-img="{% if section.settings.opt_pop_img != blank %}{{ section.settings.opt_pop_img | image_url: width: 1100 }}{% else %}{{ product.featured_media | image_url: width: 1100 }}{% endif %}"><span class="spdp-opt-top"><span class="spdp-radio"></span><strong>🔥 Alarm Band + Monthly Nasal Strips</strong><span class="spdp-pop">MOST POPULAR</span></span><span class="spdp-opt-price" data-price></span><span class="spdp-opt-renew">then {{ nSubC | money }} every 30 days</span><span class="spdp-opt-desc">Sleep deeper and breathe easier.</span><ul class="spdp-perks"><li>Alarm Band (one-time purchase)</li><li>Fresh Nasal Strips delivered every 30 days</li><li>Better airflow during sleep</li><li>Reduced snoring support</li><li>Save 15%</li><li>Cancel anytime</li></ul><span class="spdp-opt-fine">Alarm Band ships once. Nasal Strips automatically renew every 30 days.</span></label>
       <label class="spdp-opt" data-bundle data-items="{{ bandv.id }},{{ nasalv.id }}|5928681703,{{ tapev.id }}|5928681703" data-base="89" data-code="ALARMSYS" data-name="Complete Sleep System Membership" data-img="{% if section.settings.opt_sys_img != blank %}{{ section.settings.opt_sys_img | image_url: width: 1100 }}{% else %}{{ product.featured_media | image_url: width: 1100 }}{% endif %}"><span class="spdp-opt-top"><span class="spdp-radio"></span><strong>⭐ Complete Sleep System Membership</strong><span class="spdp-best">BEST VALUE</span></span><span class="spdp-opt-price" data-price></span><span class="spdp-opt-renew">then {{ renew3C | money }} every 30 days</span><span class="spdp-opt-desc">Everything you need for better sleep.</span><ul class="spdp-perks"><li>Alarm Band (one-time purchase)</li><li>Nasal Strips delivered every 30 days</li><li>Mouth Tape delivered every 30 days</li><li>Better airflow</li><li>Reduced snoring support</li><li>Mouth breathing support</li><li>Save 20%</li><li>Cancel anytime</li></ul><span class="spdp-opt-fine">Alarm Band ships once. Sleep essentials automatically renew every 30 days.</span></label>
-      <label class="spsb-once" data-bundle data-items="{{ bandv.id }}" data-base="{{ bandv.price | divided_by: 100.0 }}" data-name="Alarm Band" data-img="{% if section.settings.opt_band_img != blank %}{{ section.settings.opt_band_img | image_url: width: 1100 }}{% else %}{{ product.featured_media | image_url: width: 1100 }}{% endif %}"><span class="spsb-once-inner"><span class="spdp-radio"></span><span class="spsb-once-copy"><span class="spsb-once-t">One-time — Alarm Band only</span><span class="spsb-once-meta">{{ bandv.price | money }} · + $9 shipping</span></span><span class="spsb-once-badge">No subscription</span></span></label>
+      <label class="spsb-once" data-bundle data-items="{{ bandv.id }}" data-base="{{ bandv.price | divided_by: 100.0 }}" data-name="Alarm Band" data-img="{% if section.settings.opt_band_img != blank %}{{ section.settings.opt_band_img | image_url: width: 1100 }}{% else %}{{ product.featured_media | image_url: width: 1100 }}{% endif %}"><span class="spsb-once-inner"><span class="spdp-radio"></span><span class="spsb-once-copy"><span class="spsb-once-t">One-time — Alarm Band only</span><span class="spsb-once-meta">{{ bandv.price | money }}</span></span><span class="spsb-once-badge">No subscription</span></span></label>
     </div>
         <button class="cda-btn spdp-cta"
             data-ph-capture-attribute-product-name="{{product.title}}"
@@ -319,8 +318,6 @@ body{padding-bottom:76px}
 {
   "name": "Somna PDP",
   "settings": [
-    { "type": "text", "id": "rating", "label": "Rating", "default": "4.8" },
-    { "type": "text", "id": "reviews", "label": "Review count", "default": "1,240" },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "SILENT ALARM · VIBRATION WEARABLE" },
     { "type": "text", "id": "hero_badge", "label": "Hero badge (top-right)", "default": "BESTSELLER" }, { "type": "image_picker", "id": "opt_pop_img", "label": "Bundle image — Most Popular (Alarm + Nasal)" }, { "type": "image_picker", "id": "opt_sys_img", "label": "Bundle image — Complete System" }, { "type": "image_picker", "id": "opt_band_img", "label": "Image — Alarm Band one-time" },
     { "type": "text", "id": "head_a", "label": "Headline (dark)", "default": "Can't sleep through it." },

@@ -39,17 +39,16 @@
       {%- for product in collection.products -%}
         {%- if product.type == 'Protection' or product.type == 'Gift' -%}{%- continue -%}{%- endif -%}
         {%- assign v = product.selected_or_first_available_variant -%}
-        {%- assign rt = '' -%}{%- assign rc = '' -%}{%- assign bdg = '' -%}{%- assign ben = '' -%}
+        {%- assign bdg = '' -%}{%- assign ben = '' -%}
         {%- case product.handle -%}
-          {%- when 'dreamx-anti-snore-nasal-strips' -%}{%- assign rt = '4.7' -%}{%- assign rc = '3,910' -%}{%- assign bdg = 'Best Seller' -%}{%- assign ben = 'Breathe easier. Sleep deeper.' -%}
-          {%- when 'dreamx-sleep-mouth-tape' -%}{%- assign rt = '4.6' -%}{%- assign rc = '2,180' -%}{%- assign bdg = 'Popular' -%}{%- assign ben = 'Seal your mouth. Unlock nasal breathing.' -%}
-          {%- when 'dreamx-silent-alarm-band' -%}{%- assign rt = '4.8' -%}{%- assign rc = '1,240' -%}{%- assign bdg = 'Premium' -%}{%- assign ben = 'Wake without waking others.' -%}
+          {%- when 'dreamx-anti-snore-nasal-strips' -%}{%- assign bdg = 'Best Seller' -%}{%- assign ben = 'Breathe easier. Sleep deeper.' -%}
+          {%- when 'dreamx-sleep-mouth-tape' -%}{%- assign bdg = 'Popular' -%}{%- assign ben = 'Seal your mouth. Unlock nasal breathing.' -%}
+          {%- when 'dreamx-silent-alarm-band' -%}{%- assign bdg = 'Premium' -%}{%- assign ben = 'Wake without waking others.' -%}
         {%- endcase -%}
         <div class="dxsh-card">
           <a class="dxsh-card-link" href="{{ product.url }}">
           {% if bdg != blank %}<span class="dxsh-badge">{{ bdg }}</span>{% endif %}
           {%- if product.featured_media -%}<div class="dxsh-img"><img src="{{ product.featured_media | image_url: width: 800 }}" alt="{{ product.title | escape }}" width="800" height="800" loading="lazy"></div>{%- else -%}<div class="dxsh-img dxsh-img-ph"></div>{%- endif -%}
-          {% if rt != blank %}<div class="dxsh-rate"><span class="dxsh-stars">★★★★★</span> <span class="dxsh-rn">{{ rt }}/5</span> <span class="dxsh-rc">({{ rc }} reviews)</span></div>{% endif %}
           <div class="dxsh-n">{{ product.title | remove: 'Somna ' }}</div>
           {% if ben != blank %}<div class="dxsh-bene">{{ ben }}</div>{% endif %}
           <div class="dxsh-p">{{ v.price | money }}{% if v.compare_at_price > v.price %} <s>{{ v.compare_at_price | money }}</s>{%- assign pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round -%} <span class="dxsh-off">Save {{ pct }}%</span>{% endif %}</div>
@@ -74,7 +73,6 @@
         <div class="dxsh-binfo">
           <h2 class="dxsh-h2">{{ section.settings.bundle_head }}</h2>
           <p class="dxsh-bsub">{{ section.settings.bundle_sub }}</p>
-          <div class="dxsh-rate"><span class="dxsh-stars">★★★★★</span> <span class="dxsh-rn">{{ section.settings.bundle_rating }}/5</span> <span class="dxsh-rc">({{ section.settings.bundle_count }} reviews)</span></div>
           <ul class="dxsh-bincl">
             <li>Anti-Snore Nasal Strips</li>
             <li>Cotton Mouth Tape</li>
