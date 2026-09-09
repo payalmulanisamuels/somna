@@ -217,7 +217,7 @@
         "cta_main": "Try Somna Today",
         "toggle_once": "Try it Once, No Subscription",
         "toggle_sub": "Switch to Subscription — 50% off your first month",
-        "once_meta": "SHIPPING — $6.99 | NO FREE GIFT",
+        "once_meta": "",
         "sub_value": "Most people notice the biggest difference after consistent daily use over the first 30 days.",
         "ships_label": "Ships by:",
         "g_tile": "shopify://shop_images/ChatGPT_Image_Jul_5_2026_09_55_59_PM.png",
@@ -631,7 +631,7 @@
         "tc3"
       ],
       "settings": {
-        "stars_line": "4.7 (3,910 reviews)",
+        "stars_line": "",
         "title_a": "Join",
         "title_em": "100,000+ sleepers",
         "title_b": "who stopped fighting their nights",
