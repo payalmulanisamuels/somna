@@ -44,7 +44,7 @@
           "type": "faq",
           "settings": {
             "q": "I always sleep through alarm clocks. Will this wake me up?",
-            "a": "<p><strong>Yes.</strong> Vibration, especially directly on the wrist is far more effective at stimulating the brain than sound alone. <br/><br/>The Somna alarm is designed specifically for heavy sleepers who struggle <br/>with traditional alarms or wake-up lights. Its vibration gradually <br/>increases in intensity until you wake up, even from deep sleep. <br/><br/><strong>Tested by over +10,000 heavy sleepers</strong>, 99% reported waking up on time during a 100-day trial. <br/><br/>For many, it’s the solution that finally fixed their mornings.</p>"
+            "a": "<p><strong>Yes.</strong> Vibration, especially directly on the wrist is far more effective at stimulating the brain than sound alone. <br/><br/>The Somna alarm is designed specifically for heavy sleepers who struggle <br/>with traditional alarms or wake-up lights. Its vibration gradually <br/>increases in intensity until you wake up, even from deep sleep. <br/><br/><strong>Tested by over +10,000 heavy sleepers</strong>, 99% reported waking up on time during a 90-day trial. <br/><br/>For many, it’s the solution that finally fixed their mornings.</p>"
           }
         },
         "faq_Y37pkr": {
@@ -104,16 +104,16 @@
         "why_body": "<p>A vibration on your wrist is something your brain can't tune out like a repeated sound — so it actually gets you up.</p>",
         "checks": "Built by heavy sleepers, for heavy sleepers\nSilent vibrations wake you without disturbing anyone else\n14+ days of battery on one charge\nWater resistant for everyday wear",
         "plan_label": "Choose your plan",
-        "guarantee": "100 Days Risk-Free Money Back Guarantee",
-        "trust_items": "100 Days Risk-Free Money Back Guarantee\nFree shipping on orders over $50\nSilent — won't wake your partner\nShips in 1-2 business days",
+        "guarantee": "90 Days Risk-Free Money Back Guarantee",
+        "trust_items": "90 Days Risk-Free Money Back Guarantee\nFree shipping on orders over $50\nSilent — won't wake your partner\nShips in 1-2 business days",
         "proof_line": "Most popular with light sleepers & partners",
         "faq_title": "",
         "sys_title": "Complete your sleep system",
         "sys_sub": "Support your nights with these curated additions.",
         "inc_title": "Your order includes",
-        "inc_bullets": "Free shipping included\n100-night money-back guarantee\nComplete flexibility — pause, skip, swap or cancel anytime",
-        "inc_note": "Try Somna for up to 100 nights. If you’re not satisfied, contact us for a full refund.",
-        "badges": "All Somna products are 3rd party lab tested, 100-night guarantee, Cancel anytime, Secure checkout",
+        "inc_bullets": "Free shipping included\n90-night money-back guarantee\nComplete flexibility — pause, skip, swap or cancel anytime",
+        "inc_note": "Try Somna for up to 90 nights. If you’re not satisfied, contact us for a full refund.",
+        "badges": "All Somna products are 3rd party lab tested, 90-night guarantee, Cancel anytime, Secure checkout",
         "testi_title": "What our customers are saying"
       }
     },
@@ -409,7 +409,7 @@
       ],
       "settings": {
         "title": "Never sleep through an alarm again.",
-        "body": "<p>Wake up on time, quietly, and on your own terms — backed by a 100-night money-back guarantee.</p>",
+        "body": "<p>Wake up on time, quietly, and on your own terms — backed by a 90-night money-back guarantee.</p>",
         "cta_label": "Order Yours Today",
         "cta_link": "shopify://products/silent-alarm-band"
       }
