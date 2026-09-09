@@ -64,7 +64,7 @@
         "a1": {
           "type": "addon",
           "settings": {
-            "prod": "dreamx-anti-snore-nasal-strips",
+            "prod": "anti-snore-nasal-strips",
             "desc": "Open your airway and snore less — drug-free.",
             "name": "Add-on",
             "price": "$24",
@@ -74,7 +74,7 @@
         "a2": {
           "type": "addon",
           "settings": {
-            "prod": "dreamx-sleep-mouth-tape",
+            "prod": "sleep-mouth-tape",
             "desc": "Encourage calm nasal breathing all night.",
             "name": "Add-on",
             "price": "$24",
