@@ -137,7 +137,7 @@
         "a1": {
           "type": "addon",
           "settings": {
-            "prod": "dreamx-silent-alarm-band",
+            "prod": "silent-alarm-band",
             "desc": "Wake silently without disturbing your partner.",
             "name": "Add-on"
           }
