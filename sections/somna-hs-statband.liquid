@@ -16,9 +16,10 @@
         </div>
       </div>
     </div>
+    {% if section.settings.stat1 != blank or section.settings.stat2 != blank %}
     <div class="shss-stats somna-sr-stag">
-      <div class="shss-stat"><b>{{ section.settings.stat1 | default: '93%' }}</b><span>{{ section.settings.stat1sub | default: 'Of users report waking up less groggy and feeling more rested.*' }}</span></div>
-      <div class="shss-stat"><b>{{ section.settings.stat2 | default: '97%' }}</b><span>{{ section.settings.stat2sub | default: 'Of athletes feel immediate improvement in nasal airflow, with more energy and focus during training.*' }}</span></div>
+      <div class="shss-stat"><b>{{ section.settings.stat1 }}</b><span>{{ section.settings.stat1sub }}</span></div>
+      <div class="shss-stat"><b>{{ section.settings.stat2 }}</b><span>{{ section.settings.stat2sub }}</span></div>
     </div>
     {% endif %} 
     {%- if section.settings.foot != blank -%}<p class="shss-foot">{{ section.settings.foot }}</p>{%- endif -%}

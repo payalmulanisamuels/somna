@@ -91,7 +91,7 @@
         var meta=document.createElement('div');meta.className='mbb-meta';
         var pns=[1,3,4].map(function(u){var f=nOf(u,'data-sfirst');return f>0?f/(u*30):0;}).filter(function(x){return x>0;});
         var best=pns.length?Math.min.apply(null,pns):0;
-        meta.textContent='As seen on TikTok · Made in the USA'+(best?' · From '+Math.round(best*100)+'¢/night':'');
+        meta.textContent='As seen on TikTok'+(best?' · From '+Math.round(best*100)+'¢/night':'');
         rate.insertAdjacentElement('afterend',meta);
       }
     }

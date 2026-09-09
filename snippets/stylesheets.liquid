@@ -24,7 +24,7 @@
 </style>
 <style id='somna-more'>
 /* Hero 2x2 icon benefits */
-.spdp-jbl{display:grid !important;grid-template-columns:1fr 1fr !important;gap:14px 22px !important;margin:14px 0 18px !important}
+.spdp-jbl{display:grid !important;grid-template-columns:1fr 1fr 1fr !important;gap:14px 22px !important;margin:14px 0 18px !important}
 .spdp-jb{padding:0 !important;display:flex !important;align-items:center;gap:10px;font-size:.9rem;font-weight:700;color:var(--cda-ink)}
 .spdp-jb:before{display:none !important}
 .spdp-jb .hbi{width:26px;height:26px;flex:none;color:#5B79F3}
@@ -180,7 +180,6 @@ html,body{overflow-x:hidden !important;max-width:100% !important}
   function heroIcons(){
     var jbs=document.querySelectorAll('.spdp-jbl .spdp-jb');if(!jbs.length)return;
     var ic=[
-      `<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 8h11a3 3 0 1 0-3-3'/><path d='M3 12h15a3 3 0 1 1-3 3'/><path d='M3 16h8'/></svg>`,
       `<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/></svg>`,
       `<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><circle cx='12' cy='12' r='4'/><circle cx='12' cy='12' r='.6' fill='currentColor'/></svg>`,
       `<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 8h7l-7 8h7'/><path d='M14 4h5l-5 5h5'/></svg>`
@@ -188,7 +187,7 @@ html,body{overflow-x:hidden !important;max-width:100% !important}
     jbs.forEach(function(jb,i){if(jb.querySelector('.hbi'))return;var s=document.createElement('span');s.className='hbi';s.innerHTML=ic[i%ic.length];jb.insertBefore(s,jb.firstChild);});
   }
   function splitNextgen(){
-    var map={'Dynamic Lift Design':['Dynamic Lift','Design'],'Sweat-Proof Adhesive Matrix':['Sweat-Proof','Adhesive Matrix'],'40% More Airflow Per Breath*':['40% More Airflow','Per Breath*'],'40% More Airflow Per Breath':['40% More Airflow','Per Breath'],'40% More Oxygen Per Breath*':['40% More Oxygen','Per Breath*']};
+    var map={'Dynamic Lift Design':['Dynamic Lift','Design'],'Sweat-Proof Adhesive Matrix':['Sweat-Proof','Adhesive Matrix'],'40% More Airflow Per Breath*':['40% More Airflow','Per Breath*'],'40% More Airflow Per Breath':['40% More Airflow','Per Breath']};
     document.querySelectorAll('.shsng-feat > span').forEach(function(sp){if(sp.querySelector('.shsng-l2'))return;var t=(sp.textContent||'').trim();var parts=map[t];if(!parts){var w=t.split(' ');if(w.length<2)return;parts=[w.slice(0,-1).join(' '),w.slice(-1).join(' ')];}sp.innerHTML='<span class=shsng-l1>'+parts[0]+'</span><span class=shsng-l2>'+parts[1]+'</span>';});
   }
   function buildMBB(){
