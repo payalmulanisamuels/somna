@@ -94,8 +94,6 @@
         "a2"
       ],
       "settings": {
-        "rating": "4.8",
-        "reviews": "1,240",
         "kicker": "SILENT ALARM · VIBRATION WEARABLE",
         "hero_badge": "BESTSELLER",
         "head_a": "Can't sleep through it.",
@@ -359,6 +357,7 @@
         "rw2",
         "rw3"
       ],
+      "disabled": true,
       "settings": {
         "title": "Backed by Experts & Trusted by  Athletes & Couples Worldwide",
         "summary_rating": "4.8",
