@@ -159,6 +159,7 @@
     },
     "stats": {
       "type": "clone-dreamx-alarm-stats",
+      "disabled": true,
       "settings": {
         "kicker": "Studied & trusted",
         "title": "Built for optimizers and loving couples.",
@@ -356,6 +357,7 @@
         "rw2",
         "rw3"
       ],
+      "disabled": true,
       "settings": {
         "title": "Backed by Experts & Trusted by  Athletes & Couples Worldwide",
         "summary_rating": "4.8",
