@@ -171,8 +171,6 @@
         "a2"
       ],
       "settings": {
-        "rating": "4.6",
-        "reviews": "2,180",
         "kicker": "COTTON MOUTH TAPE · NASAL BREATHING",
         "hero_badge": "BESTSELLER",
         "head_a": "Mouth breather?",
@@ -245,6 +243,7 @@
     },
     "stats": {
       "type": "clone-dreamx-alarm-stats",
+      "disabled": true,
       "settings": {
         "kicker": "Why it works",
         "title": "Train your body to breathe right.",
@@ -341,6 +340,7 @@
         "rf2",
         "rf3"
       ],
+      "disabled": true,
       "settings": {
         "title": "Calmer breathing, better mornings",
         "summary_rating": "4.8",
@@ -350,6 +350,37 @@
     },
     "cta": {
       "type": "clone-dreamx-alarm-cta",
+      "blocks": {
+        "badge_YBUUcy": {
+          "type": "badge",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure checkout",
+            "description": "256-bit encrypted"
+          }
+        },
+        "badge_RLEPAE": {
+          "type": "badge",
+          "settings": {
+            "icon": "↩️",
+            "title": "30-night guarantee",
+            "description": "Love it or full refund"
+          }
+        },
+        "badge_feGyYR": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "title": "Fast free shipping",
+            "description": "Ships within 24 hours"
+          }
+        }
+      },
+      "block_order": [
+        "badge_YBUUcy",
+        "badge_RLEPAE",
+        "badge_feGyYR"
+      ],
       "settings": {
         "title": "Wake up refreshed, not parched.",
         "body": "<p>Gentle tape for calmer nasal breathing — backed by a 30-night money-back guarantee.</p>",
