@@ -41,9 +41,9 @@
         {%- assign v = product.selected_or_first_available_variant -%}
         {%- assign bdg = '' -%}{%- assign ben = '' -%}
         {%- case product.handle -%}
-          {%- when 'dreamx-anti-snore-nasal-strips' -%}{%- assign bdg = 'Best Seller' -%}{%- assign ben = 'Breathe easier. Sleep deeper.' -%}
-          {%- when 'dreamx-sleep-mouth-tape' -%}{%- assign bdg = 'Popular' -%}{%- assign ben = 'Seal your mouth. Unlock nasal breathing.' -%}
-          {%- when 'dreamx-silent-alarm-band' -%}{%- assign bdg = 'Premium' -%}{%- assign ben = 'Wake without waking others.' -%}
+          {%- when 'dreamx-anti-snore-nasal-strips' -%}{% assign guarantee_line = '30-Night Money-Back Guarantee' %}{%- assign bdg = 'Best Seller' -%}{%- assign ben = 'Breathe easier. Sleep deeper.' -%}
+          {%- when 'dreamx-sleep-mouth-tape' -%}{% assign guarantee_line = '30-Night Money-Back Guarantee' %}{%- assign bdg = 'Popular' -%}{%- assign ben = 'Seal your mouth. Unlock nasal breathing.' -%}
+          {%- when 'dreamx-silent-alarm-band' -%}{% assign guarantee_line = '90-Night Money-Back Guarantee' %}{%- assign bdg = 'Premium' -%}{%- assign ben = 'Wake without waking others.' -%}
         {%- endcase -%}
         <div class="dxsh-card">
           <a class="dxsh-card-link" href="{{ product.url }}">
@@ -55,7 +55,7 @@
           <div class="dxsh-subln"><strong>Subscribe &amp; Save 20%</strong><span>{{ v.price | times: 0.8 | money }}/month</span></div>
           </a>
           <button type="button" class="dxsh-shop" data-vid="{{ v.id }}">Add to Cart</button>
-          <span class="dxsh-gtee">30-day money-back guarantee</span>
+          <span class="dxsh-gtee">{{ guarantee_line }}</span> 
         </div>
       {%- else -%}
         <p class="dxsh-muted">No products yet.</p>
@@ -81,7 +81,7 @@
           <div class="dxsh-bprice"><span class="dxsh-bnow">{{ section.settings.bundle_now }}</span> <s>was {{ section.settings.bundle_was }}</s> <span class="dxsh-off">Save {{ section.settings.bundle_save }}</span></div>
           <a class="dxsh-bbtn" href="{{ section.settings.bundle_link | default: '/collections/all' }}">Get the Bundle</a>
           <div class="dxsh-bproof">{{ section.settings.bundle_proof }}</div>
-          <div class="dxsh-gtee dxsh-gtee-l">30-day money-back guarantee</div>
+          <div class="dxsh-gtee dxsh-gtee-l">90-Night Money-Back Guarantee</div>
         </div>
       </div>
     </div>
