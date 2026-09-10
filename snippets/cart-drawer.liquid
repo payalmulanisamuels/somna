@@ -168,8 +168,8 @@
               for item in cart.items
                 assign cart_pids = cart_pids | append: item.product_id | append: ','
               endfor
-              assign fallback_1 = all_products['dreamx-silent-alarm-band']
-              assign fallback_2 = all_products['dreamx-sleep-mouth-tape']
+              assign fallback_1 = all_products['silent-alarm-band']
+              assign fallback_2 = all_products['sleep-mouth-tape']
               assign ups = ''
             -%}
             {%- capture upsell_cards -%}
