@@ -23,7 +23,7 @@
         "p3": { "type": "plan", "settings": { "qty": "3", "label": "Buy 3 Packs", "sub": "90 strips · 3 month supply", "badge": "Best value" } },
         "ac1": { "type": "acc", "settings": { "q": "What's included", "a": "<p>30 matte-black performance nasal strips per pack, in a resealable pouch.</p>" } },
         "ac2": { "type": "acc", "settings": { "q": "How it works", "a": "<p>A dual-tension band gently lifts the sides of your nose to widen the airway — drug-free, no sprays, no pills.</p>" } },
-        "ac3": { "type": "acc", "settings": { "q": "Shipping & returns", "a": "<p>Ships in 1–2 business days. 30-day money-back guarantee — if it's not for you, we refund it.</p>" } }
+        "ac3": { "type": "acc", "settings": { "q": "Shipping & returns", "a": "<p>Ships in 1–2 business days. 30-Night money-back guarantee — if it's not for you, we refund it.</p>" } }
       },
       "block_order": [ "t1", "it1", "it2", "t2", "it3", "t3", "p1", "p2", "p3", "ac1", "ac2", "ac3" ],
       "settings": {
