@@ -103,7 +103,7 @@
           "type": "faq",
           "settings": {
             "q": "Why somna",
-            "a": "<p>The nasal strip that opens your airway the moment it goes on — so you breathe through your nose all night and the room stays quiet. Somna uses a high-performance nasal dilator that increases nasal airflow by up to 40%*, making it easier to breathe during sleep, so you snore less and wake up less groggy.</p><ul><li>Opens your nasal airway — up to 40% more airflow*</li><li>Quieter nights — less snoring, less mouth-breathing, no dry mouth</li><li>Wake up clearer and more rested</li><li>Drug-free and non-invasive — nothing to swallow, nothing to charge</li><li>Stays put all night — sweat-resistant even for restless sleepers</li><li>Hypoallergenic, latex-free, dermatologically tested</li><li><strong>Trusted by 100,000+ better sleepers — including athletes who train in them</strong></li></ul>"
+            "a": "<p>The nasal strip that opens your airway the moment it goes on—so you breathe through your nose all night and the room stays quiet. Somna opens your nasal passages so you breathe easier through the night, helping reduce snoring and making it easier to wake up feeling more refreshed.</p><ul><li>Opens your nasal passages so you breathe easier through the night</li><li>Quieter nights — less snoring, less mouth-breathing, no dry mouth</li><li>Wake up clearer and more rested</li><li>Drug-free and non-invasive — nothing to swallow, nothing to charge</li><li>Stays put all night — sweat-resistant even for restless sleepers</li><li>Hypoallergenic, latex-free, dermatologically tested</li><li><strong>Trusted by 100,000+ better sleepers — including athletes who train in them</strong></li></ul>"
           }
         },
         "fq2": {
@@ -217,7 +217,7 @@
         "cta_main": "Try Somna Today",
         "toggle_once": "Try it Once, No Subscription",
         "toggle_sub": "Switch to Subscription — 50% off your first month",
-        "once_meta": "SHIPPING — $6.99 | NO FREE GIFT",
+        "once_meta": "",
         "sub_value": "Most people notice the biggest difference after consistent daily use over the first 30 days.",
         "ships_label": "Ships by:",
         "g_tile": "shopify://shop_images/ChatGPT_Image_Jul_5_2026_09_55_59_PM.png",
@@ -254,7 +254,7 @@
           "settings": {
             "icon": "shopify://shop_images/usp3.svg",
             "emoji": "💨",
-            "label": "Up To 40% More Air, Every Single Breath*"
+            "label": "Opens nasal passages for easier breathing."
           }
         }
       },
@@ -269,7 +269,7 @@
         "title": "Engineered In Layers.",
         "title2": "Not Just Another Strip.",
         "accent": "#8491c5",
-        "lead": "Every Somna strip is built in three layers that work together — a tension spring that lifts your nasal walls open, a skin-safe base that won't tug, and an adhesive that locks on for 8 hours. The result: up to 40% more air, every breath.*",
+        "lead": "Every Somna strip is built in three layers that work together — a tension spring that lifts your nasal walls open, a skin-safe base that won’t tug, and an adhesive that locks on for 8 hours. The result: opens your nasal passages so you breathe easier through the night.",
         "video": "shopify://files/videos/5127b05fbf5c45bd9918ab1cf14f5dce.HD-1080p-2.5Mbps-54683797.mp4",
         "bg": "{{ settings.color_palette.background }}"
       }
