@@ -103,7 +103,7 @@
           "type": "faq",
           "settings": {
             "q": "Why somna",
-            "a": "<p>The nasal strip that opens your airway the moment it goes on—so you breathe through your nose all night and the room stays quiet. Somna opens your nasal passages so you breathe easier through the night, helping reduce snoring and making it easier to wake up feeling more refreshed.</p><ul><li>Opens your nasal passages so you breathe easier through the night</li><li>Quieter nights — less snoring, less mouth-breathing, no dry mouth</li><li>Wake up clearer and more rested</li><li>Drug-free and non-invasive — nothing to swallow, nothing to charge</li><li>Stays put all night — sweat-resistant even for restless sleepers</li><li>Hypoallergenic, latex-free, dermatologically tested</li><li><strong>Trusted by 100,000+ better sleepers — including athletes who train in them</strong></li></ul>"
+            "a": "<p>The nasal strip that opens your airway the moment it goes on—so you breathe through your nose all night and the room stays quiet. Somna opens your nasal passages so you breathe easier through the night, helping reduce snoring and making it easier to wake up feeling more refreshed.</p><ul><li>Opens your nasal passages so you breathe easier through the night</li><li>Quieter nights — less snoring, less mouth-breathing, no dry mouth</li><li>Wake up clearer and more rested</li><li>Drug-free and non-invasive — nothing to swallow, nothing to charge</li><li>Stays put all night — sweat-resistant even for restless sleepers</li><li>Hypoallergenic, latex-free, dermatologically tested</li><li><strong>Designed for Better Sleep — Made for Everyday Routines</strong><br/><br/></li></ul>"
           }
         },
         "fq2": {
@@ -197,6 +197,7 @@
         "checks": "Deeper Sleep\nSharper Focus\nReduced Snoring",
         "plan_label": "Choose your bundle:",
         "badge_color": "#5b79f3",
+        "enable_review": true,
         "rev_img": "shopify://shop_images/c709f1d4c8ea8c49862674e181c8ab1a.jpg",
         "rev_name": "Annette A.",
         "rev_sub": "VERIFIED CUSTOMER",
