@@ -33,7 +33,7 @@
     <h2 class="sub-h2">Add to your next delivery</h2>
     <p class="sub-lead">Add items to your upcoming box with no extra shipping costs.</p>
     <div class="sub-cards">
-      {%- assign handles = 'dreamx-anti-snore-nasal-strips,dreamx-sleep-mouth-tape,dreamx-silent-alarm-band' | split: ',' -%}
+      {%- assign handles = 'anti-snore-nasal-strips,sleep-mouth-tape,silent-alarm-band' | split: ',' -%}
       {%- for h in handles -%}{%- assign p = all_products[h] -%}{% if p != blank %}
         <div class="sub-pcard">
           <a class="sub-pimg cda-ph" href="{{ p.url }}">{% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 500 }}" alt="{{ p.title | escape }}">{% endif %}</a>
