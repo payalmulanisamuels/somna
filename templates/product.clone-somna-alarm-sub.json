@@ -255,8 +255,8 @@
             "image": "shopify://shop_images/hf_20260617_132823_8058d9a7-f3e1-41a5-94c9-4e7416380297.png",
             "stat1": "3",
             "stat1label": "Intensity levels",
-            "stat2": "99%",
-            "stat2label": "Wake rate"
+            "stat2": "",
+            "stat2label": ""
           }
         },
         "f2": {
