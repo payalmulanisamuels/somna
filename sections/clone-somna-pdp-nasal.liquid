@@ -107,7 +107,7 @@
         data-ph-capture-attribute-product-name="{{product.title}}"
         data-ph-capture-attribute-product-price="{{product.price | divided_by: 100 }}"
       id="{{ fid }}-cta" data-jb-atc><span>{{ section.settings.cta_main | default: 'Try Somna Today' }} →</span><span class="spdp-ctapr"><s data-jb-ctawas></s><b data-jb-ctanow></b></span></button>
-    <a href="#" class="spdp-once" data-jb-toggle data-once-label="{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' | escape }}" data-sub-label="{{ section.settings.toggle_sub | default: 'Switch to Subscription — 50% OFF first order' | escape }}">{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' }}</a>
+    <a href="#" class="spdp-once" data-jb-toggle data-once-label="{{ section.settings.toggle_once  | escape }}" data-sub-label="{{ section.settings.toggle_sub | default: 'Switch to Subscription — 50% OFF first order' | escape }}">{{ section.settings.toggle_once | default: 'Try it Once. No Subscription' }}</a>
     <div class="spdp-oncemeta">{{ section.settings.once_meta }}</div>
     <div class="spdp-subvalue">{{ section.settings.sub_value | default: 'Subscribers save more, receive exclusive first-order benefits, and can cancel anytime.' }}</div>
     <div class="spdp-shipsby"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>{{ section.settings.ships_label | default: 'Ships by:' }} <b data-jb-shipsby></b></span></div>
