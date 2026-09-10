@@ -52,9 +52,7 @@
           <div class="dxsh-n">{{ product.title | remove: 'Somna ' }}</div>
           {% if ben != blank %}<div class="dxsh-bene">{{ ben }}</div>{% endif %}
           <div class="dxsh-p">{{ v.price | money }}{% if v.compare_at_price > v.price %} <s>{{ v.compare_at_price | money }}</s>{%- assign pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round -%} <span class="dxsh-off">Save {{ pct }}%</span>{% endif %}</div>
-          <div class="dxsh-subln">
-            {% comment %} <strong>Subscribe &amp; Save 20%</strong> {% endcomment %}
-            <span>{{ v.price | times: 0.8 | money }}/month</span></div>
+          {% comment %} <div class="dxsh-subln"><strong>Subscribe &amp; Save 20%</strong><span>{{ v.price | times: 0.8 | money }}/month</span></div> {% endcomment %}
           </a>
 
           <button type="button" class="dxsh-shop" data-vid="{{ v.id }}">Add to Cart</button>
