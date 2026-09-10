@@ -148,7 +148,7 @@
     },
     "jpguarantee": {
       "type": "somna-jp-guarantee",
-      "settings": { "image": "shopify://shop_images/somna-hs-creator-night.png", "seal_big": "30", "seal_small": "day risk-free trial", "title_a": "Try it for 30 nights,", "title_em": "risk-free", "cta": "Start My Risk-Free Trial", "bg": "#F3F1FB" }
+      "settings": { "image": "shopify://shop_images/somna-hs-creator-night.png", "seal_big": "30", "seal_small": "day risk-free trial", "title_a": "Try it for 30 night,", "title_em": "risk-free", "cta": "Start My Risk-Free Trial", "bg": "#F3F1FB" }
     },
     "jpfaq": {
       "type": "somna-jp-faq",
