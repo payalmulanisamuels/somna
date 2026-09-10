@@ -108,6 +108,7 @@
   </section>
   {% endif %}
 
+  {% if section.settings.enable_review %}
   {%- comment -%} ===== EXPERTS ===== {%- endcomment -%}
   <section class="dxh-wrap dxh-sec">
     <div class="dxh-center"><div class="dxh-stars">★★★★★</div><h2 class="dxh-h2">{{ section.settings.exp_head }}</h2></div>
@@ -118,6 +119,7 @@
       {%- endfor -%}
     </div>
   </section>
+  {% endif %}
 
   {%- comment -%} ===== BUNDLES ===== {%- endcomment -%}
   <section class="dxh-wrap dxh-sec">
@@ -405,6 +407,7 @@
     { "type": "text", "id": "stat3_src", "label": "Stat 3 source (add real source)", "default": "Add your real source or survey here" },
     { "type": "textarea", "id": "stat_disc", "label": "Disclaimer", "default": "Individual results vary. Somna products are not medical devices and are not intended to diagnose, treat, cure, or prevent any condition, including sleep apnea. If you have a sleep disorder, please consult a healthcare professional." },
     { "type": "header", "content": "Experts (add real, named endorsements only)" },
+    { "type": "checkbox", "id": "enable_review", "label": "Enable Review section", "default": true },
     { "type": "text", "id": "exp_head", "label": "Headline", "default": "Trusted by experts and sleepers alike" },
     { "type": "image_picker", "id": "img_exp1", "label": "Expert 1 photo" },
     { "type": "text", "id": "exp1_name", "label": "Expert 1 name", "default": "Add a real name" },

@@ -13,6 +13,7 @@
       <div class="spdp-main cda-ph" id="{{ fid }}-main" data-label="Main image"></div>
       <div class="spdp-thumbs"><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div><div class="cda-ph" data-label="1:1"></div></div>
     {%- endif -%}
+  {% if section.settings.enable_review %}
     {%- if section.settings.rev_title != blank or section.settings.rev_quote != blank -%}
     <div class="spdp-revcard">
       <div class="spdp-rev-l">
@@ -25,6 +26,7 @@
         {%- if section.settings.rev_quote != blank -%}<p>{{ section.settings.rev_quote }}</p>{%- endif -%}
       </div>
     </div>
+    {%- endif -%}
     {%- endif -%}
   </div>
   <div class="spdp-buy">
@@ -459,6 +461,7 @@ body{padding-bottom:76px}
     { "type": "text", "id": "plan_label", "label": "Bundle label", "default": "Choose your bundle:" },
     { "type": "color", "id": "badge_color", "label": "Accent badge color", "default": "#5B79F3" },
     { "type": "header", "content": "Review card (under gallery)" },
+    { "type": "checkbox", "id": "enable_review", "label": "Enable Review section", "default": true },
     { "type": "image_picker", "id": "rev_img", "label": "Reviewer photo (circle)" },
     { "type": "text", "id": "rev_name", "label": "Reviewer name", "default": "Annette A." },
     { "type": "text", "id": "rev_sub", "label": "Reviewer tag", "default": "VERIFIED CUSTOMER" },
