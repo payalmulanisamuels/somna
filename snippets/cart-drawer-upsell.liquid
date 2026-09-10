@@ -10,7 +10,7 @@
 
 {%- liquid
   assign title = title | default: 'Complete your stack'
-  assign default_handles = 'dreamx-silent-alarm-band|dreamx-anti-snore-nasal-strips|dreamx-sleep-mouth-tape' | split: '|'
+  assign default_handles = 'silent-alarm-band|anti-snore-nasal-strips|sleep-mouth-tape' | split: '|'
   assign has_custom_upsells = false
 
   if upsell_product_1 != blank or upsell_product_2 != blank or upsell_product_3 != blank or upsell_product != blank
