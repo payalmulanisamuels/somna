@@ -75,7 +75,7 @@
       <span class="spdp-bsave spdp-sum-badge" data-js-badge></span>
     </div>
       <div class="spdp-sum-price"><b data-js-price></b><s data-js-was></s></div>
-      <div class="spdp-sum-then" data-js-then></div>
+      <div class="spdp-sum-then" data-js-then style="display:none"></div>
       <ul class="spdp-sum-perks" data-js-perks>
         {%- assign perks = section.settings.perks | newline_to_br | split: '<br />' -%}
         {%- for p in perks -%}{%- assign pt = p | strip -%}{% if pt != '' %}<li>{{ pt }}</li>{% endif %}{%- endfor -%}
