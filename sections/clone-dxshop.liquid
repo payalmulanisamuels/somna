@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="dxsh-grid">
-      {%  assign index = 1 %}
+      {%  assign index = 0 %}
       {%- for product in collection.products -%}
         {%- if product.type == 'Protection' or product.type == 'Gift' -%}{%- continue -%}{%- endif -%}
         {%- assign v = product.selected_or_first_available_variant -%}
