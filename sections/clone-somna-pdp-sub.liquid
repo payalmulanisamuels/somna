@@ -31,7 +31,7 @@
         <div class="spsb-pad">
           <div class="spsb-top"><strong>90-Day Subscription</strong><span class="spsb-savebadge">SAVE 35%</span></div>
           <div class="spsb-price"><span class="spsb-day">{{ qDayC | money }}</span><span class="spsb-dayl">/day</span><s class="spsb-was">{{ vq.price | money }}</s></div>
-          <div class="spsb-line">Billed {{ qBilledC | money }} today · ships every 90 days · cancel anytime</div>
+          <div class="spsb-line">Billed {{ qBilledC | money }} today · ships every 90 Nights · cancel anytime</div>
           <div class="spsb-body">
             <div class="spsb-kit-h"><span>{{ section.settings.kit_title }}</span><span class="spsb-val">{{ section.settings.kit_value }} value FREE</span></div>
             <div class="spsb-kit-row">{% if kitblocks.size > 0 %}{% for kb in kitblocks %}<div class="spsb-item">{% if kb.settings.img %}<div class="cda-ph"><img src="{{ kb.settings.img | image_url: width: 160 }}" alt=""></div>{% else %}<div class="cda-ph"></div>{% endif %}<div class="spsb-it-n">{{ kb.settings.name }}</div><div class="spsb-it-p">{{ kb.settings.value }}</div></div>{% endfor %}{% else %}{%- assign kitlines = section.settings.kit_items | newline_to_br | split: '<br />' -%}{% for kl in kitlines %}{%- assign kp = kl | strip | split: '|' -%}{% if kp[0] != blank %}<div class="spsb-item"><div class="cda-ph"></div><div class="spsb-it-n">{{ kp[0] | strip }}</div><div class="spsb-it-p">{{ kp[1] | strip }}</div></div>{% endif %}{% endfor %}{% endif %}</div>
