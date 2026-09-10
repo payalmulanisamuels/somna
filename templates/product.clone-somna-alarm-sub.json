@@ -365,9 +365,49 @@
     },
     "cta": {
       "type": "clone-dreamx-alarm-cta",
+      "blocks": {
+        "badge_WdqarJ": {
+          "type": "badge",
+          "settings": {
+            "icon": "🔒",
+            "title": "Secure checkout",
+            "description": "256-bit encrypted"
+          }
+        },
+        "badge_QG3gY8": {
+          "type": "badge",
+          "settings": {
+            "icon": "↩️",
+            "title": "90-night guarantee",
+            "description": "Love it or full refund"
+          }
+        },
+        "badge_xAF984": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "title": "Fast free shipping",
+            "description": "Ships within 24 hours"
+          }
+        },
+        "badge_VYcq7f": {
+          "type": "badge",
+          "settings": {
+            "icon": "💬",
+            "title": "Real human support",
+            "description": "7 days a week"
+          }
+        }
+      },
+      "block_order": [
+        "badge_WdqarJ",
+        "badge_QG3gY8",
+        "badge_xAF984",
+        "badge_VYcq7f"
+      ],
       "settings": {
         "title": "Never sleep through an alarm again.",
-        "body": "<p>Wake up on time, quietly, and on your own terms — backed by a 100-night money-back guarantee.</p>",
+        "body": "<p>Wake up on time, quietly, and on your own terms — backed by a 90-night money-back guarantee.</p>",
         "cta_label": "Order Yours Today",
         "cta_link": "shopify://products/silent-alarm-band"
       }
