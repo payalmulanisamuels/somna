@@ -55,10 +55,10 @@
           <div class="dxsh-p">{{ v.price | money }}{% if v.compare_at_price > v.price %} <s>{{ v.compare_at_price | money }}</s>{%- assign pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round -%} <span class="dxsh-off">Save {{ pct }}%</span>{% endif %}</div>
           <div class="dxsh-subln"><strong>Subscribe &amp; Save 20%</strong><span>{{ v.price | times: 0.8 | money }}/month</span></div>
           </a>
-        {%  assign index = index | plus: 1 %}
+        {%  assign pro_gtee = product.handle | remove:'-'  %}
 
           <button type="button" class="dxsh-shop" data-vid="{{ v.id }}">Add to Cart</button>
-          <span class="dxsh-gtee {{ product.handle | remove:'-' }}">{{ section.settings.card_gtee[forloop.index] }}</span> 
+          <span class="dxsh-gtee ">{{ section.settings[pro_gtee]}}</span> 
         </div>
       {%- else -%}
         <p class="dxsh-muted">No products yet.</p>
@@ -312,9 +312,9 @@
   "name": "Somna Shop",
   "settings": [
     { "type": "header", "content": "Guarantee Line" },
-    { "type": "text", "id": "card_gtee1", "label": "Guarantee line - Mouth Tape", "default": "30-day money-back guarantee" },
-    { "type": "text", "id": "card_gtee2", "label": "Guarantee line - Nasal Strips", "default": "30-day money-back guarantee" },
-    { "type": "text", "id": "card_gtee3", "label": "Guarantee line - Alaram Band", "default": "90-day money-back guarantee" },
+    { "type": "text", "id": "antisnorenasalstrips", "label": "Guarantee line - Mouth Tape", "default": "30-day money-back guarantee" },
+    { "type": "text", "id": "sleepmouthtape", "label": "Guarantee line - Nasal Strips", "default": "30-day money-back guarantee" },
+    { "type": "text", "id": "silentalarmband", "label": "Guarantee line - Alaram Band", "default": "90-day money-back guarantee" },
     { "type": "header", "content": "Header" },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "BESTSELLERS" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Our Bestsellers" },
