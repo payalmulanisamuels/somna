@@ -36,6 +36,7 @@
       </div>
     </div>
     <div class="dxsh-grid">
+      {%  assign index = 1 %}
       {%- for product in collection.products -%}
         {%- if product.type == 'Protection' or product.type == 'Gift' -%}{%- continue -%}{%- endif -%}
         {%- assign v = product.selected_or_first_available_variant -%}
@@ -54,8 +55,10 @@
           <div class="dxsh-p">{{ v.price | money }}{% if v.compare_at_price > v.price %} <s>{{ v.compare_at_price | money }}</s>{%- assign pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round -%} <span class="dxsh-off">Save {{ pct }}%</span>{% endif %}</div>
           <div class="dxsh-subln"><strong>Subscribe &amp; Save 20%</strong><span>{{ v.price | times: 0.8 | money }}/month</span></div>
           </a>
+        {%  assign index = index | plus: 1 %}
+
           <button type="button" class="dxsh-shop" data-vid="{{ v.id }}">Add to Cart</button>
-          <span class="dxsh-gtee {{forloop.index }}">{{ section.settings.card_gtee[forloop.index] }}</span> 
+          <span class="dxsh-gtee {{index }}">{{ section.settings.card_gtee[forloop.index] }}</span> 
         </div>
       {%- else -%}
         <p class="dxsh-muted">No products yet.</p>
