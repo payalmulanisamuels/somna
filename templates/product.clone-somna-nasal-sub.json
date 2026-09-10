@@ -630,6 +630,7 @@
         "tc2",
         "tc3"
       ],
+      "disabled": true,
       "settings": {
         "stars_line": "",
         "title_a": "Join",
