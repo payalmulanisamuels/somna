@@ -197,7 +197,7 @@
         "checks": "Deeper Sleep\nSharper Focus\nReduced Snoring",
         "plan_label": "Choose your bundle:",
         "badge_color": "#5b79f3",
-        "enable_review": true,
+        "enable_review": false,
         "rev_img": "shopify://shop_images/c709f1d4c8ea8c49862674e181c8ab1a.jpg",
         "rev_name": "Annette A.",
         "rev_sub": "VERIFIED CUSTOMER",
