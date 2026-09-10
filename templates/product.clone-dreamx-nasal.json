@@ -40,9 +40,9 @@
       "q5": { "type": "faq", "settings": { "q": "What size should I get?", "a": "<p>Most people fit the standard size. The 90- and 180-packs include a mix.</p>" } }
     }, "block_order": ["q1","q2","q3","q4","q5"], "settings": {} },
     "kit": { "type": "clone-dreamx-alarm-kit", "blocks": {
-      "k1": { "type": "item", "settings": { "name": "Silent Vibration Alarm", "price": "$44", "was": "$89", "link": "/products/dreamx-silent-alarm-band" } },
-      "k2": { "type": "item", "settings": { "name": "Sleep Mouth Tape", "price": "$19", "was": "$32", "link": "/products/dreamx-sleep-mouth-tape" } },
-      "k3": { "type": "item", "settings": { "name": "Recovery Light Panel", "price": "$199", "was": "$349", "link": "/products/dreamx-recovery-light-panel" } }
+      "k1": { "type": "item", "settings": { "name": "Silent Vibration Alarm", "price": "$44", "was": "$89", "link": "/products/silent-alarm-band" } },
+      "k2": { "type": "item", "settings": { "name": "Sleep Mouth Tape", "price": "$19", "was": "$32", "link": "/products/sleep-mouth-tape" } },
+      "k3": { "type": "item", "settings": { "name": "Recovery Light Panel", "price": "$199", "was": "$349", "link": "/products/recovery-light-panel" } }
     }, "block_order": ["k1","k2","k3"], "settings": {} },
     "cta": { "type": "clone-dreamx-alarm-cta", "settings": { "title": "Breathe better tonight.", "body": "<p>Drug-free strips for quieter, deeper sleep — backed by a 100-night money-back guarantee.</p>" } },
     "sticky": { "type": "clone-dreamx-alarm-sticky", "settings": { "short_title": "Nasal Strips" } }
