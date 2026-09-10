@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "jphero": {
@@ -29,7 +38,7 @@
         "subhead": "<p>Drug-free strips that gently open your nasal passages — breathe easier, snore less, wake up recovered.</p>",
         "ship_note": "+ $9 shipping",
         "cta_label": "Try Somna Tonight",
-        "guarantee": "30 Days Risk-Free Money Back Guarantee",
+        "guarantee": "30 Nights Risk-Free Money Back Guarantee",
         "bg": "#FBFAF7"
       }
     },
