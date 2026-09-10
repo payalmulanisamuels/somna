@@ -38,7 +38,7 @@
         "subhead": "<p>Drug-free strips that gently open your nasal passages — breathe easier, snore less, wake up recovered.</p>",
         "ship_note": "+ $9 shipping",
         "cta_label": "Try Somna Tonight",
-        "guarantee": "30 Nights Risk-Free Money Back Guarantee",
+        "guarantee": "30 Night Risk-Free Money Back Guarantee",
         "bg": "#FBFAF7"
       }
     },
@@ -155,7 +155,7 @@
       "blocks": {
         "q1": { "type": "faq", "settings": { "q": "Will it stay on all night?", "a": "<p>Yes — the adhesive is built to hold through 8+ hours of sleep or sweat-heavy training, then peel off gently in the morning.</p>" } },
         "q2": { "type": "faq", "settings": { "q": "Is it safe for sensitive skin?", "a": "<p>The adhesive is hypoallergenic and latex-free. Don't apply to broken or irritated skin; if you have specific concerns, check with your doctor.</p>" } },
-        "q3": { "type": "faq", "settings": { "q": "Will this stop my snoring?", "a": "<p>If your snoring starts in the nose — congestion, narrow passages — opening the airway usually quiets it down noticeably. Everyone's different, which is why you get 30 nights to find out risk-free.</p>" } },
+        "q3": { "type": "faq", "settings": { "q": "Will this stop my snoring?", "a": "<p>If your snoring starts in the nose — congestion, narrow passages — opening the airway usually quiets it down noticeably. Everyone's different, which is why you get 30 night to find out risk-free.</p>" } },
         "q4": { "type": "faq", "settings": { "q": "How is this different from pharmacy strips?", "a": "<p>Stronger hold, sweat-resistant adhesive, a matte design you won't hide from cameras, and a resealable 30-pack pouch.</p>" } },
         "q5": { "type": "faq", "settings": { "q": "When will my order arrive?", "a": "<p>Orders ship in 1–2 business days with tracking, delivery typically 3–7 business days.</p>" } }
       },
