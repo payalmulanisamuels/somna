@@ -374,12 +374,21 @@
             "title": "Fast free shipping",
             "description": "Ships within 24 hours"
           }
+        },
+        "badge_CYgEWa": {
+          "type": "badge",
+          "settings": {
+            "icon": "💬",
+            "title": "Real human support",
+            "description": "7 days a week"
+          }
         }
       },
       "block_order": [
         "badge_YBUUcy",
         "badge_RLEPAE",
-        "badge_feGyYR"
+        "badge_feGyYR",
+        "badge_CYgEWa"
       ],
       "settings": {
         "title": "Wake up refreshed, not parched.",
