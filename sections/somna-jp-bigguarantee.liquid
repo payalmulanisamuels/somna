@@ -6,7 +6,7 @@
       {%- unless section.settings.hide_overlay -%}
       <svg class="sjp-burst" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0l6.7 12.9L68 5.4l1.6 14.4L84 16.6l-3.9 14 14.5 1.8-9 11.4 12.9 6.9-12.9 6.9 9 11.4-14.5 1.8 3.9 14-14.4-3.2L69.6 96l-11.4-9L50 100l-8.2-13-11.4 9-1.6-14.4-14.4 3.2 3.9-14-14.5-1.8 9-11.4L0 50.7l12.9-6.9-9-11.4 14.5-1.8-3.9-14 14.4 3.2L30.5 5.4l11.3 7.5z" fill="rgba(255,255,255,.95)"/><text x="50" y="46" text-anchor="middle" font-size="17" font-weight="800" fill="#6D49E0" font-family="Hanken Grotesk,sans-serif">{{ section.settings.seal_big | default: '30' }}</text><text x="50" y="62" text-anchor="middle" font-size="11" font-weight="800" fill="#6D49E0" font-family="Hanken Grotesk,sans-serif">{{ section.settings.seal_small | default: 'DAY' }}</text></svg>
       {%- if section.settings.kicker != blank -%}<div class="sjp-bg-k">{{ section.settings.kicker }}</div>{%- endif -%}
-      <h2 class="sjp-bg-t">{{ section.settings.title_a | default: '30-Day' }}<br><em>{{ section.settings.title_em | default: 'Risk-Free Trial' }}</em></h2>
+      <h2 class="sjp-bg-t">{{ section.settings.title_a | default: '30-Night' }}<br><em>{{ section.settings.title_em | default: 'Risk-Free Trial' }}</em></h2>
       <p class="sjp-bg-p">{{ section.settings.body | default: "That's how confident we are in your nights. If you're not thrilled, send it back and we'll refund your purchase." }}</p>
       {%- endunless -%}
       <a class="sjp-cta" href="{{ section.settings.cta_url | default: '#cda-buy' }}">{{ section.settings.cta | default: 'Try Somna Tonight' }} →</a>
@@ -42,7 +42,7 @@
     { "type": "text", "id": "seal_big", "label": "Seal top text", "default": "30" },
     { "type": "text", "id": "seal_small", "label": "Seal bottom text", "default": "DAY" },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "30 Nights · FEEL THE DIFFERENCE" },
-    { "type": "text", "id": "title_a", "label": "Title line 1", "default": "30-Day" },
+    { "type": "text", "id": "title_a", "label": "Title line 1", "default": "30-Night" },
     { "type": "text", "id": "title_em", "label": "Title line 2 (italic)", "default": "Risk-Free Trial" },
     { "type": "textarea", "id": "body", "label": "Body", "default": "That's how confident we are in your nights. If you're not thrilled, send it back and we'll refund your purchase." },
     { "type": "text", "id": "cta", "label": "CTA label", "default": "Try Somna Tonight" },
