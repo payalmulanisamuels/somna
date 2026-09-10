@@ -58,7 +58,7 @@
         {%  assign index = index | plus: 1 %}
 
           <button type="button" class="dxsh-shop" data-vid="{{ v.id }}">Add to Cart</button>
-          <span class="dxsh-gtee {{index }}">{{ section.settings.card_gtee[forloop.index] }}</span> 
+          <span class="dxsh-gtee {{ product.handle | remove:'-' }}">{{ section.settings.card_gtee[forloop.index] }}</span> 
         </div>
       {%- else -%}
         <p class="dxsh-muted">No products yet.</p>
