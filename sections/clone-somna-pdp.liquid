@@ -25,8 +25,8 @@
       <ul class="spdp-checks">{%- for c in checks -%}{%- assign ct = c | strip -%}{% if ct != '' %}<li>{{ ct }}</li>{% endif %}{%- endfor -%}</ul>
     </div>
     {%- assign bandv = product.selected_or_first_available_variant -%}
-    {%- assign nasalp = all_products['dreamx-anti-snore-nasal-strips'] -%}{%- assign nasalv = nasalp.selected_or_first_available_variant -%}
-    {%- assign tapep = all_products['dreamx-sleep-mouth-tape'] -%}{%- assign tapev = tapep.selected_or_first_available_variant -%}
+    {%- assign nasalp = all_products['anti-snore-nasal-strips'] -%}{%- assign nasalv = nasalp.selected_or_first_available_variant -%}
+    {%- assign tapep = all_products['sleep-mouth-tape'] -%}{%- assign tapev = tapep.selected_or_first_available_variant -%}
     {%- assign nSubC = nasalp.price | times: 0.8 -%}{%- assign tSubC = tapep.price | times: 0.8 -%}
     {%- assign today1 = bandv.price | divided_by: 100.0 -%}
     {%- assign today2C = bandv.price | plus: nSubC -%}{%- assign today2 = today2C | divided_by: 100.0 -%}
