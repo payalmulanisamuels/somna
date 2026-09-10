@@ -11,7 +11,7 @@
       <div class="dxh-hero-in">
         <span class="dxh-kick">{{ section.settings.hero_kicker }}</span>
         <h1 class="dxh-h1"><span class="dxh-h1a">{{ section.settings.hero_line1 }}</span><span class="dxh-h1b">{{ section.settings.hero_line2 }}</span></h1>
-        {% if section.settings.hero_proof != blank %}<div class="dxh-hero-proof"><span class="dxh-hero-stars">★★★★★</span> <span>{{ section.settings.hero_proof }}</span></div>{% endif %}
+        {% if section.settings.hero_proof != blank %}<div class="dxh-hero-proof"> <span>{{ section.settings.hero_proof }}</span></div>{% endif %}
         <a class="cda-btn dxh-btn" href="{{ section.settings.hero_cta_link | default: '/collections/all' }}">{{ section.settings.hero_cta }}</a>
       </div>
     </div>
