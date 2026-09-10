@@ -135,7 +135,7 @@
   <section class="dxsh-news"><div class="dxsh-wrap dxsh-news-in">
     <div><h2 class="dxsh-h2" style="color:#fff">{{ section.settings.news_head }}</h2><p style="color:#eef0fb">{{ section.settings.news_sub }}</p></div>
     <form class="dxsh-nform" onsubmit="return false">
-      <div class="dxsh-form"><input type="email" placeholder="you@email.com"><button class="dxsh-sub">{{ section.settings.news_btn }}</button></div>
+      <div class="dxsh-form"><input type="email" placeholder="E-mail"><button class="dxsh-sub">{{ section.settings.news_btn }}</button></div>
       <label class="dxsh-consent"><input type="checkbox"> <span>I agree to receive emails about sleep tips &amp; exclusive offers</span></label>
       <div class="dxsh-nproof">{{ section.settings.news_proof }}</div>
     </form>
@@ -207,10 +207,10 @@
 .dxsh-bproof{color:var(--cda-muted);font-size:.8rem;margin-top:12px}
 .dxsh-gtee-l{text-align:left;margin-top:4px}
 .dxsh-ov{position:fixed;inset:0;z-index:120;background:rgba(15,13,26,.5);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;display:flex;align-items:flex-end}
-.dxsh-ov.open{opacity:1;visibility:visible}
-.dxsh-sheet{background:#fff;width:100%;border-radius:20px 20px 0 0;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:82vh;display:flex;flex-direction:column;font-family:var(--cda-font)}
+.dxsh-ov.open{opacity:1;visibility:visible;display:block}
+.dxsh-sheet{background:#fff;max-width: 350px;width:100%;height:100%;border-radius:0;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:100%;display:flex;flex-direction:column;font-family:var(--cda-font)}
 .dxsh-ov.open .dxsh-sheet{transform:translateY(0)}
-.dxsh-sheet-tall{max-height:88vh}
+.dxsh-sheet-tall{max-height:100%;height:100%;}
 .dxsh-sheet-h{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--cda-line);font-weight:800;font-size:1.1rem}
 .dxsh-x{background:none;border:none;cursor:pointer;color:var(--cda-ink);padding:6px;margin:-6px;display:flex}
 .dxsh-sheet-b{padding:8px 20px 18px;overflow-y:auto}

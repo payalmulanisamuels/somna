@@ -110,7 +110,7 @@
     <h2 class="dxj-h2" style="color:#fff">{{ section.settings.news_head }}</h2>
     {% if section.settings.news_sub != blank %}<p class="dxj-news-sub">{{ section.settings.news_sub }}</p>{% endif %}
     <form class="dxj-nform" onsubmit="return false">
-      <div class="dxj-form"><input type="email" placeholder="you@email.com"><button class="dxj-sub">{{ section.settings.news_btn }}</button></div>
+      <div class="dxj-form"><input type="email" placeholder="E-mail"><button class="dxj-sub">{{ section.settings.news_btn }}</button></div>
       <label class="dxj-consent"><input type="checkbox"> <span>I agree to receive emails about sleep tips &amp; exclusive offers</span></label>
       {% if section.settings.news_proof != blank %}<div class="dxj-nproof">{{ section.settings.news_proof }}</div>{% endif %}
     </form>
