@@ -12,9 +12,12 @@
     "main": {
       "type": "clone-dxshop",
       "settings": {
+        "card_gtee1": "30-day money-back guarantee",
+        "card_gtee2": "30-day money-back guarantee",
+        "card_gtee3": "90-day money-back guarantee",
         "kicker": "BESTSELLERS",
         "heading": "Our Bestsellers",
-        "subtitle": "",
+        "subtitle": "Targeted tools designed for calmer breathing and silent wake-ups.",
         "cmp_head": "Which product is right for you?",
         "bundle_head": "Get the complete sleep system",
         "bundle_sub": "All three products work together for better, quieter sleep.",
