@@ -41,9 +41,9 @@
         {%- assign v = product.selected_or_first_available_variant -%}
         {%- assign bdg = '' -%}{%- assign ben = '' -%}
         {%- case product.handle -%}
-          {%- when 'anti-snore-nasal-strips' -%}{%- assign bdg = 'Best Seller' -%}{%- assign ben = 'Breathe easier. Sleep deeper.' -%}
-          {%- when 'sleep-mouth-tape' -%}{%- assign bdg = 'Popular' -%}{%- assign ben = 'Seal your mouth. Unlock nasal breathing.' -%}
-          {%- when 'silent-alarm-band' -%}{%- assign bdg = 'Premium' -%}{%- assign ben = 'Wake without waking others.' -%}
+          {%- when 'anti-snore-nasal-strips' -%}{% assign guarantee_line = '30-Night Money-Back Guarantee' %}{%- assign bdg = 'Best Seller' -%}{%- assign ben = 'Breathe easier. Sleep deeper.' -%}
+          {%- when 'sleep-mouth-tape' -%}{% assign guarantee_line = '30-Night Money-Back Guarantee' %}{%- assign bdg = 'Popular' -%}{%- assign ben = 'Seal your mouth. Unlock nasal breathing.' -%}
+          {%- when 'silent-alarm-band' -%}{% assign guarantee_line = '90-Night Money-Back Guarantee' %}{%- assign bdg = 'Premium' -%}{%- assign ben = 'Wake without waking others.' -%}
         {%- endcase -%}
         <div class="dxsh-card">
           <a class="dxsh-card-link" href="{{ product.url }}">
