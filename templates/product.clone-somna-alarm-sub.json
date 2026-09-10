@@ -23,7 +23,7 @@
           "type": "faq",
           "settings": {
             "q": "Will this actually wake me?",
-            "a": "<p>Designed specifically for heavy sleepers, but with a smarter approach to waking you up. </p><p>Instead of a fixed vibration, the alarm <strong>gradually increases in intensity</strong><br/> until you wake, making it ideal if you’ve struggled to wake up your <br/>entire life, sleep through multiple alarms, or hit snooze without <br/>realizing.</p><p>Because it vibrates <strong>directly on your wrist</strong>, your brain can’t ignore it like sound. And every order is backed by our <strong>100% Wake-Up Guarantee. <br/><br/> If it doesn’t wake you up, you don’t pay.</strong></p>"
+            "a": "<p>Designed specifically for heavy sleepers, but with a smarter approach to waking you up.</p><p>Instead of a fixed vibration, the alarm <strong>gradually increases in intensity</strong><br/>until you wake, making it ideal if you’ve struggled to wake up your<br/>entire life, sleep through multiple alarms, or hit snooze without<br/>realizing.</p><p>Because it vibrates <strong>directly on your wrist</strong>, your brain can’t ignore it like sound. And every order is <strong>backed by our 90-Night Money-Back Guarantee.</strong></p><p><strong>If it doesn’t wake you up, you don’t pay.</strong></p>"
           }
         },
         "fq3": {
@@ -94,8 +94,6 @@
         "a2"
       ],
       "settings": {
-        "rating": "4.8",
-        "reviews": "1,240",
         "kicker": "SILENT ALARM · VIBRATION WEARABLE",
         "hero_badge": "BESTSELLER",
         "head_a": "Can't sleep through it.",
@@ -106,16 +104,16 @@
         "why_body": "<p>A vibration on your wrist is something your brain can't tune out like a repeated sound — so it actually gets you up.</p>",
         "checks": "Built by heavy sleepers, for heavy sleepers\nSilent vibrations wake you without disturbing anyone else\n14+ days of battery on one charge\nWater resistant for everyday wear",
         "plan_label": "Choose your plan",
-        "guarantee": "100 Days Risk-Free Money Back Guarantee",
-        "trust_items": "100 Days Risk-Free Money Back Guarantee\nFree shipping on orders over $50\nSilent — won't wake your partner\nShips in 1-2 business days",
+        "guarantee": "90 Days Risk-Free Money Back Guarantee",
+        "trust_items": "90 Days Risk-Free Money Back Guarantee\nFree shipping on orders over $50\nSilent — won't wake your partner\nShips in 1-2 business days",
         "proof_line": "Most popular with light sleepers & partners",
         "faq_title": "",
         "sys_title": "Complete your sleep system",
         "sys_sub": "Support your nights with these curated additions.",
         "inc_title": "Your order includes",
-        "inc_bullets": "Free shipping included\n100-night money-back guarantee\nComplete flexibility — pause, skip, swap or cancel anytime",
+        "inc_bullets": "Free shipping included\n90-night money-back guarantee\nComplete flexibility — pause, skip, swap or cancel anytime",
         "inc_note": "Try Somna for up to 100 nights. If you’re not satisfied, contact us for a full refund.",
-        "badges": "All Somna products are 3rd party lab tested, 100-night guarantee, Cancel anytime, Secure checkout",
+        "badges": "All Somna products are 3rd party lab tested, 90-night guarantee, Cancel anytime, Secure checkout",
         "testi_title": "What our customers are saying"
       }
     },
