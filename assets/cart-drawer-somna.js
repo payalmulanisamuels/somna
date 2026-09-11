@@ -26,8 +26,8 @@
       '.cdx-topbar .cdx-marqi span::before{align-self:center!important;margin:0 16px!important;flex:none!important;position:static!important;transform:none!important}' +
       '.dxsh-card:has(a[href*="/products/2x-free-e-books"]), ' +
       'li:has(> a[href*="/products/2x-free-e-books"]),' +
-      'li:has(product-card a[href*="/products/2x-free-e-books"]),' +
-      '.product-grid__item:has(a[href*="/products/2x-free-e-books"])' +
+      'li:has(product-card a[href*="/products/2x-free-e-books"]),li:has(product-card a[href*="/products/shipping-protection"]),' +
+      '.product-grid__item:has(a[href*="/products/2x-free-e-books"]),.product-grid__item:has(a[href*="/products/shipping-protection"])' +
       '{display:none!important}';
     document.head.appendChild(st);
   } catch (e) {}
