@@ -91,7 +91,7 @@
           assign products = recommendations.products
         endif
       %}
-      {%- assign products = products | reject: 'type', 'Protection' | reject: 'type', 'Gift' -%}
+      {%- assign products = products  | reject: 'type', 'Gift' -%}
       {% capture list_items %}
         {% for product in products limit: block_settings.max_products %}
           <div class="resource-list__item">
