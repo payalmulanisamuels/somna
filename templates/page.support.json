@@ -82,13 +82,6 @@
             "a": "<p>Somna is designed for athletes, deep sleepers, snorers, mouth-breathers, and anyone who wants to breathe better — at the gym, at work, or at night.</p>"
           }
         },
-        "q10": {
-          "type": "faq",
-          "settings": {
-            "q": "Where are Somna made?",
-            "a": "<p>Somna are designed in the EU and manufactured to ISO-certified quality standards.</p>"
-          }
-        },
         "q11": {
           "type": "faq",
           "settings": {
@@ -262,7 +255,6 @@
         "q8",
         "cat2",
         "q9",
-        "q10",
         "q11",
         "q12",
         "cat3",
