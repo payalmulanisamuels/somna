@@ -1,16 +1,14 @@
 /**
  * Somna cart drawer engine + site-wide helpers:
  * - Free-shipping bar dynamically calculated against threshold; updates width of [data-cart-drawer-shipping-fill].
- * - Shipping Protection auto-added with real items; removable per session; auto-removed when alone.
  * - 2x FREE E-Books gift auto-added while the 3+1 bundle (4-bag variant) is in the cart.
- * - Hides the gift + protection products from catalog/search grids (they stay purchasable for the auto-add).
+ * - Hides the gift  from catalog/search grids (they stay purchasable for the auto-add).
  * - Steppers / trash / close for the custom drawer.
  * - Close releases the theme scroll-lock (html[scroll-lock]); a watchdog + pageshow handler self-heal
  *   a stuck scroll-lock (e.g. after checkout -> back button) so the page never freezes.
  * - Delivery-frequency labels mapped by selling-plan ID.
  */
 (function () {
-  var PROT_VARIANT = 52235463524583;
   var GIFT_VARIANT = 52294644826343;
   var GIFT_TRIGGER_VARIANT = 52214694314215;
 
@@ -123,7 +121,6 @@
     });
   }
 
-  var hadProt = false;
   var busy = false;
   function again() { busy = false; setTimeout(ensureExtras, 40); }
   function ensureExtras() {
@@ -136,9 +133,8 @@
         updateShippingBar(cart);
 
         var items = cart.items || [];
-        var prot = null, gift = null, hasTrigger = false, realCount = 0;
+        var  gift = null, hasTrigger = false, realCount = 0;
         items.forEach(function (i) {
-          if (i.variant_id === PROT_VARIANT) { prot = i; return; }
           if (i.variant_id === GIFT_VARIANT) { gift = i; return; }
           realCount += 1;
           if (i.variant_id === GIFT_TRIGGER_VARIANT) hasTrigger = true;
@@ -146,13 +142,6 @@
         if (hasTrigger && !gift) { return fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: [{ id: GIFT_VARIANT, quantity: 1 }] }) }).then(function (r) { if (r.ok) return refreshDrawer(); }).then(again); }
         if (!hasTrigger && gift) { return fetch('/cart/change.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: gift.key, quantity: 0 }) }).then(function () { return refreshDrawer(); }).then(again); }
         if (gift && gift.quantity > 1) { return fetch('/cart/change.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: gift.key, quantity: 1 }) }).then(function () { return refreshDrawer(); }).then(again); }
-        if (prot && realCount === 0) { hadProt = false; return fetch('/cart/change.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: prot.key, quantity: 0 }) }).then(function () { return refreshDrawer(); }).then(again); }
-        if (hadProt && !prot && realCount > 0) { try { sessionStorage.setItem('somnaProtOptOut', '1'); } catch (e) {} }
-        hadProt = !!prot;
-        var optedOut = false;
-        try { optedOut = sessionStorage.getItem('somnaProtOptOut') === '1'; } catch (e) {}
-        if (!prot && realCount > 0 && !optedOut) { return fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items: [{ id: PROT_VARIANT, quantity: 1 }] }) }).then(function (r) { if (r.ok) { hadProt = true; return refreshDrawer(); } }).then(again); }
-        if (prot && prot.quantity > 1) { return fetch('/cart/change.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: prot.key, quantity: 1 }) }).then(function () { return refreshDrawer(); }).then(again); }
         busy = false;
       })
       .catch(function () { busy = false; });
