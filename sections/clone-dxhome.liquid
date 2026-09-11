@@ -17,6 +17,7 @@
     </div>
   </section>
 
+  {% if section.settings.enable_seen_logos %}
   {%- comment -%} ===== AS SEEN IN ===== {%- endcomment -%}
   <section class="dxh-wrap dxh-seenbar">
     <div class="dxh-seen-k">AS SEEN IN</div>
@@ -26,6 +27,7 @@
       {%- for l in seen -%}<span>{{ l | strip }}</span>{%- endfor -%}
     </div></div>
   </section>
+{%  endif %}
 
   {%- comment -%} ===== PROBLEM STATEMENT ===== {%- endcomment -%}
   <section class="dxh-wrap dxh-sec">
@@ -328,6 +330,7 @@
     { "type": "text", "id": "hero_cta", "label": "Hero button", "default": "Shop Now" },
     { "type": "url", "id": "hero_cta_link", "label": "Hero button link" },
     { "type": "header", "content": "As seen in" },
+    { "type": "checkbox", "id": "enable_seen_logos", "label": "Enable AS SEEN IN", "default": true },
     { "type": "text", "id": "seen_logos", "label": "Publications (comma separated)", "default": "Forbes, People, Vogue, Women's Health, Cosmopolitan, Elle, Goop, Oprah Magazine" },
     { "type": "header", "content": "Problem statement" },
     { "type": "text", "id": "prob_head", "label": "Headline", "default": "Why sleep matters (and why you're probably not getting enough)" },
