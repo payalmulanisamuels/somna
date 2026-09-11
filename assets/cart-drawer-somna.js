@@ -27,7 +27,7 @@
       '.dxsh-card:has(a[href*="/products/2x-free-e-books"]), ' +
       'li:has(> a[href*="/products/2x-free-e-books"]),' +
       'li:has(product-card a[href*="/products/2x-free-e-books"]),' +
-      '.product-grid__item:has(a[href*="/products/2x-free-e-books"]),.product-grid__item:has(a[href*="/products/shipping-protection"])' +
+      '.product-grid__item:has(a[href*="/products/2x-free-e-books"])' +
       '{display:none!important}';
     document.head.appendChild(st);
   } catch (e) {}
