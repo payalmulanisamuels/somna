@@ -37,7 +37,7 @@
     </div>
     <div class="dxsh-grid">
       {%- for product in collection.products -%}
-        {%- if product.type == 'Gift' -%}{%- continue -%}{%- endif -%}
+        {%- if product.type == 'Protection' or product.type == 'Gift' -%}{%- continue -%}{%- endif -%}
         {%- assign v = product.selected_or_first_available_variant -%}
         {%- assign bdg = '' -%}{%- assign ben = '' -%}
         {%- case product.handle -%}
