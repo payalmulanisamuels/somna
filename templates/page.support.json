@@ -172,76 +172,6 @@
             "q": "How do I skip a delivery?",
             "a": "<p>Log into your account, find your active subscription, and click Skip next to the upcoming order. You can skip as many cycles as you want.</p>"
           }
-        },
-        "cat5": {
-          "type": "cat",
-          "settings": {
-            "kicker": "COLLABS",
-            "title": "Collabs & partnerships"
-          }
-        },
-        "q23": {
-          "type": "faq",
-          "settings": {
-            "q": "I'm an athlete or content creator — how can I collaborate?",
-            "a": "<p>We work with athletes, creators, and ambassadors across sports and wellness. Email collabs@somna.com with your platform handles, audience size, and a short pitch.</p>"
-          }
-        },
-        "q24": {
-          "type": "faq",
-          "settings": {
-            "q": "What does a partnership look like?",
-            "a": "<p>Free product, custom discount codes for your audience, performance-based commissions, and feature opportunities on our channels.</p>"
-          }
-        },
-        "q25": {
-          "type": "faq",
-          "settings": {
-            "q": "How do I apply?",
-            "a": "<p>Send your details to collabs@somna.com — we usually reply within 5 business days.</p>"
-          }
-        },
-        "q26": {
-          "type": "faq",
-          "settings": {
-            "q": "Do you offer an affiliate program?",
-            "a": "<p>Yes — our affiliate program pays out a commission on every sale through your unique code. Apply by emailing collabs@somna.com.</p>"
-          }
-        },
-        "cat6": {
-          "type": "cat",
-          "settings": {
-            "kicker": "STOCKIST",
-            "title": "Stockists & wholesale"
-          }
-        },
-        "q27": {
-          "type": "faq",
-          "settings": {
-            "q": "How do I become a Somna stockist?",
-            "a": "<p>Apply via our stockist page. Approved retailers get wholesale pricing, marketing kit, and dedicated wholesale support.</p>"
-          }
-        },
-        "q28": {
-          "type": "faq",
-          "settings": {
-            "q": "Where do I apply?",
-            "a": "<p>Visit /pages/stockist and submit the wholesale form. Our team reviews each application within 5 business days.</p>"
-          }
-        },
-        "q29": {
-          "type": "faq",
-          "settings": {
-            "q": "What are the wholesale terms?",
-            "a": "<p>Standard terms include 50%+ wholesale margin, MSRP guidance, and Net-30 payment for established accounts. Full terms are shared after a discovery call.</p>"
-          }
-        },
-        "q30": {
-          "type": "faq",
-          "settings": {
-            "q": "What's the minimum order quantity?",
-            "a": "<p>Minimum first order is 50 units across our range. Reorders have a lower minimum once you're an approved partner.</p>"
-          }
         }
       },
       "block_order": [
@@ -267,17 +197,7 @@
         "q18",
         "q19",
         "q20",
-        "q21",
-        "cat5",
-        "q23",
-        "q24",
-        "q25",
-        "q26",
-        "cat6",
-        "q27",
-        "q28",
-        "q29",
-        "q30"
+        "q21"
       ],
       "settings": {
         "kicker": "SUPPORT HUB",
