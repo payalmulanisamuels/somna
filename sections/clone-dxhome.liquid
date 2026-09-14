@@ -75,7 +75,7 @@
   <section class="dxh-wrap dxh-sec">
     <div class="dxh-center"><h2 class="dxh-h2">{{ section.settings.fit_head }}</h2><p class="dxh-muted" style="margin-top:8px">{{ section.settings.fit_sub }}</p></div>
     <div class="dxh-grid4">
-      <a class="dxh-solve" href="{{ section.settings.fit1_link | default: '/collections/all' }}"><div class="dxh-pn">{{ section.settings.fit1_t }}</div><p class="dxh-muted2">{{ section.settings.fit1_s }}</p><div class="dxh-solve-x">{{ section.settings.fit1_sol }}</div></a>
+      {% comment %} <a class="dxh-solve" href="{{ section.settings.fit1_link | default: '/collections/all' }}"><div class="dxh-pn">{{ section.settings.fit1_t }}</div><p class="dxh-muted2">{{ section.settings.fit1_s }}</p><div class="dxh-solve-x">{{ section.settings.fit1_sol }}</div></a> {% endcomment %}
       <a class="dxh-solve" href="{{ section.settings.fit2_link | default: '/products/anti-snore-nasal-strips' }}"><div class="dxh-pn">{{ section.settings.fit2_t }}</div><p class="dxh-muted2">{{ section.settings.fit2_s }}</p><div class="dxh-solve-x">{{ section.settings.fit2_sol }}</div></a>
       <a class="dxh-solve" href="{{ section.settings.fit3_link | default: '/products/sleep-mouth-tape' }}"><div class="dxh-pn">{{ section.settings.fit3_t }}</div><p class="dxh-muted2">{{ section.settings.fit3_s }}</p><div class="dxh-solve-x">{{ section.settings.fit3_sol }}</div></a>
       <a class="dxh-solve" href="{{ section.settings.fit4_link | default: '/collections/all' }}"><div class="dxh-pn">{{ section.settings.fit4_t }}</div><p class="dxh-muted2">{{ section.settings.fit4_s }}</p><div class="dxh-solve-x">{{ section.settings.fit4_sol }}</div></a>
