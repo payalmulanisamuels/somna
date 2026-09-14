@@ -27,6 +27,7 @@
       </div>
       <div class="dxj-grid">
         {% for i in (1..6) %}
+          {%- assign t = 'a' | append: i | append: '_enable' -%}
           {%- assign t = 'a' | append: i | append: '_title' -%}
           {%- assign d = 'a' | append: i | append: '_desc' -%}
           {%- assign bd = 'a' | append: i | append: '_badge' -%}
@@ -230,6 +231,7 @@
     { "type": "text", "id": "grid_sub", "label": "Subheading", "default": "Learn the science. Then fix your sleep with Somna." },
     { "type": "text", "id": "read_label", "label": "Read-link label (all cards)", "default": "Read article" },
     { "type": "header", "content": "Article 1" },
+    { "type": "checkbox", "id": "a1__enable", "label": "Enable" },
     { "type": "text", "id": "a1_title", "label": "Title", "default": "Why vibration wakes you when sound can't" },
     { "type": "text", "id": "a1_badge", "label": "Badge", "default": "Sleep Science" },
     { "type": "select", "id": "a1_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "purple" },
@@ -240,6 +242,7 @@
     { "type": "url", "id": "a1_read", "label": "Read-article link" },
     { "type": "image_picker", "id": "img1", "label": "Image" },
     { "type": "header", "content": "Article 2" },
+    { "type": "checkbox", "id": "a2__enable", "label": "Enable" },
     { "type": "text", "id": "a2_title", "label": "Title", "default": "The frequent traveler's guide to better sleep" },
     { "type": "text", "id": "a2_badge", "label": "Badge", "default": "Travel Tips" },
     { "type": "select", "id": "a2_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "blue" },
@@ -250,6 +253,7 @@
     { "type": "url", "id": "a2_read", "label": "Read-article link" },
     { "type": "image_picker", "id": "img2", "label": "Image" },
     { "type": "header", "content": "Article 3" },
+    { "type": "checkbox", "id": "a3__enable", "label": "Enable" },
     { "type": "text", "id": "a3_title", "label": "Title", "default": "From all-nighters to early mornings" },
     { "type": "text", "id": "a3_badge", "label": "Badge", "default": "Sleep Cycles" },
     { "type": "select", "id": "a3_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "green" },
@@ -260,6 +264,7 @@
     { "type": "url", "id": "a3_read", "label": "Read-article link" },
     { "type": "image_picker", "id": "img3", "label": "Image" },
     { "type": "header", "content": "Article 4" },
+    { "type": "checkbox", "id": "a4__enable", "label": "Enable" },
     { "type": "text", "id": "a4_title", "label": "Title", "default": "Nasal breathing and the architecture of deep sleep" },
     { "type": "text", "id": "a4_badge", "label": "Badge", "default": "Sleep Science" },
     { "type": "select", "id": "a4_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "purple" },
@@ -270,6 +275,7 @@
     { "type": "url", "id": "a4_read", "label": "Read-article link" },
     { "type": "image_picker", "id": "img4", "label": "Image" },
     { "type": "header", "content": "Article 5" },
+    { "type": "checkbox", "id": "a5__enable", "label": "Enable" },
     { "type": "text", "id": "a5_title", "label": "Title", "default": "The cortisol cost of a jarring alarm" },
     { "type": "text", "id": "a5_badge", "label": "Badge", "default": "Sleep Health" },
     { "type": "select", "id": "a5_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "orange" },
@@ -280,6 +286,7 @@
     { "type": "url", "id": "a5_read", "label": "Read-article link" },
     { "type": "image_picker", "id": "img5", "label": "Image" },
     { "type": "header", "content": "Article 6" },
+    { "type": "checkbox", "id": "a6__enable", "label": "Enable" },
     { "type": "text", "id": "a6_title", "label": "Title", "default": "Red light, recovery, and winding down" },
     { "type": "text", "id": "a6_badge", "label": "Badge", "default": "Sleep Environment" },
     { "type": "select", "id": "a6_color", "label": "Badge color", "options": [{"value":"purple","label":"Purple"},{"value":"blue","label":"Blue"},{"value":"green","label":"Green"},{"value":"orange","label":"Orange"},{"value":"red","label":"Red"}], "default": "red" },
