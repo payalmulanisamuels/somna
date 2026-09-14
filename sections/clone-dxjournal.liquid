@@ -27,7 +27,7 @@
       </div>
       <div class="dxj-grid">
         {% for i in (1..6) %}
-          {%- assign t = 'a' | append: i | append: '_enable' -%}
+          {%- assign e = 'a' | append: i | append: '_enable' -%}
           {%- assign t = 'a' | append: i | append: '_title' -%}
           {%- assign d = 'a' | append: i | append: '_desc' -%}
           {%- assign bd = 'a' | append: i | append: '_badge' -%}
@@ -37,6 +37,7 @@
           {%- assign shl = 'a' | append: i | append: '_shop_link' -%}
           {%- assign rd = 'a' | append: i | append: '_read' -%}
           {%- assign im = 'img' | append: i -%}
+          {% if section.settings[e] %}
           <article class="dxj-card">
             <a class="dxj-card-link" href="{{ section.settings[rd] | default: '/pages/the-science' }}">
               {% if section.settings[im] != blank %}<div class="cda-ph"><img src="{{ section.settings[im] | image_url: width: 800 }}" alt="" width="800" height="800" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="Article {{ i }}"></div>{% endif %}
@@ -52,6 +53,7 @@
               </div>
             </div>
           </article>
+        {% endif %}
         {% endfor %}
       </div>
     </div>
