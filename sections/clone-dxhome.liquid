@@ -54,10 +54,10 @@
         <button type="button" class="dxh-shop" data-vid="{{ vT.id }}">Add to cart</button>
       </div>
 
-      <div class="dxh-pcard dxh-pcard-rich">
+      {% comment %} <div class="dxh-pcard dxh-pcard-rich">
         <a class="dxh-card-link" href="/products/silent-alarm-band"><span class="dxh-badge">Bundle</span>{% if section.settings.img_best1 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_best1 | image_url: width: 600 }}" alt="{{ section.settings.img_best1.alt }}" width="600" height="600" loading="lazy"></div>{% elsif section.settings.img_kit != blank %}<div class="cda-ph"><img src="{{ section.settings.img_kit | image_url: width: 600 }}" alt="{{ section.settings.img_kit.alt }}" width="600" height="600" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn">Complete Sleep System</div><div class="dxh-bene">{{ section.settings.kit_bene }}</div><p class="dxh-muted2">{{ section.settings.kit_desc }}</p><div class="dxh-pp">$69 <s>$137</s></div><span class="dxh-gtee">{{ section.settings.card_gtee1 }}</span></a>
         <button type="button" class="dxh-shop" data-vid="{{ vA.id }}">Get the system</button>
-      </div>
+      </div> {% endcomment %}
     </div>
   </section>
 
