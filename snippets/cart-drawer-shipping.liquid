@@ -30,10 +30,12 @@
     ></div>
   </div>
   <p class="cart-drawer__shipping-text" data-cart-drawer-shipping-text>
+      🎉 Congrats! You've unlocked <strong>FREE SHIPPING!</strong>
+{% comment %} 
     {%- if cart_total >= threshold -%}
       🎉 Congrats! You've unlocked <strong>FREE SHIPPING!</strong>
     {%- else -%}
       You're {{ remaining | money }} away from <strong>free shipping</strong>
-    {%- endif -%}
+    {%- endif -%} {% endcomment %}
   </p>
 </div>
