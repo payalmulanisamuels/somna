@@ -163,14 +163,14 @@
   </section>
 
   {%- comment -%} ===== JOURNAL ===== {%- endcomment -%}
-  <section class="dxh-wrap dxh-sec">
+  {% comment %} <section class="dxh-wrap dxh-sec">
     <h2 class="dxh-h2">From the journal</h2>
     <div class="dxh-grid3" style="margin-top:24px">
       <a class="dxh-jcard" href="{{ section.settings.jour1_url | default: '/pages/the-science' }}">{% if section.settings.img_jour1 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_jour1 | image_url: width: 700 }}" alt="" width="700" height="700" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn" style="margin-top:12px">{{ section.settings.jour1_title }}</div><p class="dxh-muted2">{{ section.settings.jour1_desc }}</p></a>
       <a class="dxh-jcard" href="{{ section.settings.jour2_url | default: '/pages/the-science' }}">{% if section.settings.img_jour2 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_jour2 | image_url: width: 700 }}" alt="" width="700" height="700" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn" style="margin-top:12px">{{ section.settings.jour2_title }}</div><p class="dxh-muted2">{{ section.settings.jour2_desc }}</p></a>
       <a class="dxh-jcard" href="{{ section.settings.jour3_url | default: '/pages/the-science' }}">{% if section.settings.img_jour3 != blank %}<div class="cda-ph"><img src="{{ section.settings.img_jour3 | image_url: width: 700 }}" alt="" width="700" height="700" loading="lazy"></div>{% else %}<div class="cda-ph" data-label="1:1"></div>{% endif %}<div class="dxh-pn" style="margin-top:12px">{{ section.settings.jour3_title }}</div><p class="dxh-muted2">{{ section.settings.jour3_desc }}</p></a>
     </div>
-  </section>
+  </section> {% endcomment %}
 
   {%- comment -%} ===== NEWSLETTER ===== {%- endcomment -%}
   <section class="dxh-news">
